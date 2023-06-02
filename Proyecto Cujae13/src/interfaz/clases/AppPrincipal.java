@@ -66,6 +66,7 @@ public class AppPrincipal extends JFrame {
 	private PanelOpcion opcionHistoria;
 	private JTabbedPane panelPrincipall;
 
+	
 	public AppPrincipal(UsuarioEstudiante us) {
 		u = us;
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(Autenticacion.class.getResource("/interfaz/iconos/icono.png")));
