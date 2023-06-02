@@ -39,6 +39,15 @@ import definiciones.ErroresInterfazGrafica;
 import interfaz.componentes.PanelSuperior;
 import utilidades.Auxiliares;
 
+/**
+ * JFrame que modela la autenticación de la aplicación
+ * 
+ * @version 2023.06.02
+ * 
+ * @author Lilian Rojas
+ * @author Eduardo González
+ *
+ */
 public class Autenticacion extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panelBase;

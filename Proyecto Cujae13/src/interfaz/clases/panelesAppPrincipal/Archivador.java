@@ -6,8 +6,16 @@ import java.util.HashMap;
 import clasesAuxiliares.NombreFacultad;
 import definiciones.DefinicionesInterfaz;
 
-public final class ArchivadorColores {
-	private ArchivadorColores() {}
+/**
+ * Clase de utilidades que incluye los diferentes archivadores empleados en la aplicación.
+ * 
+ * @version 2023.06.02
+ * @author Lilian Rojas
+ * @author Eduardo González
+ *
+ */
+public final class Archivador {
+	private Archivador() {}
 	
 	private static HashMap<NombreFacultad,EsquemaColores> archivador = crearArchivador();
 	

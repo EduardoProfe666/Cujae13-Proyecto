@@ -1,5 +1,12 @@
 package definiciones;
 
+/**
+ * Clase que incluye los mensajes de error de las excepciones de interfaz gráfica.
+ * 
+ * @version 2023.06.02
+ * @author Eduardo González
+ *
+ */
 public final class ErroresInterfazGrafica {
 	private ErroresInterfazGrafica() {}
 	

@@ -7,6 +7,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
+/**
+ * Componente gráfico que modela las tablas de posición de la aplicación
+ * 
+ * @version 2023.06.02
+ * @author Eduardo González
+ *
+ */
 public class TablaPosiciones extends JScrollPane{
 	private static final long serialVersionUID = 1L;
 	private JTable tabla;

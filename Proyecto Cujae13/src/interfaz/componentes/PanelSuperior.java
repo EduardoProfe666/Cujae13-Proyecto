@@ -22,6 +22,13 @@ import componentes.PanelBordeOval;
 import definiciones.DefinicionesInterfaz;
 import utilidades.Auxiliares;
 
+/**
+ * Componente gráfico que modela el panel superior movible de la aplicación Cujae13
+ * 
+ * @version 2023.06.02
+ * @author Eduardo González
+ *
+ */
 public class PanelSuperior extends PanelBordeOval{
 	private static final long serialVersionUID = 1L;
 	private Color colorBase;

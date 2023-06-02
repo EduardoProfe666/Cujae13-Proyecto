@@ -5,6 +5,15 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+
+/**
+ * Clase de utilidades que incluye diferentes métodos para la validación de los datos 
+ * de la aplicación.
+ * 
+ * @version 2023.05.29
+ * @author Eduardo González
+ *
+ */
 public final class Validaciones {
 
 	private Validaciones() {}

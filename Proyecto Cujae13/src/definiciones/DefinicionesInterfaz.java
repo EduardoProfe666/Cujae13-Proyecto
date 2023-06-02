@@ -5,7 +5,10 @@ import java.awt.Dimension;
 
 /**
  * Clase de definiciones generales de la interfaz gráfica de la aplicación
- * @version 2023.05.19
+ * 
+ * @version 2023.05.30
+ * 
+ * @author Lilian Rojas
  * @author Eduardo González
  *
  */

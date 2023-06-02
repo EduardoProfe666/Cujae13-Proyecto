@@ -14,6 +14,15 @@ import javax.swing.table.DefaultTableModel;
 import clasesAuxiliares.NombreFacultad;
 import interfaz.componentes.LabelDiaActual;
 
+/**
+ * JPanel que modela la pantalla de Inicio de la aplicación. Está personalizada con 
+ * la información de cada facultad.
+ * 
+ * @version 2023.06.02
+ * @author Lilian Rojas
+ * @author Eduardo González
+ *
+ */
 public class PanelInicio extends PanelBaseAppPrincipal{
 	private static final long serialVersionUID = 1L;
 	private JLabel nombreFacultadLbl;

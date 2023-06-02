@@ -33,7 +33,7 @@ import componentes.PanelGradienteH;
 import componentes.PanelGradienteV;
 import componentes.PanelOpcion;
 import definiciones.DefinicionesInterfaz;
-import interfaz.clases.panelesAppPrincipal.ArchivadorColores;
+import interfaz.clases.panelesAppPrincipal.Archivador;
 import interfaz.clases.panelesAppPrincipal.EsquemaColores;
 import interfaz.clases.panelesAppPrincipal.PanelCalendario;
 import interfaz.clases.panelesAppPrincipal.PanelDeporte;
@@ -42,7 +42,17 @@ import interfaz.clases.panelesAppPrincipal.PanelHistoria;
 import interfaz.clases.panelesAppPrincipal.PanelInicio;
 import interfaz.clases.panelesAppPrincipal.PanelMapa;
 import interfaz.componentes.PanelSuperior;
-
+ 
+/**
+ * JFrame principal de la aplicación Cujae13. La misma cuenta con diferentes pantallas 
+ * seccionadas en sus paneles correspondientes.
+ * 
+ * @version 2023.06.02
+ * 
+ * @author Lilian Rojas
+ * @author Eduardo González
+ *
+ */
 public class AppPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panelBase;
@@ -66,11 +76,10 @@ public class AppPrincipal extends JFrame {
 	private PanelOpcion opcionHistoria;
 	private JTabbedPane panelPrincipall;
 
-	
 	public AppPrincipal(UsuarioEstudiante us) {
 		u = us;
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(Autenticacion.class.getResource("/interfaz/iconos/icono.png")));
-		EsquemaColores e = ArchivadorColores.getEsquemaColores(us.getFacultad());
+		EsquemaColores e = Archivador.getEsquemaColores(us.getFacultad());
 		FlatLightLaf.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, DefinicionesInterfaz.DIMENSION_APP_PRINCIPAL.width, DefinicionesInterfaz.DIMENSION_APP_PRINCIPAL.height);

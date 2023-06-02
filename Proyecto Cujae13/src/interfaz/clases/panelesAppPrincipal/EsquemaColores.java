@@ -2,6 +2,15 @@ package interfaz.clases.panelesAppPrincipal;
 
 import java.awt.Color;
 
+/**
+ * Clase que modela la capa de personalización de las facultades. Incluye colores de bordes, letras, 
+ * fondos, imágenes, logos, etc.
+ * 
+ * @version 2023.06.02
+ * @author Lilian Rojas
+ * @author Eduardo González
+ *
+ */
 public class EsquemaColores {
 	//Panel Usuario
 	private Color panelUsuarioGradienteInicio;

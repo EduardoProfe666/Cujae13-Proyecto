@@ -20,7 +20,14 @@ import componentes.PanelAnimacionCurvas;
 import definiciones.DefinicionesInterfaz;
 import nucleo.Universidad;
 
-
+/**
+ * JDialog que modela la pantalla de carga de la aplicación Cujae13.
+ * 
+ * @version 2023.06.02
+ * @author Lilian Rojas
+ * @author Eduardo González
+ *
+ */
 public class PantallaCarga extends JDialog {
 
 	private static final long serialVersionUID = 1L;

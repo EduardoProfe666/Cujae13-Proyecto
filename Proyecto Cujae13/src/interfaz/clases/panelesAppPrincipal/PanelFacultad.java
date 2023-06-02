@@ -5,6 +5,14 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/**
+ * JPanel que modela la pantalla de Facultad de la aplicación.
+ * 
+ * @version 2023.06.02
+ * @author Lilian Rojas
+ * @author Eduardo González
+ *
+ */
 public class PanelFacultad extends PanelBaseAppPrincipal{
 	private static final long serialVersionUID = 1L;
 

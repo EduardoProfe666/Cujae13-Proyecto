@@ -9,6 +9,13 @@ import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import nucleo.Facultad;
 
+/**
+ * Modelo de tabla empleado en las tablas de posiciones de la aplicación.
+ * 
+ * @version 2023.06.02
+ * @author Eduardo González
+ *
+ */
 public class TablaPosicionesTableModel extends DefaultTableModel{
 
 	private static final long serialVersionUID = 1L;

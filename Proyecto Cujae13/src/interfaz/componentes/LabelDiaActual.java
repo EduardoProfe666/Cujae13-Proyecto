@@ -7,6 +7,13 @@ import java.time.LocalDate;
 import javax.swing.JLabel;
 import javax.swing.border.MatteBorder;
 
+/**
+ * Componente gráfico que modela un JLabel con el formato: "Día Actual: dd+mm+yyyy".
+ * 
+ * @version 2023.05.29
+ * @author Eduardo González
+ *
+ */
 public class LabelDiaActual extends JLabel {
 	private static final long serialVersionUID = 1L;
 	

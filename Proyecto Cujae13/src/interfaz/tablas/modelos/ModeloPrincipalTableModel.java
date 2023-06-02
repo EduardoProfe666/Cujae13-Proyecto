@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+
 public abstract class ModeloPrincipalTableModel<T> extends DefaultTableModel{
 	
 	private static final long serialVersionUID = 1L;

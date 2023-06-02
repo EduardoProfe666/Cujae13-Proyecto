@@ -12,6 +12,15 @@ import definiciones.DefinicionesInterfaz;
 import definiciones.DefinicionesLogica;
 import definiciones.ErroresInterfazGrafica;
 
+/**
+ * Clase de utilidades que incluye diferentes métodos de uso tanto en lógica, como en interfaz.
+ * 
+ * @version 2023.06.02
+ * 
+ * @author Lilian Rojas
+ * @author Eduardo González
+ *
+ */
 public final class Auxiliares {
 	private Auxiliares() {}
 	

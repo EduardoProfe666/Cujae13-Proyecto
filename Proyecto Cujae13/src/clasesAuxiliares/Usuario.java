@@ -4,6 +4,16 @@ import definiciones.DefinicionesInterfaz;
 import definiciones.Errores;
 import utilidades.Validaciones;
 
+/**
+ * Clase abstracta que permite guardar la información relacionada con la autenticación 
+ * del usuario.
+ * 
+ * @version 2023.05.30
+ * 
+ * @author Lilian Rojas
+ * @author Eduardo González
+ *
+ */
 public abstract class Usuario { 
 	private String nombreUsuario;
 	private String nombre;
