@@ -1,5 +1,5 @@
 # Cujae13-Proyecto
-Proyecto de 2do año de Ingeniería Informática. <br>
+Proyecto de 3er semestre de ED de Ingeniería Informática. <br>
 Aplicación de escritorio de mostrado de información sobre los Juegos 13 de Marzo de la CUJAE. <br>
 <br>
 <b>Grupo 21</b> <br>
