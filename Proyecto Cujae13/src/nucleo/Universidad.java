@@ -1,5 +1,6 @@
 package nucleo;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -9,21 +10,16 @@ import java.util.Queue;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import definiciones.DefinicionesLogica;
 
-public class Universidad { //Faltarian las localizaciones con el uso de grafos con pesos
+public class Universidad implements Serializable{ //Faltarian las localizaciones con el uso de grafos con pesos
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Facultad> listadoFacultades; //Lista Secuencial
 	private ArrayList<Deporte> listadoDeportes; //Lista Secuencial
 	private Queue<EventoDia> eventosActivos; //Cola
 	private Deque<EventoFinalizado> eventosFinalizados; //Pila 
 	private Historia13Marzo historia;
-	private static Universidad instancia;
 	
-	public static Universidad getInstancia() {
-		if(instancia==null)
-			instancia = new Universidad();
-		return instancia;
-	}
 	
-	private Universidad() {
+	public Universidad() {
 		eventosFinalizados = new ArrayDeque<EventoFinalizado>();
 		eventosActivos = new ArrayDeque<EventoDia>();
 		listadoFacultades = new ArrayList<Facultad>(DefinicionesLogica.CANT_MIN_FACULTADES);

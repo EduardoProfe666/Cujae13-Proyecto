@@ -3,6 +3,7 @@ package utilidades;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
+import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -45,15 +46,16 @@ public final class Auxiliares {
 			throw new IllegalArgumentException(ErroresInterfazGrafica.ERROR_CAMPO_VACIO_CONTRASENYA);
 			
 		Usuario u = null;
-		//mEJORAR CON INTERADORES
+		//MEJORAR CON ITERADORES
+		List<Usuario> l = DefinicionesLogica.usuarios;
 		for(int i=0;i<DefinicionesLogica.usuarios.size() && u==null;i++) {
-			if(DefinicionesLogica.usuarios.get(i).getNombreUsuario().equals(usuario)) {
+			if(DefinicionesLogica.usuarios.get(i).getCorreoUsuario().equals(usuario)) {
 				u = DefinicionesLogica.usuarios.get(i);
 			}
 		}
 		
 		if(u==null)
-			throw new IllegalArgumentException(ErroresInterfazGrafica.ERROR_USUARIO_NO_VALIDO);
+			throw new IllegalArgumentException(ErroresInterfazGrafica.ERROR_CORREO_NO_VALIDO);
 		
 		if(!u.getContrasenya().equals(contrasenya))
 			throw new IllegalArgumentException(ErroresInterfazGrafica.ERROR_CONTRASENYA_NO_VALIDA);

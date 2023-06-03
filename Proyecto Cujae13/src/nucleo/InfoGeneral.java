@@ -1,6 +1,9 @@
 package nucleo;
 
-public class InfoGeneral {
+import java.io.Serializable;
+
+public class InfoGeneral implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String historia;
 	private String curiosidades;
 	

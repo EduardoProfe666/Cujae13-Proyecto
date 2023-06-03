@@ -18,7 +18,6 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDeepOc
 import componentes.Imagen;
 import componentes.PanelAnimacionCurvas;
 import definiciones.DefinicionesInterfaz;
-import nucleo.Universidad;
 
 /**
  * JDialog que modela la pantalla de carga de la aplicación Cujae13.
@@ -119,7 +118,7 @@ public class PantallaCarga extends JDialog {
 	}
 	private void terminarVentana() {
 		try {
-			Universidad.getInstancia();
+			//Datos.getInstancia();
 			panelBase.detenerAnimacion();
 			this.dispose();
 			Autenticacion login = new Autenticacion();

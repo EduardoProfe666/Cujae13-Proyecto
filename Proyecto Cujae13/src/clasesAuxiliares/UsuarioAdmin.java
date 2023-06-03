@@ -11,6 +11,8 @@ package clasesAuxiliares;
  */
 public class UsuarioAdmin extends Usuario{
 
+	private static final long serialVersionUID = 1L;
+
 	public UsuarioAdmin(String nombreUsuario, String contrasenya, String nombre) {
 		super(nombreUsuario, contrasenya, nombre);
 	}

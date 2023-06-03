@@ -1,5 +1,7 @@
 package nucleo;
 
-public enum TipoEvento {
+import java.io.Serializable;
+
+public enum TipoEvento implements Serializable{
 
 }

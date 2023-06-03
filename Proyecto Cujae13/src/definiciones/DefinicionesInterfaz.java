@@ -210,9 +210,9 @@ public final class DefinicionesInterfaz {
 	//Definiciones Autenticacion
 	public static final int TAM_BORDE_AVATAR = 4;
 	public static final Color COLOR_BORDE_AVATAR = COLOR_INTERFAZ_GENERAL_2;
-	public static final int LIMITE_CARACTERES_USUARIO = 30;
-	public static final int LIMITE_CARACTERES_CONTRASENYA = 15;
-	public static final String CAMPO_USUARIO_TEXTO_BASE = "Ingrese su nombre de usuario";
+	public static final int LIMITE_CARACTERES_USUARIO = 60;
+	public static final int LIMITE_CARACTERES_CONTRASENYA = 25;
+	public static final String CAMPO_USUARIO_TEXTO_BASE = "Ingrese su correo";
 	public static final String CAMPO_CONTRASENYA_TEXTO_BASE = "???????????";
 	public static final Color COLOR_BORDE_USUARIO = COLOR_INTERFAZ_GENERAL_5;
 	public static final Color COLOR_BORDE_CONTRASENYA = COLOR_INTERFAZ_GENERAL_5;

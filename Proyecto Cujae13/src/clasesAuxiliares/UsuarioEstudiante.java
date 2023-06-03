@@ -1,5 +1,7 @@
 package clasesAuxiliares;
 
+import utilidades.Archivador;
+
 /**
  * Clase que permite modelar la cuenta de los usuarios estudiantes, que 
  * incluye la información de la facultad a la que pertenecen para lograr 
@@ -12,15 +14,15 @@ package clasesAuxiliares;
  *
  */
 public class UsuarioEstudiante extends Usuario{
-	private NombreFacultad facultad;
 	
-	public UsuarioEstudiante(String nombreUsuario, String contrasenya, String nombre, NombreFacultad facultad) {
-		super(nombreUsuario, contrasenya, nombre);
-		this.facultad = facultad;
+	private static final long serialVersionUID = 1L;
+
+	public UsuarioEstudiante(String correoUsuario, String contrasenya, String nombre) {
+		super(correoUsuario, contrasenya, nombre);
 	}
 	
 	public NombreFacultad getFacultad() {
-		return facultad;
+		return Archivador.getFacultadCorreo(getCorreoUsuario());
 	}
 
 

@@ -102,7 +102,7 @@ public class Autenticacion extends JFrame {
 		avatar.setBounds(70, 45, 150, 150);
 		avatar.setForeground(DefinicionesInterfaz.COLOR_BORDE_AVATAR);
 
-		usuarioLabel = new JLabel("Usuario");
+		usuarioLabel = new JLabel("Correo");
 		usuarioLabel.setBounds(44, 217, 203, 32);
 		usuarioLabel.setForeground(Color.BLACK);
 		usuarioLabel.setFont(new Font("Roboto Black", Font.PLAIN, 20));
@@ -249,7 +249,7 @@ public class Autenticacion extends JFrame {
 						campoContrasenya.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
 						contrasenyaBtn.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
 					}
-					else if(mensaje.equals(ErroresInterfazGrafica.ERROR_USUARIO_NO_VALIDO) || mensaje.equals(ErroresInterfazGrafica.ERROR_CAMPO_VACIO_USUARIO))
+					else if(mensaje.equals(ErroresInterfazGrafica.ERROR_CORREO_NO_VALIDO) || mensaje.equals(ErroresInterfazGrafica.ERROR_CAMPO_VACIO_USUARIO))
 						campoUsuario.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
 					else if(mensaje.equals(ErroresInterfazGrafica.ERROR_CONTRASENYA_NO_VALIDA) || mensaje.equals(ErroresInterfazGrafica.ERROR_CAMPO_VACIO_CONTRASENYA)) {
 						campoContrasenya.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));

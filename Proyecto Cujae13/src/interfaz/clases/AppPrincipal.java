@@ -33,7 +33,6 @@ import componentes.PanelGradienteH;
 import componentes.PanelGradienteV;
 import componentes.PanelOpcion;
 import definiciones.DefinicionesInterfaz;
-import interfaz.clases.panelesAppPrincipal.Archivador;
 import interfaz.clases.panelesAppPrincipal.EsquemaColores;
 import interfaz.clases.panelesAppPrincipal.PanelCalendario;
 import interfaz.clases.panelesAppPrincipal.PanelDeporte;
@@ -42,6 +41,7 @@ import interfaz.clases.panelesAppPrincipal.PanelHistoria;
 import interfaz.clases.panelesAppPrincipal.PanelInicio;
 import interfaz.clases.panelesAppPrincipal.PanelMapa;
 import interfaz.componentes.PanelSuperior;
+import utilidades.Archivador;
  
 /**
  * JFrame principal de la aplicación Cujae13. La misma cuenta con diferentes pantallas 

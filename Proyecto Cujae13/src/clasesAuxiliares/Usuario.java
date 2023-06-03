@@ -1,40 +1,44 @@
 package clasesAuxiliares;
 
+import java.io.Serializable;
+
 import definiciones.DefinicionesInterfaz;
 import definiciones.Errores;
+import utilidades.Archivador;
 import utilidades.Validaciones;
 
 /**
  * Clase abstracta que permite guardar la información relacionada con la autenticación 
  * del usuario.
  * 
- * @version 2023.05.30
+ * @version 2023.06.02
  * 
  * @author Lilian Rojas
  * @author Eduardo González
  *
  */
-public abstract class Usuario { 
-	private String nombreUsuario;
+public abstract class Usuario implements Serializable{ 
+	private static final long serialVersionUID = 1L;
+	private String correoUsuario;
 	private String nombre;
 	private String contrasenya;
 	
-	public Usuario(String nombreUsuario, String contrasenya, String nombre) {
-		setNombreUsuario(nombreUsuario);
+	public Usuario(String correoUsuario, String contrasenya, String nombre) {
+		setCorreoUsuario(correoUsuario);
 		setContrasenya(contrasenya);
 		setNombre(nombre);
 	}
 	
 	
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getCorreoUsuario() {
+		return correoUsuario;
 	}
 	
-	public void setNombreUsuario(String nombreUsuario) {
-		if(Validaciones.validarStringNoVacio(nombreUsuario) && Validaciones.validarStringNoTodoEspacio(nombreUsuario) && Validaciones.validarStringTodoLetra(nombreUsuario) && Validaciones.validarTamString(nombreUsuario, 0, DefinicionesInterfaz.LIMITE_CARACTERES_USUARIO))
-			this.nombreUsuario = nombreUsuario;
+	public void setCorreoUsuario(String correoUsuario) {
+		if(Validaciones.validarStringNoVacio(correoUsuario) && Validaciones.validarStringNoTodoEspacio(correoUsuario) && Validaciones.validarTamString(correoUsuario, 0, DefinicionesInterfaz.LIMITE_CARACTERES_USUARIO) && Archivador.getFacultadCorreo(correoUsuario)!=null)
+			this.correoUsuario = correoUsuario;
 		else
-			throw new IllegalArgumentException(Errores.ERROR_NOMBRE_USUARIO);
+			throw new IllegalArgumentException(Errores.ERROR_CORREO_USUARIO);
 	}
 	
 	public String getNombre() {
