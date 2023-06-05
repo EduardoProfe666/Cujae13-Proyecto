@@ -2,6 +2,7 @@ package interfaz.clases;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,6 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -36,12 +40,13 @@ import definiciones.DefinicionesInterfaz;
 import interfaz.clases.panelesAppPrincipal.EsquemaColores;
 import interfaz.clases.panelesAppPrincipal.PanelCalendario;
 import interfaz.clases.panelesAppPrincipal.PanelDeporte;
-import interfaz.clases.panelesAppPrincipal.PanelFacultad;
 import interfaz.clases.panelesAppPrincipal.PanelHistoria;
 import interfaz.clases.panelesAppPrincipal.PanelInicio;
 import interfaz.clases.panelesAppPrincipal.PanelMapa;
+import interfaz.clases.panelesAppPrincipal.PanelSeleccionFacultad;
 import interfaz.componentes.PanelSuperior;
 import utilidades.Archivador;
+import utilidades.Auxiliares;
  
 /**
  * JFrame principal de la aplicación Cujae13. La misma cuenta con diferentes pantallas 
@@ -75,6 +80,7 @@ public class AppPrincipal extends JFrame {
 	private PanelOpcion opcionCalendario;
 	private PanelOpcion opcionHistoria;
 	private JTabbedPane panelPrincipall;
+	private JButton botonAtras;
 
 	public AppPrincipal(UsuarioEstudiante us) {
 		u = us;
@@ -136,8 +142,23 @@ public class AppPrincipal extends JFrame {
 		opcionLbl = new JLabel("INICIO");
 		opcionLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
 		opcionLbl.setForeground(e.getPanelSupGradienteTexto());
-		opcionLbl.setBounds(39, 11, 396, 33);
+		opcionLbl.setBounds(58, 11, 396, 33);
 		panelSup.add(opcionLbl);
+		
+		botonAtras = new JButton("");
+		botonAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelPrincipall.setSelectedIndex(2);
+			}
+		});
+		botonAtras.setVisible(false);
+		botonAtras.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		botonAtras.setBorder(null);
+		botonAtras.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), AppPrincipal.class.getResource(e.getDirUrlBtnAtras())));
+		botonAtras.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(32,32), AppPrincipal.class.getResource(e.getDirUrlBtnAtrasHover())));
+		botonAtras.setContentAreaFilled(false);
+		botonAtras.setBounds(10, 9, 36, 36);
+		panelSup.add(botonAtras);
 		
 		panelUsuario = new PanelGradienteV(e.getPanelUsuarioGradienteInicio(), e.getPanelUsuarioGradienteFin());
 		//panelUsuario = new PanelGradienteV(Color.LIGHT_GRAY, Color.DARK_GRAY);
@@ -448,12 +469,45 @@ public class AppPrincipal extends JFrame {
 		panelPrincipall.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		panelPrincipall.addTab("a", new PanelInicio(e,u.getFacultad()));
 		panelPrincipall.addTab("a", new PanelMapa());
-		panelPrincipall.addTab("a", new PanelFacultad());
+		panelPrincipall.addTab("a", new PanelSeleccionFacultad(e, u.getFacultad(),panelPrincipall));
 		panelPrincipall.addTab("a", new PanelDeporte());
 		panelPrincipall.addTab("a", new PanelCalendario());
 		panelPrincipall.addTab("a", new PanelHistoria());
+		panelPrincipall.addTab("facultad", new JPanel());
+		panelPrincipall.addTab("deporte", new JPanel());
 		panelPrincipall.setBackground(Color.WHITE);
 		panelPrincipall.setBounds(300, 0, 900, 630);
+		panelPrincipall.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int n = panelPrincipall.getSelectedIndex();
+				
+				if(n>5) {
+					botonAtras.setVisible(true);
+					botonAtras.removeActionListener(botonAtras.getActionListeners()[0]);
+				}
+				switch(n) {
+					case 6:
+						botonAtras.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								panelPrincipall.setSelectedIndex(2);
+							}
+						});
+						break;
+					case 7:
+						botonAtras.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								panelPrincipall.setSelectedIndex(3);
+							}
+						});
+						break;
+					default:
+						botonAtras.setVisible(false);
+						break;
+				}
+				
+			}
+		});
 		panelContenedor.add(panelPrincipall);
+		
 	}
 }

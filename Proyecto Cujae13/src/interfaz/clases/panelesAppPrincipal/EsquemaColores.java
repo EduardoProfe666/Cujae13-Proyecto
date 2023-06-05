@@ -32,18 +32,27 @@ public class EsquemaColores {
 	private Color panelSupGradienteInicio;
 	private Color panelSupGradienteFin;
 	private Color panelSupGradienteTexto;
+	private String dirUrlBtnAtras;
+	private String dirUrlBtnAtrasHover;
 	
 	//Panel Movil
 	private Color panelMovilBase; 
 	
-	//Panel Inicio
+	//Paneles General
 	private Color bordeLbl;
+	private Color seleccionFondoTabla;
+	private Color seleccionTextoTabla;
+	
+	//Componente BtnSeleccionFacultad
+	private Color fondoBtnSF;
+	private Color hoverBtnSF;
 	
 	public EsquemaColores(Color panelUsuarioGradienteInicio, Color panelUsuarioGradienteFin, Color panelUsuarioTexto,
 			Color panelUsuarioBtnTexto, Color panelUsuarioBtnColorEfecto, Color panelUsuarioBtn, Color bordeAvatar,
 			Color panelContenedorOpciones, Color panelOpcionHover, Color panelOpcionSeleccionado,
 			Color panelOpcionTexto, Color panelSupGradienteInicio, Color panelSupGradienteFin,
-			Color panelSupGradienteTexto, String dirUrlImagenAvatar, Color panelMovilBase, Color bordeLbl) {
+			Color panelSupGradienteTexto, String dirUrlImagenAvatar, Color panelMovilBase, Color bordeLbl, Color fondoBtnSF, Color hoverBtnSF,
+			String dirUrlBtnAtras, String dirUrlBtnAtrasHover, Color seleccionFondoTabla, Color seleccionTextoTabla) {
 		super();
 		this.panelUsuarioGradienteInicio = panelUsuarioGradienteInicio;
 		this.panelUsuarioGradienteFin = panelUsuarioGradienteFin;
@@ -62,6 +71,12 @@ public class EsquemaColores {
 		this.dirUrlImagenAvatar = dirUrlImagenAvatar;
 		this.panelMovilBase = panelMovilBase;
 		this.bordeLbl = bordeLbl;
+		this.fondoBtnSF = fondoBtnSF;
+		this.hoverBtnSF = hoverBtnSF;
+		this.dirUrlBtnAtras = dirUrlBtnAtras;
+		this.dirUrlBtnAtrasHover = dirUrlBtnAtrasHover;
+		this.seleccionFondoTabla = seleccionFondoTabla;
+		this.seleccionTextoTabla = seleccionTextoTabla;
 	}
 
 	public Color getPanelUsuarioGradienteInicio() {
@@ -196,8 +211,56 @@ public class EsquemaColores {
 		return bordeLbl;
 	}
 
+	public Color getFondoBtnSF() {
+		return fondoBtnSF;
+	}
+
+	public void setFondoBtnSF(Color fondoBtnSF) {
+		this.fondoBtnSF = fondoBtnSF;
+	}
+
+	public Color getHoverBtnSF() {
+		return hoverBtnSF;
+	}
+
+	public void setHoverBtnSF(Color hoverBtnSF) {
+		this.hoverBtnSF = hoverBtnSF;
+	}
+
 	public void setBordeLbl(Color bordeLbl) {
 		this.bordeLbl = bordeLbl;
+	}
+
+	public String getDirUrlBtnAtras() {
+		return dirUrlBtnAtras;
+	}
+
+	public void setDirUrlBtnAtras(String dirUrlBtnAtras) {
+		this.dirUrlBtnAtras = dirUrlBtnAtras;
+	}
+
+	public String getDirUrlBtnAtrasHover() {
+		return dirUrlBtnAtrasHover;
+	}
+
+	public void setDirUrlBtnAtrasHover(String dirUrlBtnAtrasHover) {
+		this.dirUrlBtnAtrasHover = dirUrlBtnAtrasHover;
+	}
+
+	public Color getSeleccionFondoTabla() {
+		return seleccionFondoTabla;
+	}
+
+	public void setSeleccionFondoTabla(Color seleccionFondoTabla) {
+		this.seleccionFondoTabla = seleccionFondoTabla;
+	}
+
+	public Color getSeleccionTextoTabla() {
+		return seleccionTextoTabla;
+	}
+
+	public void setSeleccionTextoTabla(Color seleccionTextoTabla) {
+		this.seleccionTextoTabla = seleccionTextoTabla;
 	}
 
 	

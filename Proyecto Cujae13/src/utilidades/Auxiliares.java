@@ -3,7 +3,6 @@ package utilidades;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
-import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -47,7 +46,6 @@ public final class Auxiliares {
 			
 		Usuario u = null;
 		//MEJORAR CON ITERADORES
-		List<Usuario> l = DefinicionesLogica.usuarios;
 		for(int i=0;i<DefinicionesLogica.usuarios.size() && u==null;i++) {
 			if(DefinicionesLogica.usuarios.get(i).getCorreoUsuario().equals(usuario)) {
 				u = DefinicionesLogica.usuarios.get(i);

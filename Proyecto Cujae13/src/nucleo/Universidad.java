@@ -34,6 +34,38 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		return new ArrayList<Facultad>(listadoFacultades); 
 	}
 	
+	public ArrayList<Deporte> getListadoDeportes() {
+		return listadoDeportes;
+	}
+
+	public void setListadoDeportes(ArrayList<Deporte> listadoDeportes) {
+		this.listadoDeportes = listadoDeportes;
+	}
+
+	public Queue<EventoDia> getEventosActivos() {
+		return eventosActivos;
+	}
+
+	public void setEventosActivos(Queue<EventoDia> eventosActivos) {
+		this.eventosActivos = eventosActivos;
+	}
+
+	public Deque<EventoFinalizado> getEventosFinalizados() {
+		return eventosFinalizados;
+	}
+
+	public void setEventosFinalizados(Deque<EventoFinalizado> eventosFinalizados) {
+		this.eventosFinalizados = eventosFinalizados;
+	}
+
+	public Historia13Marzo getHistoria() {
+		return historia;
+	}
+
+	public void setHistoria(Historia13Marzo historia) {
+		this.historia = historia;
+	}
+
 	public GeneralTree<Facultad> getTablaPosicionesGlobal(){ //Arbol General (Cada Facultad tiene su puntuacion)
 		return null;
 	}

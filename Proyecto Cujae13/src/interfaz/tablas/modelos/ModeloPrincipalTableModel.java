@@ -21,7 +21,6 @@ public abstract class ModeloPrincipalTableModel<T> extends DefaultTableModel{
 	
 	public abstract void adicionar(T t);
 	
-	
 	public void actualizar(List<T> listado, Comparator<? super T> comparador) {
 		if(comparador!=null)
 			Collections.sort(listado, comparador);
