@@ -9,11 +9,13 @@ public class Deporte implements Serializable{
 	private String nombre;
 	private GeneralTree<ClasificacionDeporte> clasificacion; //Puntaje. Arbol General
 	//Al modificar la clasificacion hay que actualizar la estructura del arbol
+	private EstadoDeporte estado; //Servira para cerrar el deporte, y puntuar a la tabla de posiciones general 
 	
 	public Deporte(String nombre, GeneralTree<ClasificacionDeporte> clasificacion) {
 		super();
 		this.nombre = nombre;
 		this.clasificacion = clasificacion;
+		estado = EstadoDeporte.EN_EJECUCION;
 	}
 	
 	public String getNombre() {
@@ -28,6 +30,15 @@ public class Deporte implements Serializable{
 	public void setClasificacion(GeneralTree<ClasificacionDeporte> clasificacion) {
 		this.clasificacion = clasificacion;
 	}
+
+	public EstadoDeporte getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoDeporte estado) {
+		this.estado = estado;
+	}
+	
 	
 	
 }

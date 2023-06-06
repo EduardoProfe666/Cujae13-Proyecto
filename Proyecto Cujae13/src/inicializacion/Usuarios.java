@@ -1,4 +1,4 @@
-package definiciones;
+package inicializacion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,8 +17,15 @@ public class Usuarios implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<Usuario> u;
+	private static Usuarios instancia;
 	
-	public Usuarios() {
+	public static Usuarios getInstancia() {
+		if(instancia == null)
+			instancia = new Usuarios();
+		return instancia;
+	}
+	
+	private Usuarios() {
 		u = new ArrayList<Usuario>();
 	}
 	

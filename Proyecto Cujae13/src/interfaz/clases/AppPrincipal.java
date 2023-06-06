@@ -29,6 +29,7 @@ import javax.swing.event.ChangeListener;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import clasesAuxiliares.EsquemaColores;
 import clasesAuxiliares.UsuarioEstudiante;
 import componentes.AvatarCircular;
 import componentes.BotonAnimacion;
@@ -37,7 +38,6 @@ import componentes.PanelGradienteH;
 import componentes.PanelGradienteV;
 import componentes.PanelOpcion;
 import definiciones.DefinicionesInterfaz;
-import interfaz.clases.panelesAppPrincipal.EsquemaColores;
 import interfaz.clases.panelesAppPrincipal.PanelCalendario;
 import interfaz.clases.panelesAppPrincipal.PanelDeporte;
 import interfaz.clases.panelesAppPrincipal.PanelHistoria;
@@ -472,7 +472,7 @@ public class AppPrincipal extends JFrame {
 		panelPrincipall.addTab("a", new PanelSeleccionFacultad(e, u.getFacultad(),panelPrincipall));
 		panelPrincipall.addTab("a", new PanelDeporte());
 		panelPrincipall.addTab("a", new PanelCalendario());
-		panelPrincipall.addTab("a", new PanelHistoria());
+		panelPrincipall.addTab("a", new PanelHistoria(e));
 		panelPrincipall.addTab("facultad", new JPanel());
 		panelPrincipall.addTab("deporte", new JPanel());
 		panelPrincipall.setBackground(Color.WHITE);

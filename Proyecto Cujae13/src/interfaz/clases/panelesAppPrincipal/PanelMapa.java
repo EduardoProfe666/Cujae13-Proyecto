@@ -6,7 +6,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 /**
- * JPanel que modela la pantalla de Mapa de la aplicación.
+ * JPanel que modela la pantalla de Mapa de la aplicación.<br><br>
+ * 
+ * <b>RESPONSABILIDAD: </b>Eduardo González
  * 
  * @version 2023.06.02
  * @author Lilian Rojas

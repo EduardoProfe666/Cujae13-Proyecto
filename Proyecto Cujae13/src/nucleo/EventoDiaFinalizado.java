@@ -5,20 +5,21 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EventoDia implements Serializable{
+public class EventoDiaFinalizado implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private LinkedList<Evento> eventosDia; //Lista Enlazada
+	private LinkedList<EventoFinalizado> eventosDia; //Lista Enlazada
 	private LocalDate fechaDia;
 	
-	public EventoDia() {
+	public EventoDiaFinalizado() {
 		super();
-		this.eventosDia = new LinkedList<Evento>();
+		this.eventosDia = new LinkedList<>();
 		this.fechaDia = LocalDate.now();
 	}
-	public List<Evento> getEventosDia() {
+	public List<EventoFinalizado> getEventosDia() {
 		return eventosDia;
 	}
 	public LocalDate getFechaDia() {
 		return fechaDia;
 	}
+
 }

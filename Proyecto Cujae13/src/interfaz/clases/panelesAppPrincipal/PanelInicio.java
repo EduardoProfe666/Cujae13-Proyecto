@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.TableRowSorter;
 
+import clasesAuxiliares.EsquemaColores;
 import clasesAuxiliares.NombreFacultad;
 import componentes.Imagen;
 import interfaz.clases.AppPrincipal;
@@ -23,7 +24,9 @@ import utilidades.Auxiliares;
 
 /**
  * JPanel que modela la pantalla de Inicio de la aplicación. Está personalizada con 
- * la información de cada facultad.
+ * la información de cada facultad.<br><br>
+ * 
+ * <b>RESPONSABILIDAD: </b>Katherine Ramírez
  * 
  * @version 2023.06.02
  * @author Lilian Rojas
@@ -76,8 +79,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		tablaPosLbl.setBounds(589, 91, 290, 26);
 		add(tablaPosLbl);
 		
-		tablaPosGeneral = new TablaPosiciones(null, e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla());
-		tablaPosGeneral.getTabla().setRowHeight(43);
+		tablaPosGeneral = new TablaPosiciones(null, e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla(),false);
 		add(tablaPosGeneral);
 		
 		lblPartidosPorJugar = new JLabel("Partidos por Jugar");

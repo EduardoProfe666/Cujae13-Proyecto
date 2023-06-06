@@ -22,8 +22,9 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 
 	private static final long serialVersionUID = 1L;
 
-	public TablaPosicionesTableModel() {
-		this.setColumnIdentifiers(new String[]{"Posición", "Facultad", "Puntaje"});
+	public TablaPosicionesTableModel(boolean historico) {
+		String s = historico ? "Cant. de Juegos Ganados" : "Puntaje" ;
+		this.setColumnIdentifiers(new String[]{"Posición", "Facultad", s});
 	}
 
 	public void eliminarFilas() {

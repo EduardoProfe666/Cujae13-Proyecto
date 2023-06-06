@@ -8,11 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
 
+import clasesAuxiliares.EsquemaColores;
 import clasesAuxiliares.NombreFacultad;
 import interfaz.componentes.BtnSeleccionFacultad;
 
 /**
- * JPanel que modela la pantalla de Facultad de la aplicación.
+ * JPanel que modela la pantalla de Selección de Facultad de la aplicación.<br><br>
+ * 
+ * <b>RESPONSABILIDAD: </b>Lilian Rojas
  * 
  * @version 2023.06.02
  * @author Lilian Rojas

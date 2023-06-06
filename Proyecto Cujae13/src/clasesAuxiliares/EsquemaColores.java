@@ -1,4 +1,4 @@
-package interfaz.clases.panelesAppPrincipal;
+package clasesAuxiliares;
 
 import java.awt.Color;
 

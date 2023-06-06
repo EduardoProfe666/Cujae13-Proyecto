@@ -18,9 +18,6 @@ public class Historia13Marzo implements Serializable{
 	public GeneralTree<HistoricoFacultad> getTablaPosicionesHistorica() {
 		return tablaPosicionesHistorica;
 	}
-	public void setTablaPosicionesHistorica(GeneralTree<HistoricoFacultad> tablaPosicionesHistorica) {
-		this.tablaPosicionesHistorica = tablaPosicionesHistorica;
-	}
 	public String getSurgimiento() {
 		return surgimiento;
 	}

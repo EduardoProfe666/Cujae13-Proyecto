@@ -22,13 +22,13 @@ public class TablaPosiciones extends JScrollPane{
 	private static final long serialVersionUID = 1L;
 	private JTable tabla;
 	
-	public TablaPosiciones(GeneralTree<Facultad> tablaPos, Color seleccionTexto, Color selecccionFondo) {
+	public TablaPosiciones(GeneralTree<Facultad> tablaPos, Color seleccionTexto, Color selecccionFondo, boolean historico) {
 		setBackground(Color.LIGHT_GRAY);
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		setBounds(589, 140, 290, 424);
 		
-		TablaPosicionesTableModel modelo = new TablaPosicionesTableModel();
+		TablaPosicionesTableModel modelo = new TablaPosicionesTableModel(historico);
 		//modelo.actualizar(tablaPos);
 		
 		//PROVISIONAL
@@ -41,6 +41,7 @@ public class TablaPosiciones extends JScrollPane{
 		tabla.setSelectionForeground(seleccionTexto);
 		tabla.setSelectionBackground(selecccionFondo);
 		tabla.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
+		tabla.setRowHeight(43);
 		setViewportView(tabla);
 	}
 	

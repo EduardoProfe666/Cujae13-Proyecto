@@ -9,12 +9,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.MatteBorder;
 
+import clasesAuxiliares.EsquemaColores;
 import clasesAuxiliares.NombreFacultad;
 import componentes.AvatarCircular;
 import componentes.PanelBordeOval;
 import definiciones.DefinicionesInterfaz;
-import interfaz.clases.Autenticacion;
-import interfaz.clases.panelesAppPrincipal.EsquemaColores;
 import utilidades.Archivador;
 
 public class BtnSeleccionFacultad extends PanelBordeOval{
@@ -53,7 +52,7 @@ public class BtnSeleccionFacultad extends PanelBordeOval{
 		
 		EsquemaColores ex = Archivador.getEsquemaColores(f);
 		
-		avatar = new AvatarCircular(new ImageIcon(Autenticacion.class.getResource(ex.getDirUrlImagenAvatar())), DefinicionesInterfaz.TAM_BORDE_AVATAR);
+		avatar = new AvatarCircular(new ImageIcon(BtnSeleccionFacultad.class.getResource(ex.getDirUrlImagenAvatar())), DefinicionesInterfaz.TAM_BORDE_AVATAR);
 		avatar.setForeground(ex.getBordeAvatar());
 		avatar.setBounds(25, 49, 110, 110);
 		add(avatar);
