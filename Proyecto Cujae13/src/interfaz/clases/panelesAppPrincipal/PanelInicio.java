@@ -48,6 +48,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 	private PartidosPorJugarTableModel modeloPartidosPorJugar;
 	private PartidosJugadosTableModel modeloPartidosJugados;
 	private TableRowSorter<PartidosJugadosTableModel> ordenamientoPartidosJugados;
+	private TableRowSorter<PartidosPorJugarTableModel> ordenamientoPartidosPorJugar;
 	
 	
 	public PanelInicio(EsquemaColores e, NombreFacultad f) {
@@ -101,7 +102,8 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		add(scrollPane_1);
 		
 		modeloPartidosPorJugar = new PartidosPorJugarTableModel(f.toString());
-		TableRowSorter<PartidosPorJugarTableModel> ordenamientoPartidosPorJugar = new TableRowSorter<>(modeloPartidosPorJugar);
+		ordenamientoPartidosPorJugar = new TableRowSorter<>(modeloPartidosPorJugar);
+		ordenamientoPartidosPorJugar.toggleSortOrder(0);
 		
 		tablaPartidosJugar = new JTable();
 		tablaPartidosJugar.setModel(modeloPartidosPorJugar);
@@ -118,6 +120,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		
 		modeloPartidosJugados = new PartidosJugadosTableModel(f.toString());
 		ordenamientoPartidosJugados = new TableRowSorter<>(modeloPartidosJugados);
+		ordenamientoPartidosJugados.toggleSortOrder(0);
 		
 		tablaPartidosJugados = new JTable();
 		tablaPartidosJugados.setModel(modeloPartidosJugados);
