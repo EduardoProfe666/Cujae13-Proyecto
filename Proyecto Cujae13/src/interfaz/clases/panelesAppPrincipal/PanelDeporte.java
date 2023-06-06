@@ -5,6 +5,8 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import clasesAuxiliares.EsquemaColores;
+
 /**
  * JPanel que modela la pantalla de Deporte de la aplicación.<br><br>
  * 
@@ -18,8 +20,8 @@ import javax.swing.SwingConstants;
 public class PanelDeporte extends PanelBaseAppPrincipal{
 	private static final long serialVersionUID = 1L;
 
-	public PanelDeporte() {
-
+	public PanelDeporte(EsquemaColores e) {
+		
 		JLabel lblNewLabel = new JLabel("Deporte");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Roboto Black", Font.PLAIN, 60));

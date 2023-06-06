@@ -6,8 +6,9 @@ public class Infraccion {
 	private TipoInfraccion tipo;
 	private String descripcion;
 	private LocalDate fecha;
+	private String nombreFacultad;
 	
-	public Infraccion(TipoInfraccion tipo, String descripcion) {
+	public Infraccion(TipoInfraccion tipo, String descripcion, String nombreFacultad) {
 		super();
 		this.tipo = tipo;
 		this.descripcion = descripcion;
@@ -22,5 +23,7 @@ public class Infraccion {
 	public LocalDate getFecha() {
 		return fecha;
 	}
-	
+	public String getNombreFacultad() {
+		return nombreFacultad;
+	}
 }

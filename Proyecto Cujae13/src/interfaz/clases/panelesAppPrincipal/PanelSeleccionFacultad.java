@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
@@ -35,7 +36,8 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 	private BtnSeleccionFacultad panelQuim;
 	private BtnSeleccionFacultad panelTele;
 		
-	public PanelSeleccionFacultad(EsquemaColores e, NombreFacultad f, JTabbedPane tab) {
+	public PanelSeleccionFacultad(JFrame padre,EsquemaColores e, NombreFacultad f, JTabbedPane tab) {
+		
 		elegirFacultadLbl = new JLabel("Elegir Facultad");
 		elegirFacultadLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 24));
 		elegirFacultadLbl.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));
@@ -47,7 +49,7 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		panelInf.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				tab.setComponentAt(6, new PanelFacultad(e, NombreFacultad.INFORMATICA));
+				tab.setComponentAt(6, new PanelFacultad(padre, e, NombreFacultad.INFORMATICA));
 				tab.setSelectedIndex(6);
 			}
 		});
@@ -58,7 +60,7 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		panelArq.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				tab.setComponentAt(6, new PanelFacultad(e, NombreFacultad.ARQUITECTURA));
+				tab.setComponentAt(6, new PanelFacultad(padre, e, NombreFacultad.ARQUITECTURA));
 				tab.setSelectedIndex(6);
 			}
 		});
@@ -69,7 +71,7 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		panelAubi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				tab.setComponentAt(6, new PanelFacultad(e, NombreFacultad.AUTOMATICA_BIOMEDICA));
+				tab.setComponentAt(6, new PanelFacultad(padre, e, NombreFacultad.AUTOMATICA_BIOMEDICA));
 				tab.setSelectedIndex(6);
 			}
 		});
@@ -80,7 +82,7 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		panelCivil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				tab.setComponentAt(6, new PanelFacultad(e, NombreFacultad.CIVIL));
+				tab.setComponentAt(6, new PanelFacultad(padre, e, NombreFacultad.CIVIL));
 				tab.setSelectedIndex(6);
 			}
 		});
@@ -91,7 +93,7 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		panelElec.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				tab.setComponentAt(6, new PanelFacultad(e, NombreFacultad.ELECTRICA));
+				tab.setComponentAt(6, new PanelFacultad(padre, e, NombreFacultad.ELECTRICA));
 				tab.setSelectedIndex(6);
 			}
 		});
@@ -102,7 +104,7 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		panelInd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				tab.setComponentAt(6, new PanelFacultad(e, NombreFacultad.INDUSTRIAL));
+				tab.setComponentAt(6, new PanelFacultad(padre, e, NombreFacultad.INDUSTRIAL));
 				tab.setSelectedIndex(6);
 			}
 		});
@@ -113,7 +115,7 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		panelMec.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				tab.setComponentAt(6, new PanelFacultad(e, NombreFacultad.MECANICA));
+				tab.setComponentAt(6, new PanelFacultad(padre, e, NombreFacultad.MECANICA));
 				tab.setSelectedIndex(6);
 			}
 		});
@@ -124,7 +126,7 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		panelQuim.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				tab.setComponentAt(6, new PanelFacultad(e, NombreFacultad.QUIMICA));
+				tab.setComponentAt(6, new PanelFacultad(padre, e, NombreFacultad.QUIMICA));
 				tab.setSelectedIndex(6);
 			}
 		});
@@ -135,7 +137,7 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		panelTele.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				tab.setComponentAt(6, new PanelFacultad(e, NombreFacultad.TELECOMUNICACIONES));
+				tab.setComponentAt(6, new PanelFacultad(padre, e, NombreFacultad.TELECOMUNICACIONES));
 				tab.setSelectedIndex(6);
 			}
 		});

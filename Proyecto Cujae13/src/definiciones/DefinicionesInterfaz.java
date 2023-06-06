@@ -29,9 +29,9 @@ public final class DefinicionesInterfaz {
 	 */
 	public static final Dimension DIMENSION_APP_PRINCIPAL = new Dimension(1200,675);
 	/**
-	 * Dimensión de las ventanas de diálogos. Resolución 600x589. Relación de aspecto 25:24
+	 * Dimensión de las ventanas de diálogos. Resolución 800x500. Relación de aspecto 7:5
 	 */
-	public static final Dimension DIMENSION_DIALOGOS = new Dimension(600,589);
+	public static final Dimension DIMENSION_DIALOGOS = new Dimension(700,500);
 	
 	
 	//Colores

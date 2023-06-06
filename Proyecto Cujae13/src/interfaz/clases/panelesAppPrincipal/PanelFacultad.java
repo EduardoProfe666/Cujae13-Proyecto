@@ -1,11 +1,15 @@
 package interfaz.clases.panelesAppPrincipal;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,6 +23,9 @@ import clasesAuxiliares.NombreFacultad;
 import componentes.AvatarCircular;
 import componentes.Imagen;
 import interfaz.clases.AppPrincipal;
+import interfaz.clases.jdialogs.AmonestacionesFacultadJDialog;
+import interfaz.clases.jdialogs.HistoriaCuriosidadesFacultadJDialog;
+import interfaz.clases.jdialogs.HistorialJuegosFacultadJDialog;
 import interfaz.componentes.BtnSeleccionFacultad;
 import interfaz.componentes.LabelDiaActual;
 import interfaz.tablas.modelos.EstadisticasTableModel;
@@ -56,7 +63,8 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 	private JTable estadisticas;
 	private TableRowSorter<PartidosPorJugarTableModel> ordenamientoPartidosPorJugar;
 	
-	public PanelFacultad(EsquemaColores e, NombreFacultad f) {
+	public PanelFacultad(JFrame padre,EsquemaColores e, NombreFacultad f) {
+		
 		EsquemaColores ex = Archivador.getEsquemaColores(f);
 		
 		avatar = new AvatarCircular(new ImageIcon(BtnSeleccionFacultad.class.getResource(ex.getDirUrlImagenAvatar())), 2);
@@ -65,16 +73,37 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		add(avatar);
 		
 		JButton sancionesInfraccionesBtn = new JButton("S");
+		sancionesInfraccionesBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent x) {
+				AmonestacionesFacultadJDialog ventana = new AmonestacionesFacultadJDialog(e, padre, f);
+				ventana.setVisible(true);
+			}
+		});
+		sancionesInfraccionesBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		sancionesInfraccionesBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		sancionesInfraccionesBtn.setBounds(681, 35, 42, 42);
 		add(sancionesInfraccionesBtn);
 		
 		JButton historiaJuegosBtn = new JButton("J");
+		historiaJuegosBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent x) {
+				HistorialJuegosFacultadJDialog ventana = new HistorialJuegosFacultadJDialog(e, padre, f);
+				ventana.setVisible(true);
+			}
+		});
+		historiaJuegosBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		historiaJuegosBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		historiaJuegosBtn.setBounds(733, 35, 42, 42);
 		add(historiaJuegosBtn);
 		
 		JButton histCuriosBtn = new JButton("H");
+		histCuriosBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent x) {
+				HistoriaCuriosidadesFacultadJDialog ventana = new HistoriaCuriosidadesFacultadJDialog(e, padre, f);
+				ventana.setVisible(true);
+			}
+		});
+		histCuriosBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		histCuriosBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		histCuriosBtn.setBounds(629, 35, 42, 42);
 		add(histCuriosBtn);

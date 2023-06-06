@@ -21,7 +21,7 @@ public abstract class PanelBaseAppPrincipal extends JPanel{
 		setBounds(300, 55, 900, 575);
 		setBackground(Color.WHITE);
 		setLayout(null);
-		setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
+		setBorder(new MatteBorder(0, 0, 2, 2, new Color(0,0,0)));
 	}
 
 }

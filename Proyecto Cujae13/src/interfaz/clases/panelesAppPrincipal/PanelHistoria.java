@@ -27,6 +27,7 @@ public class PanelHistoria extends PanelBaseAppPrincipal{
 	private JTextArea historia;
 	
 	public PanelHistoria(EsquemaColores e) {
+		
 		historiaGeneralLbl = new JLabel("Historia General de los Juegos 13 de Marzo");
 		historiaGeneralLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 24));
 		historiaGeneralLbl.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));

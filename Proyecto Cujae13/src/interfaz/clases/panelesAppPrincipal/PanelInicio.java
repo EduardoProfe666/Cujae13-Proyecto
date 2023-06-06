@@ -126,8 +126,8 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		tablaPartidosJugados.setModel(modeloPartidosJugados);
 		tablaPartidosJugados.setRowSorter(ordenamientoPartidosJugados);
 		tablaPartidosJugados.getTableHeader().setFont(new Font("Roboto Medium", Font.PLAIN, 18));
-		tablaPartidosJugar.setSelectionForeground(e.getSeleccionTextoTabla());
-		tablaPartidosJugar.setSelectionBackground(e.getSeleccionFondoTabla());
+		tablaPartidosJugados.setSelectionForeground(e.getSeleccionTextoTabla());
+		tablaPartidosJugados.setSelectionBackground(e.getSeleccionFondoTabla());
 		tablaPartidosJugados.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
 		scrollPane_2.setViewportView(tablaPartidosJugados);
 		

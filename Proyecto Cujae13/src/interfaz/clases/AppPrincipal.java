@@ -115,6 +115,7 @@ public class AppPrincipal extends JFrame {
 		panelBase.setLayout(null);
 		
 		panelSuperior = new PanelSuperior(e.getPanelMovilBase(), this, "Cujae13");
+		panelSuperior.setBorder(new MatteBorder(0, 0, 2, 0, new Color(0,0,0)));
 		
 		setContentPane(panelBase);
 		panelBase.add(panelSuperior);
@@ -134,7 +135,7 @@ public class AppPrincipal extends JFrame {
 				panelSup.requestFocus();
 			}
 		});
-		panelSup.setBorder(new MatteBorder(0, 0, 0, 2, (Color) new Color(0, 0, 0)));
+		panelSup.setBorder(new MatteBorder(0, 0, 0, 2, new Color(0,0,0)));
 		panelSup.setBounds(300, 0, 900, 55);
 		panelContenedor.add(panelSup);
 		panelSup.setLayout(null);
@@ -162,7 +163,7 @@ public class AppPrincipal extends JFrame {
 		
 		panelUsuario = new PanelGradienteV(e.getPanelUsuarioGradienteInicio(), e.getPanelUsuarioGradienteFin());
 		//panelUsuario = new PanelGradienteV(Color.LIGHT_GRAY, Color.DARK_GRAY);
-		panelUsuario.setBorder(new MatteBorder(0, 2, 0, 0, (Color) new Color(0, 0, 0)));
+		panelUsuario.setBorder(new MatteBorder(0, 2, 0, 0, new Color(0,0,0)));
 		panelUsuario.setLayout(null);
 		panelUsuario.setBounds(0, 0, 300, 211);
 		panelContenedor.add(panelUsuario);
@@ -205,14 +206,14 @@ public class AppPrincipal extends JFrame {
 		panelUsuario.add(cerrarSesionBtn);
 		
 		panelContenedorOpciones = new JPanel();
-		panelContenedorOpciones.setBorder(new MatteBorder(0, 2, 2, 0, (Color) new Color(0, 0, 0)));
+		panelContenedorOpciones.setBorder(new MatteBorder(0, 2, 2, 0, new Color(0,0,0)));
 		panelContenedorOpciones.setLayout(null);
 		panelContenedorOpciones.setBackground(e.getPanelContenedorOpciones());
 		panelContenedorOpciones.setBounds(0, 211, 300, 419);
 		panelContenedor.add(panelContenedorOpciones);
 		
 		opcionInicio = new PanelOpcion();
-		opcionInicio.setBorder(new MatteBorder(0, 2, 0, 0, (Color) new Color(0, 0, 0)));
+		opcionInicio.setBorder(new MatteBorder(0, 2, 0, 0, new Color(0,0,0)));
 		opcionInicio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		opcionInicio.addMouseListener(new MouseAdapter() {
 			@Override
@@ -256,7 +257,7 @@ public class AppPrincipal extends JFrame {
 		opcionInicio.add(textoInicio);
 		
 		opcionMapa = new PanelOpcion();
-		opcionMapa.setBorder(new MatteBorder(0, 2, 0, 0, (Color) new Color(0, 0, 0)));
+		opcionMapa.setBorder(new MatteBorder(0, 2, 0, 0, new Color(0,0,0)));
 		opcionMapa.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		opcionMapa.addMouseListener(new MouseAdapter() {
 			@Override
@@ -298,7 +299,7 @@ public class AppPrincipal extends JFrame {
 		opcionMapa.add(textoMapa);
 		
 		opcionFacultad = new PanelOpcion();
-		opcionFacultad.setBorder(new MatteBorder(0, 2, 0, 0, (Color) new Color(0, 0, 0)));
+		opcionFacultad.setBorder(new MatteBorder(0, 2, 0, 0, new Color(0,0,0)));
 		opcionFacultad.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		opcionFacultad.addMouseListener(new MouseAdapter() {
 			@Override
@@ -340,7 +341,7 @@ public class AppPrincipal extends JFrame {
 		opcionFacultad.add(textoFacultad);
 		
 		opcionDeporte = new PanelOpcion();
-		opcionDeporte.setBorder(new MatteBorder(0, 2, 0, 0, (Color) new Color(0, 0, 0)));
+		opcionDeporte.setBorder(new MatteBorder(0, 2, 0, 0, new Color(0,0,0)));
 		opcionDeporte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		opcionDeporte.addMouseListener(new MouseAdapter() {
 			@Override
@@ -382,7 +383,7 @@ public class AppPrincipal extends JFrame {
 		opcionDeporte.add(textoDeporte);
 		
 		opcionCalendario = new PanelOpcion();
-		opcionCalendario.setBorder(new MatteBorder(0, 2, 0, 0, (Color) new Color(0, 0, 0)));
+		opcionCalendario.setBorder(new MatteBorder(0, 2, 0, 0, new Color(0,0,0)));
 		opcionCalendario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		opcionCalendario.addMouseListener(new MouseAdapter() {
 			@Override
@@ -424,7 +425,7 @@ public class AppPrincipal extends JFrame {
 		opcionCalendario.add(textoCalendario);
 		
 		opcionHistoria = new PanelOpcion();
-		opcionHistoria.setBorder(new MatteBorder(0, 2, 0, 0, (Color) new Color(0, 0, 0)));
+		opcionHistoria.setBorder(new MatteBorder(0, 2, 0, 0, new Color(0,0,0)));
 		opcionHistoria.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		opcionHistoria.addMouseListener(new MouseAdapter() {
 			@Override
@@ -468,10 +469,10 @@ public class AppPrincipal extends JFrame {
 		panelPrincipall = new JTabbedPane(JTabbedPane.TOP);
 		panelPrincipall.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		panelPrincipall.addTab("a", new PanelInicio(e,u.getFacultad()));
-		panelPrincipall.addTab("a", new PanelMapa());
-		panelPrincipall.addTab("a", new PanelSeleccionFacultad(e, u.getFacultad(),panelPrincipall));
-		panelPrincipall.addTab("a", new PanelDeporte());
-		panelPrincipall.addTab("a", new PanelCalendario());
+		panelPrincipall.addTab("a", new PanelMapa(e));
+		panelPrincipall.addTab("a", new PanelSeleccionFacultad(this,e, u.getFacultad(),panelPrincipall));
+		panelPrincipall.addTab("a", new PanelDeporte(e));
+		panelPrincipall.addTab("a", new PanelCalendario(e));
 		panelPrincipall.addTab("a", new PanelHistoria(e));
 		panelPrincipall.addTab("facultad", new JPanel());
 		panelPrincipall.addTab("deporte", new JPanel());

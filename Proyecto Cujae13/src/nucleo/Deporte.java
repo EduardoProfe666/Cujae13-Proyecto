@@ -1,6 +1,7 @@
 package nucleo;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
@@ -10,12 +11,14 @@ public class Deporte implements Serializable{
 	private GeneralTree<ClasificacionDeporte> clasificacion; //Puntaje. Arbol General
 	//Al modificar la clasificacion hay que actualizar la estructura del arbol
 	private EstadoDeporte estado; //Servira para cerrar el deporte, y puntuar a la tabla de posiciones general 
+	private LinkedList<Infraccion> infracciones;
 	
 	public Deporte(String nombre, GeneralTree<ClasificacionDeporte> clasificacion) {
 		super();
 		this.nombre = nombre;
 		this.clasificacion = clasificacion;
 		estado = EstadoDeporte.EN_EJECUCION;
+		infracciones = new LinkedList<>();
 	}
 	
 	public String getNombre() {
@@ -39,6 +42,9 @@ public class Deporte implements Serializable{
 		this.estado = estado;
 	}
 	
+	public LinkedList<Infraccion> getInfracciones(){
+		return infracciones;
+	}
 	
 	
 }
