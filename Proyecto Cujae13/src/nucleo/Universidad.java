@@ -115,6 +115,11 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		return historia;
 	}
 
+	/**
+	 * Confeccionar el arbol general con las puntuaciones de las facultades. Primero ordenar la lista de facultades de mayor a menor. 
+	 * Luego crear el arbol poniendo de hermanos a las facultades empatadas y de hijos a las menores.
+	 * @return
+	 */
 	public GeneralTree<Facultad> getTablaPosicionesGlobal(){ //Arbol General (Cada Facultad tiene su puntuacion)
 		return null;
 	}

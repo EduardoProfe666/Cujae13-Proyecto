@@ -15,6 +15,16 @@ public class Historia13Marzo implements Serializable{
 		this.surgimiento = surgimiento;
 	}
 	
+	/**
+	 * PROVISIONAL
+	 * @return
+	 */
+	public Historia13Marzo(String surgimiento) {
+		super();
+		this.tablaPosicionesHistorica = null;
+		this.surgimiento = surgimiento;
+	}
+	
 	public GeneralTree<HistoricoFacultad> getTablaPosicionesHistorica() {
 		return tablaPosicionesHistorica;
 	}

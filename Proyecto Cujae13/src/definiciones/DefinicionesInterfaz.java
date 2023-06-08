@@ -197,6 +197,7 @@ public final class DefinicionesInterfaz {
 	//Definiciones Generales
 	public static final int ESQUINA_BORDE_OVAL_PS = 40;
 	public static final String PREGUNTA_SALIR = "¿Desea salir de la aplicación?";
+	public static final String PREGUNTA_CERRAR_SESION = "¿Desea cerrar sesión?";
 	public static final Color COLOR_PANEL_SUPERIOR = COLOR_INTERFAZ_GENERAL_6;
 	
 	//Definiciones PantallaCarga

@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -190,7 +189,7 @@ public class AppPrincipal extends JFrame {
 		cerrarSesionBtn = new BotonAnimacion();
 		cerrarSesionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(JOptionPane.showConfirmDialog(rootPane, DefinicionesInterfaz.PREGUNTA_SALIR, null, JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+				if(JOptionPane.showConfirmDialog(rootPane, DefinicionesInterfaz.PREGUNTA_CERRAR_SESION, null, JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
 					dispose();
 					Autenticacion l = new Autenticacion();
 					l.setVisible(true);
@@ -245,7 +244,7 @@ public class AppPrincipal extends JFrame {
 		panelSeleccionado = opcionInicio;
 		panelSeleccionado.setBackground(e.getPanelOpcionSeleccionado());
 		
-		Imagen logoInicio = new Imagen((Icon) null);
+		Imagen logoInicio = new Imagen(new ImageIcon(AppPrincipal.class.getResource(e.getDirUrlIconoInicio())));
 		logoInicio.setBounds(67, 14, 38, 38);
 		opcionInicio.add(logoInicio);
 		
@@ -287,7 +286,7 @@ public class AppPrincipal extends JFrame {
 		opcionMapa.setBounds(0, 77, 300, 66);
 		panelContenedorOpciones.add(opcionMapa);
 		
-		Imagen logoMapa = new Imagen((Icon) null);
+		Imagen logoMapa = new Imagen(new ImageIcon(AppPrincipal.class.getResource(e.getDirUrlIconoMapa())));
 		logoMapa.setBounds(67, 14, 38, 38);
 		opcionMapa.add(logoMapa);
 		
@@ -329,7 +328,7 @@ public class AppPrincipal extends JFrame {
 		opcionFacultad.setBounds(0, 143, 300, 66);
 		panelContenedorOpciones.add(opcionFacultad);
 		
-		Imagen logoFacultad = new Imagen((Icon) null);
+		Imagen logoFacultad = new Imagen(new ImageIcon(AppPrincipal.class.getResource(e.getDirUrlIconoFacultad())));
 		logoFacultad.setBounds(67, 14, 38, 38);
 		opcionFacultad.add(logoFacultad);
 		
@@ -371,7 +370,7 @@ public class AppPrincipal extends JFrame {
 		opcionDeporte.setBounds(0, 209, 300, 66);
 		panelContenedorOpciones.add(opcionDeporte);
 		
-		Imagen logoDeporte = new Imagen((Icon) null);
+		Imagen logoDeporte = new Imagen(new ImageIcon(AppPrincipal.class.getResource(e.getDirUrlIconoDeporte())));
 		logoDeporte.setBounds(67, 14, 38, 38);
 		opcionDeporte.add(logoDeporte);
 		
@@ -413,7 +412,7 @@ public class AppPrincipal extends JFrame {
 		opcionCalendario.setBounds(0, 275, 300, 66);
 		panelContenedorOpciones.add(opcionCalendario);
 		
-		Imagen logoCalendario = new Imagen((Icon) null);
+		Imagen logoCalendario = new Imagen(new ImageIcon(AppPrincipal.class.getResource(e.getDirUrlIconoCalendario())));
 		logoCalendario.setBounds(67, 14, 38, 38);
 		opcionCalendario.add(logoCalendario);
 		
@@ -455,7 +454,7 @@ public class AppPrincipal extends JFrame {
 		opcionHistoria.setBounds(0, 341, 300, 66);
 		panelContenedorOpciones.add(opcionHistoria);
 		
-		Imagen logoHistoria = new Imagen((Icon) null);
+		Imagen logoHistoria = new Imagen(new ImageIcon(AppPrincipal.class.getResource(e.getDirUrlIconoHistoria())));
 		logoHistoria.setBounds(67, 14, 38, 38);
 		opcionHistoria.add(logoHistoria);
 		

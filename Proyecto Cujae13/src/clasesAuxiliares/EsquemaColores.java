@@ -27,6 +27,12 @@ public class EsquemaColores {
 	private Color panelOpcionHover;
 	private Color panelOpcionSeleccionado;
 	private Color panelOpcionTexto;
+	private String dirUrlIconoInicio;
+	private String dirUrlIconoFacultad;
+	private String dirUrlIconoDeporte;
+	private String dirUrlIconoMapa;
+	private String dirUrlIconoHistoria;
+	private String dirUrlIconoCalendario;
 	
 	//Panel Sup
 	private Color panelSupGradienteInicio;
@@ -52,7 +58,9 @@ public class EsquemaColores {
 			Color panelContenedorOpciones, Color panelOpcionHover, Color panelOpcionSeleccionado,
 			Color panelOpcionTexto, Color panelSupGradienteInicio, Color panelSupGradienteFin,
 			Color panelSupGradienteTexto, String dirUrlImagenAvatar, Color panelMovilBase, Color bordeLbl, Color fondoBtnSF, Color hoverBtnSF,
-			String dirUrlBtnAtras, String dirUrlBtnAtrasHover, Color seleccionFondoTabla, Color seleccionTextoTabla) {
+			String dirUrlBtnAtras, String dirUrlBtnAtrasHover, Color seleccionFondoTabla, Color seleccionTextoTabla,
+			String dirUrlIconoInicio, String dirUrlIconoFacultad, String dirUrlIconoDeporte, String dirUrlIconoMapa, 
+			String dirUrlIconoHistoria,String dirUrlIconoCalendario) {
 		super();
 		this.panelUsuarioGradienteInicio = panelUsuarioGradienteInicio;
 		this.panelUsuarioGradienteFin = panelUsuarioGradienteFin;
@@ -77,6 +85,12 @@ public class EsquemaColores {
 		this.dirUrlBtnAtrasHover = dirUrlBtnAtrasHover;
 		this.seleccionFondoTabla = seleccionFondoTabla;
 		this.seleccionTextoTabla = seleccionTextoTabla;
+		this.dirUrlIconoCalendario = dirUrlIconoCalendario;
+		this.dirUrlIconoDeporte = dirUrlIconoDeporte;
+		this.dirUrlIconoFacultad = dirUrlIconoFacultad;
+		this.dirUrlIconoHistoria = dirUrlIconoHistoria;
+		this.dirUrlIconoInicio = dirUrlIconoInicio;
+		this.dirUrlIconoMapa = dirUrlIconoMapa;
 	}
 
 	public Color getPanelUsuarioGradienteInicio() {
@@ -261,6 +275,54 @@ public class EsquemaColores {
 
 	public void setSeleccionTextoTabla(Color seleccionTextoTabla) {
 		this.seleccionTextoTabla = seleccionTextoTabla;
+	}
+
+	public String getDirUrlIconoInicio() {
+		return dirUrlIconoInicio;
+	}
+
+	public void setDirUrlIconoInicio(String dirUrlIconoInicio) {
+		this.dirUrlIconoInicio = dirUrlIconoInicio;
+	}
+
+	public String getDirUrlIconoFacultad() {
+		return dirUrlIconoFacultad;
+	}
+
+	public void setDirUrlIconoFacultad(String dirUrlIconoFacultad) {
+		this.dirUrlIconoFacultad = dirUrlIconoFacultad;
+	}
+
+	public String getDirUrlIconoDeporte() {
+		return dirUrlIconoDeporte;
+	}
+
+	public void setDirUrlIconoDeporte(String dirUrlIconoDeporte) {
+		this.dirUrlIconoDeporte = dirUrlIconoDeporte;
+	}
+
+	public String getDirUrlIconoMapa() {
+		return dirUrlIconoMapa;
+	}
+
+	public void setDirUrlIconoMapa(String dirUrlIconoMapa) {
+		this.dirUrlIconoMapa = dirUrlIconoMapa;
+	}
+
+	public String getDirUrlIconoHistoria() {
+		return dirUrlIconoHistoria;
+	}
+
+	public void setDirUrlIconoHistoria(String dirUrlIconoHistoria) {
+		this.dirUrlIconoHistoria = dirUrlIconoHistoria;
+	}
+
+	public String getDirUrlIconoCalendario() {
+		return dirUrlIconoCalendario;
+	}
+
+	public void setDirUrlIconoCalendario(String dirUrlIconoCalendario) {
+		this.dirUrlIconoCalendario = dirUrlIconoCalendario;
 	}
 
 	

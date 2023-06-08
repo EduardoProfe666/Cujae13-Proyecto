@@ -5,6 +5,8 @@ import java.util.Locale;
 
 import javax.swing.JOptionPane;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import interfaz.clases.PantallaCarga;
 
 /**
@@ -22,7 +24,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		Locale.setDefault(new Locale("es"));
+		FlatLightLaf.setup();
+		
 		try {
+			//Provisional
+			Rellenadora.borrarDatos();
+			Rellenadora.rellenarDatos();
+			
+			Inicializadora.inicializarAplicacion();
+			
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					PantallaCarga p = new PantallaCarga();

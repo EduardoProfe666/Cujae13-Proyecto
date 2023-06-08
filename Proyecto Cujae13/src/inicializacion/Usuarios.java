@@ -24,13 +24,21 @@ public class Usuarios implements Serializable{
 			instancia = new Usuarios();
 		return instancia;
 	}
+	public static Usuarios getInstancia(Usuarios u) {
+		if(instancia == null)
+			instancia = new Usuarios(u);
+		return instancia;
+	}
 	
 	private Usuarios() {
 		u = new ArrayList<Usuario>();
 	}
+	private Usuarios(Usuarios u) {
+		this.u = u.getUsuarios();
+	}
 	
 	public ArrayList<Usuario> getUsuarios() {
-		return new ArrayList<Usuario>();
+		return new ArrayList<Usuario>(u);
 	}
 	
 	public void ingresarUsuario(Usuario u) {

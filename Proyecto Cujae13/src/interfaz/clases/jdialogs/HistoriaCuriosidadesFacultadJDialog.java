@@ -24,15 +24,17 @@ public class HistoriaCuriosidadesFacultadJDialog extends JDialogGeneral{
 		nombreFacultadLbl.setBounds(10, 10, 680, 45);
 		panelContenedor.add(nombreFacultadLbl);
 		
-		JLabel HistoriaLbl = new JLabel("Historia");
-		HistoriaLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
-		HistoriaLbl.setBounds(10, 66, 324, 26);
-		panelContenedor.add(HistoriaLbl);
+		JLabel historiaLbl = new JLabel("Historia");
+		historiaLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
+		historiaLbl.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));
+		historiaLbl.setBounds(10, 66, 324, 26);
+		panelContenedor.add(historiaLbl);
 		
-		JLabel CuriosidadesLbl = new JLabel("Curiosidades");
-		CuriosidadesLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
-		CuriosidadesLbl.setBounds(366, 66, 324, 26);
-		panelContenedor.add(CuriosidadesLbl);
+		JLabel curiosidadesLbl = new JLabel("Curiosidades");
+		curiosidadesLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
+		curiosidadesLbl.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));
+		curiosidadesLbl.setBounds(366, 66, 324, 26);
+		panelContenedor.add(curiosidadesLbl);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 96, 324, 348);

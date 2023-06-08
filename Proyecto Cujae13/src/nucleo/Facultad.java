@@ -3,25 +3,24 @@ package nucleo;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Facultad implements Serializable{
+import clasesAuxiliares.NombreFacultad;
+
+public class Facultad implements Serializable, Comparable<Facultad>{
 	private static final long serialVersionUID = 1L;
-	private String nombre;
+	private NombreFacultad nombre;
 	private InfoGeneral informacion;
 	private LinkedList<Sancion> sanciones;
 	private int puntaje;
 	
-	public Facultad(String nombre, InfoGeneral informacion, int puntaje) {
+	public Facultad(NombreFacultad nombre, InfoGeneral informacion, int puntaje) {
 		super();
 		this.nombre = nombre;
 		this.informacion = informacion;
 		this.puntaje = puntaje;
 		this.sanciones = new LinkedList<>();
 	}
-	public String getNombre() {
+	public NombreFacultad getNombre() {
 		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 	public InfoGeneral getInformacion() {
 		return informacion;
@@ -37,6 +36,11 @@ public class Facultad implements Serializable{
 	}
 	public LinkedList<Sancion> getSanciones() {
 		return sanciones;
+	}
+	
+	@Override
+	public int compareTo(Facultad f) {
+		return Integer.compare(puntaje, f.getPuntaje());
 	}
 	
 	

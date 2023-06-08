@@ -3,14 +3,15 @@ package utilidades;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
+import java.util.Iterator;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import clasesAuxiliares.Usuario;
 import definiciones.DefinicionesInterfaz;
-import definiciones.DefinicionesLogica;
 import definiciones.ErroresInterfazGrafica;
+import inicializacion.Usuarios;
 
 /**
  * Clase de utilidades que incluye diferentes métodos de uso tanto en lógica, como en interfaz.
@@ -45,12 +46,14 @@ public final class Auxiliares {
 			throw new IllegalArgumentException(ErroresInterfazGrafica.ERROR_CAMPO_VACIO_CONTRASENYA);
 			
 		Usuario u = null;
-		//MEJORAR CON ITERADORES
-		for(int i=0;i<DefinicionesLogica.usuarios.size() && u==null;i++) {
-			if(DefinicionesLogica.usuarios.get(i).getCorreoUsuario().equals(usuario)) {
-				u = DefinicionesLogica.usuarios.get(i);
-			}
+		Usuario x = null;
+		Iterator<Usuario> iter = Usuarios.getInstancia().getUsuarios().iterator();
+		while(iter.hasNext() && u==null) {
+			x = iter.next();
+			if(x.getCorreoUsuario().equals(usuario))
+				u = x;
 		}
+		
 		
 		if(u==null)
 			throw new IllegalArgumentException(ErroresInterfazGrafica.ERROR_CORREO_NO_VALIDO);

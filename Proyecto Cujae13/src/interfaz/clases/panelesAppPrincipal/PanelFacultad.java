@@ -69,10 +69,11 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		
 		avatar = new AvatarCircular(new ImageIcon(BtnSeleccionFacultad.class.getResource(ex.getDirUrlImagenAvatar())), 2);
 		avatar.setForeground(ex.getBordeAvatar());
-		avatar.setBounds(f.toString().length()*13+15, 35, 42, 42);
+		avatar.setBounds(xAvatar(f.toString()), 35, 42, 42);
 		add(avatar);
 		
-		JButton sancionesInfraccionesBtn = new JButton("S");
+		JButton sancionesInfraccionesBtn = new JButton();
+		sancionesInfraccionesBtn.setToolTipText("Amonestaciones");
 		sancionesInfraccionesBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent x) {
 				AmonestacionesFacultadJDialog ventana = new AmonestacionesFacultadJDialog(e, padre, f);
@@ -80,11 +81,15 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 			}
 		});
 		sancionesInfraccionesBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		sancionesInfraccionesBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		sancionesInfraccionesBtn.setBorder(null);
+		sancionesInfraccionesBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(36,36), AppPrincipal.class.getResource("/interfaz/iconos/amonestacion01.png")));
+		sancionesInfraccionesBtn.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(36,36), AppPrincipal.class.getResource("/interfaz/iconos/amonestacion02.png")));
+		sancionesInfraccionesBtn.setContentAreaFilled(false);
 		sancionesInfraccionesBtn.setBounds(681, 35, 42, 42);
 		add(sancionesInfraccionesBtn);
 		
-		JButton historiaJuegosBtn = new JButton("J");
+		JButton historiaJuegosBtn = new JButton();
+		historiaJuegosBtn.setToolTipText("Historial de Juegos");
 		historiaJuegosBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent x) {
 				HistorialJuegosFacultadJDialog ventana = new HistorialJuegosFacultadJDialog(e, padre, f);
@@ -92,11 +97,15 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 			}
 		});
 		historiaJuegosBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		historiaJuegosBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		historiaJuegosBtn.setBorder(null);
+		historiaJuegosBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(36,36), AppPrincipal.class.getResource("/interfaz/iconos/historialJuegos01.png")));
+		historiaJuegosBtn.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(36,36), AppPrincipal.class.getResource("/interfaz/iconos/historialJuegos02.png")));
+		historiaJuegosBtn.setContentAreaFilled(false);
 		historiaJuegosBtn.setBounds(733, 35, 42, 42);
 		add(historiaJuegosBtn);
 		
-		JButton histCuriosBtn = new JButton("H");
+		JButton histCuriosBtn = new JButton();
+		histCuriosBtn.setToolTipText("Historia y Curiosidades");
 		histCuriosBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent x) {
 				HistoriaCuriosidadesFacultadJDialog ventana = new HistoriaCuriosidadesFacultadJDialog(e, padre, f);
@@ -104,8 +113,11 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 			}
 		});
 		histCuriosBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		histCuriosBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		histCuriosBtn.setBounds(629, 35, 42, 42);
+		histCuriosBtn.setBorder(null);
+		histCuriosBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(36,36), AppPrincipal.class.getResource("/interfaz/iconos/historiaCurios01.png")));
+		histCuriosBtn.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(36,36), AppPrincipal.class.getResource("/interfaz/iconos/historiaCurios02.png")));
+		histCuriosBtn.setContentAreaFilled(false);
 		add(histCuriosBtn);
 		medalla = new Imagen(Auxiliares.ajustarImagen(new Dimension(32,38), AppPrincipal.class.getResource(Archivador.getDirUrlMedalla(new Random().nextInt(9)+1))));
 		medalla.setBounds(837, 35, 42, 42);
@@ -200,5 +212,25 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		scrollPane_3.setViewportView(estadisticas);
 		
 		
+	}
+	
+	private int xAvatar(String nombreFacultad) {
+		int x = 10+15;
+		String modelo1 = "IitrlT";
+		String modelo2 = "AmBEM";
+		
+		for(Character c : nombreFacultad.toCharArray()) {
+			if(modelo1.contains(c.toString()))
+				x+=6;
+			else if(c == 'v')
+				x+=10;
+			else if(modelo2.contains(c.toString()))
+				x+=16;
+			else
+				x+=14;
+				
+		}
+		
+		return x;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import clasesAuxiliares.NombreFacultad;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.BreadthNode;
@@ -62,18 +63,18 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 		LinkedList<FacultadPos> f = new LinkedList<>();
 		LinkedList<Facultad> fac = new LinkedList<>();
 		
-		fac.add(new Facultad("Informática", null, 999));
-		fac.add(new Facultad("Telecomunicaciones", null, 800));
-		fac.add(new Facultad("Arquitectura", null, 700));
-		fac.add(new Facultad("Química", null, 600));
-		fac.add(new Facultad("Automática/Biomédica", null, 500));
-		fac.add(new Facultad("Civil", null, 400));
-		fac.add(new Facultad("Eléctrica", null, 300));
-		fac.add(new Facultad("Industrial", null, 200));
-		fac.add(new Facultad("Mecánica", null, 100));
+		fac.add(new Facultad(NombreFacultad.INFORMATICA, null, 999));
+		fac.add(new Facultad(NombreFacultad.TELECOMUNICACIONES, null, 800));
+		fac.add(new Facultad(NombreFacultad.ARQUITECTURA, null, 700));
+		fac.add(new Facultad(NombreFacultad.QUIMICA, null, 600));
+		fac.add(new Facultad(NombreFacultad.AUTOMATICA_BIOMEDICA, null, 500));
+		fac.add(new Facultad(NombreFacultad.CIVIL, null, 400));
+		fac.add(new Facultad(NombreFacultad.ELECTRICA, null, 300));
+		fac.add(new Facultad(NombreFacultad.INDUSTRIAL, null, 200));
+		fac.add(new Facultad(NombreFacultad.MECANICA, null, 100));
 		
 		for(int i=0;i<9;i++) {
-			f.add(new FacultadPos(fac.get(i).getNombre(), fac.get(i).getPuntaje(), i+1));
+			f.add(new FacultadPos(fac.get(i).getNombre().toString(), fac.get(i).getPuntaje(), i+1));
 		}
 
 		return f;
@@ -93,9 +94,9 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 		BinaryTreeNode<Facultad> n = (BinaryTreeNode<Facultad>)pos.getRoot();
 		BinaryTreeNode<Facultad> nH = n.getRight();
 
-		f.add(new FacultadPos(n.getInfo().getNombre(),n.getInfo().getPuntaje(),1));
+		f.add(new FacultadPos(n.getInfo().getNombre().toString(),n.getInfo().getPuntaje(),1));
 		while(nH!=null) {
-			f.add(new FacultadPos(nH.getInfo().getNombre(),nH.getInfo().getPuntaje(),1));
+			f.add(new FacultadPos(nH.getInfo().getNombre().toString(),nH.getInfo().getPuntaje(),1));
 			nH = nH.getRight();
 		}
 
@@ -103,7 +104,7 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 		iter.next();
 		while(iter.hasNext()) {
 			BreadthNode<Facultad> bn = iter.nextNodeWithLevel();
-			f.add(new FacultadPos(bn.getInfo().getNombre(), bn.getInfo().getPuntaje(), bn.getLevel()+1));
+			f.add(new FacultadPos(bn.getInfo().getNombre().toString(), bn.getInfo().getPuntaje(), bn.getLevel()+1));
 		}
 
 		return f;
