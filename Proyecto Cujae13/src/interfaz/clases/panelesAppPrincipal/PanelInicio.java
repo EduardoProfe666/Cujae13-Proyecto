@@ -12,13 +12,13 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.TableRowSorter;
 
 import clasesAuxiliares.EsquemaColores;
-import clasesAuxiliares.NombreFacultad;
 import componentes.Imagen;
 import interfaz.clases.AppPrincipal;
 import interfaz.componentes.LabelDiaActual;
 import interfaz.componentes.TablaPosiciones;
 import interfaz.tablas.modelos.PartidosJugadosTableModel;
 import interfaz.tablas.modelos.PartidosPorJugarTableModel;
+import nucleo.NombreFacultad;
 import utilidades.Archivador;
 import utilidades.Auxiliares;
 
@@ -81,6 +81,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		add(tablaPosLbl);
 		
 		tablaPosGeneral = new TablaPosiciones(null, e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla(),false);
+		tablaPosGeneral.setBounds(589, 128, 290, 436);
 		add(tablaPosGeneral);
 		
 		lblPartidosPorJugar = new JLabel("Partidos por Jugar");
@@ -101,7 +102,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		scrollPane_1.setBounds(10, 180, 560, 173);
 		add(scrollPane_1);
 		
-		modeloPartidosPorJugar = new PartidosPorJugarTableModel(f.toString());
+		modeloPartidosPorJugar = new PartidosPorJugarTableModel(f);
 		ordenamientoPartidosPorJugar = new TableRowSorter<>(modeloPartidosPorJugar);
 		ordenamientoPartidosPorJugar.toggleSortOrder(0);
 		

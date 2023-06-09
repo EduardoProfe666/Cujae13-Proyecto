@@ -1,17 +1,26 @@
 package interfaz.clases.jdialogs;
 
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.TableRowSorter;
 
 import clasesAuxiliares.EsquemaColores;
-import clasesAuxiliares.NombreFacultad;
+import interfaz.clases.AppPrincipal;
 import interfaz.tablas.modelos.PartidosJugadosTableModel;
+import nucleo.NombreFacultad;
+import utilidades.Auxiliares;
+
 import com.toedter.calendar.JDateChooser;
 
 public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
@@ -20,9 +29,27 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 	private TableRowSorter<PartidosJugadosTableModel> ordenamientoPartidosJugados;
 	private JTable tablaPartidosJugados;
 	private JDateChooser fecha;
+	private JButton botonAyuda;
 	
 	public HistorialJuegosFacultadJDialog(EsquemaColores e, JFrame padre, NombreFacultad f) {
 		super("Historial de Juegos", e, padre);
+		
+		botonAyuda = new JButton("");
+		botonAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Seleccione una fecha. La tabla de partidos jugados se actualizará de forma "
+						+ "dinámica para ofrecer el listado con los resultados de los partidos del "
+						+ "día seleccionado.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		botonAyuda.setToolTipText("Ayuda");
+		botonAyuda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		botonAyuda.setIcon(Auxiliares.ajustarImagen(new Dimension(28,28), AppPrincipal.class.getResource("/interfaz/iconos/help0.png")));
+		botonAyuda.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(28,28), AppPrincipal.class.getResource("/interfaz/iconos/help1.png")));
+		botonAyuda.setContentAreaFilled(false);
+		botonAyuda.setBorder(null);
+		botonAyuda.setBounds(662, 64, 28, 28);
+		panelContenedor.add(botonAyuda);
 		
 		JLabel nombreFacultadLbl = new JLabel("Historial de Juegos de "+f.toString());
 		nombreFacultadLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 24));

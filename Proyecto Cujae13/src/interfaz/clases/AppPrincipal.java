@@ -38,11 +38,11 @@ import componentes.PanelGradienteV;
 import componentes.PanelOpcion;
 import definiciones.DefinicionesInterfaz;
 import interfaz.clases.panelesAppPrincipal.PanelCalendario;
-import interfaz.clases.panelesAppPrincipal.PanelDeporte;
 import interfaz.clases.panelesAppPrincipal.PanelHistoria;
 import interfaz.clases.panelesAppPrincipal.PanelInicio;
 import interfaz.clases.panelesAppPrincipal.PanelMapa;
 import interfaz.clases.panelesAppPrincipal.PanelSeleccionFacultad;
+import interfaz.clases.panelesAppPrincipal.PanelSeleccionarDeporte;
 import interfaz.componentes.PanelSuperior;
 import utilidades.Archivador;
 import utilidades.Auxiliares;
@@ -82,9 +82,10 @@ public class AppPrincipal extends JFrame {
 	private JButton botonAtras;
 
 	public AppPrincipal(UsuarioEstudiante us) {
+		this.setTitle("Cujae13");
 		u = us;
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(Autenticacion.class.getResource("/interfaz/iconos/icono.png")));
-		EsquemaColores e = Archivador.getEsquemaColores(us.getFacultad());
+		final EsquemaColores e = Archivador.getEsquemaColores(us.getFacultad());
 		FlatLightLaf.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, DefinicionesInterfaz.DIMENSION_APP_PRINCIPAL.width, DefinicionesInterfaz.DIMENSION_APP_PRINCIPAL.height);
@@ -468,9 +469,9 @@ public class AppPrincipal extends JFrame {
 		panelPrincipall = new JTabbedPane(JTabbedPane.TOP);
 		panelPrincipall.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		panelPrincipall.addTab("a", new PanelInicio(e,u.getFacultad()));
-		panelPrincipall.addTab("a", new PanelMapa(e));
-		panelPrincipall.addTab("a", new PanelSeleccionFacultad(this,e, u.getFacultad(),panelPrincipall));
-		panelPrincipall.addTab("a", new PanelDeporte(e));
+		panelPrincipall.addTab("a", new PanelMapa(e,this));
+		panelPrincipall.addTab("a", new PanelSeleccionFacultad(this,e,panelPrincipall));
+		panelPrincipall.addTab("a", new PanelSeleccionarDeporte(this,e,panelPrincipall));
 		panelPrincipall.addTab("a", new PanelCalendario(e));
 		panelPrincipall.addTab("a", new PanelHistoria(e));
 		panelPrincipall.addTab("facultad", new JPanel());

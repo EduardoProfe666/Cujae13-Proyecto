@@ -1,17 +1,26 @@
 package interfaz.clases.panelesAppPrincipal;
 
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
 
 import clasesAuxiliares.EsquemaColores;
-import clasesAuxiliares.NombreFacultad;
+import interfaz.clases.AppPrincipal;
 import interfaz.componentes.BtnSeleccionFacultad;
+import nucleo.NombreFacultad;
+import utilidades.Auxiliares;
+
+import javax.swing.JButton;
 
 /**
  * JPanel que modela la pantalla de Selección de Facultad de la aplicación.<br><br>
@@ -35,8 +44,25 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 	private BtnSeleccionFacultad panelMec;
 	private BtnSeleccionFacultad panelQuim;
 	private BtnSeleccionFacultad panelTele;
+	private JButton botonAyuda;
 		
-	public PanelSeleccionFacultad(JFrame padre,EsquemaColores e, NombreFacultad f, JTabbedPane tab) {
+	public PanelSeleccionFacultad(JFrame padre,EsquemaColores e, JTabbedPane tab) {
+		
+		botonAyuda = new JButton("");
+		botonAyuda.setToolTipText("Ayuda");
+		botonAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Para acceder a la información de la facultad "
+						+ "haga click en la facultad deseada", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		botonAyuda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		botonAyuda.setIcon(Auxiliares.ajustarImagen(new Dimension(36,36), AppPrincipal.class.getResource("/interfaz/iconos/help0.png")));
+		botonAyuda.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(36,36), AppPrincipal.class.getResource("/interfaz/iconos/help1.png")));
+		botonAyuda.setContentAreaFilled(false);
+		botonAyuda.setBorder(null);
+		botonAyuda.setBounds(843, 42, 36, 36);
+		add(botonAyuda);
 		
 		elegirFacultadLbl = new JLabel("Elegir Facultad");
 		elegirFacultadLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 24));

@@ -10,10 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.border.MatteBorder;
 
 import clasesAuxiliares.EsquemaColores;
-import clasesAuxiliares.NombreFacultad;
 import componentes.AvatarCircular;
 import componentes.PanelBordeOval;
 import definiciones.DefinicionesInterfaz;
+import nucleo.NombreFacultad;
 import utilidades.Archivador;
 
 public class BtnSeleccionFacultad extends PanelBordeOval{

@@ -3,6 +3,9 @@ package utilidades;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Iterator;
 
 import javax.swing.Icon;
@@ -62,5 +65,9 @@ public final class Auxiliares {
 			throw new IllegalArgumentException(ErroresInterfazGrafica.ERROR_CONTRASENYA_NO_VALIDA);
 			
 		return u;
+	}
+	
+	public LocalDate convertirLocalDate(Calendar c) {
+		return c!=null ? LocalDateTime.ofInstant(c.toInstant(), c.getTimeZone().toZoneId()).toLocalDate() : null;
 	}
 }

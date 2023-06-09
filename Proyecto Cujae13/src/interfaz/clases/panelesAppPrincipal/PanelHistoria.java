@@ -38,13 +38,13 @@ public class PanelHistoria extends PanelBaseAppPrincipal{
 		tablaPosLbl = new JLabel("Tabla de Posiciones Hist\u00F3rica");
 		tablaPosLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
 		tablaPosLbl.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));
-		tablaPosLbl.setBounds(10, 91, 385, 26);
+		tablaPosLbl.setBounds(10, 105, 385, 26);
 		add(tablaPosLbl);
 		
-		JLabel historiaLbl = new JLabel("Historia Juegos 13 de Marzo");
+		JLabel historiaLbl = new JLabel("Historia de los Juegos 13 de Marzo");
 		historiaLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
 		historiaLbl.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));
-		historiaLbl.setBounds(410, 91, 469, 26);
+		historiaLbl.setBounds(410, 105, 469, 26);
 		add(historiaLbl);
 		
 		TablaPosiciones tablaPosGeneral = new TablaPosiciones(null, e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla(),true);

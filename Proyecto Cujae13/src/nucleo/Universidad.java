@@ -18,6 +18,8 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	private LinkedList<EventoDia> eventosPorResultados; //Lista enlazada (Admin)
 	private Deque<EventoDiaFinalizado> eventosFinalizados; //Pila 
 	private Historia13Marzo historia;
+	//private WeightedGraph<Localizacion> localizaciones;
+	
 	private static Universidad instancia;
 	
 	/**
@@ -60,6 +62,8 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		listadoDeportes = new ArrayList<>();
 		this.historia = historia;
 		eventosPorResultados = new LinkedList<EventoDia>();
+		//localizaciones = GraphBuilders.makeSimpleWeightedGraph(false);
+		
 	}
 	
 	/**
@@ -75,6 +79,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			listadoDeportes = u.getListadoDeportes();
 			this.historia = u.getHistoria();
 			eventosPorResultados = u.getEventosPorResultados();
+			//localizaciones = u.getLocalizaciones();
 		}
 	}
 	
@@ -128,9 +133,18 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		return eventosPorResultados;
 	}
 	
-	
-	
-	
+	/**
+	 * Retorna todas las localizaciones, agregando como peso si presenta deportes activos
+	 * @return
+	 */
+//	public WeightedGraph<LocalizacionPeso> getLocalizacionesDeportesActivos() {
+//		return null;
+//	}
+//	
+//	public WeightedGraph<Localizacion> getLocalizaciones() {
+//		return localizaciones;
+//	}
+
 	
 	
 	

@@ -1,4 +1,4 @@
-package clasesAuxiliares;
+package nucleo;
 
 /**
  *Enum empleado para el manejo de los nombre de las diferentes facultades, tanto a 
@@ -11,9 +11,8 @@ package clasesAuxiliares;
  *
  */
 public enum NombreFacultad {
-	INFORMATICA("Informática"), TELECOMUNICACIONES("Telecomunicaciones"), ARQUITECTURA("Arquitectura"), 
-	QUIMICA("Química"), AUTOMATICA_BIOMEDICA("Automática/Biomédica"), CIVIL("Civil"), 
-	ELECTRICA("Eléctrica"), INDUSTRIAL("Industrial"), MECANICA("Mecánica");
+	ARQUITECTURA("Arquitectura"), AUTOMATICA_BIOMEDICA("Automática/Biomédica"), CIVIL("Civil"), ELECTRICA("Eléctrica"), 
+	INDUSTRIAL("Industrial"), INFORMATICA("Informática"), MECANICA("Mecánica"), QUIMICA("Química"), TELECOMUNICACIONES("Telecomunicaciones");
 	
 	private String nombre;
 	
@@ -25,4 +24,6 @@ public enum NombreFacultad {
 	public String toString() {
 		return this.nombre;
 	}
+	
+	
 }

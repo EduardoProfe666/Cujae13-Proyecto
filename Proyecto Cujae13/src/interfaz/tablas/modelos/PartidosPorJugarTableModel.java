@@ -3,12 +3,13 @@ package interfaz.tablas.modelos;
 import java.time.format.DateTimeFormatter;
 
 import nucleo.Evento;
+import nucleo.NombreFacultad;
 
 public class PartidosPorJugarTableModel extends ModeloPrincipalTableModel<Evento>{
 	private static final long serialVersionUID = 1L;
-	private String facultad;
+	private NombreFacultad facultad;
 	
-	public PartidosPorJugarTableModel(String facultad) {
+	public PartidosPorJugarTableModel(NombreFacultad facultad) {
 		super(new String[] {"Hora", "Deporte","Adversario", "Tipo de Evento"});
 		this.facultad = facultad;
 	}
@@ -20,5 +21,6 @@ public class PartidosPorJugarTableModel extends ModeloPrincipalTableModel<Evento
 				e.getFacultadPrimera().getNombre().equals(facultad) ? e.getFacultadSegunda().getNombre() : e.getFacultadPrimera().getNombre(),
 				e.getTipo()});
 	}
-
 }
+
+

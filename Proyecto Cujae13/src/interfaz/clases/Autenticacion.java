@@ -26,7 +26,6 @@ import javax.swing.border.MatteBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-import clasesAuxiliares.NombreFacultad;
 import clasesAuxiliares.Usuario;
 import clasesAuxiliares.UsuarioEstudiante;
 import componentes.AvatarCircular;
@@ -37,6 +36,7 @@ import componentes.JTextFieldModificado;
 import definiciones.DefinicionesInterfaz;
 import definiciones.ErroresInterfazGrafica;
 import interfaz.componentes.PanelSuperior;
+import nucleo.NombreFacultad;
 import utilidades.Auxiliares;
 
 /**
@@ -67,6 +67,7 @@ public class Autenticacion extends JFrame {
 	private boolean contrasenyaVisible;
 
 	public Autenticacion() {
+		this.setTitle("Cujae13");
 		contadorInd = 0;
 		FlatLightLaf.setup();
 		this.setUndecorated(true);

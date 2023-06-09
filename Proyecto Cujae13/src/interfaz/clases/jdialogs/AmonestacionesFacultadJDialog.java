@@ -1,19 +1,27 @@
 package interfaz.clases.jdialogs;
 
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.TableRowSorter;
 
 import clasesAuxiliares.EsquemaColores;
-import clasesAuxiliares.NombreFacultad;
+import interfaz.clases.AppPrincipal;
 import interfaz.tablas.modelos.InfraccionesFacultadTableModel;
 import interfaz.tablas.modelos.MultiLineaCellRendererEditor;
 import interfaz.tablas.modelos.SancionesFacultadTableModel;
+import nucleo.NombreFacultad;
+import utilidades.Auxiliares;
 
 public class AmonestacionesFacultadJDialog extends JDialogGeneral{
 	private static final long serialVersionUID = 1L;
@@ -23,9 +31,43 @@ public class AmonestacionesFacultadJDialog extends JDialogGeneral{
 	private InfraccionesFacultadTableModel modeloInfracciones;
 	private TableRowSorter<InfraccionesFacultadTableModel> ordenamientoInfracciones;
 	private JTable tablaInfracciones;
+	private JButton botonAyudaSancion;
+	private JButton botonAyudaInfraccion;
 	
 	public AmonestacionesFacultadJDialog(EsquemaColores e, JFrame padre, NombreFacultad f) {
 		super("Amonestaciones", e, padre);
+		
+		botonAyudaSancion = new JButton("");
+		botonAyudaSancion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Las sanciones son las amonestaciones más graves. Tributan "
+						+ "directamente a la tabla de posiciones general de los Juegos 13 de Marzo.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		botonAyudaSancion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		botonAyudaSancion.setIcon(Auxiliares.ajustarImagen(new Dimension(28,28), AppPrincipal.class.getResource("/interfaz/iconos/help0.png")));
+		botonAyudaSancion.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(28,28), AppPrincipal.class.getResource("/interfaz/iconos/help1.png")));
+		botonAyudaSancion.setContentAreaFilled(false);
+		botonAyudaSancion.setBorder(null);
+		botonAyudaSancion.setToolTipText("Ayuda");
+		botonAyudaSancion.setBounds(662, 64, 28, 28);
+		panelContenedor.add(botonAyudaSancion);
+		
+		botonAyudaInfraccion = new JButton("");
+		botonAyudaInfraccion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Las infracciones son amonestaciones menos graves. Tributan a la "
+						+ "tabla de posiciones de cada deporte.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		botonAyudaInfraccion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		botonAyudaInfraccion.setToolTipText("Ayuda");
+		botonAyudaInfraccion.setIcon(Auxiliares.ajustarImagen(new Dimension(28,28), AppPrincipal.class.getResource("/interfaz/iconos/help0.png")));
+		botonAyudaInfraccion.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(28,28), AppPrincipal.class.getResource("/interfaz/iconos/help1.png")));
+		botonAyudaInfraccion.setContentAreaFilled(false);
+		botonAyudaInfraccion.setBorder(null);
+		botonAyudaInfraccion.setBounds(662, 258, 28, 28);
+		panelContenedor.add(botonAyudaInfraccion);
 		
 		JLabel nombreFacultadLbl = new JLabel("Amonestaciones de "+f.toString());
 		nombreFacultadLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 24));

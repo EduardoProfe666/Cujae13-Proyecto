@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.util.HashMap;
 
 import clasesAuxiliares.EsquemaColores;
-import clasesAuxiliares.NombreFacultad;
 import definiciones.DefinicionesInterfaz;
+import nucleo.NombreFacultad;
 
 /**
  * Clase de utilidades que incluye los diferentes archivadores empleados en la aplicación.

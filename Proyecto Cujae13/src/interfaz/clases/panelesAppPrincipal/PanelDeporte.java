@@ -2,10 +2,12 @@ package interfaz.clases.panelesAppPrincipal;
 
 import java.awt.Font;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import clasesAuxiliares.EsquemaColores;
+import nucleo.Deporte;
 
 /**
  * JPanel que modela la pantalla de Deporte de la aplicación.<br><br>
@@ -20,7 +22,7 @@ import clasesAuxiliares.EsquemaColores;
 public class PanelDeporte extends PanelBaseAppPrincipal{
 	private static final long serialVersionUID = 1L;
 
-	public PanelDeporte(EsquemaColores e) {
+	public PanelDeporte(JFrame padre,EsquemaColores e, Deporte d) {
 		
 		JLabel lblNewLabel = new JLabel("Deporte");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);

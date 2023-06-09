@@ -5,12 +5,12 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import clasesAuxiliares.NombreFacultad;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.BreadthNode;
 import cu.edu.cujae.ceis.tree.iterators.general.InBreadthIteratorWithLevels;
 import nucleo.Facultad;
+import nucleo.NombreFacultad;
 
 /**
  * Modelo de tabla empleado en las tablas de posiciones de la aplicación.

@@ -1,15 +1,15 @@
 package interfaz.clases.jdialogs;
 
-import javax.swing.JFrame;
-
-import clasesAuxiliares.EsquemaColores;
-import clasesAuxiliares.NombreFacultad;
-import javax.swing.JLabel;
-import javax.swing.border.MatteBorder;
-
 import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.MatteBorder;
+
+import clasesAuxiliares.EsquemaColores;
+import nucleo.NombreFacultad;
 
 public class HistoriaCuriosidadesFacultadJDialog extends JDialogGeneral{
 	private static final long serialVersionUID = 1L;

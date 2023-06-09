@@ -1,5 +1,6 @@
 package clasesAuxiliares;
 
+import nucleo.NombreFacultad;
 import utilidades.Archivador;
 
 /**

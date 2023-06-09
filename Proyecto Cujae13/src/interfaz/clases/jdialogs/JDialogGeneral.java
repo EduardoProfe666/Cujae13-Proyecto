@@ -30,10 +30,9 @@ public abstract class JDialogGeneral extends JDialog{
 		super(padre, true);
 		this.setUndecorated(true);
 		this.setBounds(100, 100, DefinicionesInterfaz.DIMENSION_DIALOGOS.width, DefinicionesInterfaz.DIMENSION_DIALOGOS.height);
-		setBackground(new Color(255,255,255,0));
+		this.setBackground(new Color(255,255,255,0));
 		
 		panelBase = new JPanel();
-		panelBase.setBackground(Color.WHITE);
 		panelBase.setOpaque(false);
 		setContentPane(panelBase);
 		panelBase.setLayout(null);

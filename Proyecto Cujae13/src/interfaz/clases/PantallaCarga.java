@@ -18,6 +18,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDeepOc
 import componentes.Imagen;
 import componentes.PanelAnimacionCurvas;
 import definiciones.DefinicionesInterfaz;
+import java.awt.Toolkit;
 
 /**
  * JDialog que modela la pantalla de carga de la aplicación Cujae13.
@@ -37,6 +38,8 @@ public class PantallaCarga extends JDialog {
 
 
 	public PantallaCarga() {
+		setTitle("Cujae13");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PantallaCarga.class.getResource("/interfaz/iconos/icono.png")));
 		FlatMaterialDeepOceanIJTheme.setup();
 		
 		this.setBounds(100, 100, DefinicionesInterfaz.DIMENSION_PANTALLA_CARGA.width, DefinicionesInterfaz.DIMENSION_PANTALLA_CARGA.height);

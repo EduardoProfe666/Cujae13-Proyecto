@@ -3,8 +3,6 @@ package nucleo;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-import clasesAuxiliares.NombreFacultad;
-
 public class Facultad implements Serializable, Comparable<Facultad>{
 	private static final long serialVersionUID = 1L;
 	private NombreFacultad nombre;

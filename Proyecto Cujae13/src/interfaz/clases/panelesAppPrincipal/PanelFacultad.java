@@ -19,7 +19,6 @@ import javax.swing.table.TableRowSorter;
 
 import clasesAuxiliares.EsquemaColores;
 import clasesAuxiliares.EstadisticasReporte;
-import clasesAuxiliares.NombreFacultad;
 import componentes.AvatarCircular;
 import componentes.Imagen;
 import interfaz.clases.AppPrincipal;
@@ -31,6 +30,7 @@ import interfaz.componentes.LabelDiaActual;
 import interfaz.tablas.modelos.EstadisticasTableModel;
 import interfaz.tablas.modelos.PartidosJugadosTableModel;
 import interfaz.tablas.modelos.PartidosPorJugarTableModel;
+import nucleo.NombreFacultad;
 import utilidades.Archivador;
 import utilidades.Auxiliares;
 /**
@@ -63,7 +63,7 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 	private JTable estadisticas;
 	private TableRowSorter<PartidosPorJugarTableModel> ordenamientoPartidosPorJugar;
 	
-	public PanelFacultad(JFrame padre,EsquemaColores e, NombreFacultad f) {
+	public PanelFacultad(final JFrame padre, final EsquemaColores e, final NombreFacultad f) {
 		
 		EsquemaColores ex = Archivador.getEsquemaColores(f);
 		
@@ -154,7 +154,7 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		scrollPane_1.setBounds(10, 180, 560, 173);
 		add(scrollPane_1);
 		
-		modeloPartidosPorJugar = new PartidosPorJugarTableModel(f.toString());
+		modeloPartidosPorJugar = new PartidosPorJugarTableModel(f);
 		ordenamientoPartidosPorJugar = new TableRowSorter<>(modeloPartidosPorJugar);
 		ordenamientoPartidosPorJugar.toggleSortOrder(0);
 		

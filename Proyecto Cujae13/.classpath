@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="src/librerias/flatlaf-intellij-themes-2.5.jar"/>
 	<classpathentry kind="lib" path="src/librerias/tree-package-v3.0.jar"/>
 	<classpathentry kind="lib" path="src/librerias/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="src/librerias/jlibgraph-0.7.0-prealpha.jar" sourcepath="C:/Users/Eduardo/Downloads/jlibgraph-main/jlibgraph-main/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
