@@ -8,5 +8,5 @@ import java.io.Serializable;
  *
  */
 public enum TipoEvento implements Serializable{
-
+	EVT1, EVT2, EVT3
 }

@@ -28,7 +28,7 @@ public class PinMapa extends JButton{
 		y = l.getLocalizacion().getCoordenadaY();
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		setToolTipText(l.getLocalizacion().getNombre());
+		setToolTipText(activo ? "Activa" : "No Activa" );
 		setContentAreaFilled(false);
 		setBorder(null);
 		setIcon(Auxiliares.ajustarImagen(new Dimension(30,30), AppPrincipal.class.getResource("/interfaz/iconos/" + (activo ? "pinBlack01.png" : "pinNoActivo01.png"))));

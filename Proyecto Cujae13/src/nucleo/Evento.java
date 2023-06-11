@@ -1,7 +1,7 @@
 package nucleo;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Evento implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -9,15 +9,16 @@ public class Evento implements Serializable{
 	private Deporte deporte;
 	private Facultad facultadPrimera;
 	private Facultad facultadSegunda;
-	private LocalDateTime fecha;
+	private LocalTime fecha;
 	
 	
-	public Evento(Deporte deporte, Facultad facultadPrimera, Facultad facultadSegunda, LocalDateTime fecha) {
+	public Evento(Deporte deporte, Facultad facultadPrimera, Facultad facultadSegunda, LocalTime fecha, TipoEvento tipo) {
 		super();
 		this.deporte = deporte;
 		this.facultadPrimera = facultadPrimera;
 		this.facultadSegunda = facultadSegunda;
 		this.fecha = fecha;
+		this.tipo = tipo;
 	}
 	public TipoEvento getTipo() {
 		return tipo;
@@ -43,10 +44,10 @@ public class Evento implements Serializable{
 	public void setFacultadSegunda(Facultad facultadSegunda) {
 		this.facultadSegunda = facultadSegunda;
 	}
-	public LocalDateTime getFecha() {
+	public LocalTime getFecha() {
 		return fecha;
 	}
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(LocalTime fecha) {
 		this.fecha = fecha;
 	}
 }

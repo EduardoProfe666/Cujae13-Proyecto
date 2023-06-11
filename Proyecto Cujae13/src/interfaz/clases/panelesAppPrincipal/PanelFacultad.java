@@ -31,6 +31,7 @@ import interfaz.tablas.modelos.EstadisticasTableModel;
 import interfaz.tablas.modelos.PartidosJugadosTableModel;
 import interfaz.tablas.modelos.PartidosPorJugarTableModel;
 import nucleo.NombreFacultad;
+import nucleo.Universidad;
 import utilidades.Archivador;
 import utilidades.Auxiliares;
 /**
@@ -155,6 +156,7 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		add(scrollPane_1);
 		
 		modeloPartidosPorJugar = new PartidosPorJugarTableModel(f);
+		modeloPartidosPorJugar.actualizar(Universidad.getInstancia().getListadoEventosDiaActual());
 		ordenamientoPartidosPorJugar = new TableRowSorter<>(modeloPartidosPorJugar);
 		ordenamientoPartidosPorJugar.toggleSortOrder(0);
 		
