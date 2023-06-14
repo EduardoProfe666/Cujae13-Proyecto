@@ -2,10 +2,12 @@ package nucleo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -13,6 +15,7 @@ import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.InDepthIterator;
 import definiciones.DefinicionesLogica;
+import inicializacion.Inicializadora;
 
 public class Universidad implements Serializable{ //Faltarian las localizaciones con el uso de grafos con pesos
 	private static final long serialVersionUID = 1L;
@@ -23,9 +26,9 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	private Deque<EventoDiaFinalizado> eventosFinalizados; //Pila 
 	private Historia13Marzo historia;
 	//private WeightedGraph<Localizacion> localizaciones;
-	
+
 	private static Universidad instancia;
-	
+
 	/**
 	 * Se usará esta normalmente
 	 * 
@@ -36,7 +39,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			throw new RuntimeException("La instancia de universidad no ha sido inicializada");
 		return instancia;
 	}
-	
+
 	/**
 	 * SOLO PARA CONSTRUCCION DE INSTANCIA
 	 * 
@@ -58,7 +61,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			instancia = new Universidad(u);
 		return instancia;
 	}
-	
+
 	private Universidad(Historia13Marzo historia) {
 		eventosFinalizados = new ArrayDeque<EventoDiaFinalizado>();
 		eventosActivos = new ArrayDeque<EventoDia>();
@@ -67,9 +70,9 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		this.historia = historia;
 		eventosPorResultados = new LinkedList<EventoDia>();
 		//localizaciones = GraphBuilders.makeSimpleWeightedGraph(false);
-		
+
 	}
-	
+
 	/**
 	 * Constructor Copia. Sirve para la hora de la instanciación
 	 * 
@@ -86,13 +89,13 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			//localizaciones = u.getLocalizaciones();
 		}
 	}
-	
+
 	public void addFacultad(Facultad f) {
 		if(f==null)
 			throw new IllegalArgumentException();
 		listadoFacultades.add(f);
 	}
-	
+
 	/**
 	 * Se retorna una copia del listado original de facultades, para 
 	 * proteger la información.
@@ -119,7 +122,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	public Deque<EventoDiaFinalizado> getEventosFinalizados() {
 		return eventosFinalizados;
 	}
-	
+
 	public Historia13Marzo getHistoria() {
 		return historia;
 	}
@@ -150,7 +153,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		return tablaPosiciones;
 
 	}	
-	
+
 	public BinaryTreeNode<Facultad> obtenerUltimoNodo(GeneralTree<Facultad> arbol){
 		BinaryTreeNode<Facultad> ultimoNodo = new BinaryTreeNode<Facultad>();
 		InDepthIterator<Facultad> iter = arbol.inDepthIterator();
@@ -168,134 +171,192 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	public LinkedList<EventoDia> getEventosPorResultados() {
 		return eventosPorResultados;
 	}
-	
+
 	//buscar una facultad dada en la lista de facultades
-		public Facultad buscarFacultad(NombreFacultad f) {
-			Facultad facultad = null;
-			boolean encontrado = false;
+	public Facultad buscarFacultad(NombreFacultad f) {
+		Facultad facultad = null;
+		boolean encontrado = false;
 
-			if(f== null) {
-				throw new IllegalArgumentException("Se necesita el nombre de la facutad");
-			}
-
-			for(int i=0; i<listadoFacultades.size() && !encontrado; i++) {
-				if(listadoFacultades.get(i).getNombre() == f) {
-					facultad = listadoFacultades.get(i);
-					encontrado = true;
-				}
-			}
-			return facultad;
+		if(f== null) {
+			throw new IllegalArgumentException("Se necesita el nombre de la facutad");
 		}
 
-		private void actualizarEventosActivos() {
-			LocalDate diaActual = LocalDate.now();
-			boolean parar = false;
+		for(int i=0; i<listadoFacultades.size() && !encontrado; i++) {
+			if(listadoFacultades.get(i).getNombre() == f) {
+				facultad = listadoFacultades.get(i);
+				encontrado = true;
+			}
+		}
+		return facultad;
+	}
 
-			while(!eventosActivos.isEmpty() && !parar) {
-				EventoDia evt = eventosActivos.peek();
-				if(evt.getFechaDia().equals(diaActual)) {
+	private void actualizarEventosActivos() {
+		LocalDate diaActual = LocalDate.now();
+		boolean parar = false;
+
+		while(!eventosActivos.isEmpty() && !parar) {
+			EventoDia evt = eventosActivos.peek();
+			if(evt.getFechaDia().equals(diaActual)) {
+				parar = true;
+				actualizarEventosActivosDia(evt);
+			}else if(evt.getFechaDia().compareTo(diaActual) < 0) {
+				if(eventosPorResultados.isEmpty())
+					eventosPorResultados.add(new EventoDia(evt.getFechaDia()));
+				EventoDia e = eventosPorResultados.getLast();
+				if(e.getFechaDia().equals(evt.getFechaDia())) {
+					e.getEventosDia().addAll(evt.getEventosDia());
+					eventosActivos.poll();
 					parar = true;
-				}else if(evt.getFechaDia().compareTo(diaActual) < 0) {
-					EventoDia e = eventosPorResultados.getLast();
-					if(e.getFechaDia().equals(evt.getFechaDia())) {
-						e.getEventosDia().addAll(evt.getEventosDia());
-						eventosActivos.poll();
-						parar = true;
-					}else {
-						eventosPorResultados.add(eventosActivos.poll());
-						parar = true;
-					}
 				}else {
-					throw new RuntimeException("Viaje en el tiempo");
+					eventosPorResultados.add(eventosActivos.poll());
+					parar = true;
 				}
+			}else {
+				throw new RuntimeException("Viaje en el tiempo");
 			}
-
-
-		}
-
-
-		public LinkedList<Evento> getListadoEventosDiaActual() {
-			LinkedList<Evento> lista = null;
-			actualizarEventosActivos();
-			if(!eventosActivos.isEmpty()) {
-				lista = eventosActivos.peek().getEventosDia();
-			}
-			return lista;
-
 		}
 		
-		public void ingresarEvento(Evento e, LocalDate fecha) {
-			if(fecha.compareTo(LocalDate.now())>=0) {
-				boolean insertado = false;
-				Queue<EventoDia> colaAuxiliar = new ArrayDeque<>();
-				
-				//Buscar fecha
-				while(!eventosActivos.isEmpty() && !insertado) {
-					EventoDia evt = eventosActivos.peek();
-					int comp = fecha.compareTo(evt.getFechaDia());
-					
-					if(comp==0) {
-						evt.getEventosDia().add(e);
-						insertado = true;
-					}
-					else if(comp<0) {
-						EventoDia evtAux = new EventoDia(fecha);
-						evtAux.getEventosDia().add(e);
-						colaAuxiliar.offer(evtAux);
-						insertado = true;
-					}	
-					else {
-						colaAuxiliar.offer(eventosActivos.poll());
-					}
+	}
+
+	private void actualizarEventosActivosDia(EventoDia evt) {	
+		if(eventosPorResultados.isEmpty() || !eventosPorResultados.getLast().getFechaDia().equals(LocalDate.now()))
+			eventosPorResultados.add(new EventoDia(LocalDate.now()));
+		
+		EventoDia e = eventosPorResultados.getLast();
+		Iterator<Evento> iter = evt.getEventosDia().iterator(); 
+
+		while(iter.hasNext()) {
+			Evento evento = iter.next();
+			if(evento.getFecha().compareTo(LocalTime.now())<=0) {
+				e.getEventosDia().add(evento);
+				iter.remove();
+
+			}
+		}
+	}
+
+
+	public LinkedList<Evento> getListadoEventosDiaActual() {
+		LinkedList<Evento> lista = null;
+		actualizarEventosActivos();
+		if(!eventosActivos.isEmpty()) {
+			lista = eventosActivos.peek().getEventosDia();
+		}
+		return lista;
+
+	}
+
+	public void ingresarEvento(Evento e, LocalDate fecha) {
+		if(fecha.compareTo(LocalDate.now())>=0) {
+			boolean insertado = false;
+			Queue<EventoDia> colaAuxiliar = new ArrayDeque<>();
+
+			//Buscar fecha
+			while(!eventosActivos.isEmpty() && !insertado) {
+				EventoDia evt = eventosActivos.peek();
+				int comp = fecha.compareTo(evt.getFechaDia());
+
+				if(comp==0) {
+					evt.getEventosDia().add(e);
+					insertado = true;
 				}
-				
-				if(!insertado) {
+				else if(comp<0) {
 					EventoDia evtAux = new EventoDia(fecha);
 					evtAux.getEventosDia().add(e);
 					colaAuxiliar.offer(evtAux);
-				}
-				
-				//Ingresar restantes
-				while(!eventosActivos.isEmpty()) {
+					insertado = true;
+				}	
+				else {
 					colaAuxiliar.offer(eventosActivos.poll());
 				}
-				
-				//ReingresarEventos
-				while(!colaAuxiliar.isEmpty()) {
-					eventosActivos.offer(colaAuxiliar.poll());
-				}
+			}
+
+			if(!insertado) {
+				EventoDia evtAux = new EventoDia(fecha);
+				evtAux.getEventosDia().add(e);
+				colaAuxiliar.offer(evtAux);
+			}
+
+			//Ingresar restantes
+			while(!eventosActivos.isEmpty()) {
+				colaAuxiliar.offer(eventosActivos.poll());
+			}
+
+			//ReingresarEventos
+			while(!colaAuxiliar.isEmpty()) {
+				eventosActivos.offer(colaAuxiliar.poll());
 			}
 		}
+	}
 	
+	public int getCantidadAmonestaciones() {
+		return getCantidadInfracciones() + getCantidadSanciones();
+	}
+	
+	public int getCantidadInfracciones() {
+		int cant = 0;
+		
+		for(Deporte d : listadoDeportes) {
+			cant+=d.getInfracciones().size();
+		}
+		
+		return cant;
+	}
+	
+	public int getCantidadSanciones(){
+		int cant = 0;
+		
+		for(Facultad f : listadoFacultades) {
+			cant+=f.getSanciones().size();
+		}
+		
+		return cant;
+	}
+	
+	public void actualizar() {
+		actualizarEventosActivos();
+		Inicializadora.guardarDatosAplicacion();
+	}
+	
+	public LinkedList<String> nombresDeportes(){
+		LinkedList<String> d = new LinkedList<>();
+		
+		for(Deporte s : listadoDeportes) {
+			d.add(s.getNombre());
+		}
+		
+		return d;
+	}
+
 	/**
 	 * Retorna todas las localizaciones, agregando como peso si presenta deportes activos
 	 * @return
 	 */
-//	public WeightedGraph<LocalizacionPeso> getLocalizacionesDeportesActivos() {
-//		return null;
-//	}
-//	
-//	public WeightedGraph<Localizacion> getLocalizaciones() {
-//		return localizaciones;
-//	}
+	//	public WeightedGraph<LocalizacionPeso> getLocalizacionesDeportesActivos() {
+	//		return null;
+	//	}
+	//	
+	//	public WeightedGraph<Localizacion> getLocalizaciones() {
+	//		return localizaciones;
+	//	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

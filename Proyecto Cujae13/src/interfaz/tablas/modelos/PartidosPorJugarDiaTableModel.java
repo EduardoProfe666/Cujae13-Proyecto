@@ -13,7 +13,7 @@ public class PartidosPorJugarDiaTableModel extends ModeloPrincipalTableModel<Eve
 
 	@Override
 	public void adicionar(Evento e) {
-		this.addRow(new Object[] {e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm aa")),
+		this.addRow(new Object[] {e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
 				e.getDeporte().getNombre(),
 				e.getFacultadPrimera().getNombre(),
 				e.getFacultadSegunda().getNombre(),

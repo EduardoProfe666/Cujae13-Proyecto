@@ -13,14 +13,16 @@ public class Deporte implements Serializable{
 	private EstadoDeporte estado; //Servira para cerrar el deporte, y puntuar a la tabla de posiciones general 
 	private LinkedList<Infraccion> infracciones;
 	private Sexo sexo;
+	private TipoDeporte tipoDeporte;
 	
-	public Deporte(String nombre, GeneralTree<ClasificacionDeporte> clasificacion, Sexo sexo) {
+	public Deporte(String nombre, GeneralTree<ClasificacionDeporte> clasificacion, Sexo sexo, TipoDeporte tipoDeporte) {
 		super();
 		this.nombre = nombre;
 		this.clasificacion = clasificacion;
 		estado = EstadoDeporte.EN_EJECUCION;
 		infracciones = new LinkedList<>();
 		this.sexo = sexo;
+		this.tipoDeporte = tipoDeporte;
 	}
 	
 	public String getNombre() {
@@ -50,6 +52,10 @@ public class Deporte implements Serializable{
 	
 	public Sexo getSexo() {
 		return sexo;
+	}
+
+	public TipoDeporte getTipoDeporte() {
+		return tipoDeporte;
 	}
 	
 	

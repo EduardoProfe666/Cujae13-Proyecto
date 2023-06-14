@@ -83,10 +83,10 @@ public final class Rellenadora {
 		u.addFacultad(quim);
 		u.addFacultad(tele);
 		
-		u.ingresarEvento(new Evento(new Deporte("Fútbol", null, Sexo.FEMENINO), info, arq, LocalTime.of(12, 30), TipoEvento.EVT1), LocalDate.of(2023, 06, 10));
-		u.ingresarEvento(new Evento(new Deporte("Natación", null, Sexo.FEMENINO), info, quim, LocalTime.of(13, 15), TipoEvento.EVT2), LocalDate.of(2023, 06, 10));
-		u.ingresarEvento(new Evento(new Deporte("Tiro", null, Sexo.FEMENINO), tele, arq, LocalTime.of(11, 0), TipoEvento.EVT3), LocalDate.of(2023, 06, 10));
-		u.ingresarEvento(new Evento(new Deporte("Atletismo", null, Sexo.MASCULINO), civil, info, LocalTime.of(16, 30), TipoEvento.EVT3), LocalDate.of(2023, 06, 10));
+		u.ingresarEvento(new Evento(new Deporte("Fútbol", null, Sexo.FEMENINO,null), info, arq, LocalTime.of(15, 30), TipoEvento.EVT1), LocalDate.of(2023, 06, 11));
+		u.ingresarEvento(new Evento(new Deporte("Natación", null, Sexo.FEMENINO,null), info, quim, LocalTime.of(23, 54), TipoEvento.EVT2), LocalDate.of(2023, 06, 11));
+		u.ingresarEvento(new Evento(new Deporte("Tiro", null, Sexo.FEMENINO,null), tele, arq, LocalTime.of(22, 15), TipoEvento.EVT3), LocalDate.of(2023, 06, 11));
+		u.ingresarEvento(new Evento(new Deporte("Atletismo", null, Sexo.MASCULINO,null), civil, info, LocalTime.of(23, 56), TipoEvento.EVT3), LocalDate.of(2023, 06, 12));
 		
 		
 		return u;

@@ -6,19 +6,16 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.TableRowSorter;
 
-import com.toedter.calendar.JCalendar;
-
 import clasesAuxiliares.EsquemaColores;
+import componentes.CalendarT;
 import interfaz.clases.AppPrincipal;
 import interfaz.componentes.LabelDiaActual;
 import interfaz.tablas.modelos.PartidosPorJugarDiaTableModel;
@@ -36,13 +33,13 @@ import utilidades.Auxiliares;
  */
 public class PanelCalendario extends PanelBaseAppPrincipal{
 	private static final long serialVersionUID = 1L;
-	private JCalendar calendario;
+	private CalendarT calendario;
 	private JLabel seleccionarFechaLbl;
 	private LabelDiaActual partidosDiaLbl;
 	private PartidosPorJugarDiaTableModel modeloPartidosPorJugar;
 	private TableRowSorter<PartidosPorJugarDiaTableModel> ordenamientoPartidosPorJugar;
 	private JTable tablaPartidosJugar;
-	private AbstractButton botonAyuda;
+	private JButton botonAyuda;
 
 	public PanelCalendario(EsquemaColores e) {
 		
@@ -62,11 +59,6 @@ public class PanelCalendario extends PanelBaseAppPrincipal{
 		botonAyuda.setBorder(null);
 		botonAyuda.setBounds(843, 42, 36, 36);
 		add(botonAyuda);
-		
-		calendario = new JCalendar();
-		calendario.setBorder(new LineBorder(e.getBordeLbl(), 2));
-		calendario.setBounds(220, 90, 460, 200);
-		add(calendario);
 		
 		seleccionarFechaLbl = new JLabel("Seleccionar Fecha");
 		seleccionarFechaLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 24));
@@ -95,6 +87,10 @@ public class PanelCalendario extends PanelBaseAppPrincipal{
 		tablaPartidosJugar.setSelectionBackground(e.getSeleccionFondoTabla());
 		tablaPartidosJugar.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
 		scrollPane_1.setViewportView(tablaPartidosJugar);
+		
+		calendario = new CalendarT(e.getColorCalendario());
+		calendario.setBounds(314, 91, 272, 214);
+		add(calendario);
 
 	}
 }

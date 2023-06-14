@@ -8,5 +8,29 @@ import java.io.Serializable;
  *
  */
 public enum TipoEvento implements Serializable{
-	EVT1, EVT2, EVT3
+	EVT1("EVT1"), EVT2("EVT2"), EVT3("EVT3");
+	
+	private String nombre;
+	
+	private TipoEvento(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	public static TipoEvento fromString(String s) {
+		TipoEvento st = null;
+		
+		TipoEvento[] tipos = values();
+		
+		for(int i=0;i<tipos.length && st==null;i++) {
+			if(tipos[i].nombre.equalsIgnoreCase(s))
+				st = tipos[i];
+		}
+		
+		return st;
+	}
 }

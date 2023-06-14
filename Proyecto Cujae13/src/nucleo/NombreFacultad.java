@@ -25,5 +25,16 @@ public enum NombreFacultad {
 		return this.nombre;
 	}
 	
-	
+	public static NombreFacultad fromString(String s) {
+		NombreFacultad st = null;
+		
+		NombreFacultad[] tipos = values();
+		
+		for(int i=0;i<tipos.length && st==null;i++) {
+			if(tipos[i].nombre.equalsIgnoreCase(s))
+				st = tipos[i];
+		}
+		
+		return st;
+	}
 }

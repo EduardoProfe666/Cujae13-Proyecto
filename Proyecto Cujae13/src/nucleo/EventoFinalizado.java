@@ -1,25 +1,24 @@
 package nucleo;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class EventoFinalizado extends Evento {
 	private static final long serialVersionUID = 1L;
-	private LocalDateTime fechaFinalizado;
+	private LocalTime fechaFinalizado;
 	private ResultadoEvento resultado;
 	
 	public EventoFinalizado(Deporte deporte, Facultad facultadPrimera, Facultad facultadSegunda, LocalTime fecha,
-			LocalDateTime fechaFinalizado, ResultadoEvento resultado, TipoEvento tipo) {
+			LocalTime fechaFinalizado, ResultadoEvento resultado, TipoEvento tipo) {
 		super(deporte, facultadPrimera, facultadSegunda, fecha, tipo);
 		this.fechaFinalizado = fechaFinalizado;
 		this.resultado = resultado;
 	}
 
-	public LocalDateTime getFechaFinalizado() {
+	public LocalTime getFechaFinalizado() {
 		return fechaFinalizado;
 	}
 
-	public void setFechaFinalizado(LocalDateTime fechaFinalizado) {
+	public void setFechaFinalizado(LocalTime fechaFinalizado) {
 		this.fechaFinalizado = fechaFinalizado;
 	}
 

@@ -16,19 +16,18 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.TableRowSorter;
 
 import clasesAuxiliares.EsquemaColores;
+import componentes.CalendarPicker;
 import interfaz.clases.AppPrincipal;
 import interfaz.tablas.modelos.PartidosJugadosTableModel;
 import nucleo.NombreFacultad;
 import utilidades.Auxiliares;
-
-import com.toedter.calendar.JDateChooser;
 
 public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 	private static final long serialVersionUID = 1L;
 	private PartidosJugadosTableModel modeloPartidosJugados;
 	private TableRowSorter<PartidosJugadosTableModel> ordenamientoPartidosJugados;
 	private JTable tablaPartidosJugados;
-	private JDateChooser fecha;
+	private CalendarPicker fecha;
 	private JButton botonAyuda;
 	
 	public HistorialJuegosFacultadJDialog(EsquemaColores e, JFrame padre, NombreFacultad f) {
@@ -78,6 +77,7 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 		ordenamientoPartidosJugados.toggleSortOrder(0);
 		
 		tablaPartidosJugados = new JTable();
+		tablaPartidosJugados.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		tablaPartidosJugados.setModel(modeloPartidosJugados);
 		tablaPartidosJugados.setRowSorter(ordenamientoPartidosJugados);
 		tablaPartidosJugados.getTableHeader().setFont(new Font("Roboto Medium", Font.PLAIN, 18));
@@ -86,9 +86,8 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 		tablaPartidosJugados.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
 		scrollPane.setViewportView(tablaPartidosJugados);
 		
-		fecha = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
-		fecha.setFont(new Font("Roboto Medium", Font.PLAIN, 15));
-		fecha.setBounds(178, 66, 142, 22);
+		fecha = new CalendarPicker(e.getColorCalendario(), 180);
+		fecha.setBounds(178, 66, 180, 22);
 		panelContenedor.add(fecha);
 	}
 }

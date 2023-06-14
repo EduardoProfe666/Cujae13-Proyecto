@@ -53,6 +53,22 @@ public class EsquemaColores {
 	private Color fondoBtnSF;
 	private Color hoverBtnSF;
 	
+	//Calendario
+	private Color colorCalendario;
+	
+	//Botones JDialog
+	private Color btnAceptar;
+	private Color btnAceptarColorEfecto;
+	private Color btnAceptarTxt;
+	private Color btnCancelar;
+	private Color btnCancelarTxt;
+	private Color btnCancelarColorEfecto;
+	
+	//Horario
+	private Color colorHorario;
+	
+	
+	
 	public EsquemaColores(Color panelUsuarioGradienteInicio, Color panelUsuarioGradienteFin, Color panelUsuarioTexto,
 			Color panelUsuarioBtnTexto, Color panelUsuarioBtnColorEfecto, Color panelUsuarioBtn, Color bordeAvatar,
 			Color panelContenedorOpciones, Color panelOpcionHover, Color panelOpcionSeleccionado,
@@ -60,7 +76,8 @@ public class EsquemaColores {
 			Color panelSupGradienteTexto, String dirUrlImagenAvatar, Color panelMovilBase, Color bordeLbl, Color fondoBtnSF, Color hoverBtnSF,
 			String dirUrlBtnAtras, String dirUrlBtnAtrasHover, Color seleccionFondoTabla, Color seleccionTextoTabla,
 			String dirUrlIconoInicio, String dirUrlIconoFacultad, String dirUrlIconoDeporte, String dirUrlIconoMapa, 
-			String dirUrlIconoHistoria,String dirUrlIconoCalendario) {
+			String dirUrlIconoHistoria,String dirUrlIconoCalendario, Color colorCalendario, Color colorHorario, Color btnAceptar, Color btnAceptarColorEfecto,
+			Color btnCancelar, Color btnCancelarColorEfecto, Color btnAceptarTxt, Color btnCancelarTxt) {
 		super();
 		this.panelUsuarioGradienteInicio = panelUsuarioGradienteInicio;
 		this.panelUsuarioGradienteFin = panelUsuarioGradienteFin;
@@ -91,6 +108,14 @@ public class EsquemaColores {
 		this.dirUrlIconoHistoria = dirUrlIconoHistoria;
 		this.dirUrlIconoInicio = dirUrlIconoInicio;
 		this.dirUrlIconoMapa = dirUrlIconoMapa;
+		this.colorCalendario = colorCalendario;
+		this.btnAceptar = btnAceptar;
+		this.btnAceptarColorEfecto = btnAceptarColorEfecto;
+		this.btnCancelar = btnCancelar;
+		this.btnCancelarColorEfecto = btnCancelarColorEfecto;
+		this.btnAceptarTxt = btnAceptarTxt;
+		this.btnCancelarTxt = btnCancelarTxt;
+		this.colorHorario = colorHorario;
 	}
 
 	public Color getPanelUsuarioGradienteInicio() {
@@ -325,6 +350,69 @@ public class EsquemaColores {
 		this.dirUrlIconoCalendario = dirUrlIconoCalendario;
 	}
 
+	public Color getColorCalendario() {
+		return colorCalendario;
+	}
+
+	public void setColorCalendario(Color colorCalendario) {
+		this.colorCalendario = colorCalendario;
+	}
+
+	public Color getBtnAceptar() {
+		return btnAceptar;
+	}
+
+	public void setBtnAceptar(Color btnAceptar) {
+		this.btnAceptar = btnAceptar;
+	}
+
+	public Color getBtnAceptarColorEfecto() {
+		return btnAceptarColorEfecto;
+	}
+
+	public void setBtnAceptarColorEfecto(Color btnAceptarColorEfecto) {
+		this.btnAceptarColorEfecto = btnAceptarColorEfecto;
+	}
+
+	public Color getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public void setBtnCancelar(Color btnCancelar) {
+		this.btnCancelar = btnCancelar;
+	}
+
+	public Color getBtnCancelarColorEfecto() {
+		return btnCancelarColorEfecto;
+	}
+
+	public void setBtnCancelarColorEfecto(Color btnCancelarColorEfecto) {
+		this.btnCancelarColorEfecto = btnCancelarColorEfecto;
+	}
+
+	public Color getBtnAceptarTxt() {
+		return btnAceptarTxt;
+	}
+
+	public void setBtnAceptarTxt(Color btnAceptarTxt) {
+		this.btnAceptarTxt = btnAceptarTxt;
+	}
+
+	public Color getBtnCancelarTxt() {
+		return btnCancelarTxt;
+	}
+
+	public void setBtnCancelarTxt(Color btnCancelarTxt) {
+		this.btnCancelarTxt = btnCancelarTxt;
+	}
+
+	public Color getColorHorario() {
+		return colorHorario;
+	}
+
+	public void setColorHorario(Color colorHorario) {
+		this.colorHorario = colorHorario;
+	}
 	
 	
 	

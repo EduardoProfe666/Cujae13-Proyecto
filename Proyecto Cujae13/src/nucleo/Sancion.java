@@ -1,17 +1,17 @@
 package nucleo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Sancion {
 	private TipoSancion tipo;
 	private String descripcion;
-	private LocalDate fecha;
+	private LocalDateTime fecha;
 	
 	public Sancion(TipoSancion tipo, String descripcion) {
 		super();
 		this.tipo = tipo;
 		this.descripcion = descripcion;
-		this.fecha = LocalDate.now();
+		this.fecha = LocalDateTime.now();
 	}
 	public TipoSancion getTipo() {
 		return tipo;
@@ -19,7 +19,7 @@ public class Sancion {
 	public String getDescripcion() {
 		return descripcion;
 	}
-	public LocalDate getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 	

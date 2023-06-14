@@ -27,16 +27,18 @@ import javax.swing.border.MatteBorder;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import clasesAuxiliares.Usuario;
+import clasesAuxiliares.UsuarioAdmin;
 import clasesAuxiliares.UsuarioEstudiante;
 import componentes.AvatarCircular;
 import componentes.BotonAnimacion;
-import componentes.Imagen;
+import componentes.ImagenAnim;
 import componentes.JPasswordFieldModificado;
 import componentes.JTextFieldModificado;
 import definiciones.DefinicionesInterfaz;
 import definiciones.ErroresInterfazGrafica;
 import interfaz.componentes.PanelSuperior;
 import nucleo.NombreFacultad;
+import nucleo.Universidad;
 import utilidades.Auxiliares;
 
 /**
@@ -52,7 +54,7 @@ public class Autenticacion extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panelBase;
 	private PanelSuperior panelSuperior;
-	private Imagen imagen;
+	private ImagenAnim imagen;
 	private JPanel panelLogin;
 	private AvatarCircular avatar;
 	private JTextFieldModificado campoUsuario;
@@ -88,8 +90,10 @@ public class Autenticacion extends JFrame {
 
 		panelSuperior = new PanelSuperior(DefinicionesInterfaz.COLOR_PANEL_SUPERIOR, this, "Autenticación");
 
-		imagen = new Imagen(null);
-		imagen.setImagen(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/imagen13_1.jpg")));
+		imagen = new ImagenAnim(4500);
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/imagen13_1.jpg")));
+		
+		imagen.iniciarAnimacion();
 		imagen.setBackground(Color.WHITE);
 		imagen.setBounds(0, 45, 507, 467);
 		imagen.setBorder(new MatteBorder(0, 2, 2, 2, (Color) new Color(0, 0, 0)));
@@ -314,9 +318,16 @@ public class Autenticacion extends JFrame {
 	}
 
 	private void terminarVentanaLogin(Usuario usuario) {
+		imagen.detenerAnimacion();
+		Universidad.getInstancia().actualizar();
 		if(usuario instanceof UsuarioEstudiante) {
 			AppPrincipal a = new AppPrincipal((UsuarioEstudiante)usuario);
 			a.setVisible(true);
+		}
+		else {
+			AppPrincipalAdmin b = AppPrincipalAdmin.getInstancia((UsuarioAdmin)usuario);
+			b.setVisible(true);
+			
 		}
 		this.dispose();
 	}
