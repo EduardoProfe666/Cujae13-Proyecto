@@ -1,8 +1,13 @@
 package nucleo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Sancion {
+public class Sancion implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TipoSancion tipo;
 	private String descripcion;
 	private LocalDateTime fecha;

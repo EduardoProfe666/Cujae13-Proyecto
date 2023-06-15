@@ -175,7 +175,7 @@ public class AppPrincipalAdmin extends JFrame {
 		panelUsuario.setBounds(0, 0, 300, 211);
 		panelContenedor.add(panelUsuario);
 		
-		avatar = new AvatarCircular(new ImageIcon(Autenticacion.class.getResource("/interfaz/iconos/admin1.png")), DefinicionesInterfaz.TAM_BORDE_AVATAR);
+		avatar = new AvatarCircular(new ImageIcon(Autenticacion.class.getResource(e.getDirUrlImagenAvatar())), DefinicionesInterfaz.TAM_BORDE_AVATAR);
 		avatar.setForeground(e.getBordeAvatar());
 		avatar.setBounds(95, 5, 110, 110);
 		panelUsuario.add(avatar);

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -72,7 +73,7 @@ public class PanelPorResultados extends PanelBaseAppPrincipal{
 		add(botonAyudaTabla);
 		
 		
-		fecha = new CalendarPicker(e.getColorCalendario(),344);
+		fecha = new CalendarPicker(e.getColorCalendario(),344,LocalDate.now().minusMonths(1),LocalDate.now());
 		fecha.setBounds(77, 127, 344, 22);
 		add(fecha);
 		

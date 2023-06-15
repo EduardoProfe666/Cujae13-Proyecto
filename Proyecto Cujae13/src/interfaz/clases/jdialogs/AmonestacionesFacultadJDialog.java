@@ -21,6 +21,7 @@ import interfaz.tablas.modelos.InfraccionesFacultadTableModel;
 import interfaz.tablas.modelos.MultiLineaCellRendererEditor;
 import interfaz.tablas.modelos.SancionesFacultadTableModel;
 import nucleo.NombreFacultad;
+import nucleo.Universidad;
 import utilidades.Auxiliares;
 
 public class AmonestacionesFacultadJDialog extends JDialogGeneral{
@@ -90,6 +91,7 @@ public class AmonestacionesFacultadJDialog extends JDialogGeneral{
 		panelContenedor.add(scrollPane_1);
 		
 		modeloSanciones = new SancionesFacultadTableModel();
+		modeloSanciones.actualizar(Universidad.getInstancia().buscarFacultad(f).getSanciones());
 		ordenamientoSanciones = new TableRowSorter<>(modeloSanciones);
 		ordenamientoSanciones.toggleSortOrder(0);
 		ordenamientoSanciones.setSortable(2, false);
@@ -108,6 +110,7 @@ public class AmonestacionesFacultadJDialog extends JDialogGeneral{
 		
 		
 		modeloInfracciones = new InfraccionesFacultadTableModel();
+		modeloInfracciones.actualizar(Universidad.getInstancia().getListadoInfracciones(f));
 		ordenamientoInfracciones = new TableRowSorter<>(modeloInfracciones);
 		ordenamientoInfracciones.toggleSortOrder(0);
 		ordenamientoInfracciones.setSortable(3,false);

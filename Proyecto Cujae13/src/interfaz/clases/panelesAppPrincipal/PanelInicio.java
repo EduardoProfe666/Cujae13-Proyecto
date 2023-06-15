@@ -119,7 +119,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		scrollPane_2.setBounds(10, 401, 560, 163);
 		add(scrollPane_2);
 		
-		modeloPartidosJugados = new PartidosJugadosTableModel(f.toString());
+		modeloPartidosJugados = new PartidosJugadosTableModel(f);
 		ordenamientoPartidosJugados = new TableRowSorter<>(modeloPartidosJugados);
 		ordenamientoPartidosJugados.toggleSortOrder(0);
 		

@@ -50,7 +50,7 @@ public class HistoriaCuriosidadesFacultadJDialog extends JDialogGeneral{
 		scrollPane.setViewportView(historia);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(366, 92, 324, 348);
+		scrollPane_1.setBounds(366, 96, 324, 348);
 		panelContenedor.add(scrollPane_1);
 		
 		JTextArea curiosidades = new JTextArea();

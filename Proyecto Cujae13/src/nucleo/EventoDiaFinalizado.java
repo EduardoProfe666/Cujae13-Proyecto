@@ -15,6 +15,15 @@ public class EventoDiaFinalizado implements Serializable{
 		this.eventosDia = new LinkedList<>();
 		this.fechaDia = LocalDate.now();
 	}
+	
+	/**
+	 * Provisional
+	 * @param l
+	 */
+	public EventoDiaFinalizado(LocalDate l) {
+		this();
+		this.fechaDia = l;
+	}
 	public List<EventoFinalizado> getEventosDia() {
 		return eventosDia;
 	}

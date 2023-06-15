@@ -98,6 +98,8 @@ public final class DefinicionesInterfaz {
 	public static final Color Az10 = new Color(0,153,255);
 	public static final Color Az11 = new Color(113,170,255);
 	public static final Color Az12 = new Color(204,236,255);
+	public static final Color Az13 = new Color(167,219,255);
+	public static final Color Az14 = new Color(83,185,255);
 	public static final Color COLOR_OFICIAL_ELECT = new Color(16,118,180);
 	
 	//Colores Morado Tele
@@ -191,7 +193,17 @@ public final class DefinicionesInterfaz {
 	public static final Color V12 = new Color(218,254,226);
 	public static final Color V13 = new Color(130,254,151);
 	public static final Color V14 = new Color(0,214,117);
+	public static final Color V15 = new Color(3,227,62);
+	public static final Color V16 = new Color(144,254,162);
 	public static final Color COLOR_OFICIAL_ARQ = new Color(0,104,48);
+	
+	//Colores Admin
+	public static final Color Va1 = new Color(135,255,135);
+	public static final Color Va2 = new Color(51,204,51);
+	public static final Color Va3 = new Color(42,168,42);
+	public static final Color Va4 = new Color(113,255,113);
+	public static final Color Va5 = new Color(175,235,175);
+	public static final Color Va6 = new Color(142,218,142);
 	
 	
 	//Definiciones Generales

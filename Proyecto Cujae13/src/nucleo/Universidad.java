@@ -9,8 +9,11 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
+import clasesAuxiliares.EstadisticasReporte;
+import clasesAuxiliares.InfraccionesReporteFacultad;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.InDepthIterator;
@@ -94,6 +97,10 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		if(f==null)
 			throw new IllegalArgumentException();
 		listadoFacultades.add(f);
+	}
+	
+	public void addDeporte(Deporte d) {
+		listadoDeportes.add(d);
 	}
 
 	/**
@@ -328,6 +335,206 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		return d;
 	}
 
+	
+	public LinkedList<EventoFinalizado> getListadoPartidosConResultadoDiaActual() {
+		LinkedList<EventoFinalizado> lista = new LinkedList<EventoFinalizado>();
+		Deque<EventoDiaFinalizado> pilaEventos = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
+		
+
+			if(!pilaEventos.isEmpty() && pilaEventos.peek().getFechaDia().compareTo(LocalDate.now()) == 0) {
+					lista.addAll(pilaEventos.peek().getEventosDia());
+	
+			}
+		
+		return lista;
+	}
+
+	public EstadisticasReporte obtenerEstadisticas(NombreFacultad f) {
+		Facultad fac = buscarFacultad(f);
+		
+		int puntaje = fac.getPuntaje();
+		int infracciones = obtenerCantInfracciones(fac);
+		int sanciones = fac.getSanciones().size();
+		int partidosJugados = obtenerCantPartidosJugados(fac);
+		int partidosGanados = obtenerCantPartidosGanados(fac);
+		int partidosPerdidos = obtenerCantPartidosPerdidos(fac);
+		int partidosEmpatados = obtenerCantPartidosEmpatados(fac);
+		
+		EstadisticasReporte e = new EstadisticasReporte(puntaje, infracciones, sanciones, partidosJugados, partidosGanados, partidosEmpatados, partidosPerdidos);
+		
+		return e;
+	}
+
+	public int obtenerCantPartidosJugados(Facultad f) {
+		int pJugados = 0;
+		int tam = 0;
+		Deque<EventoDiaFinalizado> pilaEventos = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
+		
+		while(!pilaEventos.isEmpty()) {
+			EventoDiaFinalizado e = pilaEventos.pop();
+			tam = e.getEventosDia().size();
+			for(int i=0; i<tam; i++) { 
+				if(e.getEventosDia().get(i).getFacultadPrimera().getNombre().equals(f.getNombre()) ||
+				   e.getEventosDia().get(i).getFacultadSegunda().getNombre().equals(f.getNombre())) {
+					pJugados++;
+				}
+			}
+		}
+		
+		return pJugados;
+	}
+
+	public int obtenerCantPartidosGanados(Facultad f) {
+		int pGanados = 0;
+		int tam = 0;
+		Deque<EventoDiaFinalizado> pilaEventos = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
+		
+		while(!pilaEventos.isEmpty()) {
+			EventoDiaFinalizado e = pilaEventos.pop();
+			tam = e.getEventosDia().size();
+			for(int i=0; i<tam; i++) {
+				if(!(e.getEventosDia().get(i).getResultado() instanceof ResultadoEventoEmpate) && e.getEventosDia().get(i).getResultado().getFacultadGanadora().equals(f)) {
+					pGanados++;
+				}
+			}
+		}
+		
+		return pGanados;
+	}
+
+	public int obtenerCantPartidosPerdidos(Facultad f) {
+		int pPerdidos = 0;
+		int tam = 0;
+		Deque<EventoDiaFinalizado> pilaEventos = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
+		
+		while(!pilaEventos.isEmpty()) {
+			EventoDiaFinalizado e = pilaEventos.pop();
+			tam = e.getEventosDia().size();
+			for(int i=0; i<tam; i++) {
+				if(!(e.getEventosDia().get(i).getResultado() instanceof ResultadoEventoEmpate) && 
+						(e.getEventosDia().get(i).getFacultadPrimera().getNombre().equals(f.getNombre()) ||
+						e.getEventosDia().get(i).getFacultadSegunda().getNombre().equals(f.getNombre())) &&
+						!e.getEventosDia().get(i).getResultado().getFacultadGanadora().equals(f)) {
+					pPerdidos++;
+				}
+			}
+		}
+		
+		return pPerdidos;
+	}
+
+	public int obtenerCantPartidosEmpatados(Facultad f) {
+		
+		return obtenerCantPartidosJugados(f) - (obtenerCantPartidosGanados(f) + obtenerCantPartidosPerdidos(f));
+	}
+
+	public int obtenerCantInfracciones(Facultad f) {
+		int infracciones = 0;
+		int tam = listadoDeportes.size();
+		
+		for(int i=0; i<tam; i++) {
+			LinkedList<Infraccion> infrac = listadoDeportes.get(i).getInfracciones();
+			Iterator<Infraccion> iter = infrac.iterator();
+			while(iter.hasNext()) {
+				Infraccion inf = iter.next();
+				if(inf.getNombreFacultad().equals(f.getNombre())) {
+					infracciones++;
+				}
+			}
+		}
+		
+		return infracciones;
+	}
+
+	public LinkedList<InfraccionesReporteFacultad> getListadoInfracciones(NombreFacultad f){
+		LinkedList<InfraccionesReporteFacultad> lista = new LinkedList<InfraccionesReporteFacultad>();
+		
+		Facultad fac = buscarFacultad(f);
+		
+		for(int i=0; i<listadoDeportes.size(); i++) {
+			LinkedList<Infraccion> infrac = listadoDeportes.get(i).getInfracciones();
+			Iterator<Infraccion> iter = infrac.iterator();
+			while(iter.hasNext()) {
+				Infraccion inf = iter.next();
+				if(inf.getNombreFacultad().equals(fac.getNombre())) {
+					InfraccionesReporteFacultad rep = new InfraccionesReporteFacultad(inf, listadoDeportes.get(i).getNombre());
+					lista.add(rep);
+				}
+			}
+		}
+		
+		return lista;
+	}
+
+	public LinkedList<EventoFinalizado> obtenerEventosDiaDado(NombreFacultad f, LocalDate fecha){
+		LinkedList<EventoFinalizado> lista = new LinkedList<EventoFinalizado>();
+		Deque<EventoDiaFinalizado> pilaEventos = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
+		Facultad fac = buscarFacultad(f);
+		
+		while(!pilaEventos.isEmpty()) {
+			EventoDiaFinalizado e = pilaEventos.pop();
+			if(e.getFechaDia().equals(fecha)) {
+				List<EventoFinalizado> eventos = e.getEventosDia();
+				for(int i=0; i<eventos.size(); i++) {
+					if(eventos.get(i).getFacultadPrimera().equals(fac) ||
+							eventos.get(i).getFacultadSegunda().equals(fac)) {
+						lista.add(eventos.get(i));
+					}
+				}
+			}
+		}
+		
+		return lista;
+	}
+	
+	/**
+	 * Provisional
+	 */
+	public void ingresarEventoFinalizado(EventoFinalizado e, LocalDate fecha) {
+		Deque<EventoDiaFinalizado> pila = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
+		boolean ingresado = false;
+		
+		while(!pila.isEmpty() && !ingresado) {
+			EventoDiaFinalizado evento = pila.pop();
+			if(fecha.compareTo(evento.getFechaDia())==0) {
+				evento.getEventosDia().add(e);
+				ingresado = true;
+			}
+		}
+		
+		if(!ingresado) {
+			EventoDiaFinalizado evento = new EventoDiaFinalizado(fecha);
+			evento.getEventosDia().add(e);
+			
+			if(eventosFinalizados.isEmpty() || eventosFinalizados.peek().getFechaDia().compareTo(fecha)<0) {
+				eventosFinalizados.push(evento);
+			}
+			else {
+				pila = new ArrayDeque<EventoDiaFinalizado>();
+				boolean terminado = false;
+				
+				while(!eventosFinalizados.isEmpty() && !terminado) {
+					EventoDiaFinalizado ev = eventosFinalizados.peek();
+					if(evento.getFechaDia().compareTo(ev.getFechaDia())>0) {
+						eventosFinalizados.push(evento);
+						terminado = true;
+					}
+					else {
+						pila.push(eventosFinalizados.pop());
+					}
+				}
+				
+				if(!terminado)
+					eventosFinalizados.push(evento);
+				
+				while(!pila.isEmpty())
+					eventosFinalizados.push(pila.pop());
+			}
+		}
+	}
+
+	
+	
 	/**
 	 * Retorna todas las localizaciones, agregando como peso si presenta deportes activos
 	 * @return

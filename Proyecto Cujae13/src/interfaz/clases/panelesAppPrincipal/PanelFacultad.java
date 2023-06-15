@@ -18,7 +18,6 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.TableRowSorter;
 
 import clasesAuxiliares.EsquemaColores;
-import clasesAuxiliares.EstadisticasReporte;
 import componentes.AvatarCircular;
 import componentes.Imagen;
 import interfaz.clases.AppPrincipal;
@@ -173,7 +172,8 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		scrollPane_2.setBounds(10, 401, 560, 163);
 		add(scrollPane_2);
 		
-		modeloPartidosJugados = new PartidosJugadosTableModel(f.toString());
+		modeloPartidosJugados = new PartidosJugadosTableModel(f);
+		modeloPartidosJugados.actualizar(Universidad.getInstancia().getListadoPartidosConResultadoDiaActual());
 		ordenamientoPartidosJugados = new TableRowSorter<>(modeloPartidosJugados);
 		ordenamientoPartidosJugados.toggleSortOrder(0);
 		
@@ -181,8 +181,8 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		tablaPartidosJugados.setModel(modeloPartidosJugados);
 		tablaPartidosJugados.setRowSorter(ordenamientoPartidosJugados);
 		tablaPartidosJugados.getTableHeader().setFont(new Font("Roboto Medium", Font.PLAIN, 18));
-		tablaPartidosJugar.setSelectionForeground(e.getSeleccionTextoTabla());
-		tablaPartidosJugar.setSelectionBackground(e.getSeleccionFondoTabla());
+		tablaPartidosJugados.setSelectionForeground(e.getSeleccionTextoTabla());
+		tablaPartidosJugados.setSelectionBackground(e.getSeleccionFondoTabla());
 		tablaPartidosJugados.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
 		scrollPane_2.setViewportView(tablaPartidosJugados);
 		
@@ -200,8 +200,7 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		add(scrollPane_3);
 		
 		modeloEstadisticas = new EstadisticasTableModel();
-		//Crear una funcion que te haga el reporte
-		modeloEstadisticas.actualizar(new EstadisticasReporte(999, 999, 999, 999, 999, 999, 999));
+		modeloEstadisticas.actualizar(Universidad.getInstancia().obtenerEstadisticas(f));
 		
 		estadisticas = new JTable();
 		estadisticas.setModel(modeloEstadisticas);

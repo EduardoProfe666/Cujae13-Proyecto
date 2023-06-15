@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import componentes.CalendarPicker;
 import interfaz.clases.AppPrincipal;
 import interfaz.tablas.modelos.PartidosJugadosTableModel;
 import nucleo.NombreFacultad;
+import nucleo.Universidad;
 import utilidades.Auxiliares;
 
 public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
@@ -72,7 +74,8 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 		scrollPane.setBounds(10, 140, 680, 303);
 		panelContenedor.add(scrollPane);
 		
-		modeloPartidosJugados = new PartidosJugadosTableModel(f.toString());
+		modeloPartidosJugados = new PartidosJugadosTableModel(f);
+		modeloPartidosJugados.actualizar(Universidad.getInstancia().obtenerEventosDiaDado(f, LocalDate.now()));
 		ordenamientoPartidosJugados = new TableRowSorter<>(modeloPartidosJugados);
 		ordenamientoPartidosJugados.toggleSortOrder(0);
 		
@@ -86,7 +89,7 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 		tablaPartidosJugados.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
 		scrollPane.setViewportView(tablaPartidosJugados);
 		
-		fecha = new CalendarPicker(e.getColorCalendario(), 180);
+		fecha = new CalendarPicker(e.getColorCalendario(), 180, LocalDate.now().minusMonths(1),LocalDate.now());
 		fecha.setBounds(178, 66, 180, 22);
 		panelContenedor.add(fecha);
 	}

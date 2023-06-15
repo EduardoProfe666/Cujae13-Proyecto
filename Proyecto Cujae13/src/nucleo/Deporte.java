@@ -50,6 +50,10 @@ public class Deporte implements Serializable{
 		return infracciones;
 	}
 	
+	public void addInfraccion(TipoInfraccion tipo, String descripcion, NombreFacultad nombreFacultad) {
+		infracciones.add(new Infraccion(tipo,descripcion,nombreFacultad));
+	}
+	
 	public Sexo getSexo() {
 		return sexo;
 	}

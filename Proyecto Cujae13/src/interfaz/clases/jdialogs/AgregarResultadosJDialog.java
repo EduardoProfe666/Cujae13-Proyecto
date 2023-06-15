@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -37,24 +39,22 @@ public class AgregarResultadosJDialog extends JDialogGeneral{
 		hora = LocalTime.now();
 		
 		
-		btnHorario = new BotonHorario(28, 28);
+		btnHorario = new BotonHorario(28, 28,LocalTime.now());
 		TimePicker t = btnHorario.getHorario();
 		t.setForeground(e.getColorHorario());
-		
 		btnHorario.setBounds(193, 244, 28, 28);
 		panelContenedor.add(btnHorario);
 		btnHorario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				t.now();
 				t.showPopup(rootPane, 100, 100);
 			}
 		});
-		
-		t.addActionListener(new ActionListener() {
+		btnHorario.addPropertyChangeListener("exito", new PropertyChangeListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void propertyChange(PropertyChangeEvent evt) {
 				hora = t.getHoraSeleccionada();
 				horaFin.setText("Hora Fin: "+ hora.format(DateTimeFormatter.ofPattern("hh:mm a")));
+
 			}
 		});
 		

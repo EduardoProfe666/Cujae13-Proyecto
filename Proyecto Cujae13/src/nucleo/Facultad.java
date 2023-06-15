@@ -36,6 +36,10 @@ public class Facultad implements Serializable, Comparable<Facultad>{
 		return sanciones;
 	}
 	
+	public void agregarSancion(TipoSancion tipo, String descripcion) {
+		sanciones.add(new Sancion(tipo,descripcion));
+	}
+	
 	@Override
 	public int compareTo(Facultad f) {
 		return Integer.compare(puntaje, f.getPuntaje());

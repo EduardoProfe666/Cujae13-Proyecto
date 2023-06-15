@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -88,8 +89,10 @@ public class PanelCalendario extends PanelBaseAppPrincipal{
 		tablaPartidosJugar.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
 		scrollPane_1.setViewportView(tablaPartidosJugar);
 		
-		calendario = new CalendarT(e.getColorCalendario());
-		calendario.setBounds(314, 91, 272, 214);
+		calendario = new CalendarT(e.getColorCalendario(),e.getBordeLbl(), LocalDate.now().minusMonths(1),LocalDate.now());
+		calendario.getDateChooser().setSelectedDate(LocalDate.now().minusMonths(1));
+		calendario.setBounds(317, 95, 266, 210);
+		calendario.getDateChooser().setBounds(2,2,262,206);
 		add(calendario);
 
 	}

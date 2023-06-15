@@ -31,7 +31,7 @@ public final class Archivador {
 				DefinicionesInterfaz.A8, DefinicionesInterfaz.A4, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
 				DefinicionesInterfaz.A2, Color.BLACK,"/interfaz/iconos/inicioBlack.png","/interfaz/iconos/facultadBlack.png",
 				"/interfaz/iconos/deporteBlack.png","/interfaz/iconos/mapaBlack.png","/interfaz/iconos/historiaBlack.png",
-				"/interfaz/iconos/calendarioBlack.png",Color.DARK_GRAY,null,null,null,null,null,null,null);
+				"/interfaz/iconos/calendarioBlack.png", DefinicionesInterfaz.A10,null,null,null,null,null,null,null);
 		
 		EsquemaColores tele = new EsquemaColores(DefinicionesInterfaz.M5, DefinicionesInterfaz.M9, Color.BLACK, Color.WHITE,
 				DefinicionesInterfaz.M8, DefinicionesInterfaz.M2, DefinicionesInterfaz.M2, DefinicionesInterfaz.COLOR_OFICIAL_TELE, 
@@ -40,16 +40,16 @@ public final class Archivador {
 				DefinicionesInterfaz.M5, DefinicionesInterfaz.M6, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
 				DefinicionesInterfaz.M5, Color.BLACK,"/interfaz/iconos/inicioWhite.png","/interfaz/iconos/facultadWhite.png",
 				"/interfaz/iconos/deporteWhite.png","/interfaz/iconos/mapaWhite.png","/interfaz/iconos/historiaWhite.png",
-				"/interfaz/iconos/calendarioWhite.png",Color.DARK_GRAY,null,null,null,null,null,null,null);
+				"/interfaz/iconos/calendarioWhite.png", DefinicionesInterfaz.COLOR_OFICIAL_TELE,null,null,null,null,null,null,null);
 		
-		EsquemaColores arquitectura = new EsquemaColores(DefinicionesInterfaz.V13, DefinicionesInterfaz.V12, Color.BLACK, Color.WHITE,
-				DefinicionesInterfaz.V1, DefinicionesInterfaz.V6, DefinicionesInterfaz.V6, DefinicionesInterfaz.COLOR_OFICIAL_ARQ, 
-				DefinicionesInterfaz.V3, DefinicionesInterfaz.V10, Color.WHITE, DefinicionesInterfaz.V13, DefinicionesInterfaz.V12, 
-				Color.BLACK, "/interfaz/imagenes/logo_arqu.png", DefinicionesInterfaz.V11, DefinicionesInterfaz.COLOR_OFICIAL_ARQ,
-				DefinicionesInterfaz.V13, DefinicionesInterfaz.V2, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
+		EsquemaColores arquitectura = new EsquemaColores(DefinicionesInterfaz.V15, DefinicionesInterfaz.V16, DefinicionesInterfaz.B7, Color.WHITE,
+				DefinicionesInterfaz.V1, DefinicionesInterfaz.COLOR_OFICIAL_ARQ, DefinicionesInterfaz.V6, DefinicionesInterfaz.COLOR_OFICIAL_ARQ, 
+				DefinicionesInterfaz.V3, DefinicionesInterfaz.V10, Color.WHITE, DefinicionesInterfaz.V15, DefinicionesInterfaz.V16, 
+				Color.WHITE, "/interfaz/imagenes/logo_arqu.png", DefinicionesInterfaz.V11, DefinicionesInterfaz.COLOR_OFICIAL_ARQ,
+				DefinicionesInterfaz.V13, DefinicionesInterfaz.V2, "/interfaz/iconos/backWhite01.png", "/interfaz/iconos/backWhite02.png",
 				DefinicionesInterfaz.V13, Color.BLACK,"/interfaz/iconos/inicioWhite.png","/interfaz/iconos/facultadWhite.png",
 				"/interfaz/iconos/deporteWhite.png","/interfaz/iconos/mapaWhite.png","/interfaz/iconos/historiaWhite.png",
-				"/interfaz/iconos/calendarioWhite.png",Color.DARK_GRAY,null,null,null,null,null,null,null);
+				"/interfaz/iconos/calendarioWhite.png", DefinicionesInterfaz.COLOR_OFICIAL_ARQ,null,null,null,null,null,null,null);
 		
 		EsquemaColores quimica = new EsquemaColores(DefinicionesInterfaz.N6, DefinicionesInterfaz.N8, Color.WHITE, Color.WHITE,
 				DefinicionesInterfaz.N5, DefinicionesInterfaz.N1, DefinicionesInterfaz.N6, DefinicionesInterfaz.COLOR_OFICIAL_QUIM, 
@@ -58,7 +58,7 @@ public final class Archivador {
 				DefinicionesInterfaz.N6, DefinicionesInterfaz.N5, "/interfaz/iconos/backWhite01.png", "/interfaz/iconos/backWhite02.png",
 				DefinicionesInterfaz.N4, Color.WHITE,"/interfaz/iconos/inicioWhite.png","/interfaz/iconos/facultadWhite.png",
 				"/interfaz/iconos/deporteWhite.png","/interfaz/iconos/mapaWhite.png","/interfaz/iconos/historiaWhite.png",
-				"/interfaz/iconos/calendarioWhite.png",Color.DARK_GRAY,null,null,null,null,null,null,null);
+				"/interfaz/iconos/calendarioWhite.png", DefinicionesInterfaz.COLOR_OFICIAL_QUIM,null,null,null,null,null,null,null);
 		
 		EsquemaColores aubio = new EsquemaColores(DefinicionesInterfaz.AB7, DefinicionesInterfaz.AB10, Color.BLACK, Color.BLACK,
 				DefinicionesInterfaz.AB4, DefinicionesInterfaz.AB2, DefinicionesInterfaz.AB2, DefinicionesInterfaz.COLOR_OFICIAL_AUT, 
@@ -67,7 +67,7 @@ public final class Archivador {
 				DefinicionesInterfaz.AB7, DefinicionesInterfaz.AB8, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
 				DefinicionesInterfaz.AB7, Color.BLACK,"/interfaz/iconos/inicioBlack.png","/interfaz/iconos/facultadBlack.png",
 				"/interfaz/iconos/deporteBlack.png","/interfaz/iconos/mapaBlack.png","/interfaz/iconos/historiaBlack.png",
-				"/interfaz/iconos/calendarioBlack.png",Color.DARK_GRAY,null,null,null,null,null,null,null);
+				"/interfaz/iconos/calendarioBlack.png", DefinicionesInterfaz.COLOR_OFICIAL_AUT,null,null,null,null,null,null,null);
 		
 		EsquemaColores civil = new EsquemaColores(DefinicionesInterfaz.G8, DefinicionesInterfaz.G1, Color.BLACK, Color.BLACK,
 				DefinicionesInterfaz.G5, DefinicionesInterfaz.G8, DefinicionesInterfaz.G2, DefinicionesInterfaz.G2, 
@@ -76,16 +76,16 @@ public final class Archivador {
 				DefinicionesInterfaz.G8, DefinicionesInterfaz.G2, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
 				DefinicionesInterfaz.G3, Color.BLACK,"/interfaz/iconos/inicioBlack.png","/interfaz/iconos/facultadBlack.png",
 				"/interfaz/iconos/deporteBlack.png","/interfaz/iconos/mapaBlack.png","/interfaz/iconos/historiaBlack.png",
-				"/interfaz/iconos/calendarioBlack.png",Color.DARK_GRAY,null,null,null,null,null,null,null);
+				"/interfaz/iconos/calendarioBlack.png", DefinicionesInterfaz.G8,null,null,null,null,null,null,null);
 		
-		EsquemaColores elec = new EsquemaColores(DefinicionesInterfaz.Az8, DefinicionesInterfaz.Az12, Color.BLACK, Color.BLACK,
-				 DefinicionesInterfaz.COLOR_OFICIAL_ELECT,DefinicionesInterfaz.Az10, DefinicionesInterfaz.Az10, DefinicionesInterfaz.COLOR_OFICIAL_ELECT, 
-				DefinicionesInterfaz.Az10, DefinicionesInterfaz.Az1, Color.BLACK, DefinicionesInterfaz.Az8, DefinicionesInterfaz.Az12, 
-				Color.BLACK, "/interfaz/imagenes/logo_elec.png", DefinicionesInterfaz.Az1, DefinicionesInterfaz.COLOR_OFICIAL_ELECT,
-				DefinicionesInterfaz.Az1, DefinicionesInterfaz.Az8, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
-				DefinicionesInterfaz.Az8, Color.BLACK,"/interfaz/iconos/inicioBlack.png","/interfaz/iconos/facultadBlack.png",
-				"/interfaz/iconos/deporteBlack.png","/interfaz/iconos/mapaBlack.png","/interfaz/iconos/historiaBlack.png",
-				"/interfaz/iconos/calendarioBlack.png",Color.DARK_GRAY,null,null,null,null,null,null,null);
+		EsquemaColores elec = new EsquemaColores(DefinicionesInterfaz.Az14, DefinicionesInterfaz.Az13, Color.WHITE, Color.WHITE,
+				 DefinicionesInterfaz.COLOR_OFICIAL_ELECT,DefinicionesInterfaz.COLOR_OFICIAL_ELECT, DefinicionesInterfaz.Az10, DefinicionesInterfaz.COLOR_OFICIAL_ELECT, 
+				DefinicionesInterfaz.Az10, DefinicionesInterfaz.Az1, Color.WHITE, DefinicionesInterfaz.Az14, DefinicionesInterfaz.Az13, 
+				Color.WHITE, "/interfaz/imagenes/logo_elec.png", DefinicionesInterfaz.Az1, DefinicionesInterfaz.COLOR_OFICIAL_ELECT,
+				DefinicionesInterfaz.Az1, DefinicionesInterfaz.Az8, "/interfaz/iconos/backWhite01.png", "/interfaz/iconos/backWhite02.png",
+				DefinicionesInterfaz.Az8, Color.WHITE,"/interfaz/iconos/inicioWhite.png","/interfaz/iconos/facultadWhite.png",
+				"/interfaz/iconos/deporteWhite.png","/interfaz/iconos/mapaWhite.png","/interfaz/iconos/historiaWhite.png",
+				"/interfaz/iconos/calendarioWhite.png", DefinicionesInterfaz.COLOR_OFICIAL_ELECT,null,null,null,null,null,null,null);
 		
 		EsquemaColores ind = new EsquemaColores(DefinicionesInterfaz.B7, DefinicionesInterfaz.B1, Color.BLACK, Color.BLACK,
 				DefinicionesInterfaz.B1, DefinicionesInterfaz.B7, DefinicionesInterfaz.B1, DefinicionesInterfaz.COLOR_OFICIAL_IND, 
@@ -94,16 +94,16 @@ public final class Archivador {
 				DefinicionesInterfaz.B4, DefinicionesInterfaz.B5, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
 				DefinicionesInterfaz.B1, Color.BLACK,"/interfaz/iconos/inicioBlack.png","/interfaz/iconos/facultadBlack.png",
 				"/interfaz/iconos/deporteBlack.png","/interfaz/iconos/mapaBlack.png","/interfaz/iconos/historiaBlack.png",
-				"/interfaz/iconos/calendarioBlack.png",Color.DARK_GRAY,null,null,null,null,null,null,null);
+				"/interfaz/iconos/calendarioBlack.png", DefinicionesInterfaz.B1,null,null,null,null,null,null,null);
 		
-		EsquemaColores mec = new EsquemaColores(DefinicionesInterfaz.R5, DefinicionesInterfaz.R9, Color.BLACK, Color.BLACK,
-				DefinicionesInterfaz.R7, DefinicionesInterfaz.R4, DefinicionesInterfaz.R10, DefinicionesInterfaz.COLOR_OFICIAL_MEC, 
-				DefinicionesInterfaz.R5, DefinicionesInterfaz.R4, Color.BLACK, DefinicionesInterfaz.R5, DefinicionesInterfaz.R9, 
-				Color.BLACK, "/interfaz/imagenes/logo_meca.png", DefinicionesInterfaz.R5, DefinicionesInterfaz.COLOR_OFICIAL_MEC,
-				DefinicionesInterfaz.R5, DefinicionesInterfaz.R6, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
-				DefinicionesInterfaz.R5, Color.BLACK,"/interfaz/iconos/inicioBlack.png","/interfaz/iconos/facultadBlack.png",
-				"/interfaz/iconos/deporteBlack.png","/interfaz/iconos/mapaBlack.png","/interfaz/iconos/historiaBlack.png",
-				"/interfaz/iconos/calendarioBlack.png",Color.DARK_GRAY,null,null,null,null,null,null,null);
+		EsquemaColores mec = new EsquemaColores(DefinicionesInterfaz.R4, DefinicionesInterfaz.R6, Color.WHITE, Color.WHITE,
+				DefinicionesInterfaz.R7, DefinicionesInterfaz.COLOR_OFICIAL_MEC, DefinicionesInterfaz.R10, DefinicionesInterfaz.COLOR_OFICIAL_MEC, 
+				DefinicionesInterfaz.R5, DefinicionesInterfaz.R4, Color.WHITE, DefinicionesInterfaz.R4, DefinicionesInterfaz.R6, 
+				Color.WHITE, "/interfaz/imagenes/logo_meca.png", DefinicionesInterfaz.R5, DefinicionesInterfaz.COLOR_OFICIAL_MEC,
+				DefinicionesInterfaz.R5, DefinicionesInterfaz.R6, "/interfaz/iconos/backWhite01.png", "/interfaz/iconos/backWhite02.png",
+				DefinicionesInterfaz.R5, Color.BLACK,"/interfaz/iconos/inicioWhite.png","/interfaz/iconos/facultadWhite.png",
+				"/interfaz/iconos/deporteWhite.png","/interfaz/iconos/mapaWhite.png","/interfaz/iconos/historiaWhite.png",
+				"/interfaz/iconos/calendarioWhite.png", DefinicionesInterfaz.COLOR_OFICIAL_MEC,null,null,null,null,null,null,null);
 		
 		
 		archivador.put(NombreFacultad.INFORMATICA, informatica);
@@ -120,14 +120,15 @@ public final class Archivador {
 	}
 	
 	public static EsquemaColores getEsquemaColoresAdmin() {
-		return new EsquemaColores(DefinicionesInterfaz.G8, DefinicionesInterfaz.G1, Color.BLACK, Color.BLACK,
-				DefinicionesInterfaz.G5, DefinicionesInterfaz.G8, DefinicionesInterfaz.G2, DefinicionesInterfaz.G2, 
-				DefinicionesInterfaz.G5, DefinicionesInterfaz.G3, Color.BLACK, DefinicionesInterfaz.G8, DefinicionesInterfaz.G1, 
-				Color.BLACK, "/interfaz/imagenes/logo_civi.jpg", DefinicionesInterfaz.G8, DefinicionesInterfaz.G3,
-				DefinicionesInterfaz.G8, DefinicionesInterfaz.G2, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
-				DefinicionesInterfaz.G3, Color.BLACK,"/interfaz/iconos/inicioBlack.png","/interfaz/iconos/facultadBlack.png",
+		return new EsquemaColores(DefinicionesInterfaz.Va2, DefinicionesInterfaz.Va5, Color.BLACK, Color.BLACK,
+				DefinicionesInterfaz.Va2, DefinicionesInterfaz.Va3, DefinicionesInterfaz.Va3, DefinicionesInterfaz.Va3, 
+				DefinicionesInterfaz.Va2, DefinicionesInterfaz.Va6, Color.BLACK, DefinicionesInterfaz.Va2, DefinicionesInterfaz.Va5, 
+				Color.BLACK, "/interfaz/iconos/admin1.png", DefinicionesInterfaz.Va6, DefinicionesInterfaz.Va3,
+				DefinicionesInterfaz.Va1, DefinicionesInterfaz.Va2, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
+				DefinicionesInterfaz.Va1, Color.BLACK,"/interfaz/iconos/inicioBlack.png","/interfaz/iconos/facultadBlack.png",
 				"/interfaz/iconos/deporteBlack.png","/interfaz/iconos/mapaBlack.png","/interfaz/iconos/historiaBlack.png",
-				"/interfaz/iconos/calendarioBlack.png",Color.DARK_GRAY,Color.DARK_GRAY,Color.PINK,Color.DARK_GRAY,Color.PINK,Color.DARK_GRAY,Color.BLACK,Color.BLACK);
+				"/interfaz/iconos/calendarioBlack.png", DefinicionesInterfaz.Va3, DefinicionesInterfaz.Va1, DefinicionesInterfaz.V15,
+				DefinicionesInterfaz.V16, DefinicionesInterfaz.R4,DefinicionesInterfaz.R6,Color.BLACK,Color.BLACK);
 	}
 	
 	public static EsquemaColores getEsquemaColores(NombreFacultad f) {

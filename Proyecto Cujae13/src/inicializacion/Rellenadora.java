@@ -9,12 +9,17 @@ import clasesAuxiliares.UsuarioAdmin;
 import clasesAuxiliares.UsuarioEstudiante;
 import nucleo.Deporte;
 import nucleo.Evento;
+import nucleo.EventoFinalizado;
 import nucleo.Facultad;
 import nucleo.Historia13Marzo;
 import nucleo.InfoGeneral;
 import nucleo.NombreFacultad;
+import nucleo.ResultadoEvento;
+import nucleo.ResultadoEventoEmpate;
 import nucleo.Sexo;
 import nucleo.TipoEvento;
+import nucleo.TipoInfraccion;
+import nucleo.TipoSancion;
 import nucleo.Universidad;
 
 /**
@@ -72,7 +77,40 @@ public final class Rellenadora {
 		
 		InfoGeneral informacionTele = new InfoGeneral("Esta es la historia de Ingeniería en Telecomunicaciones", "Estas son las curiosidades de Ingeniería en Telecomunicaciones");
 		Facultad tele = new Facultad(NombreFacultad.TELECOMUNICACIONES, informacionTele, 10);
-
+		
+		Deporte d1 = new Deporte("Fútbol", null, Sexo.FEMENINO,null);
+		Deporte d2 = new Deporte("Natación", null, Sexo.FEMENINO,null);
+		Deporte d3 = new Deporte("Tiro", null, Sexo.FEMENINO,null);
+		Deporte d4 = new Deporte("Atletismo", null, Sexo.MASCULINO,null);
+		
+		u.addDeporte(d1);
+		u.addDeporte(d2);
+		u.addDeporte(d3);
+		u.addDeporte(d4);
+		
+		d1.addInfraccion(TipoInfraccion.AGRESION_VERBAL, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "+
+				"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa", NombreFacultad.INFORMATICA);
+		d2.addInfraccion(TipoInfraccion.DECISIONES_ARBITRALES, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
+				+"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa", NombreFacultad.INDUSTRIAL);
+		
+		info.agregarSancion(TipoSancion.FRAUDE, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "+
+				"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa");
+		
+		indu.agregarSancion(TipoSancion.INDISCIPLINA_GRAVE, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "+
+				"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa");
+		
 		u.addFacultad(info);
 		u.addFacultad(arq);
 		u.addFacultad(aubi);
@@ -83,10 +121,17 @@ public final class Rellenadora {
 		u.addFacultad(quim);
 		u.addFacultad(tele);
 		
-		u.ingresarEvento(new Evento(new Deporte("Fútbol", null, Sexo.FEMENINO,null), info, arq, LocalTime.of(15, 30), TipoEvento.EVT1), LocalDate.of(2023, 06, 11));
-		u.ingresarEvento(new Evento(new Deporte("Natación", null, Sexo.FEMENINO,null), info, quim, LocalTime.of(23, 54), TipoEvento.EVT2), LocalDate.of(2023, 06, 11));
-		u.ingresarEvento(new Evento(new Deporte("Tiro", null, Sexo.FEMENINO,null), tele, arq, LocalTime.of(22, 15), TipoEvento.EVT3), LocalDate.of(2023, 06, 11));
-		u.ingresarEvento(new Evento(new Deporte("Atletismo", null, Sexo.MASCULINO,null), civil, info, LocalTime.of(23, 56), TipoEvento.EVT3), LocalDate.of(2023, 06, 12));
+		u.ingresarEvento(new Evento(d1, info, arq, LocalTime.of(23, 30), TipoEvento.EVT1), LocalDate.of(2023, 06, 15));
+		u.ingresarEvento(new Evento(d2, info, quim, LocalTime.of(23, 15), TipoEvento.EVT2), LocalDate.of(2023, 06, 15));
+		u.ingresarEvento(new Evento(d3, tele, arq, LocalTime.of(23, 0), TipoEvento.EVT3), LocalDate.of(2023, 06, 15));
+		u.ingresarEvento(new Evento(d4, civil, info, LocalTime.of(23, 0), TipoEvento.EVT3), LocalDate.of(2023, 06, 15));
+		
+		
+		u.ingresarEventoFinalizado(new EventoFinalizado(d1, mec, tele, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(tele), null), LocalDate.of(2023, 06, 13));
+		u.ingresarEventoFinalizado(new EventoFinalizado(d2, info, mec, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEventoEmpate(info, mec), null), LocalDate.of(2023, 06, 15));
+		u.ingresarEventoFinalizado(new EventoFinalizado(d3, tele, info, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEventoEmpate(tele, info), null), LocalDate.of(2023, 06, 14));
+		u.ingresarEventoFinalizado(new EventoFinalizado(d4, info, indu, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(info), null), LocalDate.of(2023, 06, 15));
+		u.ingresarEventoFinalizado(new EventoFinalizado(d1, info, aubi, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(info), null), LocalDate.of(2023, 06, 15));
 		
 		
 		return u;
