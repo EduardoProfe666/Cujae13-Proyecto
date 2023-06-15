@@ -121,17 +121,17 @@ public final class Rellenadora {
 		u.addFacultad(quim);
 		u.addFacultad(tele);
 		
-		u.ingresarEvento(new Evento(d1, info, arq, LocalTime.of(23, 30), TipoEvento.EVT1), LocalDate.of(2023, 06, 15));
-		u.ingresarEvento(new Evento(d2, info, quim, LocalTime.of(23, 15), TipoEvento.EVT2), LocalDate.of(2023, 06, 15));
-		u.ingresarEvento(new Evento(d3, tele, arq, LocalTime.of(23, 0), TipoEvento.EVT3), LocalDate.of(2023, 06, 15));
-		u.ingresarEvento(new Evento(d4, civil, info, LocalTime.of(23, 0), TipoEvento.EVT3), LocalDate.of(2023, 06, 15));
+		u.ingresarEvento(new Evento(d1, info, arq, LocalTime.of(23, 30), TipoEvento.EVT1), LocalDate.now());
+		u.ingresarEvento(new Evento(d2, info, quim, LocalTime.of(23, 15), TipoEvento.EVT2), LocalDate.now());
+		u.ingresarEvento(new Evento(d3, tele, arq, LocalTime.of(23, 0), TipoEvento.EVT3), LocalDate.now());
+		u.ingresarEvento(new Evento(d4, civil, info, LocalTime.of(23, 0), TipoEvento.EVT3), LocalDate.now());
 		
 		
-		u.ingresarEventoFinalizado(new EventoFinalizado(d1, mec, tele, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(tele), null), LocalDate.of(2023, 06, 13));
-		u.ingresarEventoFinalizado(new EventoFinalizado(d2, info, mec, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEventoEmpate(info, mec), null), LocalDate.of(2023, 06, 15));
-		u.ingresarEventoFinalizado(new EventoFinalizado(d3, tele, info, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEventoEmpate(tele, info), null), LocalDate.of(2023, 06, 14));
-		u.ingresarEventoFinalizado(new EventoFinalizado(d4, info, indu, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(info), null), LocalDate.of(2023, 06, 15));
-		u.ingresarEventoFinalizado(new EventoFinalizado(d1, info, aubi, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(info), null), LocalDate.of(2023, 06, 15));
+		u.ingresarEventoFinalizado(new EventoFinalizado(d1, mec, tele, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(tele), null), LocalDate.now().minusDays(2));
+		u.ingresarEventoFinalizado(new EventoFinalizado(d2, info, mec, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEventoEmpate(info, mec), null), LocalDate.now());
+		u.ingresarEventoFinalizado(new EventoFinalizado(d3, tele, info, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEventoEmpate(tele, info), null), LocalDate.now().minusDays(1));
+		u.ingresarEventoFinalizado(new EventoFinalizado(d4, info, indu, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(info), null), LocalDate.now());
+		u.ingresarEventoFinalizado(new EventoFinalizado(d1, info, aubi, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(info), null), LocalDate.now());
 		
 		
 		return u;
