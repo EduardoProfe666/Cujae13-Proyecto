@@ -29,10 +29,11 @@ public class TablaPosiciones extends JScrollPane{
 		setBounds(589, 140, 290, 424);
 		
 		TablaPosicionesTableModel modelo = new TablaPosicionesTableModel(historico);
-		//modelo.actualizar(tablaPos);
+		if(tablaPos!=null)
+			modelo.actualizar(tablaPos);
+		else
+			modelo.actualizar();
 		
-		//PROVISIONAL
-		modelo.actualizar();
 		
 		tabla = new JTable();
 		tabla.setModel(modelo);

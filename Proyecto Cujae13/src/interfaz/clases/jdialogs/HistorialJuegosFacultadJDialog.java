@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 
 import javax.swing.JButton;
@@ -31,10 +33,10 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 	private JTable tablaPartidosJugados;
 	private CalendarPicker fecha;
 	private JButton botonAyuda;
-	
+
 	public HistorialJuegosFacultadJDialog(EsquemaColores e, JFrame padre, NombreFacultad f) {
 		super("Historial de Juegos", e, padre);
-		
+
 		botonAyuda = new JButton("");
 		botonAyuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -51,34 +53,34 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 		botonAyuda.setBorder(null);
 		botonAyuda.setBounds(662, 64, 28, 28);
 		panelContenedor.add(botonAyuda);
-		
+
 		JLabel nombreFacultadLbl = new JLabel("Historial de Juegos de "+f.toString());
 		nombreFacultadLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 24));
 		nombreFacultadLbl.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));
 		nombreFacultadLbl.setBounds(10, 10, 680, 45);
 		panelContenedor.add(nombreFacultadLbl);
-		
+
 		JLabel seleccionarFechaLbl = new JLabel("Seleccionar Fecha:");
 		seleccionarFechaLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
 		seleccionarFechaLbl.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));
 		seleccionarFechaLbl.setBounds(10, 66, 680, 26);
 		panelContenedor.add(seleccionarFechaLbl);
-		
+
 		JLabel resultadosPartidosLbl = new JLabel("Resultados de Partidos Jugados");
 		resultadosPartidosLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
 		resultadosPartidosLbl.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));
 		resultadosPartidosLbl.setBounds(10, 112, 680, 26);
 		panelContenedor.add(resultadosPartidosLbl);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 140, 680, 303);
 		panelContenedor.add(scrollPane);
-		
+
 		modeloPartidosJugados = new PartidosJugadosTableModel(f);
-		modeloPartidosJugados.actualizar(Universidad.getInstancia().obtenerEventosDiaDado(f, LocalDate.now()));
+		modeloPartidosJugados.actualizar(Universidad.getInstancia().obtenerEventosDiaDado(f, Universidad.getInstancia().getFechaInicio()));
 		ordenamientoPartidosJugados = new TableRowSorter<>(modeloPartidosJugados);
 		ordenamientoPartidosJugados.toggleSortOrder(0);
-		
+
 		tablaPartidosJugados = new JTable();
 		tablaPartidosJugados.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		tablaPartidosJugados.setModel(modeloPartidosJugados);
@@ -88,8 +90,16 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 		tablaPartidosJugados.setSelectionBackground(e.getSeleccionFondoTabla());
 		tablaPartidosJugados.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
 		scrollPane.setViewportView(tablaPartidosJugados);
-		
-		fecha = new CalendarPicker(e.getColorCalendario(), 180, LocalDate.now().minusMonths(1),LocalDate.now());
+
+		fecha = new CalendarPicker(e.getColorCalendario(), 180, Universidad.getInstancia().getFechaInicio(),LocalDate.now());
+		fecha.addPropertyChangeListener("exito", new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+
+				modeloPartidosJugados.actualizar(Universidad.getInstancia().obtenerEventosDiaDado(f, fecha.getFechaSeleccionada()));
+			}
+		});
 		fecha.setBounds(178, 66, 180, 22);
 		panelContenedor.add(fecha);
 	}

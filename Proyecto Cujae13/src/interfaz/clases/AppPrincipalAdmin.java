@@ -45,6 +45,7 @@ import interfaz.clases.panelesAppPrincipalAdmin.PanelPorResultados;
 import interfaz.clases.panelesAppPrincipalAdmin.PanelResultados;
 import interfaz.componentes.PanelSuperior;
 import nucleo.Universidad;
+import raven.toast.Notifications;
 import utilidades.Archivador;
 import utilidades.Auxiliares;
 
@@ -93,6 +94,7 @@ public class AppPrincipalAdmin extends JFrame {
 	}
 	
 	private AppPrincipalAdmin(UsuarioAdmin us) {
+		Notifications.getInstance().setJFrame(this);
 		this.setTitle("Cujae13");
 		u = us;
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(Autenticacion.class.getResource("/interfaz/iconos/icono.png")));
@@ -482,7 +484,7 @@ public class AppPrincipalAdmin extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				actualizar();
-				
+				Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.BOTTOM_RIGHT, 2500, "El sistema ha sido actualizado");
 			}
 		});
 		temporizador.start();

@@ -40,6 +40,7 @@ import inicializacion.Inicializadora;
 import interfaz.componentes.PanelSuperior;
 import nucleo.NombreFacultad;
 import nucleo.Universidad;
+import raven.toast.Notifications;
 import utilidades.Auxiliares;
 
 /**
@@ -70,6 +71,7 @@ public class Autenticacion extends JFrame {
 	private boolean contrasenyaVisible;
 
 	public Autenticacion() {
+		Notifications.getInstance().setJFrame(this);
 		this.setTitle("Cujae13");
 		contadorInd = 0;
 		FlatLightLaf.setup();
@@ -261,8 +263,7 @@ public class Autenticacion extends JFrame {
 						campoContrasenya.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
 						contrasenyaBtn.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
 					}
-
-					JOptionPane.showMessageDialog(rootPane, mensaje, "ERROR", JOptionPane.ERROR_MESSAGE);
+					Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.BOTTOM_RIGHT, 3500, mensaje);
 				}
 				finally{
 					if(autenticado) {
@@ -271,7 +272,7 @@ public class Autenticacion extends JFrame {
 							contadorInd++;
 							bypass = contadorInd>=3;
 							if(!bypass)
-								JOptionPane.showMessageDialog(rootPane, "El término\"Industrial\" no se encuentra dentro del conjunto de Ingenierías... Intentar Nuevamente", "ERROR", JOptionPane.ERROR_MESSAGE);
+								Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.BOTTOM_RIGHT, 3500, "El término\"Industrial\" no se encuentra dentro del conjunto de Ingenierías... Intentar Nuevamente");
 						}
 
 						if(bypass) {

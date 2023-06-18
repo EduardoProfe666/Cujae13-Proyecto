@@ -35,7 +35,8 @@ public class PanelInicioAdmin extends PanelBaseAppPrincipal{
 		tablaPosLbl.setBounds(589, 91, 290, 26);
 		add(tablaPosLbl);
 		
-		TablaPosiciones tablaPosGeneral = new TablaPosiciones(null, e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla(),false);
+		TablaPosiciones tablaPosGeneral = new TablaPosiciones(Universidad.getInstancia().getTablaPosicionesGlobal(), 
+				e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla(),false);
 		tablaPosGeneral.setBounds(589, 128, 290, 436);
 		add(tablaPosGeneral);
 		

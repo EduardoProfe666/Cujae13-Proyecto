@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -119,7 +118,8 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		histCuriosBtn.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(36,36), AppPrincipal.class.getResource("/interfaz/iconos/historiaCurios02.png")));
 		histCuriosBtn.setContentAreaFilled(false);
 		add(histCuriosBtn);
-		medalla = new Imagen(Auxiliares.ajustarImagen(new Dimension(32,38), AppPrincipal.class.getResource(Archivador.getDirUrlMedalla(new Random().nextInt(9)+1))));
+		medalla = new Imagen(Auxiliares.ajustarImagen(new Dimension(32,38),
+				AppPrincipal.class.getResource(Archivador.getDirUrlMedalla(Universidad.getInstancia().obtenerLugar(f)))));
 		medalla.setBounds(837, 35, 42, 42);
 		add(medalla);
 		
