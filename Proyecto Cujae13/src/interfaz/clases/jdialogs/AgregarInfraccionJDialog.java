@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.MatteBorder;
@@ -24,6 +23,10 @@ import interfaz.combobox.modelos.DeporteComboBoxModel;
 import interfaz.combobox.modelos.NombreFacultadComboBoxModel;
 import interfaz.combobox.modelos.TipoInfraccionComboBoxModel;
 import nucleo.TipoInfraccion;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
 
 public class AgregarInfraccionJDialog extends JDialogGeneral{
@@ -64,10 +67,24 @@ public class AgregarInfraccionJDialog extends JDialogGeneral{
 		infraccion.setBounds(172, 12, 481, 20);
 		panelContenedor.add(infraccion);
 		
+		JDialogGeneral j = this;
+		
 		botonAyuda = new JButton("");
 		botonAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, inf, "Descripción", JOptionPane.INFORMATION_MESSAGE);
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Descripción", inf);
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+						j.setVisible(true);
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				j.setVisible(false);
+				
+				
 			}
 		});
 		botonAyuda.setToolTipText("Descripción");

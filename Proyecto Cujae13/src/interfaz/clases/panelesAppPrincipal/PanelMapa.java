@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
@@ -23,6 +22,10 @@ import interfaz.clases.Autenticacion;
 import interfaz.componentes.PinMapa;
 import nucleo.Localizacion;
 import nucleo.LocalizacionPeso;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
 
 /**
@@ -50,13 +53,21 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 		botonAyuda = new JButton();
 		botonAyuda.setToolTipText("Ayuda");
 		botonAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Seleccione cualquiera de las localizaciones disponibles. Si no se encuentra "
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Seleccione cualquiera de las localizaciones disponibles. Si no se encuentra "
 						+ "disponible la localización deseada, significa que no existen deportes activos en dicho lugar. Ponga el puntero "
 						+ "del mouse en la localización deseada para conocer el nombre del lugar y una previsualización del mismo en forma "
 						+ "de foto. Haga click en la localización deseada para poder acceder a la ventana de selección de deportes. Haga click en"
-						+ "el botón de capas para cambiar el tipo de mapa mostrado.",
-						"Ayuda", JOptionPane.INFORMATION_MESSAGE);
+						+ "el botón de capas para cambiar el tipo de mapa mostrado.");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				
 			}
 		});
 		botonAyuda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
@@ -24,6 +23,10 @@ import interfaz.clases.panelesAppPrincipal.PanelBaseAppPrincipal;
 import interfaz.tablas.modelos.InfraccionesTableModel;
 import interfaz.tablas.modelos.MultiLineaCellRendererEditor;
 import interfaz.tablas.modelos.SancionesTableModel;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
 
 public class PanelAmonestaciones extends PanelBaseAppPrincipal{
@@ -44,9 +47,17 @@ public class PanelAmonestaciones extends PanelBaseAppPrincipal{
 		botonAyudaInfraccion = new JButton("");
 		botonAyudaInfraccion.setToolTipText("Ayuda de Infracciones");
 		botonAyudaInfraccion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Las infracciones son amonestaciones menos graves. Tributan a la "
-						+ "tabla de posiciones de cada deporte.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Las infracciones son amonestaciones menos graves. Tributan a la "
+						+ "tabla de posiciones de cada deporte.");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
 			}
 		});
 		botonAyudaInfraccion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -59,9 +70,18 @@ public class PanelAmonestaciones extends PanelBaseAppPrincipal{
 		
 		botonAyudaSanciones = new JButton("");
 		botonAyudaSanciones.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Las sanciones son las amonestaciones más graves. Tributan "
-						+ "directamente a la tabla de posiciones general de los Juegos 13 de Marzo.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Las sanciones son las amonestaciones más graves. Tributan "
+						+ "directamente a la tabla de posiciones general de los Juegos 13 de Marzo.");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				
 			}
 		});
 		botonAyudaSanciones.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

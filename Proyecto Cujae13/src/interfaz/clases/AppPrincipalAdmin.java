@@ -18,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
@@ -45,7 +44,11 @@ import interfaz.clases.panelesAppPrincipalAdmin.PanelPorResultados;
 import interfaz.clases.panelesAppPrincipalAdmin.PanelResultados;
 import interfaz.componentes.PanelSuperior;
 import nucleo.Universidad;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
 import raven.toast.Notifications;
+import sample.message.Message;
+import sample.message.OptionConstructor;
 import utilidades.Archivador;
 import utilidades.Auxiliares;
 
@@ -95,6 +98,7 @@ public class AppPrincipalAdmin extends JFrame {
 	
 	private AppPrincipalAdmin(UsuarioAdmin us) {
 		Notifications.getInstance().setJFrame(this);
+		GlassPanePopup.install(this);
 		this.setTitle("Cujae13");
 		u = us;
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(Autenticacion.class.getResource("/interfaz/iconos/icono.png")));
@@ -115,10 +119,8 @@ public class AppPrincipalAdmin extends JFrame {
 		this.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				e.consume();
 				if(e.isAltDown() && e.getKeyCode()==KeyEvent.VK_F4) {
-					if(JOptionPane.showConfirmDialog(rootPane, DefinicionesInterfaz.PREGUNTA_SALIR, null, JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-						System.exit(0);
+					e.consume();
 				}
 			}
 		});
@@ -202,13 +204,21 @@ public class AppPrincipalAdmin extends JFrame {
 		
 		cerrarSesionBtn = new BotonAnimacion();
 		cerrarSesionBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(JOptionPane.showConfirmDialog(rootPane, DefinicionesInterfaz.PREGUNTA_CERRAR_SESION, null, JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
-					temporizador.stop();
-					dispose();
-					Autenticacion l = new Autenticacion();
-					l.setVisible(true);
-				}		
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				Message m = new Message("Cerrar Sesión", DefinicionesInterfaz.PREGUNTA_CERRAR_SESION);
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+						temporizador.stop();
+						dispose();
+						Autenticacion l = new Autenticacion();
+						l.setVisible(true);
+					}
+				});
+				
+				GlassPanePopup.showPopup(m, o);		
 			}
 		});
 		cerrarSesionBtn.setText("Cerrar Sesi\u00F3n");

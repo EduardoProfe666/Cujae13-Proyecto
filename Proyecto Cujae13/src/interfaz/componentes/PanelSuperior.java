@@ -14,12 +14,15 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 import componentes.PanelBordeOval;
 import definiciones.DefinicionesInterfaz;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.Message;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
 
 /**
@@ -38,6 +41,7 @@ public class PanelSuperior extends PanelBordeOval{
 	private JLabel etiqueta;
 	private JButton salirBtn;
 	private JButton minimizarBtn;
+	private boolean b;
 
 	public PanelSuperior(Color color, JFrame raiz, String etiqueta) {
 		super(DefinicionesInterfaz.ESQUINA_BORDE_OVAL_PS, DefinicionesInterfaz.ESQUINA_BORDE_OVAL_PS,0,0);
@@ -79,12 +83,25 @@ public class PanelSuperior extends PanelBordeOval{
 		this.etiqueta.setFont(new Font("Roboto Black", Font.PLAIN, 21));
 		
 		salirBtn = new JButton("");
+		b = false;
 		salirBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(JOptionPane.showConfirmDialog(raiz.getRootPane(), DefinicionesInterfaz.PREGUNTA_SALIR, null, JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-					System.exit(0);
-				else
+				Option o = OptionConstructor.constructOption(color, false);
+				Message m = new Message("Salida de la Aplicación", DefinicionesInterfaz.PREGUNTA_SALIR);
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+						System.exit(0);
+						b = true;
+					}
+				});
+				
+				GlassPanePopup.showPopup(m, o);
+				if(!b)
 					salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/exit0.png")));
+				
+					
 			}
 		});
 		salirBtn.addMouseListener(new MouseAdapter() {

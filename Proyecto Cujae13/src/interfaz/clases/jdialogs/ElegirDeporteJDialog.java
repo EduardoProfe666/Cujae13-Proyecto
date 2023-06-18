@@ -12,7 +12,6 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
@@ -22,6 +21,10 @@ import clasesAuxiliares.EsquemaColores;
 import interfaz.clases.AppPrincipal;
 import interfaz.tablas.modelos.SeleccionDeporteTableModel;
 import nucleo.Deporte;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
 
 public class ElegirDeporteJDialog extends JDialogGeneral{
@@ -33,12 +36,23 @@ public class ElegirDeporteJDialog extends JDialogGeneral{
 	
 	public ElegirDeporteJDialog(String localizacion, EsquemaColores e, JFrame padre, List<Deporte> deportes) {
 		super(localizacion, e, padre);
-		
+		JDialogGeneral j = this;
 		botonAyudaSancion = new JButton("");
 		botonAyudaSancion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Para acceder a la información del deporte activo "
-						+ "haga doble click en el deporte deseado", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Para acceder a la información del deporte activo "
+						+ "haga doble click en el deporte deseado");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+						j.setVisible(true);
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				j.setVisible(false);
+
 			}
 		});
 		botonAyudaSancion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

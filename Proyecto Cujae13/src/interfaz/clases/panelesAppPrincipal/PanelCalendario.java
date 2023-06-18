@@ -11,7 +11,6 @@ import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
@@ -23,6 +22,10 @@ import interfaz.clases.AppPrincipal;
 import interfaz.componentes.LabelDiaActual;
 import interfaz.tablas.modelos.PartidosPorJugarDiaTableModel;
 import nucleo.Universidad;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
 
 /**
@@ -51,10 +54,18 @@ public class PanelCalendario extends PanelBaseAppPrincipal{
 		botonAyuda = new JButton("");
 		botonAyuda.setToolTipText("Ayuda");
 		botonAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Seleccione una fecha. La tabla de partidos se actualizará de forma "
-						+ "dinámica para ofrecer el listado de los partidos del día seleccionado.",
-						"Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Seleccione una fecha. La tabla de partidos se actualizará de forma "
+						+ "dinámica para ofrecer el listado de los partidos del día seleccionado.");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				
 			}
 		});
 		botonAyuda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

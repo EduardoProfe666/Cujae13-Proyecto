@@ -13,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
@@ -28,6 +27,10 @@ import interfaz.combobox.modelos.DeporteComboBoxModel;
 import interfaz.combobox.modelos.NombreFacultadComboBoxModel;
 import interfaz.combobox.modelos.TipoEventoComboBoxModel;
 import interfaz.tablas.modelos.PartidosPorResultadosTableModel;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
 
 public class PanelPorResultados extends PanelBaseAppPrincipal{
@@ -50,17 +53,34 @@ public class PanelPorResultados extends PanelBaseAppPrincipal{
 		botonAyudaBusq = new JButton("");
 		botonAyudaBusq.setToolTipText("Ayuda");
 		botonAyudaBusq.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Para utilizar el buscador de partidos por resultados rellene "
-						+ "cualquiera de los campos en el mismo. La tabla de <Partidos por Resultados> se actualizará de forma dinámica", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Para utilizar el buscador de partidos por resultados rellene "
+						+ "cualquiera de los campos en el mismo. La tabla de <Partidos por Resultados> se actualizará de forma dinámica");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				
 			}
 		});
 		
 		JButton botonAyudaTabla = new JButton("");
 		botonAyudaTabla.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Para agregar los resultados de un partido, haga doble click en el partido deseado"
-						+ "", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Para agregar los resultados de un partido, haga doble click en el partido deseado");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				
 			}
 		});
 		botonAyudaTabla.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

@@ -20,7 +20,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
@@ -40,7 +39,11 @@ import inicializacion.Inicializadora;
 import interfaz.componentes.PanelSuperior;
 import nucleo.NombreFacultad;
 import nucleo.Universidad;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
 import raven.toast.Notifications;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
 
 /**
@@ -69,9 +72,11 @@ public class Autenticacion extends JFrame {
 
 	private char echoCharContrasenya;
 	private boolean contrasenyaVisible;
+	private Usuario usuario;
 
 	public Autenticacion() {
 		Notifications.getInstance().setJFrame(this);
+		GlassPanePopup.install(this);
 		this.setTitle("Cujae13");
 		contadorInd = 0;
 		FlatLightLaf.setup();
@@ -241,11 +246,11 @@ public class Autenticacion extends JFrame {
 		contrasenyaBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), Autenticacion.class.getResource("/interfaz/iconos/showP0.png")));
 
 		ingresarBtn = new BotonAnimacion();
+		usuario = null;
 		ingresarBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boolean autenticado = true;
-				Usuario usuario = null;
 				try {
 					usuario = Auxiliares.seguridad(campoUsuario.getText(),String.valueOf(campoContrasenya.getPassword()));
 				}
@@ -276,8 +281,16 @@ public class Autenticacion extends JFrame {
 						}
 
 						if(bypass) {
-							JOptionPane.showMessageDialog(rootPane, "Bienvenido/a de nuevo "+ usuario.getNombre(), null, JOptionPane.INFORMATION_MESSAGE);
-							terminarVentanaLogin(usuario);
+							Option o = OptionConstructor.constructOption(DefinicionesInterfaz.COLOR_PANEL_SUPERIOR, false);
+							MessageSinCancel m = new MessageSinCancel("Bienvenido/a", "Bienvenido/a de nuevo "+ usuario.getNombre());
+							m.eventOK(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									GlassPanePopup.closePopupLast();
+									terminarVentanaLogin(usuario);
+								}
+							});
+							GlassPanePopup.showPopup(m, o);
 						}
 					}
 				}

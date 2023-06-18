@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
 
@@ -18,9 +18,11 @@ import clasesAuxiliares.EsquemaColores;
 import interfaz.clases.AppPrincipal;
 import interfaz.componentes.BtnSeleccionFacultad;
 import nucleo.NombreFacultad;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
-
-import javax.swing.JButton;
 
 /**
  * JPanel que modela la pantalla de Selección de Facultad de la aplicación.<br><br>
@@ -51,9 +53,18 @@ public class PanelSeleccionFacultad extends PanelBaseAppPrincipal{
 		botonAyuda = new JButton("");
 		botonAyuda.setToolTipText("Ayuda");
 		botonAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Para acceder a la información de la facultad "
-						+ "haga click en la facultad deseada", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Para acceder a la información de la facultad "
+						+ "haga click en la facultad deseada");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				
 			}
 		});
 		botonAyuda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

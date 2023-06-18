@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
@@ -24,6 +23,10 @@ import interfaz.clases.AppPrincipal;
 import interfaz.tablas.modelos.PartidosJugadosTableModel;
 import nucleo.NombreFacultad;
 import nucleo.Universidad;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
 
 public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
@@ -36,13 +39,24 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 
 	public HistorialJuegosFacultadJDialog(EsquemaColores e, JFrame padre, NombreFacultad f) {
 		super("Historial de Juegos", e, padre);
-
+		JDialogGeneral j = this;
 		botonAyuda = new JButton("");
 		botonAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Seleccione una fecha. La tabla de partidos jugados se actualizará de forma "
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Seleccione una fecha. La tabla de partidos jugados se actualizará de forma "
 						+ "dinámica para ofrecer el listado con los resultados de los partidos del "
-						+ "día seleccionado.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+						+ "día seleccionado.");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+						j.setVisible(true);
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				j.setVisible(false);
+				
 			}
 		});
 		botonAyuda.setToolTipText("Ayuda");
