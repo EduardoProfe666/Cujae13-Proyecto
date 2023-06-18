@@ -359,9 +359,8 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		int partidosJugados = obtenerCantPartidosJugados(fac);
 		int partidosGanados = obtenerCantPartidosGanados(fac);
 		int partidosPerdidos = obtenerCantPartidosPerdidos(fac);
-		int partidosEmpatados = obtenerCantPartidosEmpatados(fac);
 
-		EstadisticasReporte e = new EstadisticasReporte(puntaje, infracciones, sanciones, partidosJugados, partidosGanados, partidosEmpatados, partidosPerdidos);
+		EstadisticasReporte e = new EstadisticasReporte(puntaje, infracciones, sanciones, partidosJugados, partidosGanados, partidosPerdidos);
 
 		return e;
 	}
@@ -394,7 +393,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			EventoDiaFinalizado e = pilaEventos.pop();
 			tam = e.getEventosDia().size();
 			for(int i=0; i<tam; i++) {
-				if(!(e.getEventosDia().get(i).getResultado() instanceof ResultadoEventoEmpate) && e.getEventosDia().get(i).getResultado().getFacultadGanadora().equals(f)) {
+				if(e.getEventosDia().get(i).getResultado().getFacultadGanadora().equals(f)) {
 					pGanados++;
 				}
 			}
@@ -412,8 +411,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			EventoDiaFinalizado e = pilaEventos.pop();
 			tam = e.getEventosDia().size();
 			for(int i=0; i<tam; i++) {
-				if(!(e.getEventosDia().get(i).getResultado() instanceof ResultadoEventoEmpate) && 
-						(e.getEventosDia().get(i).getFacultadPrimera().getNombre().equals(f.getNombre()) ||
+				if((e.getEventosDia().get(i).getFacultadPrimera().getNombre().equals(f.getNombre()) ||
 								e.getEventosDia().get(i).getFacultadSegunda().getNombre().equals(f.getNombre())) &&
 						!e.getEventosDia().get(i).getResultado().getFacultadGanadora().equals(f)) {
 					pPerdidos++;
@@ -422,11 +420,6 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		}
 
 		return pPerdidos;
-	}
-
-	public int obtenerCantPartidosEmpatados(Facultad f) {
-
-		return obtenerCantPartidosJugados(f) - (obtenerCantPartidosGanados(f) + obtenerCantPartidosPerdidos(f));
 	}
 
 	public int obtenerCantInfracciones(Facultad f) {

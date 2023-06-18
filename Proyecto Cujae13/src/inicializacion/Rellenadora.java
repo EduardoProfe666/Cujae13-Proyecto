@@ -15,7 +15,6 @@ import nucleo.Historia13Marzo;
 import nucleo.InfoGeneral;
 import nucleo.NombreFacultad;
 import nucleo.ResultadoEvento;
-import nucleo.ResultadoEventoEmpate;
 import nucleo.Sexo;
 import nucleo.TipoEvento;
 import nucleo.TipoInfraccion;
@@ -49,7 +48,7 @@ public final class Rellenadora {
 	}
 
 	private static Universidad rellenarUniversidad() {
-		Universidad u = Universidad.getInstancia(new Historia13Marzo("1234"),LocalDate.now().minusDays(20));
+		Universidad u = Universidad.getInstancia(new Historia13Marzo("Esta es la historia de los juegos 13 de marzo"),LocalDate.now().minusDays(20));
 
 		InfoGeneral informacionInfo = new InfoGeneral("Esta es la historia de Ingeniería Informática", "Estas son las curiosidades de Ingeniería Informática");
 		Facultad info = new Facultad(NombreFacultad.INFORMATICA, informacionInfo, 90);
@@ -129,8 +128,8 @@ public final class Rellenadora {
 		
 		
 		u.ingresarEventoFinalizado(new EventoFinalizado(d1, mec, tele, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(tele), null), LocalDate.now().minusDays(2));
-		u.ingresarEventoFinalizado(new EventoFinalizado(d2, info, mec, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEventoEmpate(info, mec), null), LocalDate.now());
-		u.ingresarEventoFinalizado(new EventoFinalizado(d3, tele, info, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEventoEmpate(tele, info), null), LocalDate.now().minusDays(1));
+		u.ingresarEventoFinalizado(new EventoFinalizado(d2, info, mec, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(info), null), LocalDate.now());
+		u.ingresarEventoFinalizado(new EventoFinalizado(d3, tele, info, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(tele), null), LocalDate.now().minusDays(1));
 		u.ingresarEventoFinalizado(new EventoFinalizado(d4, info, indu, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(info), null), LocalDate.now());
 		u.ingresarEventoFinalizado(new EventoFinalizado(d1, info, aubi, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(info), null), LocalDate.now());
 		

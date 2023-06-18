@@ -6,8 +6,6 @@ import java.util.Iterator;
 
 import nucleo.EventoDiaFinalizado;
 import nucleo.EventoFinalizado;
-import nucleo.ResultadoEvento;
-import nucleo.ResultadoEventoEmpate;
 
 public class PartidosJugadosAdminTableModel extends ModeloPrincipalTableModel<EventoDiaFinalizado>{
 	private static final long serialVersionUID = 1L;
@@ -25,11 +23,7 @@ public class PartidosJugadosAdminTableModel extends ModeloPrincipalTableModel<Ev
 			EventoFinalizado e = iter.next();
 			
 			String resultado="";
-			ResultadoEvento r = e.getResultado();
-			if(r instanceof ResultadoEventoEmpate)
-				resultado = "Empate";
-			else
-				resultado = r.getFacultadGanadora().getNombre().equals(e.getFacultadPrimera().getNombre()) ? e.getFacultadPrimera().getNombre().toString() : e.getFacultadSegunda().getNombre().toString();
+			resultado = e.getResultado().getFacultadGanadora().getNombre().equals(e.getFacultadPrimera().getNombre()) ? e.getFacultadPrimera().getNombre().toString() : e.getFacultadSegunda().getNombre().toString();
 			
 			this.addRow(new Object[] {f,
 					e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),

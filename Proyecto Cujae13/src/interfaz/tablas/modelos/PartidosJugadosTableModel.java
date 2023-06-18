@@ -4,8 +4,6 @@ import java.time.format.DateTimeFormatter;
 
 import nucleo.EventoFinalizado;
 import nucleo.NombreFacultad;
-import nucleo.ResultadoEvento;
-import nucleo.ResultadoEventoEmpate;
 
 public class PartidosJugadosTableModel extends ModeloPrincipalTableModel<EventoFinalizado>{
 	private static final long serialVersionUID = 1L;
@@ -20,11 +18,7 @@ public class PartidosJugadosTableModel extends ModeloPrincipalTableModel<EventoF
 	public void adicionar(EventoFinalizado e) {
 		if(e.getFacultadPrimera().getNombre().equals(facultad) || e.getFacultadSegunda().getNombre().equals(facultad)) {
 			String resultado="";
-			ResultadoEvento r = e.getResultado();
-			if(r instanceof ResultadoEventoEmpate)
-				resultado = "Empate";
-			else
-				resultado = r.getFacultadGanadora().getNombre().equals(facultad) ? "Ganador" : "Perdedor";
+			resultado = e.getResultado().getFacultadGanadora().getNombre().equals(facultad) ? "Ganador" : "Perdedor";
 
 			this.addRow(new Object[] {e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
 					e.getFechaFinalizado().format(DateTimeFormatter.ofPattern("hh:mm a")),

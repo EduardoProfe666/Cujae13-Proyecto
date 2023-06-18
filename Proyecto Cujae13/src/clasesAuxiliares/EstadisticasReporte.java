@@ -13,18 +13,16 @@ public class EstadisticasReporte {
 	private int sanciones; //Indisciplinas que tributan a la tabla general
 	private int partidosJugados;
 	private int partidosGanados;
-	private int partidosEmpatados;
 	private int partidosPerdidos;
 	
 	public EstadisticasReporte(int puntaje, int infracciones, int sanciones, int partidosJugados, int partidosGanados,
-			int partidosEmpatados, int partidosPerdidos) {
+			 int partidosPerdidos) {
 		super();
 		this.puntaje = puntaje;
 		this.infracciones = infracciones;
 		this.sanciones = sanciones;
 		this.partidosJugados = partidosJugados;
 		this.partidosGanados = partidosGanados;
-		this.partidosEmpatados = partidosEmpatados;
 		this.partidosPerdidos = partidosPerdidos;
 	}
 	public int getPuntaje() {
@@ -56,12 +54,6 @@ public class EstadisticasReporte {
 	}
 	public void setPartidosGanados(int partidosGanados) {
 		this.partidosGanados = partidosGanados;
-	}
-	public int getPartidosEmpatados() {
-		return partidosEmpatados;
-	}
-	public void setPartidosEmpatados(int partidosEmpatados) {
-		this.partidosEmpatados = partidosEmpatados;
 	}
 	public int getPartidosPerdidos() {
 		return partidosPerdidos;

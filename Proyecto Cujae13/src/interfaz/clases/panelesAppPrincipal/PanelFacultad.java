@@ -209,7 +209,7 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		estadisticas.setSelectionForeground(e.getSeleccionTextoTabla());
 		estadisticas.setSelectionBackground(e.getSeleccionFondoTabla());
 		estadisticas.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
-		estadisticas.setRowHeight(56);
+		estadisticas.setRowHeight(65);
 		scrollPane_3.setViewportView(estadisticas);
 		
 		

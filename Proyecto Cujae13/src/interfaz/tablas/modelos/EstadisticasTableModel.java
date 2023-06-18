@@ -23,7 +23,6 @@ public class EstadisticasTableModel extends DefaultTableModel{
 			this.addRow(new Object[] {"Sanciones",e.getSanciones()});
 			this.addRow(new Object[] {"Partidos Jugados",e.getPartidosJugados()});
 			this.addRow(new Object[] {"Partidos Ganados",e.getPartidosGanados()});
-			this.addRow(new Object[] {"Partidos Empatados",e.getPartidosEmpatados()});
 			this.addRow(new Object[] {"Partidos Perdidos",e.getPartidosPerdidos()});
 		}
 	}
