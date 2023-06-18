@@ -4,7 +4,7 @@ Aplicación de escritorio de mostrado de información sobre los Juegos 13 de Mar
 <br>
 <b>Grupo 21</b> <br>
 <b>Curso</b> 2023-2024 <br>
-<b>Version</b> 01/06/2023
+<b>Version</b> 18/06/2023
 <br>
 # Autores
  · Lilian Rosa Rojas Rodríguez <br>
