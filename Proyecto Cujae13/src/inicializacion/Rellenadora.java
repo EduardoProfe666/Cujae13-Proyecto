@@ -49,7 +49,7 @@ public final class Rellenadora {
 	}
 
 	private static Universidad rellenarUniversidad() {
-		Universidad u = Universidad.getInstancia(new Historia13Marzo("1234"));
+		Universidad u = Universidad.getInstancia(new Historia13Marzo("1234"),LocalDate.now().minusDays(20));
 
 		InfoGeneral informacionInfo = new InfoGeneral("Esta es la historia de Ingeniería Informática", "Estas son las curiosidades de Ingeniería Informática");
 		Facultad info = new Facultad(NombreFacultad.INFORMATICA, informacionInfo, 90);
@@ -125,6 +125,7 @@ public final class Rellenadora {
 		u.ingresarEvento(new Evento(d2, info, quim, LocalTime.of(23, 15), TipoEvento.EVT2), LocalDate.now());
 		u.ingresarEvento(new Evento(d3, tele, arq, LocalTime.of(23, 0), TipoEvento.EVT3), LocalDate.now());
 		u.ingresarEvento(new Evento(d4, civil, info, LocalTime.of(23, 0), TipoEvento.EVT3), LocalDate.now());
+		u.ingresarEvento(new Evento(d4, info, tele, LocalTime.of(22, 10), TipoEvento.EVT2), LocalDate.now().plusDays(1));
 		
 		
 		u.ingresarEventoFinalizado(new EventoFinalizado(d1, mec, tele, LocalTime.of(13, 30), LocalTime.of(23, 30), new ResultadoEvento(tele), null), LocalDate.now().minusDays(2));

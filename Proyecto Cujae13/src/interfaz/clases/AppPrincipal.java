@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -37,6 +38,8 @@ import componentes.PanelGradienteH;
 import componentes.PanelGradienteV;
 import componentes.PanelOpcion;
 import definiciones.DefinicionesInterfaz;
+import definiciones.DefinicionesLogica;
+import inicializacion.Inicializadora;
 import interfaz.clases.panelesAppPrincipal.PanelCalendario;
 import interfaz.clases.panelesAppPrincipal.PanelHistoria;
 import interfaz.clases.panelesAppPrincipal.PanelInicio;
@@ -44,6 +47,7 @@ import interfaz.clases.panelesAppPrincipal.PanelMapa;
 import interfaz.clases.panelesAppPrincipal.PanelSeleccionFacultad;
 import interfaz.clases.panelesAppPrincipal.PanelSeleccionarDeporte;
 import interfaz.componentes.PanelSuperior;
+import nucleo.Universidad;
 import utilidades.Archivador;
 import utilidades.Auxiliares;
  
@@ -80,12 +84,14 @@ public class AppPrincipal extends JFrame {
 	private PanelOpcion opcionHistoria;
 	private JTabbedPane panelPrincipall;
 	private JButton botonAtras;
+	private EsquemaColores e;
+	private Timer temporizador;
 
 	public AppPrincipal(UsuarioEstudiante us) {
 		this.setTitle("Cujae13");
 		u = us;
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(Autenticacion.class.getResource("/interfaz/iconos/icono.png")));
-		final EsquemaColores e = Archivador.getEsquemaColores(us.getFacultad());
+		e = Archivador.getEsquemaColores(us.getFacultad());
 		FlatLightLaf.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, DefinicionesInterfaz.DIMENSION_APP_PRINCIPAL.width, DefinicionesInterfaz.DIMENSION_APP_PRINCIPAL.height);
@@ -191,6 +197,7 @@ public class AppPrincipal extends JFrame {
 		cerrarSesionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(JOptionPane.showConfirmDialog(rootPane, DefinicionesInterfaz.PREGUNTA_CERRAR_SESION, null, JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+					temporizador.stop();
 					dispose();
 					Autenticacion l = new Autenticacion();
 					l.setVisible(true);
@@ -510,5 +517,25 @@ public class AppPrincipal extends JFrame {
 		});
 		panelContenedor.add(panelPrincipall);
 		
+		temporizador = new Timer(DefinicionesLogica.TEMP_ACTUALIZACION, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actualizar();
+			}
+		});
+		temporizador.start();
+		
+	}
+	
+	private void actualizar() {
+		Universidad.getInstancia().actualizar();
+		Inicializadora.guardarDatosAplicacion();
+		panelPrincipall.setComponentAt(0, new PanelInicio(e,u.getFacultad()));
+		panelPrincipall.setComponentAt(1, new PanelMapa(e,this));
+		panelPrincipall.setComponentAt(2, new PanelSeleccionFacultad(this,e,panelPrincipall));
+		panelPrincipall.setComponentAt(3, new PanelSeleccionarDeporte(this,e,panelPrincipall));
+		panelPrincipall.setComponentAt(4, new PanelCalendario(e));
+		panelPrincipall.setComponentAt(5, new PanelHistoria(e));
 	}
 }

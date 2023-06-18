@@ -12,5 +12,7 @@ public final class DefinicionesLogica {
 	private DefinicionesLogica() {}
 	
 	public static final int CANT_MIN_FACULTADES = 9;
+	//public static final int TEMP_ACTUALIZACION = 300000;
+	public static final int TEMP_ACTUALIZACION = 3000;
 	
 }

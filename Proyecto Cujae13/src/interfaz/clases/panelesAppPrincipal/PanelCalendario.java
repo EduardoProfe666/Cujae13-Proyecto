@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 
 import javax.swing.JButton;
@@ -20,6 +22,7 @@ import componentes.CalendarT;
 import interfaz.clases.AppPrincipal;
 import interfaz.componentes.LabelDiaActual;
 import interfaz.tablas.modelos.PartidosPorJugarDiaTableModel;
+import nucleo.Universidad;
 import utilidades.Auxiliares;
 
 /**
@@ -41,6 +44,7 @@ public class PanelCalendario extends PanelBaseAppPrincipal{
 	private TableRowSorter<PartidosPorJugarDiaTableModel> ordenamientoPartidosPorJugar;
 	private JTable tablaPartidosJugar;
 	private JButton botonAyuda;
+	private LocalDate fechaSeleccionada;
 
 	public PanelCalendario(EsquemaColores e) {
 		
@@ -87,13 +91,28 @@ public class PanelCalendario extends PanelBaseAppPrincipal{
 		tablaPartidosJugar.setSelectionForeground(e.getSeleccionTextoTabla());
 		tablaPartidosJugar.setSelectionBackground(e.getSeleccionFondoTabla());
 		tablaPartidosJugar.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
+		//tablaPartidosJugar.getTableHeader().setReorderingAllowed(false);
 		scrollPane_1.setViewportView(tablaPartidosJugar);
 		
-		calendario = new CalendarT(e.getColorCalendario(),e.getBordeLbl(), LocalDate.now().minusMonths(1),LocalDate.now());
-		calendario.getDateChooser().setSelectedDate(LocalDate.now().minusMonths(1));
+		
+		calendario = new CalendarT(e.getColorCalendario(),e.getBordeLbl(), LocalDate.now(),Universidad.getInstancia().getFechaInicio().plusMonths(2));
+		calendario.getDateChooser().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				fechaSeleccionada=calendario.getFechaSeleccionada();
+				partidosDiaLbl.cambiarFecha(fechaSeleccionada);
+				actualizarTablaCalendario();
+			}
+		});
+		calendario.getDateChooser().setSelectedDate(LocalDate.now());
 		calendario.setBounds(317, 95, 266, 210);
 		calendario.getDateChooser().setBounds(2,2,262,206);
 		add(calendario);
 
 	}
+	
+	
+	public void actualizarTablaCalendario() {
+		modeloPartidosPorJugar.actualizar(Universidad.getInstancia().devolverListaEventosPorDia(fechaSeleccionada));
+	}
+	
 }

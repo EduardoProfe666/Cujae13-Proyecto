@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.MatteBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
@@ -35,6 +36,8 @@ import componentes.PanelGradienteH;
 import componentes.PanelGradienteV;
 import componentes.PanelOpcion;
 import definiciones.DefinicionesInterfaz;
+import definiciones.DefinicionesLogica;
+import inicializacion.Inicializadora;
 import interfaz.clases.panelesAppPrincipal.PanelCalendario;
 import interfaz.clases.panelesAppPrincipalAdmin.PanelAmonestaciones;
 import interfaz.clases.panelesAppPrincipalAdmin.PanelInicioAdmin;
@@ -75,6 +78,7 @@ public class AppPrincipalAdmin extends JFrame {
 	private JButton botonAtras;
 	private static EsquemaColores e;
 	private static AppPrincipalAdmin instancia;
+	private Timer temporizador;
 	
 	public static AppPrincipalAdmin getInstancia(UsuarioAdmin us) {
 		if(instancia == null)
@@ -198,6 +202,7 @@ public class AppPrincipalAdmin extends JFrame {
 		cerrarSesionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(JOptionPane.showConfirmDialog(rootPane, DefinicionesInterfaz.PREGUNTA_CERRAR_SESION, null, JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+					temporizador.stop();
 					dispose();
 					Autenticacion l = new Autenticacion();
 					l.setVisible(true);
@@ -472,10 +477,20 @@ public class AppPrincipalAdmin extends JFrame {
 //		});
 		panelContenedor.add(panelPrincipall);
 		
+		temporizador = new Timer(DefinicionesLogica.TEMP_ACTUALIZACION, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actualizar();
+				
+			}
+		});
+		temporizador.start();
 	}
 	
 	public static void actualizar() {
 		Universidad.getInstancia().actualizar();
+		Inicializadora.guardarDatosAplicacion();
 		panelPrincipall.setComponentAt(0, new PanelInicioAdmin(e));
 		panelPrincipall.setComponentAt(1, new PanelAmonestaciones(e,instancia));
 		panelPrincipall.setComponentAt(2, new PanelPorResultados(e,instancia));

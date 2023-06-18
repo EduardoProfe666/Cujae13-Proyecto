@@ -36,6 +36,7 @@ import componentes.JPasswordFieldModificado;
 import componentes.JTextFieldModificado;
 import definiciones.DefinicionesInterfaz;
 import definiciones.ErroresInterfazGrafica;
+import inicializacion.Inicializadora;
 import interfaz.componentes.PanelSuperior;
 import nucleo.NombreFacultad;
 import nucleo.Universidad;
@@ -320,6 +321,7 @@ public class Autenticacion extends JFrame {
 	private void terminarVentanaLogin(Usuario usuario) {
 		imagen.detenerAnimacion();
 		Universidad.getInstancia().actualizar();
+		Inicializadora.guardarDatosAplicacion();
 		if(usuario instanceof UsuarioEstudiante) {
 			AppPrincipal a = new AppPrincipal((UsuarioEstudiante)usuario);
 			a.setVisible(true);

@@ -28,6 +28,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	private LinkedList<EventoDia> eventosPorResultados; //Lista enlazada (Admin)
 	private Deque<EventoDiaFinalizado> eventosFinalizados; //Pila 
 	private Historia13Marzo historia;
+	private LocalDate fechaInicio;
 	//private WeightedGraph<Localizacion> localizaciones;
 
 	private static Universidad instancia;
@@ -49,9 +50,9 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	 * @param historia
 	 * @return
 	 */
-	public static Universidad getInstancia(Historia13Marzo historia) {
+	public static Universidad getInstancia(Historia13Marzo historia, LocalDate fechaInicio) {
 		if(instancia==null)
-			instancia = new Universidad(historia);
+			instancia = new Universidad(historia,fechaInicio);
 		return instancia;
 	}
 	/**
@@ -65,12 +66,13 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		return instancia;
 	}
 
-	private Universidad(Historia13Marzo historia) {
+	private Universidad(Historia13Marzo historia,LocalDate fechaInicio) {
 		eventosFinalizados = new ArrayDeque<EventoDiaFinalizado>();
 		eventosActivos = new ArrayDeque<EventoDia>();
 		listadoFacultades = new ArrayList<Facultad>(DefinicionesLogica.CANT_MIN_FACULTADES);
 		listadoDeportes = new ArrayList<>();
 		this.historia = historia;
+		this.fechaInicio = fechaInicio;
 		eventosPorResultados = new LinkedList<EventoDia>();
 		//localizaciones = GraphBuilders.makeSimpleWeightedGraph(false);
 
@@ -88,6 +90,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			listadoFacultades = u.getListadoFacultades();
 			listadoDeportes = u.getListadoDeportes();
 			this.historia = u.getHistoria();
+			this.fechaInicio = u.fechaInicio;
 			eventosPorResultados = u.getEventosPorResultados();
 			//localizaciones = u.getLocalizaciones();
 		}
@@ -254,7 +257,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	}
 
 	public void ingresarEvento(Evento e, LocalDate fecha) {
-		if(fecha.compareTo(LocalDate.now())>=0) {
+		if(fecha.compareTo(fechaInicio)>=0) {
 			boolean insertado = false;
 			Queue<EventoDia> colaAuxiliar = new ArrayDeque<>();
 
@@ -322,7 +325,6 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	
 	public void actualizar() {
 		actualizarEventosActivos();
-		Inicializadora.guardarDatosAplicacion();
 	}
 	
 	public LinkedList<String> nombresDeportes(){
@@ -533,6 +535,28 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		}
 	}
 
+	//Metodo para obtener la lista de eventos correspondientes a un dia seleccionado por el usuario//
+		public LinkedList<Evento> devolverListaEventosPorDia(LocalDate fecha) {
+			LinkedList<Evento> listaEventosPorDia=new LinkedList<Evento>();
+			Queue<EventoDia> colaCopia = new ArrayDeque<EventoDia>(eventosActivos);
+			boolean encontrado=false;
+			while(!colaCopia.isEmpty() && !encontrado) {
+				EventoDia eventosPorDia=colaCopia.poll();		
+				if(eventosPorDia.getFechaDia().equals(fecha)){
+					for(int i=0; i<eventosPorDia.getEventosDia().size();i++) {
+						listaEventosPorDia.add(eventosPorDia.getEventosDia().get(i));
+					}
+					encontrado=true;
+				}
+
+			}
+			return listaEventosPorDia;
+		}
+
+		public LocalDate getFechaInicio() {
+			return fechaInicio;
+		}
+	
 	
 	
 	/**
