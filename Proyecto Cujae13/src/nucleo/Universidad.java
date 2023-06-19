@@ -160,7 +160,6 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			}
 		}
 		return tablaPosiciones;
-
 	}	
 
 	public BinaryTreeNode<Facultad> obtenerUltimoNodo(GeneralTree<Facultad> arbol){

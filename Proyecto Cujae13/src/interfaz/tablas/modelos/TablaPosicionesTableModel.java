@@ -10,6 +10,7 @@ import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.BreadthNode;
 import cu.edu.cujae.ceis.tree.iterators.general.InBreadthIteratorWithLevels;
 import nucleo.Facultad;
+import nucleo.HistoricoFacultad;
 import nucleo.NombreFacultad;
 
 /**
@@ -36,6 +37,16 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 		if(pos!=null) {
 			this.eliminarFilas();
 			List<FacultadPos> lista = extraerPosicionesFacultades(pos);
+			for(FacultadPos f : lista) {
+				adicionar(f);
+			}
+		}
+	}
+	
+	public void actualizarHistorico(GeneralTree<HistoricoFacultad> pos){
+		if(pos!=null) {
+			this.eliminarFilas();
+			List<FacultadPos> lista = extraerPosicionesFacultadesH(pos);
 			for(FacultadPos f : lista) {
 				adicionar(f);
 			}
@@ -105,6 +116,27 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 		while(iter.hasNext()) {
 			BreadthNode<Facultad> bn = iter.nextNodeWithLevel();
 			f.add(new FacultadPos(bn.getInfo().getNombre().toString(), bn.getInfo().getPuntaje(), bn.getLevel()+1));
+		}
+
+		return f;
+	}
+	
+	private List<FacultadPos> extraerPosicionesFacultadesH(GeneralTree<HistoricoFacultad> pos) {
+		LinkedList<FacultadPos> f = new LinkedList<>();
+		BinaryTreeNode<HistoricoFacultad> n = (BinaryTreeNode<HistoricoFacultad>)pos.getRoot();
+		BinaryTreeNode<HistoricoFacultad> nH = n.getRight();
+
+		f.add(new FacultadPos(n.getInfo().getFacultad().getNombre().toString(),n.getInfo().getCantidadJuegos13Ganados(),1));
+		while(nH!=null) {
+			f.add(new FacultadPos(nH.getInfo().getFacultad().getNombre().toString(),nH.getInfo().getCantidadJuegos13Ganados(),1));
+			nH = nH.getRight();
+		}
+
+		InBreadthIteratorWithLevels<HistoricoFacultad> iter = pos.inBreadthIteratorWithLevels();
+		iter.next();
+		while(iter.hasNext()) {
+			BreadthNode<HistoricoFacultad> bn = iter.nextNodeWithLevel();
+			f.add(new FacultadPos(bn.getInfo().getFacultad().getNombre().toString(), bn.getInfo().getCantidadJuegos13Ganados(), bn.getLevel()+1));
 		}
 
 		return f;

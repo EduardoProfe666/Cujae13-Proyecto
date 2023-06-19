@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.RandomAccessFile;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import clasesAuxiliares.UsuarioAdmin;
 import clasesAuxiliares.UsuarioEstudiante;
@@ -12,6 +15,7 @@ import nucleo.Evento;
 import nucleo.EventoFinalizado;
 import nucleo.Facultad;
 import nucleo.Historia13Marzo;
+import nucleo.HistoricoFacultad;
 import nucleo.InfoGeneral;
 import nucleo.NombreFacultad;
 import nucleo.ResultadoEvento;
@@ -48,7 +52,6 @@ public final class Rellenadora {
 	}
 
 	private static Universidad rellenarUniversidad() {
-		Universidad u = Universidad.getInstancia(new Historia13Marzo("Esta es la historia de los juegos 13 de marzo"),LocalDate.now().minusDays(20));
 
 		InfoGeneral informacionInfo = new InfoGeneral("Esta es la historia de Ingeniería Informática", "Estas son las curiosidades de Ingeniería Informática");
 		Facultad info = new Facultad(NombreFacultad.INFORMATICA, informacionInfo, 90);
@@ -81,6 +84,12 @@ public final class Rellenadora {
 		Deporte d2 = new Deporte("Natación", null, Sexo.FEMENINO,null);
 		Deporte d3 = new Deporte("Tiro", null, Sexo.FEMENINO,null);
 		Deporte d4 = new Deporte("Atletismo", null, Sexo.MASCULINO,null);
+		
+		List<HistoricoFacultad> historico = new LinkedList<HistoricoFacultad>(Arrays.asList(new HistoricoFacultad(info, 10),
+				new HistoricoFacultad(arq, 9), new HistoricoFacultad(aubi, 8), new HistoricoFacultad(civil, 7), new HistoricoFacultad(elect, 6), 
+				new HistoricoFacultad(indu, 5), new HistoricoFacultad(mec, 4), new HistoricoFacultad(quim, 3), new HistoricoFacultad(tele, 2)));
+		
+		Universidad u = Universidad.getInstancia(new Historia13Marzo(historico,"Esta es la historia de los juegos 13 de marzo"),LocalDate.now().minusDays(20));
 		
 		u.addDeporte(d1);
 		u.addDeporte(d2);

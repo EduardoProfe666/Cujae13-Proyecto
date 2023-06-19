@@ -31,10 +31,11 @@ import utilidades.Auxiliares;
 /**
  * JPanel que modela la pantalla de Calendario de la aplicación.<br><br>
  * 
- * <b>RESPONSABILIDAD: </b>Eduardo González
+ * <b>RESPONSABILIDAD: </b>Brayan García
  * 
  * @version 2023.06.02
  * @author Lilian Rojas
+ * @author Brayan García
  * @author Eduardo González
  *
  */

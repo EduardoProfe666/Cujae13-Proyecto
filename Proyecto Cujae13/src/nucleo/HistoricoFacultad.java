@@ -2,7 +2,7 @@ package nucleo;
 
 import java.io.Serializable;
 
-public class HistoricoFacultad implements Serializable{
+public class HistoricoFacultad implements Serializable,Comparable<HistoricoFacultad>{
 	private static final long serialVersionUID = 1L;
 	private Facultad facultad;
 	private int cantidadJuegos13Ganados;
@@ -28,6 +28,13 @@ public class HistoricoFacultad implements Serializable{
 	public void setCantidadJuegos13Ganados(int cantidadJuegos13Ganados) {
 		this.cantidadJuegos13Ganados = cantidadJuegos13Ganados;
 	}
+
+	@Override
+	public int compareTo(HistoricoFacultad o) {
+		return Integer.compare(cantidadJuegos13Ganados, o.cantidadJuegos13Ganados);
+	}
+	
+	
 	
 	
 }

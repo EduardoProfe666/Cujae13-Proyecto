@@ -3,7 +3,6 @@ package interfaz.clases.panelesAppPrincipal;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.util.Random;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -19,6 +18,7 @@ import interfaz.componentes.TablaPosiciones;
 import interfaz.tablas.modelos.PartidosJugadosTableModel;
 import interfaz.tablas.modelos.PartidosPorJugarTableModel;
 import nucleo.NombreFacultad;
+import nucleo.Universidad;
 import utilidades.Archivador;
 import utilidades.Auxiliares;
 
@@ -30,6 +30,7 @@ import utilidades.Auxiliares;
  * 
  * @version 2023.06.02
  * @author Lilian Rojas
+ * @author Katherine Ramírez
  * @author Eduardo González
  *
  */
@@ -56,7 +57,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		
 		//Aqui se va a coger por el singletone, la posicion de cada facultad
 		//Provisional
-		medalla = new Imagen(Auxiliares.ajustarImagen(new Dimension(32,38), AppPrincipal.class.getResource(Archivador.getDirUrlMedalla(new Random().nextInt(9)+1))));
+		medalla = new Imagen(Auxiliares.ajustarImagen(new Dimension(32,38), AppPrincipal.class.getResource(Archivador.getDirUrlMedalla(Universidad.getInstancia().obtenerLugar(f)))));
 		medalla.setBounds(837, 35, 42, 42);
 		add(medalla);
 		
@@ -80,7 +81,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		tablaPosLbl.setBounds(589, 91, 290, 26);
 		add(tablaPosLbl);
 		
-		tablaPosGeneral = new TablaPosiciones(null, e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla(),false);
+		tablaPosGeneral = new TablaPosiciones(Universidad.getInstancia().getTablaPosicionesGlobal(), e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla(),false);
 		tablaPosGeneral.setBounds(589, 128, 290, 436);
 		add(tablaPosGeneral);
 		
@@ -103,6 +104,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		add(scrollPane_1);
 		
 		modeloPartidosPorJugar = new PartidosPorJugarTableModel(f);
+		modeloPartidosPorJugar.actualizar(Universidad.getInstancia().getListadoEventosDiaActual());
 		ordenamientoPartidosPorJugar = new TableRowSorter<>(modeloPartidosPorJugar);
 		ordenamientoPartidosPorJugar.toggleSortOrder(0);
 		
@@ -120,6 +122,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		add(scrollPane_2);
 		
 		modeloPartidosJugados = new PartidosJugadosTableModel(f);
+		modeloPartidosJugados.actualizar(Universidad.getInstancia().getListadoPartidosConResultadoDiaActual());
 		ordenamientoPartidosJugados = new TableRowSorter<>(modeloPartidosJugados);
 		ordenamientoPartidosJugados.toggleSortOrder(0);
 		

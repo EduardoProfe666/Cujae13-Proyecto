@@ -43,7 +43,7 @@ public class AgregarSancionJDialog extends JDialogGeneral{
 	private BotonAnimacion cancelar;
 
 	public AgregarSancionJDialog(EsquemaColores e, JFrame padre) {
-		super("Agregar Infracción", e, padre);
+		super("Agregar Sanción", e, padre);
 		
 		inf = "Seleccione una sanción";
 		

@@ -9,6 +9,7 @@ import javax.swing.border.MatteBorder;
 
 import clasesAuxiliares.EsquemaColores;
 import interfaz.componentes.TablaPosiciones;
+import nucleo.Universidad;
 
 /**
  * JPanel que modela la pantalla de Historia de la aplicación.<br><br>
@@ -17,6 +18,7 @@ import interfaz.componentes.TablaPosiciones;
  * 
  * @version 2023.06.02
  * @author Lilian Rojas
+ * @author Cristian Páez
  * @author Eduardo González
  *
  */
@@ -47,7 +49,7 @@ public class PanelHistoria extends PanelBaseAppPrincipal{
 		historiaLbl.setBounds(410, 105, 469, 26);
 		add(historiaLbl);
 		
-		TablaPosiciones tablaPosGeneral = new TablaPosiciones(null, e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla(),true);
+		TablaPosiciones tablaPosGeneral = new TablaPosiciones(Universidad.getInstancia().getHistoria().getTablaPosicionesHistorica(), e.getSeleccionTextoTabla(), e.getSeleccionFondoTabla(),true,0);
 		tablaPosGeneral.setBounds(10, 140, 385, 424);
 		add(tablaPosGeneral);
 		
@@ -58,21 +60,7 @@ public class PanelHistoria extends PanelBaseAppPrincipal{
 		historia = new JTextArea();
 		historia.setWrapStyleWord(true);
 		historia.setLineWrap(true);
-		historia.setText("Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " + 
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum " +
-				"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ");
+		historia.setText(Universidad.getInstancia().getHistoria().getSurgimiento());
 		historia.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
 		historia.setEditable(false);
 		scrollPane.setViewportView(historia);

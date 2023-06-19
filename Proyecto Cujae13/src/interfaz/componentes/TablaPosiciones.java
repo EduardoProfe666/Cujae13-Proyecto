@@ -10,6 +10,7 @@ import javax.swing.ScrollPaneConstants;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import interfaz.tablas.modelos.TablaPosicionesTableModel;
 import nucleo.Facultad;
+import nucleo.HistoricoFacultad;
 
 /**
  * Componente gráfico que modela las tablas de posición de la aplicación
@@ -21,6 +22,7 @@ import nucleo.Facultad;
 public class TablaPosiciones extends JScrollPane{
 	private static final long serialVersionUID = 1L;
 	private JTable tabla;
+	private TablaPosicionesTableModel modelo;
 	
 	public TablaPosiciones(GeneralTree<Facultad> tablaPos, Color seleccionTexto, Color selecccionFondo, boolean historico) {
 		setBackground(Color.LIGHT_GRAY);
@@ -28,7 +30,7 @@ public class TablaPosiciones extends JScrollPane{
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		setBounds(589, 140, 290, 424);
 		
-		TablaPosicionesTableModel modelo = new TablaPosicionesTableModel(historico);
+		modelo = new TablaPosicionesTableModel(historico);
 		if(tablaPos!=null)
 			modelo.actualizar(tablaPos);
 		else
@@ -44,6 +46,11 @@ public class TablaPosiciones extends JScrollPane{
 		tabla.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
 		tabla.setRowHeight(43);
 		setViewportView(tabla);
+	}
+	
+	public TablaPosiciones(GeneralTree<HistoricoFacultad> tablaPos, Color seleccionTexto, Color selecccionFondo, boolean historico, int n) {
+		this(null, seleccionTexto, selecccionFondo,historico);
+		modelo.actualizarHistorico(tablaPos);
 	}
 	
 	public JTable getTabla() {
