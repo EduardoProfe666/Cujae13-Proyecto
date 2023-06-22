@@ -26,7 +26,7 @@ public abstract class JDialogGeneral extends JDialog{
 	protected PanelSuperiorJDialog panelSuperior;
 	protected JPanel panelContenedor;
 	
-	public JDialogGeneral(String titulo,EsquemaColores e,JFrame padre){
+	protected JDialogGeneral(String titulo,EsquemaColores e,JFrame padre){
 		super(padre, true);
 		this.setUndecorated(true);
 		this.setBounds(100, 100, DefinicionesInterfaz.DIMENSION_DIALOGOS.width, DefinicionesInterfaz.DIMENSION_DIALOGOS.height);

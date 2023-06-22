@@ -15,8 +15,8 @@ public class PartidosPorJugarDiaTableModel extends ModeloPrincipalTableModel<Eve
 	public void adicionar(Evento e) {
 		this.addRow(new Object[] {e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
 				e.getDeporte().getNombre(),
-				e.getFacultadPrimera().getNombre(),
-				e.getFacultadSegunda().getNombre(),
+				e.getFacultadPrimera() == null ? "Por Determinar" : e.getFacultadPrimera().getNombre(),
+				e.getFacultadSegunda() == null ? "Por Determinar" : e.getFacultadSegunda().getNombre(),
 				e.getTipo()});
 	}
 

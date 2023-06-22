@@ -119,7 +119,7 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		histCuriosBtn.setContentAreaFilled(false);
 		add(histCuriosBtn);
 		medalla = new Imagen(Auxiliares.ajustarImagen(new Dimension(32,38),
-				AppPrincipal.class.getResource(Archivador.getDirUrlMedalla(Universidad.getInstancia().obtenerLugar(f)))));
+				PanelFacultad.class.getResource(Archivador.getDirUrlMedalla(Universidad.getInstancia().obtenerLugar(f)))));
 		medalla.setBounds(837, 35, 42, 42);
 		add(medalla);
 		

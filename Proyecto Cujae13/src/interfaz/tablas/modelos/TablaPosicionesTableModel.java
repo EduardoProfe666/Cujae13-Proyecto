@@ -9,6 +9,7 @@ import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.BreadthNode;
 import cu.edu.cujae.ceis.tree.iterators.general.InBreadthIteratorWithLevels;
+import nucleo.ClasificacionDeporte;
 import nucleo.Facultad;
 import nucleo.HistoricoFacultad;
 import nucleo.NombreFacultad;
@@ -52,6 +53,16 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 			}
 		}
 	}
+	
+	public void actualizarDeporte(GeneralTree<ClasificacionDeporte> pos) {
+		if(pos!=null) {
+			this.eliminarFilas();
+			List<FacultadPos> lista = extraerPosicionesFacultadesD(pos);
+			for(FacultadPos f : lista) {
+				adicionar(f);
+			}
+		}
+	}
 
 	/**
 	 * PROVISIONAL... SOLO PARA PRUEBAS
@@ -74,15 +85,15 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 		LinkedList<FacultadPos> f = new LinkedList<>();
 		LinkedList<Facultad> fac = new LinkedList<>();
 		
-		fac.add(new Facultad(NombreFacultad.INFORMATICA, null, 999));
-		fac.add(new Facultad(NombreFacultad.TELECOMUNICACIONES, null, 800));
-		fac.add(new Facultad(NombreFacultad.ARQUITECTURA, null, 700));
-		fac.add(new Facultad(NombreFacultad.QUIMICA, null, 600));
-		fac.add(new Facultad(NombreFacultad.AUTOMATICA_BIOMEDICA, null, 500));
-		fac.add(new Facultad(NombreFacultad.CIVIL, null, 400));
-		fac.add(new Facultad(NombreFacultad.ELECTRICA, null, 300));
-		fac.add(new Facultad(NombreFacultad.INDUSTRIAL, null, 200));
-		fac.add(new Facultad(NombreFacultad.MECANICA, null, 100));
+		fac.add(new Facultad(NombreFacultad.INFORMATICA, null));
+		fac.add(new Facultad(NombreFacultad.TELECOMUNICACIONES, null));
+		fac.add(new Facultad(NombreFacultad.ARQUITECTURA, null));
+		fac.add(new Facultad(NombreFacultad.QUIMICA, null));
+		fac.add(new Facultad(NombreFacultad.AUTOMATICA_BIOMEDICA, null));
+		fac.add(new Facultad(NombreFacultad.CIVIL, null));
+		fac.add(new Facultad(NombreFacultad.ELECTRICA, null));
+		fac.add(new Facultad(NombreFacultad.INDUSTRIAL, null));
+		fac.add(new Facultad(NombreFacultad.MECANICA, null));
 		
 		for(int i=0;i<9;i++) {
 			f.add(new FacultadPos(fac.get(i).getNombre().toString(), fac.get(i).getPuntaje(), i+1));
@@ -142,6 +153,26 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 		return f;
 	}
 
+	private List<FacultadPos> extraerPosicionesFacultadesD(GeneralTree<ClasificacionDeporte> pos) {
+		LinkedList<FacultadPos> f = new LinkedList<>();
+		BinaryTreeNode<ClasificacionDeporte> n = (BinaryTreeNode<ClasificacionDeporte>)pos.getRoot();
+		BinaryTreeNode<ClasificacionDeporte> nH = n.getRight();
+
+		f.add(new FacultadPos(n.getInfo().getFacultad().getNombre().toString(),n.getInfo().getPuntaje(),1));
+		while(nH!=null) {
+			f.add(new FacultadPos(nH.getInfo().getFacultad().getNombre().toString(),nH.getInfo().getPuntaje(),1));
+			nH = nH.getRight();
+		}
+
+		InBreadthIteratorWithLevels<ClasificacionDeporte> iter = pos.inBreadthIteratorWithLevels();
+		iter.next();
+		while(iter.hasNext()) {
+			BreadthNode<ClasificacionDeporte> bn = iter.nextNodeWithLevel();
+			f.add(new FacultadPos(bn.getInfo().getFacultad().getNombre().toString(), bn.getInfo().getPuntaje(), bn.getLevel()+1));
+		}
+
+		return f;
+	}
 
 	@Override
 	public boolean isCellEditable(int row, int column) { 

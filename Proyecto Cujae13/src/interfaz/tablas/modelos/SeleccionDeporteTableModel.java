@@ -8,13 +8,14 @@ public class SeleccionDeporteTableModel extends ModeloPrincipalTableModel<Deport
 	private static final long serialVersionUID = 1L;
 
 	public SeleccionDeporteTableModel() {
-		super(new String[] {"Deporte", "Sexo", "Estado"});
+		super(new String[] {"Deporte", "Sexo", "Tipo", "Estado"});
 	}
 
 	@Override
 	public void adicionar(Deporte d) {
 		this.addRow(new Object[] {d.getNombre(),
 				d.getSexo(),
+				d.getTipoDeporte(),
 				d.getEstado()});
 	}
 	

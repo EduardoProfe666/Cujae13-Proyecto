@@ -16,7 +16,7 @@ public class PartidosPorJugarTableModel extends ModeloPrincipalTableModel<Evento
 
 	@Override
 	public void adicionar(Evento e) {
-		if(e.getFacultadPrimera().getNombre().equals(facultad) || e.getFacultadSegunda().getNombre().equals(facultad)) {
+		if((e.getFacultadPrimera()!=null && e.getFacultadPrimera().getNombre().equals(facultad)) || (e.getFacultadSegunda()!=null && e.getFacultadSegunda().getNombre().equals(facultad))) {
 			this.addRow(new Object[] {e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
 					e.getDeporte().getNombre(),
 					e.getFacultadPrimera().getNombre().equals(facultad) ? e.getFacultadSegunda().getNombre() : e.getFacultadPrimera().getNombre(),

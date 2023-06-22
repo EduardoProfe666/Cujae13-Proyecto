@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import interfaz.clases.PantallaCarga;
+import nucleo.Universidad;
 
 /**
  * Inicialización de la aplicación Cujae13
@@ -22,16 +23,19 @@ import interfaz.clases.PantallaCarga;
  */
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Locale.setDefault(new Locale("es"));
 		FlatLightLaf.setup();
 		
 		try {
-			//Provisional
+			//Provisional	
 			Rellenadora.borrarDatos();
 			Rellenadora.rellenarDatos();
 			
+			
 			Inicializadora.inicializarAplicacion();
+			
+			Universidad.getInstancia().actualizar();
 			
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {

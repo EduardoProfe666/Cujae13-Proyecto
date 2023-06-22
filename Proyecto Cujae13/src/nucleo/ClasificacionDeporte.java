@@ -2,7 +2,7 @@ package nucleo;
 
 import java.io.Serializable;
 
-public class ClasificacionDeporte implements Serializable{
+public class ClasificacionDeporte implements Serializable, Comparable<ClasificacionDeporte>{
 	private static final long serialVersionUID = 1L;
 	private Facultad facultad;
 	private int puntaje;
@@ -23,5 +23,9 @@ public class ClasificacionDeporte implements Serializable{
 	}
 	public void setPuntaje(int puntaje) {
 		this.puntaje = puntaje;
+	}
+	@Override
+	public int compareTo(ClasificacionDeporte o) {
+		return Integer.compare(puntaje, o.puntaje);
 	}
 }

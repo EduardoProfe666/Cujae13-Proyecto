@@ -1,5 +1,7 @@
 package nucleo;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -7,6 +9,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,10 +19,13 @@ import clasesAuxiliares.EstadisticasReporte;
 import clasesAuxiliares.InfraccionesReporteFacultad;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
+import cu.edu.cujae.ceis.tree.iterators.general.BreadthNode;
+import cu.edu.cujae.ceis.tree.iterators.general.InBreadthIteratorWithLevels;
 import cu.edu.cujae.ceis.tree.iterators.general.InDepthIterator;
 import definiciones.DefinicionesLogica;
+import nucleo.InicializacionPartidosDeporte.EventoFecha;
 
-public class Universidad implements Serializable{ //Faltarian las localizaciones con el uso de grafos con pesos
+public class Universidad extends ListenerSupport implements Serializable{ //Faltarian las localizaciones con el uso de grafos con pesos
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Facultad> listadoFacultades; //Lista Secuencial
 	private ArrayList<Deporte> listadoDeportes; //Lista Secuencial
@@ -28,6 +34,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	private Deque<EventoDiaFinalizado> eventosFinalizados; //Pila 
 	private Historia13Marzo historia;
 	private LocalDate fechaInicio;
+	private GeneralTree<Facultad> tablaPosiciones;
 	//private WeightedGraph<Localizacion> localizaciones;
 
 	private static Universidad instancia;
@@ -91,6 +98,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			this.historia = u.getHistoria();
 			this.fechaInicio = u.fechaInicio;
 			eventosPorResultados = u.getEventosPorResultados();
+			this.tablaPosiciones = u.tablaPosiciones;
 			//localizaciones = u.getLocalizaciones();
 		}
 	}
@@ -99,10 +107,69 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		if(f==null)
 			throw new IllegalArgumentException();
 		listadoFacultades.add(f);
+
+		addListenerPuntaje(f);
 	}
 
-	public void addDeporte(Deporte d) {
+	public void addDeporte(String nombre, Sexo sexo, TipoDeporte tipoDeporte) {
+		if(nombre == null || sexo == null || tipoDeporte == null)
+			throw new IllegalArgumentException();
+
+		Deporte d = new Deporte(nombre, listadoFacultades, sexo, tipoDeporte);
 		listadoDeportes.add(d);
+		addListenerPuntaje(d);
+
+		d.addPropertyChangeListener("Deporte Terminado", new PropertyChangeListener() {
+			//Coger tabla de posiciones y agregar puntaje de acuerdo con el tipo de deporte
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				HashMap<Integer,Integer> sistPuntuacion = d.getTipoDeporte().getSistemaPuntuacion();
+				GeneralTree<ClasificacionDeporte> pos = d.getTablaPosiciones();
+
+				BinaryTreeNode<ClasificacionDeporte> n = (BinaryTreeNode<ClasificacionDeporte>)pos.getRoot();
+				BinaryTreeNode<ClasificacionDeporte> nH = n.getRight();
+
+				n.getInfo().getFacultad().addPuntaje(sistPuntuacion.get(1));
+
+				while(nH!=null) {
+					nH.getInfo().getFacultad().addPuntaje(sistPuntuacion.get(1));
+					nH = nH.getRight();
+				}
+
+				InBreadthIteratorWithLevels<ClasificacionDeporte> iter = pos.inBreadthIteratorWithLevels();
+				iter.next();
+				while(iter.hasNext()) {
+					BreadthNode<ClasificacionDeporte> bn = iter.nextNodeWithLevel();
+					bn.getInfo().getFacultad().addPuntaje(sistPuntuacion.get( bn.getLevel()+1));
+				}
+			}
+		});
+	}
+
+	public void inicializarTorneoDeporte(InicializacionPartidosDeporte inic) {
+		inic.getDeporte().inicializarTorneo(inic.getListadoPartidos());
+		insertarEventos(inic.getListadoPartidos());
+	}
+
+	private void insertarEventos(List<EventoFecha> listado) {
+		for(EventoFecha e : listado) {
+			ingresarEvento(e.getEvento(), e.getFecha());
+		}
+
+	}
+
+	/**
+	 * Esto permitira actualizar la tabla de posiciones cada vez que se cambia el puntaje por cualquiera de las 
+	 * variantes
+	 * @param l
+	 */
+	private void addListenerPuntaje(ListenerSupport l) {
+		l.addPropertyChangeListener("Puntaje General Cambiado", new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				construirTablaPosiciones();
+			}
+		});
 	}
 
 	/**
@@ -142,39 +209,72 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	 * @return
 	 */
 	public GeneralTree<Facultad> getTablaPosicionesGlobal(){ //Arbol General (Cada Facultad tiene su puntuacion)
-		GeneralTree<Facultad> tablaPosiciones = new GeneralTree<Facultad>();
-		Collections.sort(listadoFacultades, Collections.reverseOrder());
-
-		tablaPosiciones.setRoot(new BinaryTreeNode<Facultad>(listadoFacultades.get(0)));
-
-		for(int i=1; i<listadoFacultades.size(); i++) {
-			if(listadoFacultades.get(i).getPuntaje() < listadoFacultades.get(i-1).getPuntaje()) {
-				BinaryTreeNode<Facultad> padre = obtenerUltimoNodo(tablaPosiciones);
-				BinaryTreeNode<Facultad> n = new BinaryTreeNode<Facultad>(listadoFacultades.get(i));
-				tablaPosiciones.insertNode(n, padre);
-			}else if(listadoFacultades.get(i).getPuntaje() == listadoFacultades.get(i-1).getPuntaje()) {
-				BinaryTreeNode<Facultad> ultimoNodo = obtenerUltimoNodo(tablaPosiciones);
-				BinaryTreeNode<Facultad> padre = tablaPosiciones.getFather(ultimoNodo);
-				BinaryTreeNode<Facultad> n = new BinaryTreeNode<Facultad>(listadoFacultades.get(i));
-				tablaPosiciones.insertNode(n, padre);
-			}
+		if(tablaPosiciones==null || tablaPosiciones.isEmpty()) {
+			construirTablaPosiciones();
 		}
 		return tablaPosiciones;
 	}	
 
-	public BinaryTreeNode<Facultad> obtenerUltimoNodo(GeneralTree<Facultad> arbol){
-		BinaryTreeNode<Facultad> ultimoNodo = new BinaryTreeNode<Facultad>();
-		InDepthIterator<Facultad> iter = arbol.inDepthIterator();
+	private void construirTablaPosiciones() {
+		tablaPosiciones = new GeneralTree<Facultad>();
+		Collections.sort(listadoFacultades, Collections.reverseOrder());
+
+		Iterator<Facultad> iter = listadoFacultades.iterator();
+		tablaPosiciones.setRoot(new BinaryTreeNode<Facultad>(iter.next()));
+		BinaryTreeNode<Facultad> ultimo = ((BinaryTreeNode<Facultad>)tablaPosiciones.getRoot());
+		BinaryTreeNode<Facultad> padre = null;
+		int pUltimo = ultimo.getInfo().getPuntaje();
+
 
 		while(iter.hasNext()) {
-			BinaryTreeNode<Facultad> n = iter.nextNode();
-			if(n.getLeft() == null) {
-				ultimoNodo = n;
+			Facultad d1 = iter.next();
+			BinaryTreeNode<Facultad> n = new BinaryTreeNode<Facultad>(d1);
+			if(pUltimo > d1.getPuntaje()) {
+				tablaPosiciones.insertNode(n, ultimo);
+				pUltimo = d1.getPuntaje();
+				padre = ultimo;
+				ultimo = n;
+			}
+			else {
+				tablaPosiciones.insertNode(n, padre);
 			}
 		}
-		return ultimoNodo;
 
 	}
+
+	//	private void construirTablaPosiciones() {
+	//		tablaPosiciones = new GeneralTree<Facultad>();
+	//		Collections.sort(listadoFacultades, Collections.reverseOrder());
+	//
+	//		tablaPosiciones.setRoot(new BinaryTreeNode<Facultad>(listadoFacultades.get(0)));
+	//
+	//		for(int i=1; i<listadoFacultades.size(); i++) {
+	//			if(listadoFacultades.get(i).getPuntaje() < listadoFacultades.get(i-1).getPuntaje()) {
+	//				BinaryTreeNode<Facultad> padre = obtenerUltimoNodo(tablaPosiciones);
+	//				BinaryTreeNode<Facultad> n = new BinaryTreeNode<Facultad>(listadoFacultades.get(i));
+	//				tablaPosiciones.insertNode(n, padre);
+	//			}else if(listadoFacultades.get(i).getPuntaje() == listadoFacultades.get(i-1).getPuntaje()) {
+	//				BinaryTreeNode<Facultad> ultimoNodo = obtenerUltimoNodo(tablaPosiciones);
+	//				BinaryTreeNode<Facultad> padre = tablaPosiciones.getFather(ultimoNodo);
+	//				BinaryTreeNode<Facultad> n = new BinaryTreeNode<Facultad>(listadoFacultades.get(i));
+	//				tablaPosiciones.insertNode(n, padre);
+	//			}
+	//		}
+	//	}
+	//
+	//	private BinaryTreeNode<Facultad> obtenerUltimoNodo(GeneralTree<Facultad> arbol){
+	//		BinaryTreeNode<Facultad> ultimoNodo = new BinaryTreeNode<Facultad>();
+	//		InDepthIterator<Facultad> iter = arbol.inDepthIterator();
+	//
+	//		while(iter.hasNext()) {
+	//			BinaryTreeNode<Facultad> n = iter.nextNode();
+	//			if(n.getLeft() == null) {
+	//				ultimoNodo = n;
+	//			}
+	//		}
+	//		return ultimoNodo;
+	//
+	//	}
 
 	public LinkedList<EventoDia> getEventosPorResultados() {
 		return eventosPorResultados;
@@ -186,7 +286,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		boolean encontrado = false;
 
 		if(f== null) {
-			throw new IllegalArgumentException("Se necesita el nombre de la facutad");
+			throw new IllegalArgumentException("Se necesita el nombre de la facultad");
 		}
 
 		for(int i=0; i<listadoFacultades.size() && !encontrado; i++) {
@@ -214,10 +314,8 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 				if(e.getFechaDia().equals(evt.getFechaDia())) {
 					e.getEventosDia().addAll(evt.getEventosDia());
 					eventosActivos.poll();
-					parar = true;
 				}else {
 					eventosPorResultados.add(eventosActivos.poll());
-					parar = true;
 				}
 			}else {
 				throw new RuntimeException("Viaje en el tiempo");
@@ -235,7 +333,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 
 		while(iter.hasNext()) {
 			Evento evento = iter.next();
-			if(evento.getFecha().compareTo(LocalTime.now())<=0) {
+			if(evento.getFecha().compareTo(LocalTime.now().minusMinutes(15))<=0) {
 				e.getEventosDia().add(evento);
 				iter.remove();
 
@@ -254,7 +352,8 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 
 	}
 
-	public void ingresarEvento(Evento e, LocalDate fecha) {
+	private void ingresarEvento(Evento e, LocalDate fecha) {
+		rellenarEventosActivos(fecha);
 		if(fecha.compareTo(fechaInicio)>=0) {
 			boolean insertado = false;
 			Queue<EventoDia> colaAuxiliar = new ArrayDeque<>();
@@ -295,6 +394,34 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 				eventosActivos.offer(colaAuxiliar.poll());
 			}
 		}
+		else {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private void rellenarEventosActivos(LocalDate fecha) {
+		if(fecha.compareTo(LocalDate.now())<0)
+			throw new RuntimeException();
+		
+		
+		Queue<EventoDia> colaAuxiliar = new ArrayDeque<EventoDia>(eventosActivos);
+		EventoDia e = colaAuxiliar.peek();
+		LocalDate fechaInd = LocalDate.now();
+
+		LocalDate f = e==null ? null : e.getFechaDia();
+
+		if(f==null || fecha.compareTo(f)<0) {
+			eventosActivos.clear();
+			while(fechaInd.compareTo(fecha)<0) {
+				eventosActivos.offer(new EventoDia(fechaInd));
+				fechaInd = fechaInd.plusDays(1);
+			}
+			
+			while(!colaAuxiliar.isEmpty()) {
+				eventosActivos.offer(colaAuxiliar.poll());
+			}
+		}
+
 	}
 
 	public int getCantidadAmonestaciones() {
@@ -411,7 +538,7 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 			tam = e.getEventosDia().size();
 			for(int i=0; i<tam; i++) {
 				if((e.getEventosDia().get(i).getFacultadPrimera().getNombre().equals(f.getNombre()) ||
-								e.getEventosDia().get(i).getFacultadSegunda().getNombre().equals(f.getNombre())) &&
+						e.getEventosDia().get(i).getFacultadSegunda().getNombre().equals(f.getNombre())) &&
 						!e.getEventosDia().get(i).getResultado().getFacultadGanadora().equals(f)) {
 					pPerdidos++;
 				}
@@ -480,10 +607,11 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		return lista;
 	}
 
+
 	/**
 	 * Provisional
 	 */
-	public void ingresarEventoFinalizado(EventoFinalizado e, LocalDate fecha) {
+	private void ingresarEventoFinalizado(EventoFinalizado e, LocalDate fecha) {
 		Deque<EventoDiaFinalizado> pila = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
 		boolean ingresado = false;
 
@@ -551,13 +679,15 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	public int obtenerLugar(NombreFacultad f) {
 		int lugar = 0;
 		boolean encontrado = false;
-		GeneralTree<Facultad> tabla = getTablaPosicionesGlobal();
+		GeneralTree<Facultad> t = getTablaPosicionesGlobal();
+		GeneralTree<Facultad> tabla = new GeneralTree<Facultad>(new BinaryTreeNode<Facultad>());
+		((BinaryTreeNode<Facultad>)tabla.getRoot()).setLeft((BinaryTreeNode<Facultad>)(t.getRoot()));
 		InDepthIterator<Facultad> iter = tabla.inDepthIterator();
 
 		while(iter.hasNext() && !encontrado) {
 			BinaryTreeNode<Facultad> nodo = iter.nextNode();
-			if(nodo.getInfo().getNombre().equals(f)) {
-				lugar = tabla.nodeLevel(nodo) + 1;
+			if(nodo.getInfo()!=null && nodo.getInfo().getNombre().equals(f)) {
+				lugar = tabla.nodeLevel(nodo);
 				encontrado = true;
 			}
 		}
@@ -565,6 +695,135 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 		return lugar;
 	}
 
+	public Deporte buscarDeporte(String nombre) {
+		Deporte d = null;
+		Iterator<Deporte> iter = listadoDeportes.iterator();
+
+		while(iter.hasNext() && d==null) {
+			Deporte de = iter.next();
+			if(de.getNombre().compareToIgnoreCase(nombre)==0)
+				d = de;
+		}
+
+		if(d==null)
+			throw new IllegalArgumentException();
+
+
+		return d;
+	}
+
+	public String buscarLocalizacion(Deporte d) {
+		return "Prueba";
+	}
+
+
+	/**
+	 * Metodo para garantizar el correcto guardado en memoria externa. 
+	 */
+	public void destruirEstructurasReticulares() {
+
+	}
+
+	/**
+	 * 
+	 * @param e
+	 * @param fecha
+	 * @param facultadGanadora 1->Facultad Primera, 2->Facultad Segunda
+	 */
+	public void agregarResultadoEvento(EventoFecha ef, int facultadGanadora, LocalTime horaFin) {
+		if(ef.getEvento().estaIndeterminado() || !borrarEventoPorResultado(ef.getEvento(), ef.getFecha()))
+			throw new RuntimeException();
+
+		EventoFinalizado e = new EventoFinalizado(ef.getEvento().getDeporte(),
+				ef.getEvento().getFacultadPrimera(), ef.getEvento().getFacultadSegunda(), ef.getEvento().getFecha(),
+				horaFin, new ResultadoEvento(facultadGanadora == 1 ? ef.getEvento().getFacultadPrimera() : ef.getEvento().getFacultadSegunda()),
+				ef.getEvento().getTipo());
+
+		ingresarEventoFinalizado(e, ef.getFecha());
+		ef.getEvento().getDeporte().setEventoResultado(new EventoFecha(e, ef.getFecha()), ef.getEvento().getDeporte().getIndiceEvento(ef));
+
+
+	}
+
+	private boolean borrarEventoPorResultado(Evento e, LocalDate fecha) {
+		boolean b = false;
+		boolean bDia = false;
+
+		Iterator<EventoDia> iterD = eventosPorResultados.iterator();
+
+		while(iterD.hasNext() && !bDia) {
+			EventoDia ev = iterD.next();
+			if(ev.getFechaDia().compareTo(fecha)==0) {
+				bDia = true;
+				List<Evento> evDia = ev.getEventosDia();
+				Iterator<Evento> iter = evDia.iterator();
+				while(iter.hasNext() && !b) {
+					Evento even = iter.next();
+					if(even.equals(e)) {
+						b = true;
+						iter.remove();
+					}
+				}
+			}
+		}
+		return b;
+	}
+
+	/**
+	 * 
+	 * @return 0->Por Jugar, 1->Por Resultado, 2->Finalizado
+	 */
+	public int getEstadoEvento(Evento e, LocalDate fecha) {	
+		int n = 2;
+
+		if(eventoActivo(e, fecha))
+			n=0;
+		else if(eventoPorResultado(e, fecha))
+			n=1;
+
+		return n;
+	}
+
+	private boolean eventoActivo(Evento e, LocalDate fecha) {
+		boolean b = false;
+		boolean bDia = false;
+
+		Queue<EventoDia> eventos = new ArrayDeque<EventoDia>(eventosActivos);
+
+		while(!eventos.isEmpty() && !bDia) {
+			EventoDia ev = eventos.poll();
+			if(ev.getFechaDia().compareTo(fecha)==0) {
+				bDia = true;
+				List<Evento> evDia = ev.getEventosDia();
+				Iterator<Evento> iter = evDia.iterator();
+				while(iter.hasNext() && !b) {
+					b = iter.next().equals(e);
+				}
+			}
+		}
+
+		return b;
+	}
+
+	private boolean eventoPorResultado(Evento e, LocalDate fecha) {
+		boolean b = false;
+		boolean bDia = false;
+
+		Iterator<EventoDia> iterD = eventosPorResultados.iterator();
+
+		while(iterD.hasNext() && !bDia) {
+			EventoDia ev = iterD.next();
+			if(ev.getFechaDia().compareTo(fecha)==0) {
+				bDia = true;
+				List<Evento> evDia = ev.getEventosDia();
+				Iterator<Evento> iter = evDia.iterator();
+				while(iter.hasNext() && !b) {
+					b = iter.next().equals(e);
+				}
+			}
+		}
+		return b;
+	}
 
 	/**
 	 * Retorna todas las localizaciones, agregando como peso si presenta deportes activos
@@ -577,7 +836,6 @@ public class Universidad implements Serializable{ //Faltarian las localizaciones
 	//	public WeightedGraph<Localizacion> getLocalizaciones() {
 	//		return localizaciones;
 	//	}
-
 
 
 

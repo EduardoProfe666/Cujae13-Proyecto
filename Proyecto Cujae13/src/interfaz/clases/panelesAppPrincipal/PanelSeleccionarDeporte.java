@@ -20,6 +20,7 @@ import javax.swing.table.TableRowSorter;
 import clasesAuxiliares.EsquemaColores;
 import interfaz.clases.AppPrincipal;
 import interfaz.tablas.modelos.SeleccionDeporteTableModel;
+import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
@@ -79,7 +80,7 @@ public class PanelSeleccionarDeporte extends PanelBaseAppPrincipal{
 		add(scrollPane_1);
 		
 		modelo = new SeleccionDeporteTableModel();
-		modelo.prueba();
+		modelo.actualizar(Universidad.getInstancia().getListadoDeportes());
 		ordenamiento = new TableRowSorter<SeleccionDeporteTableModel>(modelo);
 		ordenamiento.toggleSortOrder(0);
 		
@@ -89,7 +90,9 @@ public class PanelSeleccionarDeporte extends PanelBaseAppPrincipal{
 			public void mouseClicked(MouseEvent x) {
 				if(x.getClickCount()==2) {
 					if(tabla.getSelectedRow()!=-1) {
-						tab.setComponentAt(7, new PanelDeporte(padre, e, null));
+						int fila = ordenamiento.convertRowIndexToModel(tabla.getSelectedRow());
+						String dep = (String)modelo.getValueAt(fila, 0);
+						tab.setComponentAt(7, new PanelDeporte(padre, e, Universidad.getInstancia().buscarDeporte(dep)));
 						tab.setSelectedIndex(7);
 					}
 				}

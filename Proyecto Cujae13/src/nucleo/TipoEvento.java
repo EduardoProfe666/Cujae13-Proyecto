@@ -8,7 +8,7 @@ import java.io.Serializable;
  *
  */
 public enum TipoEvento implements Serializable{
-	EVT1("EVT1"), EVT2("EVT2"), EVT3("EVT3");
+	OCTAVO("Octavo de Final"), CUARTO("Cuarto de Final"), SEMIFINAL("Semifinal"), FINAL("Final");
 	
 	private String nombre;
 	

@@ -50,4 +50,21 @@ public class Evento implements Serializable{
 	public void setFecha(LocalTime fecha) {
 		this.fecha = fecha;
 	}
+	
+	public boolean estaIndeterminado() {
+		return facultadPrimera==null || facultadSegunda==null;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		boolean b = false;
+		if(o instanceof Evento) {
+			Evento e = (Evento) o;
+			b = e.deporte.getNombre().equals(deporte.getNombre()) && 
+					e.facultadPrimera.getNombre().equals(facultadPrimera.getNombre()) &&
+					e.facultadSegunda.getNombre().equals(facultadSegunda.getNombre()) &&
+					e.tipo.equals(tipo) && e.fecha.compareTo(fecha)==0;
+		}
+		return b;
+	}
 }

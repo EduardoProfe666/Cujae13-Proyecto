@@ -9,6 +9,7 @@ import javax.swing.ScrollPaneConstants;
 
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import interfaz.tablas.modelos.TablaPosicionesTableModel;
+import nucleo.ClasificacionDeporte;
 import nucleo.Facultad;
 import nucleo.HistoricoFacultad;
 
@@ -51,6 +52,11 @@ public class TablaPosiciones extends JScrollPane{
 	public TablaPosiciones(GeneralTree<HistoricoFacultad> tablaPos, Color seleccionTexto, Color selecccionFondo, boolean historico, int n) {
 		this(null, seleccionTexto, selecccionFondo,historico);
 		modelo.actualizarHistorico(tablaPos);
+	}
+	
+	public TablaPosiciones(GeneralTree<ClasificacionDeporte> tablaPos, Color seleccionTexto, Color selecccionFondo) {
+		this(null, seleccionTexto, selecccionFondo,false);
+		modelo.actualizarDeporte(tablaPos);
 	}
 	
 	public JTable getTabla() {
