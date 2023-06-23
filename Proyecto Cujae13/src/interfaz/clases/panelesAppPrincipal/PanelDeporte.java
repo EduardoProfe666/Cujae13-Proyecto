@@ -14,8 +14,8 @@ import javax.swing.border.MatteBorder;
 import clasesAuxiliares.EsquemaColores;
 import interfaz.clases.AppPrincipal;
 import interfaz.clases.jdialogs.InfraccionesJDialog;
-import interfaz.clases.jdialogs.PartidoJDialog;
 import interfaz.componentes.TablaPosiciones;
+import interfaz.componentes.Torneo;
 import nucleo.Deporte;
 import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
@@ -23,8 +23,6 @@ import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
-import componentes.BotonAnimacion;
-import java.awt.Color;
 
 /**
  * JPanel que modela la pantalla de Deporte de la aplicación.<br><br>
@@ -134,20 +132,9 @@ public class PanelDeporte extends PanelBaseAppPrincipal{
 		torneoLbl.setBounds(10, 91, 569, 26);
 		add(torneoLbl);
 		
-		BotonAnimacion btnmcnTemporal = new BotonAnimacion();
-		btnmcnTemporal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				PartidoJDialog ventana = new PartidoJDialog(e, padre, null);
-				ventana.setVisible(true);
-			}
-		});
-		btnmcnTemporal.setEffectColor(Color.LIGHT_GRAY);
-		btnmcnTemporal.setForeground(Color.PINK);
-		btnmcnTemporal.setBackground(Color.DARK_GRAY);
-		btnmcnTemporal.setFont(new Font("Roboto Black", Font.BOLD, 24));
-		btnmcnTemporal.setText("Prueba");
-		btnmcnTemporal.setBounds(218, 292, 153, 34);
-		add(btnmcnTemporal);
+		Torneo torneo = new Torneo(d.getTorneo(), padre, e);
+		torneo.setBounds(10, 128, 569, 436);
+		add(torneo);
 		
 	}
 }

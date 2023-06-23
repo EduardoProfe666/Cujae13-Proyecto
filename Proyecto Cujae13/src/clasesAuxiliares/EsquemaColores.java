@@ -67,6 +67,8 @@ public class EsquemaColores {
 	//Horario
 	private Color colorHorario;
 	
+	//Componente Torneo
+	private Color colorFondoTorneo;
 	
 	
 	public EsquemaColores(Color panelUsuarioGradienteInicio, Color panelUsuarioGradienteFin, Color panelUsuarioTexto,
@@ -77,7 +79,7 @@ public class EsquemaColores {
 			String dirUrlBtnAtras, String dirUrlBtnAtrasHover, Color seleccionFondoTabla, Color seleccionTextoTabla,
 			String dirUrlIconoInicio, String dirUrlIconoFacultad, String dirUrlIconoDeporte, String dirUrlIconoMapa, 
 			String dirUrlIconoHistoria,String dirUrlIconoCalendario, Color colorCalendario, Color colorHorario, Color btnAceptar, Color btnAceptarColorEfecto,
-			Color btnCancelar, Color btnCancelarColorEfecto, Color btnAceptarTxt, Color btnCancelarTxt) {
+			Color btnCancelar, Color btnCancelarColorEfecto, Color btnAceptarTxt, Color btnCancelarTxt,Color colorFondoTorneo) {
 		super();
 		this.panelUsuarioGradienteInicio = panelUsuarioGradienteInicio;
 		this.panelUsuarioGradienteFin = panelUsuarioGradienteFin;
@@ -116,6 +118,7 @@ public class EsquemaColores {
 		this.btnAceptarTxt = btnAceptarTxt;
 		this.btnCancelarTxt = btnCancelarTxt;
 		this.colorHorario = colorHorario;
+		this.colorFondoTorneo = colorFondoTorneo;
 	}
 
 	public Color getPanelUsuarioGradienteInicio() {
@@ -412,6 +415,14 @@ public class EsquemaColores {
 
 	public void setColorHorario(Color colorHorario) {
 		this.colorHorario = colorHorario;
+	}
+
+	public Color getColorFondoTorneo() {
+		return colorFondoTorneo;
+	}
+
+	public void setColorFondoTorneo(Color colorFondoTorneo) {
+		this.colorFondoTorneo = colorFondoTorneo;
 	}
 	
 	
