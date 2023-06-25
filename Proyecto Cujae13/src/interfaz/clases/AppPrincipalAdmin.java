@@ -85,8 +85,7 @@ public class AppPrincipalAdmin extends JFrame {
 	private Timer temporizador;
 	
 	public static AppPrincipalAdmin getInstancia(UsuarioAdmin us) {
-		if(instancia == null)
-			instancia = new AppPrincipalAdmin(us);
+		instancia = new AppPrincipalAdmin(us);
 		return instancia;
 	}
 	

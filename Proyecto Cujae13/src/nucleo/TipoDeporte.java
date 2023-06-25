@@ -3,7 +3,7 @@ package nucleo;
 import java.util.HashMap;
 
 public enum TipoDeporte {
-	DeporteIndividual("Deporte Individual",crearArchivadorSistemaPuntuacionDepIndiv(),3), DeporteColectivo("Deporte Colectivo",crearArchivadorSistemaPuntuacionDepColec(),7);
+	DEPORTE_INDIVIDUAL("Deporte Individual",crearArchivadorSistemaPuntuacionDepIndiv(),3), DEPORTE_COLECTIVO("Deporte Colectivo",crearArchivadorSistemaPuntuacionDepColec(),7), AMBOS("Ambos", null, 0);
 	private String nombre;
 	private HashMap<Integer, Integer> sistemaPuntuacion;
 	private int puntuacionPartidoGanado;

@@ -41,6 +41,7 @@ public class DeporteComboBoxModel extends ModeloPrincipalComboBoxModel {
 	
 	private void actualizar() {
 		this.removeAllElements();
+		this.inicializar();
 		for(String s : lista) {
 			this.addElement(s);
 		}

@@ -22,9 +22,14 @@ import interfaz.clases.AppPrincipal;
 import interfaz.combobox.modelos.DeporteComboBoxModel;
 import interfaz.combobox.modelos.NombreFacultadComboBoxModel;
 import interfaz.combobox.modelos.TipoInfraccionComboBoxModel;
+import nucleo.Deporte;
+import nucleo.NombreFacultad;
+import nucleo.TipoDeporte;
 import nucleo.TipoInfraccion;
+import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
+import raven.toast.Notifications;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
@@ -38,7 +43,7 @@ public class AgregarInfraccionJDialog extends JDialogGeneral{
 	private JLabel dLbl;
 	private JScrollPane scrollPane;
 	private JTextArea descripcion;
-	//private TipoDeporte tipoDeporte;
+	private TipoDeporte tipoDeporte;
 	private JLabel pLbl_1;
 	private JLabel pLbl_2;
 	private JComboBox<String> facultad;
@@ -51,14 +56,36 @@ public class AgregarInfraccionJDialog extends JDialogGeneral{
 		
 		inf = "Seleccione una infracción";
 		
+		deporte = new JComboBox<String>();
+		deporte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		deporte.setEnabled(false);
+		deporte.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				deporte.putClientProperty("JComponent.outline", null);
+			}
+		});
+		deporte.setModel(new DeporteComboBoxModel());
+		deporte.setSelectedIndex(0);
+		deporte.setFont(new Font("Roboto Medium", Font.PLAIN, 15));
+		deporte.setBounds(96, 131, 313, 20);
+		panelContenedor.add(deporte);
+		
 		infraccion = new JComboBox<>();
 		infraccion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		infraccion.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				infraccion.putClientProperty("JComponent.outline", null);
 				TipoInfraccion t = TipoInfraccion.fromString((String)infraccion.getSelectedItem());
 				inf = t==null ? "Seleccione una infracción" : t.getDescripcion();
 				pLbl.setText("Puntaje a quitar: "+ ((t==null) ? "-" : t.getPuntaje()));
-				//tipoDeporte = t==null ? null : t.getTipo() ;
+				tipoDeporte = t==null ? null : t.getTipo() ;
+				if(tipoDeporte == null) {
+					deporte.setEnabled(false);
+				}else {
+					deporte.setEnabled(true);
+					((DeporteComboBoxModel)deporte.getModel()).reiniciar();
+					((DeporteComboBoxModel)deporte.getModel()).eliminarDeportes(Universidad.getInstancia().obtenerDeporteEliminar(tipoDeporte));
+				}
 			}
 		});
 		infraccion.setModel(new TipoInfraccionComboBoxModel());
@@ -102,24 +129,13 @@ public class AgregarInfraccionJDialog extends JDialogGeneral{
 		historiaLbl.setBounds(10, 10, 680, 26);
 		panelContenedor.add(historiaLbl);
 		
-		deporte = new JComboBox<String>();
-		deporte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		deporte.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				
-			}
-		});
-		deporte.setModel(new DeporteComboBoxModel());
-		deporte.setSelectedIndex(0);
-		deporte.setFont(new Font("Roboto Medium", Font.PLAIN, 15));
-		deporte.setBounds(96, 131, 313, 20);
-		panelContenedor.add(deporte);
+		
 		
 		facultad = new JComboBox<String>();
 		facultad.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		facultad.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				
+				facultad.putClientProperty("JComponent.outline", null);
 			}
 		});
 		facultad.setModel(new NombreFacultadComboBoxModel());
@@ -168,8 +184,29 @@ public class AgregarInfraccionJDialog extends JDialogGeneral{
 		aceptar.setBackground(e.getBtnAceptar());
 		aceptar.setForeground(e.getBtnAceptarTxt());
 		aceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent ev) {
+				if(validarInfraccion()) {
+					String nombreDeporte = (String)deporte.getSelectedItem();
+					Deporte dep = Universidad.getInstancia().buscarDeporte(nombreDeporte);
+					String fac = (String)facultad.getSelectedItem();
+					String infrac = (String)infraccion.getSelectedItem();
+					dep.addInfraccion(TipoInfraccion.fromString(infrac), descripcion.getText(), NombreFacultad.fromString(fac));
+					dispose();
+					Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.BOTTOM_RIGHT, 2500, "Se ha agregado la infracción correctamente");
+				}else {
+					Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+					MessageSinCancel m = new MessageSinCancel("Error", "Compruebe los datos de los campos señalados");
+					m.eventOK(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							GlassPanePopup.closePopupLast();
+							j.setVisible(true);
+						}
+					});
+					GlassPanePopup.showPopup(m, o);
+					j.setVisible(false);
+					mostrarErrorComponente();
+				}
 			}
 		});
 		aceptar.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
@@ -196,4 +233,55 @@ public class AgregarInfraccionJDialog extends JDialogGeneral{
 		
 		
 	}
+	
+	public boolean validarInfraccion() {
+		boolean validada = true;
+		
+		if(infraccion.getSelectedIndex() <= 0) {
+			validada = false;
+		}
+		
+		if(facultad.getSelectedIndex() <= 0) {
+			validada = false;
+		}
+		
+		if(deporte.getSelectedIndex() <= 0) {
+			validada = false;
+		}
+		
+		return validada;
+	}
+	
+public void mostrarErrorComponente() {
+		
+		if(infraccion.getSelectedIndex() <= 0) {
+			infraccion.putClientProperty("JComponent.outline", "error");
+		}
+		
+		if(facultad.getSelectedIndex() <= 0) {
+			facultad.putClientProperty("JComponent.outline", "error");
+		}
+		
+		if(deporte.getSelectedIndex() <= 0 && deporte.isEnabled()) {
+			deporte.putClientProperty("JComponent.outline", "error");
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

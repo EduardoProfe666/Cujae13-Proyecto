@@ -2,9 +2,9 @@ package interfaz.tablas.modelos;
 
 import java.time.format.DateTimeFormatter;
 
-import clasesAuxiliares.InfraccionesReporteFacultad;
+import clasesAuxiliares.InfraccionReporte;
 
-public class InfraccionesTableModel extends ModeloPrincipalTableModel<InfraccionesReporteFacultad>{
+public class InfraccionesTableModel extends ModeloPrincipalTableModel<InfraccionReporte>{
 	private static final long serialVersionUID = 1L;
 
 	public InfraccionesTableModel() {
@@ -12,7 +12,7 @@ public class InfraccionesTableModel extends ModeloPrincipalTableModel<Infraccion
 	}
 
 	@Override
-	public void adicionar(InfraccionesReporteFacultad i) {
+	public void adicionar(InfraccionReporte i) {
 		this.addRow(new Object[] {i.getInfraccion().getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
 				i.getInfraccion().getTipo().toString(),
 				i.getInfraccion().getNombreFacultad(),
@@ -21,4 +21,9 @@ public class InfraccionesTableModel extends ModeloPrincipalTableModel<Infraccion
 		
 	}
 
+	@Override
+	public boolean isCellEditable(int row, int column) { 
+		return column==4;
+	}
+	
 }

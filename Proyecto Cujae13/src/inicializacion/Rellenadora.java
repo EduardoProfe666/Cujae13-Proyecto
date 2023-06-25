@@ -10,6 +10,7 @@ import java.util.List;
 
 import clasesAuxiliares.UsuarioAdmin;
 import clasesAuxiliares.UsuarioEstudiante;
+import cu.edu.cujae.ceis.graph.interfaces.ILinkedWeightedEdgeWeightedVertexNotDirectedGraph;
 import nucleo.Facultad;
 import nucleo.Historia13Marzo;
 import nucleo.HistoricoFacultad;
@@ -17,6 +18,7 @@ import nucleo.InfoGeneral;
 import nucleo.InicializacionPartidosDeporte;
 import nucleo.InicializacionPartidosDeporte.FechaHora;
 import nucleo.InicializacionPartidosDeporte.ListadoFechaHora;
+import nucleo.Localizacion;
 import nucleo.NombreFacultad;
 import nucleo.Sexo;
 import nucleo.TipoDeporte;
@@ -98,12 +100,12 @@ public final class Rellenadora {
 		u.addFacultad(quim);
 		u.addFacultad(tele);
 		
-		u.addDeporte("Fútbol", Sexo.FEMENINO,TipoDeporte.DeporteColectivo);
-		u.addDeporte("Natación", Sexo.FEMENINO,TipoDeporte.DeporteIndividual);
-		u.addDeporte("Tiro", Sexo.FEMENINO,TipoDeporte.DeporteIndividual);
-		u.addDeporte("Atletismo", Sexo.MASCULINO,TipoDeporte.DeporteIndividual);
+		u.addDeporte("Bádminton", Sexo.FEMENINO,TipoDeporte.DEPORTE_COLECTIVO);
+		u.addDeporte("Karate", Sexo.FEMENINO,TipoDeporte.DEPORTE_INDIVIDUAL);
+		u.addDeporte("Fútbol", Sexo.FEMENINO,TipoDeporte.DEPORTE_COLECTIVO);
+		u.addDeporte("VolleyBall", Sexo.MASCULINO,TipoDeporte.DEPORTE_COLECTIVO);
 		
-		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Fútbol"), quim, tele,
+		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Bádminton"), quim, tele,
 				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.now()),
 						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
 						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
@@ -111,7 +113,7 @@ public final class Rellenadora {
 						new FechaHora(LocalDate.now().plusDays(4), LocalTime.now())),
 				u.getListadoFacultades()));
 		
-		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Natación"), aubi, civil,
+		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Karate"), aubi, civil,
 				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.now()),
 						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
 						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
@@ -119,7 +121,7 @@ public final class Rellenadora {
 						new FechaHora(LocalDate.now().plusDays(4), LocalTime.now())),
 				u.getListadoFacultades()));
 		
-		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Tiro"), indu, mec,
+		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Fútbol"), indu, mec,
 				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.now()),
 						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
 						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
@@ -127,7 +129,7 @@ public final class Rellenadora {
 						new FechaHora(LocalDate.now().plusDays(4), LocalTime.now())),
 				u.getListadoFacultades()));
 		
-		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Atletismo"), arq, info,
+		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("VolleyBall"), arq, info,
 				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.now()),
 						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
 						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
@@ -135,14 +137,33 @@ public final class Rellenadora {
 						new FechaHora(LocalDate.now().plusDays(4), LocalTime.now())),
 				u.getListadoFacultades()));
 		
+		ILinkedWeightedEdgeWeightedVertexNotDirectedGraph<Localizacion, Boolean, Integer> localizaciones = u.getLocalizaciones();
 		
+		Localizacion deder = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Bádminton"))), "Deder","/interfaz/imagenes/avatar_autenticacion.jpg",137,196);
+		Localizacion dojo = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Karate"))), "Dojo","/interfaz/imagenes/avatar_autenticacion.jpg",87,385);
+		Localizacion terrenoFutbol = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Fútbol"))), "Terreno de Fútbol","/interfaz/imagenes/avatar_autenticacion.jpg",780,154);
+		Localizacion canchasVolleyBall = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("VolleyBall"))), "Canchas de VolleyBall","/interfaz/imagenes/avatar_autenticacion.jpg",420,430);
+		
+		localizaciones.insertWVertex(deder, true);
+		localizaciones.insertWVertex(dojo, true);
+		localizaciones.insertWVertex(terrenoFutbol, true);
+		localizaciones.insertWVertex(canchasVolleyBall, true);
+		
+		localizaciones.insertWEdgeNDG(deder, dojo, 100);
+		localizaciones.insertWEdgeNDG(deder, terrenoFutbol, 200);
+		localizaciones.insertWEdgeNDG(deder, canchasVolleyBall, 210);
+		
+		localizaciones.insertWEdgeNDG(dojo, terrenoFutbol, 50);
+		localizaciones.insertWEdgeNDG(dojo, canchasVolleyBall, 75);
+		
+		localizaciones.insertWEdgeNDG(terrenoFutbol, canchasVolleyBall, 130);
 		
 		u.buscarDeporte("Fútbol").addInfraccion(TipoInfraccion.AGRESION_VERBAL, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "+
 				"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
 				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
 				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa", NombreFacultad.INFORMATICA);
-		u.buscarDeporte("Natación").addInfraccion(TipoInfraccion.DECISIONES_ARBITRALES, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
+				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa", NombreFacultad.QUIMICA);
+		u.buscarDeporte("Bádminton").addInfraccion(TipoInfraccion.DECISIONES_ARBITRALES, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
 				+"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
 				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
 				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"

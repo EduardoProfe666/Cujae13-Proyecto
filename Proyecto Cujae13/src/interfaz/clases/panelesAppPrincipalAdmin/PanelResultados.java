@@ -35,6 +35,7 @@ public class PanelResultados extends PanelBaseAppPrincipal{
 		add(scrollPane);
 		
 		modeloResultados = new PartidosJugadosAdminTableModel();
+		modeloResultados.actualizar(Universidad.getInstancia().obtenerEventosFinalizados());
 		ordenamientoResultados = new TableRowSorter<>(modeloResultados);
 		ordenamientoResultados.toggleSortOrder(0);
 		modeloResultados.actualizar(new ArrayList<EventoDiaFinalizado>(Universidad.getInstancia().getEventosFinalizados()));

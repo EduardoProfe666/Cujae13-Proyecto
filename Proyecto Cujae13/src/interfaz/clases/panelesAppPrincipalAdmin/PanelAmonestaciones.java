@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +16,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.TableRowSorter;
 
 import clasesAuxiliares.EsquemaColores;
+import clasesAuxiliares.InfraccionReporte;
+import clasesAuxiliares.SancionReporte;
 import interfaz.clases.AppPrincipal;
 import interfaz.clases.AppPrincipalAdmin;
 import interfaz.clases.jdialogs.AgregarInfraccionJDialog;
@@ -23,6 +26,7 @@ import interfaz.clases.panelesAppPrincipal.PanelBaseAppPrincipal;
 import interfaz.tablas.modelos.InfraccionesTableModel;
 import interfaz.tablas.modelos.MultiLineaCellRendererEditor;
 import interfaz.tablas.modelos.SancionesTableModel;
+import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
@@ -42,6 +46,8 @@ public class PanelAmonestaciones extends PanelBaseAppPrincipal{
 	private InfraccionesTableModel modeloInfracciones;
 	private TableRowSorter<InfraccionesTableModel> ordenamientoInfracciones;
 	private JTable tablaInfracciones;
+	private LinkedList<SancionReporte> listaSanciones = Universidad.getInstancia().obtenerSancionesTodasFacultades();
+	private LinkedList<InfraccionReporte> listaInfracciones = Universidad.getInstancia().obtenerInfraccionesTodasFacultades();
 	
 	public PanelAmonestaciones(EsquemaColores e, JFrame padre) {
 		botonAyudaInfraccion = new JButton("");
@@ -149,6 +155,7 @@ public class PanelAmonestaciones extends PanelBaseAppPrincipal{
 		add(scrollPane_1);
 		
 		modeloSanciones = new SancionesTableModel();
+		modeloSanciones.actualizar(listaSanciones);
 		ordenamientoSanciones = new TableRowSorter<>(modeloSanciones);
 		ordenamientoSanciones.toggleSortOrder(0);
 		ordenamientoSanciones.setSortable(3, false);
@@ -166,6 +173,7 @@ public class PanelAmonestaciones extends PanelBaseAppPrincipal{
 		scrollPane_1.setViewportView(tablaSanciones);
 		
 		modeloInfracciones = new InfraccionesTableModel();
+		modeloInfracciones.actualizar(listaInfracciones);
 		ordenamientoInfracciones = new TableRowSorter<>(modeloInfracciones);
 		ordenamientoInfracciones.toggleSortOrder(0);
 		ordenamientoInfracciones.setSortable(4,false);

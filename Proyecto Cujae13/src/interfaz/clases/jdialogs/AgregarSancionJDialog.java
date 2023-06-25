@@ -21,9 +21,13 @@ import componentes.BotonAnimacion;
 import interfaz.clases.AppPrincipal;
 import interfaz.combobox.modelos.NombreFacultadComboBoxModel;
 import interfaz.combobox.modelos.TipoSancionComboBoxModel;
+import nucleo.Facultad;
+import nucleo.NombreFacultad;
 import nucleo.TipoSancion;
+import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
+import raven.toast.Notifications;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
 import utilidades.Auxiliares;
@@ -51,6 +55,7 @@ public class AgregarSancionJDialog extends JDialogGeneral{
 		sancion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		sancion.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				sancion.putClientProperty("JComponent.outline", null);
 				TipoSancion t = TipoSancion.fromString((String)sancion.getSelectedItem());
 				inf = t==null ? "Seleccione una sanción" : t.getDescripcion();
 				pLbl.setText("Puntaje a quitar: "+ ((t==null) ? "-" : t.getPuntaje()));
@@ -99,7 +104,7 @@ public class AgregarSancionJDialog extends JDialogGeneral{
 		facultad.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		facultad.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				
+				facultad.putClientProperty("JComponent.outline", null);
 			}
 		});
 		facultad.setModel(new NombreFacultadComboBoxModel());
@@ -142,8 +147,28 @@ public class AgregarSancionJDialog extends JDialogGeneral{
 		aceptar.setBackground(e.getBtnAceptar());
 		aceptar.setForeground(e.getBtnAceptarTxt());
 		aceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent ev) {
+				if(validarSancion()) {
+					String fac = (String)facultad.getSelectedItem();
+					String s = (String)sancion.getSelectedItem();
+					Facultad f = Universidad.getInstancia().buscarFacultad(NombreFacultad.fromString(fac));
+					f.agregarSancion(TipoSancion.fromString(s), descripcion.getText());
+					dispose();
+					Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.BOTTOM_RIGHT, 2500, "Se ha agregado la sanción correctamente");
+				}else {
+					Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+					MessageSinCancel m = new MessageSinCancel("Error", "Compruebe los datos de los campos señalados");
+					m.eventOK(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							GlassPanePopup.closePopupLast();
+							j.setVisible(true);
+						}
+					});
+					GlassPanePopup.showPopup(m, o);
+					j.setVisible(false);
+					mostrarErrorComponente();
+				}
 			}
 		});
 		aceptar.setFont(new Font("Roboto Medium", Font.PLAIN, 16));
@@ -169,4 +194,40 @@ public class AgregarSancionJDialog extends JDialogGeneral{
 		
 		
 	}
+	
+	public boolean validarSancion() {
+		boolean validada = true;
+		
+		if(sancion.getSelectedIndex() <= 0) {
+			validada = false;
+		}
+		
+		if(facultad.getSelectedIndex() <= 0) {
+			validada = false;
+		}
+		
+		return validada;
+	}
+	
+	public void mostrarErrorComponente() {
+		
+		if(sancion.getSelectedIndex() <= 0) {
+			sancion.putClientProperty("JComponent.outline", "error");
+		}
+		
+		if(facultad.getSelectedIndex() <= 0) {
+			facultad.putClientProperty("JComponent.outline", "error");
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

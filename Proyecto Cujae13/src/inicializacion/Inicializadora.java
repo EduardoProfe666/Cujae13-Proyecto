@@ -33,7 +33,6 @@ public final class Inicializadora {
 
 	public static void guardarDatosAplicacion() {
 		f.delete();
-		Universidad.getInstancia().destruirEstructurasReticulares();
 		
 		try {
 			RandomAccessFile r = new RandomAccessFile(f,"rw");

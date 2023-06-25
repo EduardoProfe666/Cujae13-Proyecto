@@ -19,4 +19,9 @@ public class SancionesFacultadTableModel extends ModeloPrincipalTableModel<Sanci
 		
 	}
 	
+	@Override
+	public boolean isCellEditable(int row, int column) { 
+		return column==2;
+	}
+	
 }

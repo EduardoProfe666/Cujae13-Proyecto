@@ -13,11 +13,16 @@ public class SancionesTableModel extends ModeloPrincipalTableModel<SancionReport
 
 	@Override
 	public void adicionar(SancionReporte s) {
-		this.addRow(new Object[] {s.getSancion().getFecha().format(DateTimeFormatter.ofPattern("hh:mm aa")),
+		this.addRow(new Object[] {s.getSancion().getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
 				s.getSancion().getTipo().toString(),
 				s.getFacultad(),
 				s.getSancion().getDescripcion()});
 		
+	}
+	
+	@Override
+	public boolean isCellEditable(int row, int column) { 
+		return column==3;
 	}
 	
 

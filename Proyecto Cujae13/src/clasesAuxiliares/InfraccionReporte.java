@@ -2,11 +2,11 @@ package clasesAuxiliares;
 
 import nucleo.Infraccion;
 
-public class InfraccionesReporteFacultad {
+public class InfraccionReporte {
 	private Infraccion infraccion;
 	private String deporte;
 	
-	public InfraccionesReporteFacultad(Infraccion infraccion, String deporte) {
+	public InfraccionReporte(Infraccion infraccion, String deporte) {
 		this.infraccion = infraccion;
 		this.deporte = deporte;
 	}

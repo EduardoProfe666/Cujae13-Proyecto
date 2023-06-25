@@ -5,7 +5,6 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 import clasesAuxiliares.EsquemaColores;
 import componentes.AvatarCircular;
@@ -35,7 +34,6 @@ public class Torneo extends JPanel{
 	public Torneo(BinaryTree<EventoFecha> torneo, JFrame padre, EsquemaColores e) {
 		BinaryTreeNode<EventoFecha> raiz = (BinaryTreeNode<EventoFecha>)torneo.getRoot();
 		
-		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(10, 128, 569, 436);
 		setBackground(Color.WHITE);
 		setLayout(null);

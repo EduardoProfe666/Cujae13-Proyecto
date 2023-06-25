@@ -29,9 +29,9 @@ public class Main {
 		
 		try {
 			//Provisional	
+			
 			Rellenadora.borrarDatos();
 			Rellenadora.rellenarDatos();
-			
 			
 			Inicializadora.inicializarAplicacion();
 			

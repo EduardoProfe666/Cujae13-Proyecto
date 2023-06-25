@@ -40,7 +40,7 @@ public class PanelInicioAdmin extends PanelBaseAppPrincipal{
 		tablaPosGeneral.setBounds(589, 128, 290, 436);
 		add(tablaPosGeneral);
 		
-		TarjetaReporte partidosPorResultados = new TarjetaReporte(e.getFondoBtnSF(), e.getBordeLbl(), "Partidos Por Resultados", "/interfaz/iconos/resultados.png", Universidad.getInstancia().getEventosPorResultados().size());
+		TarjetaReporte partidosPorResultados = new TarjetaReporte(e.getFondoBtnSF(), e.getBordeLbl(), "Partidos Por Resultados", "/interfaz/iconos/resultados.png", Universidad.getInstancia().cantDeportesPorResultado());
 		partidosPorResultados.setBounds(10, 149, 260, 180);
 		add(partidosPorResultados);
 		
@@ -48,7 +48,7 @@ public class PanelInicioAdmin extends PanelBaseAppPrincipal{
 		amonestaciones.setBounds(310, 149, 260, 180);
 		add(amonestaciones);
 		
-		TarjetaReporte DeportesActivos = new TarjetaReporte(e.getFondoBtnSF(), e.getBordeLbl(), "Deportes Activos", "/interfaz/iconos/deporteBlack.png", Universidad.getInstancia().getListadoDeportes().size());
+		TarjetaReporte DeportesActivos = new TarjetaReporte(e.getFondoBtnSF(), e.getBordeLbl(), "Deportes Activos", "/interfaz/iconos/deporteBlack.png", Universidad.getInstancia().cantDeportesActivos());
 		DeportesActivos.setBounds(161, 358, 260, 180);
 		add(DeportesActivos);
 		

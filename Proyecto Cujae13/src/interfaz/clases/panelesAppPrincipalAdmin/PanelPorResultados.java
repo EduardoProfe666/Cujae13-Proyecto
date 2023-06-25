@@ -27,6 +27,7 @@ import interfaz.combobox.modelos.DeporteComboBoxModel;
 import interfaz.combobox.modelos.NombreFacultadComboBoxModel;
 import interfaz.combobox.modelos.TipoEventoComboBoxModel;
 import interfaz.tablas.modelos.PartidosPorResultadosTableModel;
+import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
@@ -179,7 +180,7 @@ public class PanelPorResultados extends PanelBaseAppPrincipal{
 		add(scrollPane_1);
 		
 		modelo = new PartidosPorResultadosTableModel();
-		modelo.prueba();
+		modelo.actualizar(Universidad.getInstancia().obtenerEventosPorResultado());
 		ordenamiento = new TableRowSorter<PartidosPorResultadosTableModel>(modelo);
 		ordenamiento.toggleSortOrder(0);
 		

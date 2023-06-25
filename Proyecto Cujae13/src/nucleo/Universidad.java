@@ -16,7 +16,11 @@ import java.util.List;
 import java.util.Queue;
 
 import clasesAuxiliares.EstadisticasReporte;
-import clasesAuxiliares.InfraccionesReporteFacultad;
+import clasesAuxiliares.InfraccionReporte;
+import clasesAuxiliares.SancionReporte;
+import cu.edu.cujae.ceis.graph.LinkedGraphModificado;
+import cu.edu.cujae.ceis.graph.interfaces.ILinkedWeightedEdgeWeightedVertexNotDirectedGraph;
+import cu.edu.cujae.ceis.graph.vertex.Vertex;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.BreadthNode;
@@ -35,7 +39,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 	private Historia13Marzo historia;
 	private LocalDate fechaInicio;
 	private GeneralTree<Facultad> tablaPosiciones;
-	//private WeightedGraph<Localizacion> localizaciones;
+	private ILinkedWeightedEdgeWeightedVertexNotDirectedGraph<Localizacion, Boolean, Integer> localizaciones;
 
 	private static Universidad instancia;
 
@@ -80,7 +84,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		this.historia = historia;
 		this.fechaInicio = fechaInicio;
 		eventosPorResultados = new LinkedList<EventoDia>();
-		//localizaciones = GraphBuilders.makeSimpleWeightedGraph(false);
+		localizaciones = new LinkedGraphModificado<>();
 
 	}
 
@@ -99,7 +103,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 			this.fechaInicio = u.fechaInicio;
 			eventosPorResultados = u.getEventosPorResultados();
 			this.tablaPosiciones = u.tablaPosiciones;
-			//localizaciones = u.getLocalizaciones();
+			localizaciones = u.getLocalizaciones();
 		}
 	}
 
@@ -450,6 +454,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 	public void actualizar() {
 		actualizarEventosActivos();
+		actualizarLocalizaciones();
 	}
 
 	public LinkedList<String> nombresDeportes(){
@@ -566,8 +571,8 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		return infracciones;
 	}
 
-	public LinkedList<InfraccionesReporteFacultad> getListadoInfracciones(NombreFacultad f){
-		LinkedList<InfraccionesReporteFacultad> lista = new LinkedList<InfraccionesReporteFacultad>();
+	public LinkedList<InfraccionReporte> getListadoInfracciones(NombreFacultad f){
+		LinkedList<InfraccionReporte> lista = new LinkedList<InfraccionReporte>();
 
 		Facultad fac = buscarFacultad(f);
 
@@ -577,7 +582,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 			while(iter.hasNext()) {
 				Infraccion inf = iter.next();
 				if(inf.getNombreFacultad().equals(fac.getNombre())) {
-					InfraccionesReporteFacultad rep = new InfraccionesReporteFacultad(inf, listadoDeportes.get(i).getNombre());
+					InfraccionReporte rep = new InfraccionReporte(inf, listadoDeportes.get(i).getNombre());
 					lista.add(rep);
 				}
 			}
@@ -712,17 +717,6 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		return d;
 	}
 
-	public String buscarLocalizacion(Deporte d) {
-		return "Prueba";
-	}
-
-
-	/**
-	 * Metodo para garantizar el correcto guardado en memoria externa. 
-	 */
-	public void destruirEstructurasReticulares() {
-
-	}
 
 	/**
 	 * 
@@ -824,18 +818,140 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		}
 		return b;
 	}
+	
+	
+	public LinkedList<SancionReporte> obtenerSancionesTodasFacultades(){
+		LinkedList<SancionReporte> sanciones = new LinkedList<SancionReporte>();
+		
+		for(int i=0; i<listadoFacultades.size(); i++) {
+			LinkedList<Sancion> listaSanciones = listadoFacultades.get(i).getSanciones();
+			for(Sancion s: listaSanciones) {
+				SancionReporte sancion = new SancionReporte(s, listadoFacultades.get(i).getNombre());
+				sanciones.add(sancion);
+			}
+		}
+		
+		return sanciones;
+	}
 
-	/**
-	 * Retorna todas las localizaciones, agregando como peso si presenta deportes activos
-	 * @return
-	 */
-	//	public WeightedGraph<LocalizacionPeso> getLocalizacionesDeportesActivos() {
-	//		return null;
-	//	}
-	//	
-	//	public WeightedGraph<Localizacion> getLocalizaciones() {
-	//		return localizaciones;
-	//	}
+	public LinkedList<InfraccionReporte> obtenerInfraccionesTodasFacultades(){
+		LinkedList<InfraccionReporte> infracciones = new LinkedList<InfraccionReporte>();
+		
+		for(int i=0; i<listadoDeportes.size(); i++) {
+			LinkedList<Infraccion> listaInfracciones = listadoDeportes.get(i).getInfracciones();
+			for(Infraccion inf: listaInfracciones) {
+				InfraccionReporte reporte = new InfraccionReporte(inf, listadoDeportes.get(i).getNombre());
+				infracciones.add(reporte);	
+			}
+		}
+		
+		return infracciones;
+	}
+
+	public LinkedList<EventoDiaFinalizado> obtenerEventosFinalizados(){
+		LinkedList<EventoDiaFinalizado> eventos = new LinkedList<EventoDiaFinalizado>(eventosFinalizados);
+		return eventos;
+	}
+
+	public LinkedList<EventoDia> obtenerEventosPorResultado(){
+		LinkedList<EventoDia> eventos = new LinkedList<EventoDia>(eventosPorResultados);
+		
+		for(int i=0; i<eventos.size(); i++) {
+			LinkedList<Evento> listaEventos = eventos.get(i).getEventosDia();
+			Iterator<Evento> iter = listaEventos.iterator();
+			while(iter.hasNext()) {
+				if(iter.next().estaIndeterminado())
+					iter.remove();
+			}
+//			for(Evento e: listaEventos) {
+//				if(e.estaIndeterminado()) {
+//					listaEventos.remove(e);
+//				}
+//			}
+		}
+		
+		return eventos;
+	}
+
+	public ArrayList<String> obtenerDeporteEliminar(TipoDeporte t){
+		ArrayList<String> paraEliminar = new ArrayList<String>();
+		
+		if(t == TipoDeporte.DEPORTE_COLECTIVO) {
+			for(Deporte d: listadoDeportes) {
+				if(d.getTipoDeporte() == TipoDeporte.DEPORTE_INDIVIDUAL) {
+					paraEliminar.add(d.getNombre());
+				}
+			}
+		}else if(t == TipoDeporte.DEPORTE_INDIVIDUAL) {
+			for(Deporte d: listadoDeportes) {
+				if(d.getTipoDeporte() == TipoDeporte.DEPORTE_COLECTIVO) {
+					paraEliminar.add(d.getNombre());
+				}
+			}
+		}
+		
+		return paraEliminar;
+	}
+
+	public int cantDeportesActivos() {
+		int cont = 0;
+		
+		for(Deporte d: listadoDeportes) {
+			if(d.getEstado().equals(EstadoDeporte.EN_EJECUCION)) {
+				cont++;
+			}
+		}
+		
+		return cont;
+	}
+
+	public int cantDeportesPorResultado() {
+		int cont = 0;
+		
+		for(EventoDia e: eventosPorResultados) {
+			cont += e.getEventosDia().size();
+		}
+		
+		return cont;
+	}
+	
+	
+	
+	public ILinkedWeightedEdgeWeightedVertexNotDirectedGraph<Localizacion, Boolean, Integer> getLocalizaciones() {
+		actualizarLocalizaciones();
+		return this.localizaciones;
+	}
+	
+	private void actualizarLocalizaciones() {
+		
+	}
+	
+	public String buscarLocalizacion(Deporte d) {
+		String s = null;
+		
+		Iterator<Vertex<Localizacion>> iter = localizaciones.getVerticesList().iterator();
+		
+		while(iter.hasNext() && s==null) {
+			Localizacion l = iter.next().getInfo();
+			Iterator<Deporte> iterD = l.getDeportes().iterator();
+			while(iterD.hasNext() && s==null) {
+				if(iterD.next().getNombre().equals(d.getNombre()))
+					s = l.getNombre();
+			}
+		}
+		
+		return s;
+	}
+	
+	public LinkedList<Deporte> getDeportes(LinkedList<String> nombreDeportes) {
+		LinkedList<Deporte> listado = new LinkedList<Deporte>();
+		
+		for(String s : nombreDeportes) {
+			listado.add(buscarDeporte(s));
+		}
+		
+		return listado;
+	}
 
 
 

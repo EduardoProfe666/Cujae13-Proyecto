@@ -19,5 +19,10 @@ public class InfraccionesDeporteTableModel extends ModeloPrincipalTableModel<Inf
 				i.getDescripcion()});
 		
 	}
+	
+	@Override
+	public boolean isCellEditable(int row, int column) { 
+		return column==3;
+	}
 
 }
