@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class HistoricoFacultad implements Serializable,Comparable<HistoricoFacultad>{
 	private static final long serialVersionUID = 1L;
 	private Facultad facultad;
-	private int cantidadJuegos13Ganados;
+	private int puntajeHistorico;
 	
-	public HistoricoFacultad(Facultad facultad, int cantidadJuegos13Ganados) {
+	public HistoricoFacultad(Facultad facultad, int puntajeHistorico) {
 		super();
 		this.facultad = facultad;
-		this.cantidadJuegos13Ganados = cantidadJuegos13Ganados;
+		this.puntajeHistorico = puntajeHistorico;
 	}
 
 	public Facultad getFacultad() {
@@ -21,17 +21,17 @@ public class HistoricoFacultad implements Serializable,Comparable<HistoricoFacul
 		this.facultad = facultad;
 	}
 
-	public int getCantidadJuegos13Ganados() {
-		return cantidadJuegos13Ganados;
+	public int getPuntajeHistorico() {
+		return puntajeHistorico;
 	}
 
-	public void setCantidadJuegos13Ganados(int cantidadJuegos13Ganados) {
-		this.cantidadJuegos13Ganados = cantidadJuegos13Ganados;
+	public void setPuntajeHistorico(int puntajeHistorico) {
+		this.puntajeHistorico = puntajeHistorico;
 	}
 
 	@Override
 	public int compareTo(HistoricoFacultad o) {
-		return Integer.compare(cantidadJuegos13Ganados, o.cantidadJuegos13Ganados);
+		return Integer.compare(puntajeHistorico, o.puntajeHistorico);
 	}
 	
 	

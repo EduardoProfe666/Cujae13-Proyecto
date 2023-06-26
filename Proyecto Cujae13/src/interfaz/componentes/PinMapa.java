@@ -8,11 +8,13 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 import clasesAuxiliares.EsquemaColores;
+import cu.edu.cujae.ceis.graph.vertex.WeightedVertex;
 import interfaz.clases.AppPrincipal;
 import interfaz.clases.jdialogs.ElegirDeporteJDialog;
-import nucleo.LocalizacionPeso;
+import nucleo.Localizacion;
 import utilidades.Auxiliares;
 
 public class PinMapa extends JButton{
@@ -22,25 +24,23 @@ public class PinMapa extends JButton{
 	private int x;
 	private int y;
 
-	public PinMapa(EsquemaColores e, LocalizacionPeso l, JPanel parent, JFrame p) {
-		activo = l.getTieneDeportes();
-		x = l.getLocalizacion().getCoordenadaX();
-		y = l.getLocalizacion().getCoordenadaY();
+	public PinMapa(EsquemaColores e, WeightedVertex<Localizacion, Boolean> l, JPanel parent, JFrame p, JTabbedPane tab) {
+		activo = l.getWeight();
+		x = l.getInfo().getCoordenadaX();
+		y = l.getInfo().getCoordenadaY();
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setToolTipText(activo ? "Activa" : "No Activa" );
 		setContentAreaFilled(false);
 		setBorder(null);
-		setIcon(Auxiliares.ajustarImagen(new Dimension(30,30), AppPrincipal.class.getResource("/interfaz/iconos/" + (activo ? "pinBlack01.png" : "pinNoActivo01.png"))));
-		setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(30,30), AppPrincipal.class.getResource("/interfaz/iconos/" + (activo ? "pinBlack02.png" : "pinNoActivo02.png"))));
+		setIcon(Auxiliares.ajustarImagen(new Dimension(30,30), AppPrincipal.class.getResource("/interfaz/iconos/" + (activo ? "pinActivo01.png" : "pinBlack01.png"))));
+		setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(30,30), AppPrincipal.class.getResource("/interfaz/iconos/" + (activo ? "pinActivo02.png" : "pinBlack02.png"))));
 		setBounds(x, y, 30, 30);
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				if(activo) {
-					ElegirDeporteJDialog ventana = new ElegirDeporteJDialog(l.getLocalizacion().getNombre(), e, p, l.getLocalizacion().getDeportes());
-					ventana.setVisible(true);
-				}
+				ElegirDeporteJDialog ventana = new ElegirDeporteJDialog(l.getInfo().getNombre(), e, p, l.getInfo().getDeportes(),tab);
+				ventana.setVisible(true);
 			}
 			@Override
 			public void mouseEntered(MouseEvent x) {
@@ -53,7 +53,7 @@ public class PinMapa extends JButton{
 		});
 
 		Coord c = calcularCoordenadasPreview();
-		preview = new LocalizacionPreview(e, l.getLocalizacion().getNombre(), l.getLocalizacion().getDirUrlImagen(), activo, c.getX(), c.getY());
+		preview = new LocalizacionPreview(e, l.getInfo().getNombre(), l.getInfo().getDirUrlImagen(), activo, c.getX(), c.getY());
 		parent.add(preview);
 		preview.setVisible(false);
 

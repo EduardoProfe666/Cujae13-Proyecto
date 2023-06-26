@@ -26,7 +26,7 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 	private static final long serialVersionUID = 1L;
 
 	public TablaPosicionesTableModel(boolean historico) {
-		String s = historico ? "Cant. de Juegos Ganados" : "Puntaje" ;
+		String s = historico ? "Puntaje Histórico" : "Puntaje" ;
 		this.setColumnIdentifiers(new String[]{"Posición", "Facultad", s});
 	}
 
@@ -137,9 +137,9 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 		BinaryTreeNode<HistoricoFacultad> n = (BinaryTreeNode<HistoricoFacultad>)pos.getRoot();
 		BinaryTreeNode<HistoricoFacultad> nH = n.getRight();
 
-		f.add(new FacultadPos(n.getInfo().getFacultad().getNombre().toString(),n.getInfo().getCantidadJuegos13Ganados(),1));
+		f.add(new FacultadPos(n.getInfo().getFacultad().getNombre().toString(),n.getInfo().getPuntajeHistorico(),1));
 		while(nH!=null) {
-			f.add(new FacultadPos(nH.getInfo().getFacultad().getNombre().toString(),nH.getInfo().getCantidadJuegos13Ganados(),1));
+			f.add(new FacultadPos(nH.getInfo().getFacultad().getNombre().toString(),nH.getInfo().getPuntajeHistorico(),1));
 			nH = nH.getRight();
 		}
 
@@ -147,7 +147,7 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 		iter.next();
 		while(iter.hasNext()) {
 			BreadthNode<HistoricoFacultad> bn = iter.nextNodeWithLevel();
-			f.add(new FacultadPos(bn.getInfo().getFacultad().getNombre().toString(), bn.getInfo().getCantidadJuegos13Ganados(), bn.getLevel()+1));
+			f.add(new FacultadPos(bn.getInfo().getFacultad().getNombre().toString(), bn.getInfo().getPuntajeHistorico(), bn.getLevel()+1));
 		}
 
 		return f;

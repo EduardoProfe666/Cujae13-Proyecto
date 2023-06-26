@@ -11,6 +11,7 @@ import java.util.List;
 import clasesAuxiliares.UsuarioAdmin;
 import clasesAuxiliares.UsuarioEstudiante;
 import cu.edu.cujae.ceis.graph.interfaces.ILinkedWeightedEdgeWeightedVertexNotDirectedGraph;
+import nucleo.Deporte;
 import nucleo.Facultad;
 import nucleo.Historia13Marzo;
 import nucleo.HistoricoFacultad;
@@ -22,8 +23,6 @@ import nucleo.Localizacion;
 import nucleo.NombreFacultad;
 import nucleo.Sexo;
 import nucleo.TipoDeporte;
-import nucleo.TipoInfraccion;
-import nucleo.TipoSancion;
 import nucleo.Universidad;
 
 /**
@@ -82,9 +81,9 @@ public final class Rellenadora {
 		Facultad tele = new Facultad(NombreFacultad.TELECOMUNICACIONES, informacionTele);
 		
 		
-		List<HistoricoFacultad> historico = new LinkedList<HistoricoFacultad>(Arrays.asList(new HistoricoFacultad(info, 10),
-				new HistoricoFacultad(arq, 9), new HistoricoFacultad(aubi, 8), new HistoricoFacultad(civil, 7), new HistoricoFacultad(elect, 6), 
-				new HistoricoFacultad(indu, 5), new HistoricoFacultad(mec, 4), new HistoricoFacultad(quim, 3), new HistoricoFacultad(tele, 2)));
+		List<HistoricoFacultad> historico = new LinkedList<HistoricoFacultad>(Arrays.asList(new HistoricoFacultad(info, 40),
+				new HistoricoFacultad(arq, 0), new HistoricoFacultad(aubi, 0), new HistoricoFacultad(civil, 500), new HistoricoFacultad(elect, 650), 
+				new HistoricoFacultad(indu, 870), new HistoricoFacultad(mec, 160), new HistoricoFacultad(quim, 0), new HistoricoFacultad(tele, 110)));
 		
 		Universidad u = Universidad.getInstancia(new Historia13Marzo(historico,"Esta es la historia de los juegos 13 de marzo"),LocalDate.now().minusDays(20));
 		
@@ -139,49 +138,131 @@ public final class Rellenadora {
 		
 		ILinkedWeightedEdgeWeightedVertexNotDirectedGraph<Localizacion, Boolean, Integer> localizaciones = u.getLocalizaciones();
 		
-		Localizacion deder = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Bádminton"))), "Deder","/interfaz/imagenes/avatar_autenticacion.jpg",137,196);
-		Localizacion dojo = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Karate"))), "Dojo","/interfaz/imagenes/avatar_autenticacion.jpg",87,385);
-		Localizacion terrenoFutbol = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Fútbol"))), "Terreno de Fútbol","/interfaz/imagenes/avatar_autenticacion.jpg",780,154);
-		Localizacion canchasVolleyBall = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("VolleyBall"))), "Canchas de VolleyBall","/interfaz/imagenes/avatar_autenticacion.jpg",420,430);
+		Localizacion dojo = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Karate"))), "Dojo","/interfaz/imagenes/avatar_autenticacion.jpg",323,301);
 		
-		localizaciones.insertWVertex(deder, true);
+		Localizacion bajos19 = new Localizacion(new LinkedList<Deporte>(),"Bajos del Edificio 19 de Informática","/interfaz/imagenes/avatar_autenticacion.jpg",144,206);
+		Localizacion pistaAtletismo = new Localizacion(new LinkedList<Deporte>(),"Pista de Atletismo","/interfaz/imagenes/avatar_autenticacion.jpg",656,343);
+		Localizacion terrenoPelota = new Localizacion(new LinkedList<Deporte>(),"Terreno de Pelota","/interfaz/imagenes/avatar_autenticacion.jpg",558,427);
+		
+		Localizacion terrenoFutbol = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Fútbol"))), "Terreno de Fútbol","/interfaz/imagenes/avatar_autenticacion.jpg",455,450);
+		Localizacion canchasVolleyBall1 = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("VolleyBall"))), "Canchas de VolleyBall 1","/interfaz/imagenes/avatar_autenticacion.jpg",432,416);
+		
+		Localizacion canchasVolleyBall2 = new Localizacion(new LinkedList<Deporte>(),"Canchas de VolleyBall 2","/interfaz/imagenes/avatar_autenticacion.jpg",420,353);
+		Localizacion canchasBasketBall =  new Localizacion(new LinkedList<Deporte>(),"Canchas de BasketBall","/interfaz/imagenes/avatar_autenticacion.jpg",452,380);
+		Localizacion piscinaNatacion =  new Localizacion(new LinkedList<Deporte>(),"Piscina de Natación","/interfaz/imagenes/avatar_autenticacion.jpg",509,328);
+		
+		Localizacion deder = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Bádminton"))), "DEDER","/interfaz/imagenes/avatar_autenticacion.jpg",495,404);
+		
+		Localizacion localDeder = new Localizacion(new LinkedList<Deporte>(),"Local del DEDER","/interfaz/imagenes/avatar_autenticacion.jpg",495,439);
+		Localizacion bajosArquitectura = new Localizacion(new LinkedList<Deporte>(),"Bajos del Edificio de Arquitectura","/interfaz/imagenes/avatar_autenticacion.jpg",101,397);
+		
 		localizaciones.insertWVertex(dojo, true);
+		localizaciones.insertWVertex(bajos19, true);
+		localizaciones.insertWVertex(pistaAtletismo, true);
+		localizaciones.insertWVertex(terrenoPelota, true);
 		localizaciones.insertWVertex(terrenoFutbol, true);
-		localizaciones.insertWVertex(canchasVolleyBall, true);
+		localizaciones.insertWVertex(canchasVolleyBall1, true);
+		localizaciones.insertWVertex(canchasVolleyBall2, true);
+		localizaciones.insertWVertex(canchasBasketBall, true);
+		localizaciones.insertWVertex(piscinaNatacion, true);
+		localizaciones.insertWVertex(deder, true);
+		localizaciones.insertWVertex(localDeder, true);
+		localizaciones.insertWVertex(bajosArquitectura, true);
 		
-		localizaciones.insertWEdgeNDG(deder, dojo, 100);
-		localizaciones.insertWEdgeNDG(deder, terrenoFutbol, 200);
-		localizaciones.insertWEdgeNDG(deder, canchasVolleyBall, 210);
-		
-		localizaciones.insertWEdgeNDG(dojo, terrenoFutbol, 50);
-		localizaciones.insertWEdgeNDG(dojo, canchasVolleyBall, 75);
-		
-		localizaciones.insertWEdgeNDG(terrenoFutbol, canchasVolleyBall, 130);
-		
-		u.buscarDeporte("Fútbol").addInfraccion(TipoInfraccion.AGRESION_VERBAL, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "+
-				"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa", NombreFacultad.QUIMICA);
-		u.buscarDeporte("Bádminton").addInfraccion(TipoInfraccion.DECISIONES_ARBITRALES, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
-				+"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa", NombreFacultad.INDUSTRIAL);
-		
-		u.buscarFacultad(NombreFacultad.ELECTRICA).agregarSancion(TipoSancion.FRAUDE, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "+
-				"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa");
-		
-		u.buscarFacultad(NombreFacultad.INDUSTRIAL).agregarSancion(TipoSancion.INDISCIPLINA_GRAVE, "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "+
-				"aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa"
-				+ "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa");
+		inicializarDistancias(localizaciones);
 		
 		return u;
+	}
+	
+	private static void inicializarDistancias(ILinkedWeightedEdgeWeightedVertexNotDirectedGraph<Localizacion, Boolean, Integer> localizaciones) {
+		//Distancias de Dojo
+		localizaciones.insertWEdgeNDG(0, 1, 100);
+		localizaciones.insertWEdgeNDG(0, 2, 100);
+		localizaciones.insertWEdgeNDG(0, 3, 100);
+		localizaciones.insertWEdgeNDG(0, 4, 100);
+		localizaciones.insertWEdgeNDG(0, 5, 100);
+		localizaciones.insertWEdgeNDG(0, 6, 100);
+		localizaciones.insertWEdgeNDG(0, 7, 100);
+		localizaciones.insertWEdgeNDG(0, 8, 100);
+		localizaciones.insertWEdgeNDG(0, 9, 100);
+		localizaciones.insertWEdgeNDG(0, 10, 100);
+		localizaciones.insertWEdgeNDG(0, 11, 100);
+		
+		//Distancia de Bajos del 19 de Informática
+		localizaciones.insertWEdgeNDG(1, 2, 100);
+		localizaciones.insertWEdgeNDG(1, 3, 100);
+		localizaciones.insertWEdgeNDG(1, 4, 100);
+		localizaciones.insertWEdgeNDG(1, 5, 100);
+		localizaciones.insertWEdgeNDG(1, 6, 100);
+		localizaciones.insertWEdgeNDG(1, 7, 100);
+		localizaciones.insertWEdgeNDG(1, 8, 100);
+		localizaciones.insertWEdgeNDG(1, 9, 100);
+		localizaciones.insertWEdgeNDG(1, 10, 100);
+		localizaciones.insertWEdgeNDG(1, 11, 100);
+		
+		//Distancia de Pista de Atletismo
+		localizaciones.insertWEdgeNDG(2, 3, 100);
+		localizaciones.insertWEdgeNDG(2, 4, 100);
+		localizaciones.insertWEdgeNDG(2, 5, 100);
+		localizaciones.insertWEdgeNDG(2, 6, 100);
+		localizaciones.insertWEdgeNDG(2, 7, 100);
+		localizaciones.insertWEdgeNDG(2, 8, 100);
+		localizaciones.insertWEdgeNDG(2, 9, 100);
+		localizaciones.insertWEdgeNDG(2, 10, 100);
+		localizaciones.insertWEdgeNDG(2, 11, 100);
+		
+		//Distancia de Terreno de Pelota
+		localizaciones.insertWEdgeNDG(3, 4, 100);
+		localizaciones.insertWEdgeNDG(3, 5, 100);
+		localizaciones.insertWEdgeNDG(3, 6, 100);
+		localizaciones.insertWEdgeNDG(3, 7, 100);
+		localizaciones.insertWEdgeNDG(3, 8, 100);
+		localizaciones.insertWEdgeNDG(3, 9, 100);
+		localizaciones.insertWEdgeNDG(3, 10, 100);
+		localizaciones.insertWEdgeNDG(3, 11, 100);
+		
+		//Distancia de Terreno de Fútbol
+		localizaciones.insertWEdgeNDG(4, 5, 100);
+		localizaciones.insertWEdgeNDG(4, 6, 100);
+		localizaciones.insertWEdgeNDG(4, 7, 100);
+		localizaciones.insertWEdgeNDG(4, 8, 100);
+		localizaciones.insertWEdgeNDG(4, 9, 100);
+		localizaciones.insertWEdgeNDG(4, 10, 100);
+		localizaciones.insertWEdgeNDG(4, 11, 100);
+		
+		//Distancia de Canchas de VolleyBall 1
+		localizaciones.insertWEdgeNDG(5, 6, 100);
+		localizaciones.insertWEdgeNDG(5, 7, 100);
+		localizaciones.insertWEdgeNDG(5, 8, 100);
+		localizaciones.insertWEdgeNDG(5, 9, 100);
+		localizaciones.insertWEdgeNDG(5, 10, 100);
+		localizaciones.insertWEdgeNDG(5, 11, 100);
+		
+		//Distancia de Canchas de VolleyBall 2
+		localizaciones.insertWEdgeNDG(6, 7, 100);
+		localizaciones.insertWEdgeNDG(6, 8, 100);
+		localizaciones.insertWEdgeNDG(6, 9, 100);
+		localizaciones.insertWEdgeNDG(6, 10, 100);
+		localizaciones.insertWEdgeNDG(6, 11, 100);
+		
+		//Distancia de Canchas de BasketBall
+		localizaciones.insertWEdgeNDG(7, 8, 100);
+		localizaciones.insertWEdgeNDG(7, 9, 100);
+		localizaciones.insertWEdgeNDG(7, 10, 100);
+		localizaciones.insertWEdgeNDG(7, 11, 100);
+		
+		//Distancia de Piscina de Natación
+		localizaciones.insertWEdgeNDG(8, 9, 100);
+		localizaciones.insertWEdgeNDG(8, 10, 100);
+		localizaciones.insertWEdgeNDG(8, 11, 100);
+		
+		//Distancia de DEDER
+		localizaciones.insertWEdgeNDG(9, 10, 100);
+		localizaciones.insertWEdgeNDG(9, 11, 100);
+		
+		//Distancia de Local del DEDER
+		localizaciones.insertWEdgeNDG(10, 11, 100);
+		
 	}
 
 	private static Usuarios rellenarUsuarios() {

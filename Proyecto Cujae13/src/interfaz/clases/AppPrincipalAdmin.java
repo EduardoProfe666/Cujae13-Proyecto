@@ -502,6 +502,12 @@ public class AppPrincipalAdmin extends JFrame {
 	public static void actualizar() {
 		Universidad.getInstancia().actualizar();
 		Inicializadora.guardarDatosAplicacion();
+//		Universidad.destruirUniversidad();
+//		try {
+//			Inicializadora.inicializarAplicacion();
+//		} catch (Exception e1) {
+//			e1.printStackTrace();
+//		}
 		panelPrincipall.setComponentAt(0, new PanelInicioAdmin(e));
 		panelPrincipall.setComponentAt(1, new PanelAmonestaciones(e,instancia));
 		panelPrincipall.setComponentAt(2, new PanelPorResultados(e,instancia));

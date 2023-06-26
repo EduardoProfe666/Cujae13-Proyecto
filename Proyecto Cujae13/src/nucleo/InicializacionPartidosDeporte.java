@@ -16,7 +16,7 @@ public class InicializacionPartidosDeporte {
 	public InicializacionPartidosDeporte(Deporte d,Facultad facultadOct1, Facultad facultadOct2, ListadoFechaHora listado, List<Facultad> facultades) {
 		listadoPartidos = new ArrayList<>(8);
 		deporte = d;
-		EventoFecha oct = new EventoFecha(new Evento(d, facultadOct1, facultadOct2, listado.getFechaHora(1).getHora(), TipoEvento.OCTAVO),listado.getFechaHora(1).getFecha());
+		EventoFecha oct = new EventoFecha(new Evento(d, facultadOct1, facultadOct2, listado.getFechaHora(1).getHora(), TipoEvento.ELIMINATORIA),listado.getFechaHora(1).getFecha());
 		
 		List<Facultad> f = randomizarFacultades(facultades, facultadOct1, facultadOct2);
 		

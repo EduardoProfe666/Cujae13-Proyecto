@@ -30,15 +30,15 @@ public class Historia13Marzo implements Serializable{
 		tablaPosiciones.setRoot(new BinaryTreeNode<HistoricoFacultad>(iter.next()));
 		BinaryTreeNode<HistoricoFacultad> ultimo = ((BinaryTreeNode<HistoricoFacultad>)tablaPosiciones.getRoot());
 		BinaryTreeNode<HistoricoFacultad> padre = null;
-		int pUltimo = ultimo.getInfo().getCantidadJuegos13Ganados();
+		int pUltimo = ultimo.getInfo().getPuntajeHistorico();
 		
 		
 		while(iter.hasNext()) {
 			HistoricoFacultad d1 = iter.next();
 			BinaryTreeNode<HistoricoFacultad> n = new BinaryTreeNode<HistoricoFacultad>(d1);
-			if(pUltimo > d1.getCantidadJuegos13Ganados()) {
+			if(pUltimo > d1.getPuntajeHistorico()) {
 				tablaPosiciones.insertNode(n, ultimo);
-				pUltimo = d1.getCantidadJuegos13Ganados();
+				pUltimo = d1.getPuntajeHistorico();
 				padre = ultimo;
 				ultimo = n;
 			}
@@ -104,7 +104,7 @@ public class Historia13Marzo implements Serializable{
 			HistoricoFacultad f = iter.next();
 			if(f.getFacultad().getNombre().compareTo(n)==0) {
 				b=true;
-				f.setCantidadJuegos13Ganados(f.getCantidadJuegos13Ganados()+1);
+				f.setPuntajeHistorico(f.getPuntajeHistorico()+1);
 			}
 		}
 		

@@ -19,7 +19,6 @@ import clasesAuxiliares.EsquemaColores;
 import clasesAuxiliares.InfraccionReporte;
 import clasesAuxiliares.SancionReporte;
 import interfaz.clases.AppPrincipal;
-import interfaz.clases.AppPrincipalAdmin;
 import interfaz.clases.jdialogs.AgregarInfraccionJDialog;
 import interfaz.clases.jdialogs.AgregarSancionJDialog;
 import interfaz.clases.panelesAppPrincipal.PanelBaseAppPrincipal;
@@ -104,8 +103,6 @@ public class PanelAmonestaciones extends PanelBaseAppPrincipal{
 			public void actionPerformed(ActionEvent ev) {
 				AgregarInfraccionJDialog ventana = new AgregarInfraccionJDialog(e, padre);
 				ventana.setVisible(true);
-				
-				AppPrincipalAdmin.actualizar();
 			}
 		});
 		agregarInfraccion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -122,7 +119,6 @@ public class PanelAmonestaciones extends PanelBaseAppPrincipal{
 			public void actionPerformed(ActionEvent ev) {
 				AgregarSancionJDialog ventana = new AgregarSancionJDialog(e, padre);
 				ventana.setVisible(true);
-				AppPrincipalAdmin.actualizar();
 			}
 		});
 		agregarSancion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

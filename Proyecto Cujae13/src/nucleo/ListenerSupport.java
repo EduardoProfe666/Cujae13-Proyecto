@@ -21,7 +21,11 @@ public abstract class ListenerSupport implements Serializable{
 	}
 	
 	protected void firePropertyChange(String propertyName, int valor) {
-		pcs.firePropertyChange(propertyName, Integer.MIN_VALUE, valor);
+		pcs.firePropertyChange(propertyName, Integer.MIN_VALUE, valor);	
+	}
+	
+	public void imprimirListeners() {
+		System.out.println(pcs.getPropertyChangeListeners().length);
 	}
 
 }

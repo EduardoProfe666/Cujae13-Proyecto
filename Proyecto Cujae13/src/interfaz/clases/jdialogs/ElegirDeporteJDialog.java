@@ -13,12 +13,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.TableRowSorter;
 
 import clasesAuxiliares.EsquemaColores;
 import interfaz.clases.AppPrincipal;
+import interfaz.clases.panelesAppPrincipal.PanelDeporte;
 import interfaz.tablas.modelos.SeleccionDeporteTableModel;
 import nucleo.Deporte;
 import raven.glasspanepopup.GlassPanePopup;
@@ -34,7 +36,7 @@ public class ElegirDeporteJDialog extends JDialogGeneral{
 	private TableRowSorter<SeleccionDeporteTableModel> ordenamiento;
 	private JTable tabla;
 	
-	public ElegirDeporteJDialog(String localizacion, EsquemaColores e, JFrame padre, List<Deporte> deportes) {
+	public ElegirDeporteJDialog(String localizacion, EsquemaColores e, JFrame padre, final List<Deporte> deportes, JTabbedPane tab) {
 		super(localizacion, e, padre);
 		JDialogGeneral j = this;
 		botonAyudaSancion = new JButton("");
@@ -77,7 +79,7 @@ public class ElegirDeporteJDialog extends JDialogGeneral{
 		panelContenedor.add(sancionesLbl);
 		
 		modelo = new SeleccionDeporteTableModel();
-		modelo.prueba();
+		modelo.actualizar(deportes);
 		ordenamiento = new TableRowSorter<SeleccionDeporteTableModel>(modelo);
 		ordenamiento.toggleSortOrder(0);
 		
@@ -91,8 +93,9 @@ public class ElegirDeporteJDialog extends JDialogGeneral{
 			public void mouseClicked(MouseEvent x) {
 				if(x.getClickCount()==2) {
 					if(tabla.getSelectedRow()!=-1) {
-//						tab.setComponentAt(7, new PanelDeporte(padre, e, null));
-//						tab.setSelectedIndex(7);
+						tab.setComponentAt(7, new PanelDeporte(padre, e, deportes.get(tabla.getSelectedRow())));
+						tab.setSelectedIndex(7);
+						dispose();
 					}
 				}
 			}

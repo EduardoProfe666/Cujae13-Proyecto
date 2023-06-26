@@ -19,6 +19,7 @@ import javax.swing.border.MatteBorder;
 import clasesAuxiliares.EsquemaColores;
 import componentes.BotonAnimacion;
 import interfaz.clases.AppPrincipal;
+import interfaz.clases.AppPrincipalAdmin;
 import interfaz.combobox.modelos.NombreFacultadComboBoxModel;
 import interfaz.combobox.modelos.TipoSancionComboBoxModel;
 import nucleo.Facultad;
@@ -154,6 +155,7 @@ public class AgregarSancionJDialog extends JDialogGeneral{
 					Facultad f = Universidad.getInstancia().buscarFacultad(NombreFacultad.fromString(fac));
 					f.agregarSancion(TipoSancion.fromString(s), descripcion.getText());
 					dispose();
+					AppPrincipalAdmin.actualizar();
 					Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.BOTTOM_RIGHT, 2500, "Se ha agregado la sanción correctamente");
 				}else {
 					Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);

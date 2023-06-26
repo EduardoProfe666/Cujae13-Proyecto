@@ -29,8 +29,8 @@ public class PartidosJugadosAdminTableModel extends ModeloPrincipalTableModel<Ev
 					e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
 					e.getFechaFinalizado().format(DateTimeFormatter.ofPattern("hh:mm a")),
 					e.getDeporte().getNombre(),
-					e.getFacultadPrimera(),
-					e.getFacultadSegunda(),
+					e.getFacultadPrimera().getNombre(),
+					e.getFacultadSegunda().getNombre(),
 					e.getTipo(),
 					resultado});
 		}

@@ -1,15 +1,26 @@
 package interfaz.clases.panelesAppPrincipal;
 
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.MatteBorder;
 
 import clasesAuxiliares.EsquemaColores;
+import interfaz.clases.AppPrincipal;
 import interfaz.componentes.TablaPosiciones;
 import nucleo.Universidad;
+import raven.glasspanepopup.GlassPanePopup;
+import raven.glasspanepopup.Option;
+import sample.message.MessageSinCancel;
+import sample.message.OptionConstructor;
+import utilidades.Auxiliares;
 
 /**
  * JPanel que modela la pantalla de Historia de la aplicación.<br><br>
@@ -27,8 +38,36 @@ public class PanelHistoria extends PanelBaseAppPrincipal{
 	private JLabel historiaGeneralLbl;
 	private JLabel tablaPosLbl;
 	private JTextArea historia;
+	private JButton botonAyuda;
 	
 	public PanelHistoria(EsquemaColores e) {
+		
+		botonAyuda = new JButton("");
+		botonAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "La tabla de posiciones histórica presenta un sistema de puntuaciones que favorece a las facultades que obtuvieron primeros lugares por cada año de los Juegos 13 de Marzo, desde 1994 hasta 2022, de la siguiente manera:\n"
+						+ "-1er Lugar -> 50 puntos\n"
+						+ "-2do Lugar -> 20 puntos\n"
+						+ "-3er Lugar -> 10 puntos\n");
+				m.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						GlassPanePopup.closePopupLast();
+					}
+				});
+				GlassPanePopup.showPopup(m, o);
+				
+			}
+		});
+		botonAyuda.setToolTipText("Ayuda");
+		botonAyuda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		botonAyuda.setIcon(Auxiliares.ajustarImagen(new Dimension(28,28), AppPrincipal.class.getResource("/interfaz/iconos/help0.png")));
+		botonAyuda.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(28,28), AppPrincipal.class.getResource("/interfaz/iconos/help1.png")));
+		botonAyuda.setContentAreaFilled(false);
+		botonAyuda.setBorder(null);
+		botonAyuda.setBounds(367, 103, 28, 28);
+		add(botonAyuda);
 		
 		historiaGeneralLbl = new JLabel("Historia General de los Juegos 13 de Marzo");
 		historiaGeneralLbl.setFont(new Font("Roboto Medium", Font.PLAIN, 24));

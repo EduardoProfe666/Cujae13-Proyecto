@@ -1,7 +1,5 @@
 package nucleo;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,7 +7,6 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,8 +20,6 @@ import cu.edu.cujae.ceis.graph.interfaces.ILinkedWeightedEdgeWeightedVertexNotDi
 import cu.edu.cujae.ceis.graph.vertex.Vertex;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
-import cu.edu.cujae.ceis.tree.iterators.general.BreadthNode;
-import cu.edu.cujae.ceis.tree.iterators.general.InBreadthIteratorWithLevels;
 import cu.edu.cujae.ceis.tree.iterators.general.InDepthIterator;
 import definiciones.DefinicionesLogica;
 import nucleo.InicializacionPartidosDeporte.EventoFecha;
@@ -75,6 +70,10 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 			instancia = new Universidad(u);
 		return instancia;
 	}
+	
+//	public static void destruirUniversidad() {
+//		instancia = null;
+//	}
 
 	private Universidad(Historia13Marzo historia,LocalDate fechaInicio) {
 		eventosFinalizados = new ArrayDeque<EventoDiaFinalizado>();
@@ -121,33 +120,8 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		Deporte d = new Deporte(nombre, listadoFacultades, sexo, tipoDeporte);
 		listadoDeportes.add(d);
-		addListenerPuntaje(d);
-
-		d.addPropertyChangeListener("Deporte Terminado", new PropertyChangeListener() {
-			//Coger tabla de posiciones y agregar puntaje de acuerdo con el tipo de deporte
-			@Override
-			public void propertyChange(PropertyChangeEvent evt) {
-				HashMap<Integer,Integer> sistPuntuacion = d.getTipoDeporte().getSistemaPuntuacion();
-				GeneralTree<ClasificacionDeporte> pos = d.getTablaPosiciones();
-
-				BinaryTreeNode<ClasificacionDeporte> n = (BinaryTreeNode<ClasificacionDeporte>)pos.getRoot();
-				BinaryTreeNode<ClasificacionDeporte> nH = n.getRight();
-
-				n.getInfo().getFacultad().addPuntaje(sistPuntuacion.get(1));
-
-				while(nH!=null) {
-					nH.getInfo().getFacultad().addPuntaje(sistPuntuacion.get(1));
-					nH = nH.getRight();
-				}
-
-				InBreadthIteratorWithLevels<ClasificacionDeporte> iter = pos.inBreadthIteratorWithLevels();
-				iter.next();
-				while(iter.hasNext()) {
-					BreadthNode<ClasificacionDeporte> bn = iter.nextNodeWithLevel();
-					bn.getInfo().getFacultad().addPuntaje(sistPuntuacion.get( bn.getLevel()+1));
-				}
-			}
-		});
+		
+		d.addPropertyChangeListener("Deporte Terminado", new PropertyChangeListenerDeporteTerminadoSerializable(d));
 	}
 
 	public void inicializarTorneoDeporte(InicializacionPartidosDeporte inic) {
@@ -168,12 +142,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 	 * @param l
 	 */
 	private void addListenerPuntaje(ListenerSupport l) {
-		l.addPropertyChangeListener("Puntaje General Cambiado", new PropertyChangeListener() {
-			@Override
-			public void propertyChange(PropertyChangeEvent evt) {
-				construirTablaPosiciones();
-			}
-		});
+		l.addPropertyChangeListener("Puntaje General Cambiado", new PropertyChangeListenerPuntajeGeneralCambiadoSerializable());
 	}
 
 	/**
@@ -219,7 +188,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		return tablaPosiciones;
 	}	
 
-	private void construirTablaPosiciones() {
+	protected void construirTablaPosiciones() {
 		tablaPosiciones = new GeneralTree<Facultad>();
 		Collections.sort(listadoFacultades, Collections.reverseOrder());
 
@@ -857,12 +826,14 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		LinkedList<EventoDia> eventos = new LinkedList<EventoDia>(eventosPorResultados);
 		
 		for(int i=0; i<eventos.size(); i++) {
-			LinkedList<Evento> listaEventos = eventos.get(i).getEventosDia();
+			LinkedList<Evento> listaEventos = new LinkedList<Evento>(eventos.get(i).getEventosDia());
 			Iterator<Evento> iter = listaEventos.iterator();
 			while(iter.hasNext()) {
 				if(iter.next().estaIndeterminado())
 					iter.remove();
 			}
+			eventos.set(i, new EventoDia(eventos.get(i).getFechaDia()));
+			eventos.get(i).setEventosDia(listaEventos);
 //			for(Evento e: listaEventos) {
 //				if(e.estaIndeterminado()) {
 //					listaEventos.remove(e);
@@ -923,7 +894,33 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 	}
 	
 	private void actualizarLocalizaciones() {
+		List<Localizacion> loc = localizaciones();
+		boolean b = true;
 		
+		for(Localizacion l : loc) {
+			b=true;
+			if(l.getDeportes().isEmpty())
+				b = false;
+			else {
+				Iterator<Deporte> iter = l.getDeportes().iterator();
+				while(iter.hasNext()) {
+					b &= iter.next().tieneEventosHoy();
+				}
+			}
+			localizaciones.setWeightV(l, b);
+		}
+		
+	}
+	
+	private List<Localizacion> localizaciones() {
+		List<Localizacion> listado = new LinkedList<Localizacion>();
+		
+		Iterator<Vertex<Localizacion>> iter = localizaciones.getVerticesList().iterator();
+		while(iter.hasNext()) {
+			listado.add(iter.next().getInfo());
+		}
+		
+		return listado;
 	}
 	
 	public String buscarLocalizacion(Deporte d) {

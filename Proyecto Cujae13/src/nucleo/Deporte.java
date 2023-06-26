@@ -1,6 +1,7 @@
 package nucleo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -38,7 +39,7 @@ public class Deporte extends ListenerSupport implements Serializable{
 
 	public void inicializarTorneo(List<EventoFecha> eventosTorneo) {
 		if(this.eventosTorneo.isEmpty())
-			this.eventosTorneo = eventosTorneo;
+			this.eventosTorneo.addAll(eventosTorneo);
 	}
 
 	public String getNombre() {
@@ -164,6 +165,7 @@ public class Deporte extends ListenerSupport implements Serializable{
 	public BinaryTree<EventoFecha> getTorneo(){
 		if(torneo == null || torneo.isEmpty())
 			construirTorneo();
+		actualizarCompetidores();
 		return torneo;
 	}
 
@@ -191,7 +193,16 @@ public class Deporte extends ListenerSupport implements Serializable{
 	}
 
 	public int getIndiceEvento(EventoFecha e) {
-		return eventosTorneo.indexOf(e);
+		int indice = -1;
+		
+		Iterator<EventoFecha> iter = eventosTorneo.iterator();
+		while(iter.hasNext() && indice==-1) {
+			EventoFecha ef = iter.next();
+			if(ef.getFecha().equals(e.getFecha()) && ef.getEvento().equals(e.getEvento()))
+				indice = eventosTorneo.indexOf(ef);
+		}
+		
+		return indice;
 	}
 
 	public void setEventoResultado(EventoFecha e, int indiceEvento) {
@@ -206,13 +217,15 @@ public class Deporte extends ListenerSupport implements Serializable{
 	}
 
 	private void comprobarEstado() {
-		if(((BinaryTreeNode<EventoFecha>)torneo.getRoot()).getInfo().getEvento() instanceof EventoFinalizado) {
+		
+		if(((BinaryTreeNode<EventoFecha>)getTorneo().getRoot()).getInfo().getEvento() instanceof EventoFinalizado) {
 			estado = EstadoDeporte.FINALIZADO;
 			firePropertyChange("Deporte Terminado");
 		}
 	}
 
 	private void actualizarCompetidores() {
+		construirTorneo();
 		PosOrderIterator<EventoFecha> iter = torneo.posOrderIterator();
 
 		while(iter.hasNext()) {
@@ -222,14 +235,25 @@ public class Deporte extends ListenerSupport implements Serializable{
 				BinaryTreeNode<EventoFecha> nP = torneo.getFather(n);
 				if(nP!=null) {
 					Facultad f = ((EventoFinalizado)e).getResultado().getFacultadGanadora();
-					if(nP.getLeft().equals(n))
+					if(nP.getLeft()!=null && nP.getLeft().equals(n))
 						nP.getInfo().getEvento().setFacultadPrimera(f);
 					else
 						nP.getInfo().getEvento().setFacultadSegunda(f);
 				}
 			}
 		}
-
+		
+	}
+	
+	public boolean tieneEventosHoy() {
+		boolean b = false;
+		
+		Iterator<EventoFecha> iter = eventosTorneo.iterator();
+		while(iter.hasNext() && !b) {
+			b = iter.next().getFecha().equals(LocalDate.now());
+		}
+		
+		return b;
 	}
 
 }

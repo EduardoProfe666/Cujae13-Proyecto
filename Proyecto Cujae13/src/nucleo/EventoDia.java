@@ -20,4 +20,8 @@ public class EventoDia implements Serializable{
 	public LocalDate getFechaDia() {
 		return fechaDia;
 	}
+	
+	public void setEventosDia(LinkedList<Evento> eventos) {
+		this.eventosDia = new LinkedList<Evento>(eventos);
+	}
 }

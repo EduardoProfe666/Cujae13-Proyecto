@@ -488,7 +488,7 @@ public class AppPrincipal extends JFrame {
 		panelPrincipall = new JTabbedPane(JTabbedPane.TOP);
 		panelPrincipall.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		panelPrincipall.addTab("a", new PanelInicio(e,u.getFacultad()));
-		panelPrincipall.addTab("a", new PanelMapa(e,this));
+		panelPrincipall.addTab("a", new PanelMapa(e,this,panelPrincipall));
 		panelPrincipall.addTab("a", new PanelSeleccionFacultad(this,e,panelPrincipall));
 		panelPrincipall.addTab("a", new PanelSeleccionarDeporte(this,e,panelPrincipall));
 		panelPrincipall.addTab("a", new PanelCalendario(e));
@@ -516,7 +516,10 @@ public class AppPrincipal extends JFrame {
 					case 7:
 						botonAtras.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								panelPrincipall.setSelectedIndex(3);
+								if(opcionLbl.getText().equals("DEPORTE"))
+									panelPrincipall.setSelectedIndex(3);
+								else
+									panelPrincipall.setSelectedIndex(1);
 							}
 						});
 						break;
@@ -545,7 +548,7 @@ public class AppPrincipal extends JFrame {
 		Universidad.getInstancia().actualizar();
 		Inicializadora.guardarDatosAplicacion();
 		panelPrincipall.setComponentAt(0, new PanelInicio(e,u.getFacultad()));
-		panelPrincipall.setComponentAt(1, new PanelMapa(e,this));
+		panelPrincipall.setComponentAt(1, new PanelMapa(e,this,panelPrincipall));
 		panelPrincipall.setComponentAt(2, new PanelSeleccionFacultad(this,e,panelPrincipall));
 		panelPrincipall.setComponentAt(3, new PanelSeleccionarDeporte(this,e,panelPrincipall));
 		panelPrincipall.setComponentAt(4, new PanelCalendario(e));

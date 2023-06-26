@@ -19,6 +19,7 @@ import javax.swing.border.MatteBorder;
 import clasesAuxiliares.EsquemaColores;
 import componentes.BotonAnimacion;
 import interfaz.clases.AppPrincipal;
+import interfaz.clases.AppPrincipalAdmin;
 import interfaz.combobox.modelos.DeporteComboBoxModel;
 import interfaz.combobox.modelos.NombreFacultadComboBoxModel;
 import interfaz.combobox.modelos.TipoInfraccionComboBoxModel;
@@ -192,6 +193,7 @@ public class AgregarInfraccionJDialog extends JDialogGeneral{
 					String infrac = (String)infraccion.getSelectedItem();
 					dep.addInfraccion(TipoInfraccion.fromString(infrac), descripcion.getText(), NombreFacultad.fromString(fac));
 					dispose();
+					AppPrincipalAdmin.actualizar();
 					Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.BOTTOM_RIGHT, 2500, "Se ha agregado la infracción correctamente");
 				}else {
 					Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);

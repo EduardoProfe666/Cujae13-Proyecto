@@ -12,16 +12,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTabbedPane;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import clasesAuxiliares.EsquemaColores;
 import componentes.Imagen;
+import cu.edu.cujae.ceis.graph.vertex.Vertex;
+import cu.edu.cujae.ceis.graph.vertex.WeightedVertex;
 import interfaz.clases.AppPrincipal;
 import interfaz.clases.Autenticacion;
 import interfaz.componentes.PinMapa;
 import nucleo.Localizacion;
-import nucleo.LocalizacionPeso;
+import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
@@ -46,20 +49,22 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 	private Imagen mapa;
 	private boolean tipoMapa;
 	private LinkedList<PinMapa> pines;
+	private JTabbedPane tab;
 	
-	public PanelMapa(EsquemaColores e, JFrame padre) {
+	public PanelMapa(EsquemaColores e, JFrame padre, JTabbedPane tab) {
 		tipoMapa = true;
+		this.tab = tab;
 		
 		botonAyuda = new JButton();
 		botonAyuda.setToolTipText("Ayuda");
 		botonAyuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
 				Option o = OptionConstructor.constructOption(e.getPanelMovilBase(), false);
-				MessageSinCancel m = new MessageSinCancel("Ayuda", "Seleccione cualquiera de las localizaciones disponibles. Si no se encuentra "
-						+ "disponible la localización deseada, significa que no existen deportes activos en dicho lugar. Ponga el puntero "
-						+ "del mouse en la localización deseada para conocer el nombre del lugar y una previsualización del mismo en forma "
-						+ "de foto. Haga click en la localización deseada para poder acceder a la ventana de selección de deportes. Haga click en"
-						+ "el botón de capas para cambiar el tipo de mapa mostrado.");
+				MessageSinCancel m = new MessageSinCancel("Ayuda", "Seleccione cualquiera de las localizaciones disponibles. Si no está en color rojo "
+						+ "significa que la localización no presenta deportes con partidos activos hoy. Ponga el puntero del mouse en la localización "
+						+ "deseada para conocer el nombre del lugar y una previsualización del mismo en forma de fotografía. Haga click en la localización "
+						+ "deseada para poder acceder a la ventana de <Selección de Deportes>. Haga click en el botón de capas para cambiar el tipo de "
+						+ "mapa mostrado.");
 				m.eventOK(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -130,7 +135,7 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 		Iterator<PinMapa> iter = pines.iterator();
 		while(iter.hasNext()) {
 			PinMapa p = iter.next();
-			if(p.estaActiva()) {
+			if(!p.estaActiva()) {
 				p.setIcon(Auxiliares.ajustarImagen(new Dimension(30,30), AppPrincipal.class.getResource("/interfaz/iconos/pinWhite01.png")));
 				p.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(30,30), AppPrincipal.class.getResource("/interfaz/iconos/pinWhite02.png")));
 			}
@@ -150,7 +155,7 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 		Iterator<PinMapa> iter = pines.iterator();
 		while(iter.hasNext()) {
 			PinMapa p = iter.next();
-			if(p.estaActiva()) {
+			if(!p.estaActiva()) {
 				p.setIcon(Auxiliares.ajustarImagen(new Dimension(30,30), AppPrincipal.class.getResource("/interfaz/iconos/pinBlack01.png")));
 				p.setRolloverIcon(Auxiliares.ajustarImagen(new Dimension(30,30), AppPrincipal.class.getResource("/interfaz/iconos/pinBlack02.png")));
 			}
@@ -160,32 +165,26 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 	private void crearLocalizaciones(EsquemaColores e, JFrame p) {
 		pines = new LinkedList<>();
 		
-//		Universidad.getInstancia().getLocalizacionesDeportesActivos();
-		//PROVISIONAL
-//		WeightedGraph<LocalizacionPeso> l = GraphBuilders.makeSimpleWeightedGraph(false);
-//		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 1","/interfaz/imagenes/avatarAutenticacion.jpg",137,196),true));
-//		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 2","/interfaz/imagenes/avatarAutenticacion.jpg",87,385), false));
-//		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 3","/interfaz/imagenes/avatarAutenticacion.jpg",780,154), false));
-//		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 4","/interfaz/imagenes/avatarAutenticacion.jpg",774,464), false));
-//		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 5","/interfaz/imagenes/avatarAutenticacion.jpg",420,430), false));
-//		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 6","/interfaz/imagenes/avatarAutenticacion.jpg",442,121), false));
-//		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 7","/interfaz/imagenes/avatarAutenticacion.jpg",445,292), false));
-		
 		//SUPER PROVISIONAL
-		LinkedList<LocalizacionPeso> l = new LinkedList<LocalizacionPeso>();
-		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 1","/interfaz/imagenes/avatar_autenticacion.jpg",137,196),true));
-		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 2","/interfaz/imagenes/avatar_autenticacion.jpg",87,385), false));
-		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 3","/interfaz/imagenes/avatar_autenticacion.jpg",780,154), false));
-		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 4","/interfaz/imagenes/avatar_autenticacion.jpg",774,464), false));
-		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 5","/interfaz/imagenes/avatar_autenticacion.jpg",420,430), false));
-		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 6","/interfaz/imagenes/avatar_autenticacion.jpg",442,121), false));
-		l.add(new LocalizacionPeso(new Localizacion(null,"Localización 7","/interfaz/imagenes/avatar_autenticacion.jpg",445,290), false));
+//		LinkedList<LocalizacionPeso> l = new LinkedList<LocalizacionPeso>();
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Dojo","/interfaz/imagenes/avatar_autenticacion.jpg",323,301),true));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Bajos del Edificio 19 de Informática","/interfaz/imagenes/avatar_autenticacion.jpg",144,206), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Pista de Atletismo","/interfaz/imagenes/avatar_autenticacion.jpg",656,343), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Terreno de Pelota","/interfaz/imagenes/avatar_autenticacion.jpg",558,427), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Terreno de Fútbol","/interfaz/imagenes/avatar_autenticacion.jpg",455,450), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Canchas de VolleyBall 1","/interfaz/imagenes/avatar_autenticacion.jpg",432,416), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Canchas de VolleyBall 2","/interfaz/imagenes/avatar_autenticacion.jpg",420,353), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Canchas de BasketBall","/interfaz/imagenes/avatar_autenticacion.jpg",452,380), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Piscina de Natación","/interfaz/imagenes/avatar_autenticacion.jpg",509,328), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"DEDER","/interfaz/imagenes/avatar_autenticacion.jpg",495,404), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Local del DEDER","/interfaz/imagenes/avatar_autenticacion.jpg",495,439), false));
+//		l.add(new LocalizacionPeso(new Localizacion(null,"Bajos del Edificio de Arquitectura","/interfaz/imagenes/avatar_autenticacion.jpg",101,397), false));
 		
-		Iterator<LocalizacionPeso> iter = l.iterator();
+		Iterator<Vertex<Localizacion>> iter = Universidad.getInstancia().getLocalizaciones().getVerticesList().iterator();
 		
 		while(iter.hasNext()) {
-			LocalizacionPeso loc = iter.next();
-			pines.add(new PinMapa(e,loc,this,p));
+			WeightedVertex<Localizacion, Boolean> v = (WeightedVertex<Localizacion, Boolean>)iter.next();
+			pines.add(new PinMapa(e,v,this,p,tab));
 		}
 	}
 	

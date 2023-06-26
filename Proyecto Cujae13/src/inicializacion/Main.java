@@ -27,15 +27,14 @@ public class Main {
 		Locale.setDefault(new Locale("es"));
 		FlatLightLaf.setup();
 		
-		try {
-			//Provisional	
-			
+		try {	
 			Rellenadora.borrarDatos();
 			Rellenadora.rellenarDatos();
 			
 			Inicializadora.inicializarAplicacion();
 			
 			Universidad.getInstancia().actualizar();
+			
 			
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
