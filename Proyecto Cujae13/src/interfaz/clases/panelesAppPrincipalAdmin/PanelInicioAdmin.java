@@ -40,7 +40,7 @@ public class PanelInicioAdmin extends PanelBaseAppPrincipal{
 		tablaPosGeneral.setBounds(589, 128, 290, 436);
 		add(tablaPosGeneral);
 		
-		TarjetaReporte partidosPorResultados = new TarjetaReporte(e.getFondoBtnSF(), e.getBordeLbl(), "Partidos Por Resultados", "/interfaz/iconos/resultados.png", Universidad.getInstancia().cantDeportesPorResultado());
+		TarjetaReporte partidosPorResultados = new TarjetaReporte(e.getFondoBtnSF(), e.getBordeLbl(), "Partidos Por Resultados", "/interfaz/iconos/resultados.png", Universidad.getInstancia().cantPartidosPorResultado());
 		partidosPorResultados.setBounds(10, 149, 260, 180);
 		add(partidosPorResultados);
 		

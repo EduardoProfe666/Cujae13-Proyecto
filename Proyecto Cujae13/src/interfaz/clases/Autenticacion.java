@@ -98,8 +98,17 @@ public class Autenticacion extends JFrame {
 
 		panelSuperior = new PanelSuperior(DefinicionesInterfaz.COLOR_PANEL_SUPERIOR, this, "Autenticación");
 
-		imagen = new ImagenAnim(4500);
-		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/imagen13_1.jpg")));
+		imagen = new ImagenAnim(3500);
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a01.png")));
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a02.jpg")));
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a03.jpg")));
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a04.jpg")));
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a05.jpg")));
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a06.jpg")));
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a07.jpg")));
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a08.jpg")));
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a10.jpg")));
+		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a09.jpg")));
 		
 		imagen.iniciarAnimacion();
 		imagen.setBackground(Color.WHITE);

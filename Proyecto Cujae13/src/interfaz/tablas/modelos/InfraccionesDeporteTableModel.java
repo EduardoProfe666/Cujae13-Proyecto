@@ -13,7 +13,7 @@ public class InfraccionesDeporteTableModel extends ModeloPrincipalTableModel<Inf
 
 	@Override
 	public void adicionar(Infraccion i) {
-		this.addRow(new Object[] {i.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
+		this.addRow(new Object[] {i.getFecha().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
 				i.getTipo().toString(),
 				i.getNombreFacultad(),
 				i.getDescripcion()});

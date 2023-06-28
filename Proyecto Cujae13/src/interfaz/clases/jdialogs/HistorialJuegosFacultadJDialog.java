@@ -27,6 +27,7 @@ import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
+import utilidades.Archivador;
 import utilidades.Auxiliares;
 
 public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
@@ -94,6 +95,8 @@ public class HistorialJuegosFacultadJDialog extends JDialogGeneral{
 		modeloPartidosJugados.actualizar(Universidad.getInstancia().obtenerEventosDiaDado(f, Universidad.getInstancia().getFechaInicio()));
 		ordenamientoPartidosJugados = new TableRowSorter<>(modeloPartidosJugados);
 		ordenamientoPartidosJugados.toggleSortOrder(0);
+		ordenamientoPartidosJugados.setComparator(0, Archivador.getComparatorStringLocalTime());
+		ordenamientoPartidosJugados.setComparator(1, Archivador.getComparatorStringLocalTime());
 
 		tablaPartidosJugados = new JTable();
 		tablaPartidosJugados.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

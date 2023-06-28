@@ -12,7 +12,7 @@ package nucleo;
  */
 public enum NombreFacultad {
 	ARQUITECTURA("Arquitectura"), AUTOMATICA_BIOMEDICA("Automática/Biomédica"), CIVIL("Civil"), ELECTRICA("Eléctrica"), 
-	INDUSTRIAL("Industrial"), INFORMATICA("Informática"), MECANICA("Mecánica"), QUIMICA("Química"), TELECOMUNICACIONES("Telecomunicaciones");
+	INDUSTRIAL("Industrial"), INFORMATICA("Informática"), MECANICA("Mecánica"), QUIMICA("Química"), TELECOMUNICACIONES("Telecomunicaciones y Electrónica");
 	
 	private String nombre;
 	

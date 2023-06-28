@@ -1,6 +1,10 @@
 package utilidades;
 
 import java.awt.Color;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import clasesAuxiliares.EsquemaColores;
@@ -187,6 +191,30 @@ public final class Archivador {
 	
 	public static String getDirUrlMedalla(int pos) {
 		return archivadorMedallas.get(pos);
+	}
+	
+	public static Comparator<String> getComparatorStringLocalDate() {
+		return new Comparator<String>() {
+			
+			@Override
+			public int compare(String o1, String o2) {
+				LocalDate l1 = LocalDate.parse(o1, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				LocalDate l2 = LocalDate.parse(o2, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				return l1.compareTo(l2);
+			}
+		};
+	}
+	
+	public static Comparator<String> getComparatorStringLocalTime() {
+		return new Comparator<String>() {
+			
+			@Override
+			public int compare(String o1, String o2) {
+				LocalTime l1 = LocalTime.parse(o1, DateTimeFormatter.ofPattern("hh:mm a"));
+				LocalTime l2 = LocalTime.parse(o2, DateTimeFormatter.ofPattern("hh:mm a"));
+				return l1.compareTo(l2);
+			}
+		};
 	}
 	
 }

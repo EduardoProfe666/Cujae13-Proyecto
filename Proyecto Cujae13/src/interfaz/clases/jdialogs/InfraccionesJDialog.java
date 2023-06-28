@@ -23,6 +23,7 @@ import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
+import utilidades.Archivador;
 import utilidades.Auxiliares;
 
 public class InfraccionesJDialog extends JDialogGeneral{
@@ -79,6 +80,7 @@ public class InfraccionesJDialog extends JDialogGeneral{
 		ordenamientoInfracciones = new TableRowSorter<>(modeloInfracciones);
 		ordenamientoInfracciones.toggleSortOrder(0);
 		ordenamientoInfracciones.setSortable(3,false);
+		ordenamientoInfracciones.setComparator(0, Archivador.getComparatorStringLocalDate());
 		
 		tablaInfracciones = new JTable();
 		tablaInfracciones.setModel(modeloInfracciones);

@@ -9,66 +9,67 @@ public class Evento implements Serializable{
 	private Deporte deporte;
 	private Facultad facultadPrimera;
 	private Facultad facultadSegunda;
-	private LocalTime fecha;
+	private LocalTime horaInicio;
 	private long id;
 	
 	
 	public Evento(Deporte deporte, Facultad facultadPrimera, Facultad facultadSegunda, LocalTime fecha, TipoEvento tipo) {
 		super();
-		this.deporte = deporte;
+		setDeporte(deporte);
 		this.facultadPrimera = facultadPrimera;
 		this.facultadSegunda = facultadSegunda;
-		this.fecha = fecha;
+		setHoraInicio(fecha);
 		this.tipo = tipo;
 		this.id = System.nanoTime();
 	}
+	
 	public TipoEvento getTipo() {
 		return tipo;
 	}
-	public void setTipo(TipoEvento tipo) {
-		this.tipo = tipo;
-	}
+	
 	public Deporte getDeporte() {
 		return deporte;
 	}
-	public void setDeporte(Deporte deporte) {
-		this.deporte = deporte;
+	
+	private void setDeporte(Deporte deporte) {
+		if(deporte != null){
+			this.deporte = deporte;
+		} else {
+			throw new IllegalArgumentException("El deporte no debe estar vacío");
+		}
 	}
+	
 	public Facultad getFacultadPrimera() {
 		return facultadPrimera;
 	}
+	
 	public void setFacultadPrimera(Facultad facultadPrimera) {
 		this.facultadPrimera = facultadPrimera;
 	}
+	
 	public Facultad getFacultadSegunda() {
 		return facultadSegunda;
 	}
+	
 	public void setFacultadSegunda(Facultad facultadSegunda) {
 		this.facultadSegunda = facultadSegunda;
 	}
-	public LocalTime getFecha() {
-		return fecha;
+	
+	public LocalTime getHoraInicio() {
+		return horaInicio;
 	}
-	public void setFecha(LocalTime fecha) {
-		this.fecha = fecha;
+	
+	private void setHoraInicio(LocalTime fecha) {
+		if(fecha.isAfter(LocalTime.of(7, 59)) && fecha.isBefore(LocalTime.of(17, 1)) ){
+			this.horaInicio = fecha;
+		} else {
+			throw new IllegalArgumentException("La hora de inicio no es válida");
+		}
 	}
 	
 	public boolean estaIndeterminado() {
-		return facultadPrimera==null || facultadSegunda==null;
+		return facultadPrimera == null || facultadSegunda == null;
 	}
-	
-//	@Override
-//	public boolean equals(Object o) {
-//		boolean b = false;
-//		if(o instanceof Evento) {
-//			Evento e = (Evento) o;
-//			b = e.deporte.getNombre().equals(deporte.getNombre()) && 
-//					e.facultadPrimera !=null ? e.facultadPrimera.getNombre().equals(facultadPrimera.getNombre()) : facultadPrimera==null &&
-//					e.facultadSegunda !=null ? e.facultadSegunda.getNombre().equals(facultadSegunda.getNombre()) : facultadSegunda==null &&
-//					e.tipo.equals(tipo) && e.fecha.compareTo(fecha)==0;
-//		}
-//		return b;
-//	}
 	
 	@Override
 	public boolean equals(Object o) {

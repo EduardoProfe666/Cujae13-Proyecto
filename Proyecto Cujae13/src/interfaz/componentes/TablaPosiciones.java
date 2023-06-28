@@ -34,8 +34,6 @@ public class TablaPosiciones extends JScrollPane{
 		modelo = new TablaPosicionesTableModel(historico);
 		if(tablaPos!=null)
 			modelo.actualizar(tablaPos);
-		else
-			modelo.actualizar();
 		
 		
 		tabla = new JTable();

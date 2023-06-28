@@ -7,6 +7,7 @@ import java.util.List;
 
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
+import utilidades.Validaciones;
 
 public class Historia13Marzo implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -18,7 +19,7 @@ public class Historia13Marzo implements Serializable{
 		super();
 		this.tablaPosicionesHistorica = tablaPosicionesHistorica;
 		crearTablaPosiciones();
-		this.surgimiento = surgimiento;
+	    setSurgimiento(surgimiento);
 		
 	}
 	
@@ -48,26 +49,6 @@ public class Historia13Marzo implements Serializable{
 		}
 		
 	}
-
-//	private void crearTablaPosiciones() {
-//		tablaPosiciones = new GeneralTree<>();
-//		Collections.sort(tablaPosicionesHistorica, Collections.reverseOrder());
-//
-//		tablaPosiciones.setRoot(new BinaryTreeNode<HistoricoFacultad>(tablaPosicionesHistorica.get(0)));
-//
-//		for(int i=1; i<tablaPosicionesHistorica.size(); i++) {
-//			if(tablaPosicionesHistorica.get(i).getCantidadJuegos13Ganados() < tablaPosicionesHistorica.get(i-1).getCantidadJuegos13Ganados()) {
-//				BinaryTreeNode<HistoricoFacultad> padre = obtenerUltimoNodo(tablaPosiciones);
-//				BinaryTreeNode<HistoricoFacultad> n = new BinaryTreeNode<HistoricoFacultad>(tablaPosicionesHistorica.get(i));
-//				tablaPosiciones.insertNode(n, padre);
-//			}else if(tablaPosicionesHistorica.get(i).getCantidadJuegos13Ganados() == tablaPosicionesHistorica.get(i-1).getCantidadJuegos13Ganados()) {
-//				BinaryTreeNode<HistoricoFacultad> ultimoNodo = obtenerUltimoNodo(tablaPosiciones);
-//				BinaryTreeNode<HistoricoFacultad> padre = tablaPosiciones.getFather(ultimoNodo);
-//				BinaryTreeNode<HistoricoFacultad> n = new BinaryTreeNode<HistoricoFacultad>(tablaPosicionesHistorica.get(i));
-//				tablaPosiciones.insertNode(n, padre);
-//			}
-//		}
-//	}
 	
 	public GeneralTree<HistoricoFacultad> getTablaPosicionesHistorica(){
 		if(tablaPosiciones == null || tablaPosiciones.isEmpty())
@@ -75,40 +56,17 @@ public class Historia13Marzo implements Serializable{
 		return tablaPosiciones;
 	}
 
-//	private BinaryTreeNode<HistoricoFacultad> obtenerUltimoNodo(GeneralTree<HistoricoFacultad> arbol){
-//		BinaryTreeNode<HistoricoFacultad> ultimoNodo = new BinaryTreeNode<HistoricoFacultad>();
-//		InDepthIterator<HistoricoFacultad> iter = arbol.inDepthIterator();
-//
-//		while(iter.hasNext()) {
-//			BinaryTreeNode<HistoricoFacultad> n = iter.nextNode();
-//			if(n.getLeft() == null) {
-//				ultimoNodo = n;
-//			}
-//		}
-//		return ultimoNodo;
-//
-//	}
-
 	public String getSurgimiento() {
 		return surgimiento;
 	}
-	public void setSurgimiento(String surgimiento) {
-		this.surgimiento = surgimiento;
+	
+	private void setSurgimiento(String surgimiento) {
+		if(Validaciones.validarStringNoVacio(surgimiento)){
+			this.surgimiento = surgimiento;
+		} else {
+			throw new IllegalArgumentException("El surgimiento no debe estar vacío");
+		}
 	}
 	
-	public void addJuegoGanado(NombreFacultad n) {
-		boolean b = false;
-		Iterator<HistoricoFacultad> iter = tablaPosicionesHistorica.iterator();
-		
-		while(iter.hasNext() && !b) {
-			HistoricoFacultad f = iter.next();
-			if(f.getFacultad().getNombre().compareTo(n)==0) {
-				b=true;
-				f.setPuntajeHistorico(f.getPuntajeHistorico()+1);
-			}
-		}
-		
-		crearTablaPosiciones();
-	}
 
 }

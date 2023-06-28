@@ -9,6 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -50,12 +51,26 @@ public class AgregarResultadosJDialog extends JDialogGeneral{
 	
 	public AgregarResultadosJDialog(EsquemaColores e, JFrame padre, EventoFecha eventoPorResultado) {
 		super("Agregar Resultados", e, padre);
-		hora = LocalTime.now();
 		ev = eventoPorResultado;
 		JDialogGeneral j = this;
 		
+		LocalTime horaActual = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
 		
-		btnHorario = new BotonHorario(28, 28,LocalTime.now());
+		LocalTime horaMin = eventoPorResultado.getEvento().getHoraInicio().plusMinutes(15);
+		horaMin = LocalTime.of(horaMin.getHour(), horaMin.getMinute());
+		LocalTime horaMax;
+		if(eventoPorResultado.getFecha().equals(LocalDate.now())) {
+			if(horaActual.compareTo(LocalTime.of(19, 0))<=0)
+				horaMax = horaActual;
+			else
+				horaMax = LocalTime.of(19, 0);
+		}
+		else {
+			horaMax = LocalTime.of(19, 0);
+		}
+		hora = horaMin;
+		
+		btnHorario = new BotonHorario(28, 28,horaMin,horaMax);
 		TimePicker t = btnHorario.getHorario();
 		t.setForeground(e.getColorHorario());
 		btnHorario.setBounds(193, 244, 28, 28);
@@ -113,7 +128,7 @@ public class AgregarResultadosJDialog extends JDialogGeneral{
 		fecha.setBounds(10, 105, 334, 26);
 		panelContenedor.add(fecha);
 		
-		JLabel horaInicio = new JLabel("Hora Inicio: " + eventoPorResultado.getEvento().getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")));
+		JLabel horaInicio = new JLabel("Hora Inicio: " + eventoPorResultado.getEvento().getHoraInicio().format(DateTimeFormatter.ofPattern("hh:mm a")));
 		horaInicio.setBorder(new MatteBorder(0, 0, 2, 0, e.getBordeLbl()));
 		horaInicio.setFont(new Font("Roboto Medium", Font.PLAIN, 18));
 		horaInicio.setBounds(356, 105, 334, 26);

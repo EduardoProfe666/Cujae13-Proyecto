@@ -306,7 +306,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		while(iter.hasNext()) {
 			Evento evento = iter.next();
-			if(evento.getFecha().compareTo(LocalTime.now().minusMinutes(15))<=0) {
+			if(evento.getHoraInicio().compareTo(LocalTime.now().minusMinutes(15))<=0) {
 				e.getEventosDia().add(evento);
 				iter.remove();
 
@@ -698,7 +698,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 			throw new RuntimeException();
 
 		EventoFinalizado e = new EventoFinalizado(ef.getEvento().getDeporte(),
-				ef.getEvento().getFacultadPrimera(), ef.getEvento().getFacultadSegunda(), ef.getEvento().getFecha(),
+				ef.getEvento().getFacultadPrimera(), ef.getEvento().getFacultadSegunda(), ef.getEvento().getHoraInicio(),
 				horaFin, new ResultadoEvento(facultadGanadora == 1 ? ef.getEvento().getFacultadPrimera() : ef.getEvento().getFacultadSegunda()),
 				ef.getEvento().getTipo());
 
@@ -876,7 +876,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		return cont;
 	}
 
-	public int cantDeportesPorResultado() {
+	public int cantPartidosPorResultado() {
 		int cont = 0;
 		
 		for(EventoDia e: eventosPorResultados) {

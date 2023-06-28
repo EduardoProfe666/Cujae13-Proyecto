@@ -107,6 +107,7 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		modeloPartidosPorJugar.actualizar(Universidad.getInstancia().getListadoEventosDiaActual());
 		ordenamientoPartidosPorJugar = new TableRowSorter<>(modeloPartidosPorJugar);
 		ordenamientoPartidosPorJugar.toggleSortOrder(0);
+		ordenamientoPartidosPorJugar.setComparator(0, Archivador.getComparatorStringLocalTime());
 		
 		tablaPartidosJugar = new JTable();
 		tablaPartidosJugar.setModel(modeloPartidosPorJugar);
@@ -125,6 +126,8 @@ public class PanelInicio extends PanelBaseAppPrincipal{
 		modeloPartidosJugados.actualizar(Universidad.getInstancia().getListadoPartidosConResultadoDiaActual());
 		ordenamientoPartidosJugados = new TableRowSorter<>(modeloPartidosJugados);
 		ordenamientoPartidosJugados.toggleSortOrder(0);
+		ordenamientoPartidosJugados.setComparator(0, Archivador.getComparatorStringLocalTime());
+		ordenamientoPartidosJugados.setComparator(1, Archivador.getComparatorStringLocalTime());
 		
 		tablaPartidosJugados = new JTable();
 		tablaPartidosJugados.setModel(modeloPartidosJugados);

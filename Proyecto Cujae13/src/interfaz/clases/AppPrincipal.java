@@ -46,6 +46,7 @@ import interfaz.clases.panelesAppPrincipal.PanelMapa;
 import interfaz.clases.panelesAppPrincipal.PanelSeleccionFacultad;
 import interfaz.clases.panelesAppPrincipal.PanelSeleccionarDeporte;
 import interfaz.componentes.PanelSuperior;
+import nucleo.NombreFacultad;
 import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
@@ -120,6 +121,7 @@ public class AppPrincipal extends JFrame {
 			}
 		});
 		
+		
 		panelBase = new JPanel();
 		panelBase.setOpaque(false);
 		panelBase.setLayout(null);
@@ -135,7 +137,6 @@ public class AppPrincipal extends JFrame {
 		panelContenedor.setBackground(new Color(Color.LIGHT_GRAY.getRed(),Color.LIGHT_GRAY.getGreen(),Color.LIGHT_GRAY.getBlue(),180));
 		panelBase.add(panelContenedor);
 		panelContenedor.setLayout(null);
-		
 		
  	    panelSup = new PanelGradienteH(e.getPanelSupGradienteInicio(), e.getPanelSupGradienteFin());
 	 	//panelSup = new PanelGradienteH(Color.LIGHT_GRAY, Color.DARK_GRAY);
@@ -190,7 +191,7 @@ public class AppPrincipal extends JFrame {
 		nombreUsuariolbl.setBounds(31, 115, 238, 28);
 		panelUsuario.add(nombreUsuariolbl);
 		
-		tipoUsuariolbl = new JLabel((u.getFacultad().toString()));
+		tipoUsuariolbl = new JLabel( (u.getFacultad().toString()).equals(NombreFacultad.TELECOMUNICACIONES.toString()) ? "Telecomunicaciones" :  (u.getFacultad().toString()));
 		tipoUsuariolbl.setForeground(e.getPanelUsuarioTexto());
 		tipoUsuariolbl.setHorizontalAlignment(SwingConstants.CENTER);
 		tipoUsuariolbl.setFont(new Font("Roboto Medium", Font.PLAIN, 16));

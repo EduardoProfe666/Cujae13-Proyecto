@@ -26,8 +26,8 @@ public class PartidosJugadosAdminTableModel extends ModeloPrincipalTableModel<Ev
 			resultado = e.getResultado().getFacultadGanadora().getNombre().equals(e.getFacultadPrimera().getNombre()) ? e.getFacultadPrimera().getNombre().toString() : e.getFacultadSegunda().getNombre().toString();
 			
 			this.addRow(new Object[] {f,
-					e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
-					e.getFechaFinalizado().format(DateTimeFormatter.ofPattern("hh:mm a")),
+					e.getHoraInicio().format(DateTimeFormatter.ofPattern("hh:mm a")),
+					e.getHoraFin().format(DateTimeFormatter.ofPattern("hh:mm a")),
 					e.getDeporte().getNombre(),
 					e.getFacultadPrimera().getNombre(),
 					e.getFacultadSegunda().getNombre(),

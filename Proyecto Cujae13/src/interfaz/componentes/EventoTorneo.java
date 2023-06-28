@@ -31,9 +31,11 @@ public class EventoTorneo extends JPanel{
 	private String dirUrlFacultadGanadora;
 	private Color bordeAvatarFacultadGanadora;
 	private Color colorBorde;
+	private EventoFecha evento;
 	
 	public EventoTorneo(EsquemaColores e, JFrame padre, EventoFecha evento) {
 		colorBorde = Color.PINK;
+		this.evento = evento;
 		String dirUrlFacultadPrimera = "/interfaz/iconos/help0.png";
 		String dirUrlFacultadSegunda = "/interfaz/iconos/help0.png";
 		dirUrlFacultadGanadora = "/interfaz/iconos/help0.png";
@@ -137,5 +139,9 @@ public class EventoTorneo extends JPanel{
 	
 	public Color getColorBorde() {
 		return colorBorde;
+	}
+	
+	public EventoFecha getEvento() {
+		return evento;
 	}
 }

@@ -42,6 +42,7 @@ import interfaz.clases.panelesAppPrincipalAdmin.PanelAmonestaciones;
 import interfaz.clases.panelesAppPrincipalAdmin.PanelInicioAdmin;
 import interfaz.clases.panelesAppPrincipalAdmin.PanelPorResultados;
 import interfaz.clases.panelesAppPrincipalAdmin.PanelResultados;
+import interfaz.componentes.NotificacionPorResultados;
 import interfaz.componentes.PanelSuperior;
 import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
@@ -83,6 +84,7 @@ public class AppPrincipalAdmin extends JFrame {
 	private static EsquemaColores e;
 	private static AppPrincipalAdmin instancia;
 	private Timer temporizador;
+	private static NotificacionPorResultados notificacion;
 	
 	public static AppPrincipalAdmin getInstancia(UsuarioAdmin us) {
 		instancia = new AppPrincipalAdmin(us);
@@ -363,6 +365,12 @@ public class AppPrincipalAdmin extends JFrame {
 		textoFacultad.setBounds(126, 16, 164, 33);
 		opcionPorResultados.add(textoFacultad);
 		
+		notificacion = new NotificacionPorResultados();
+		notificacion.animar(Universidad.getInstancia().cantPartidosPorResultado()!=0);
+		notificacion.setFont(new Font("Roboto Black", Font.PLAIN, 15));
+		notificacion.setBounds(25, 28, 10, 10);
+		opcionPorResultados.add(notificacion);
+		
 		opcionResultados = new PanelOpcion();
 		opcionResultados.setBorder(new MatteBorder(0, 2, 0, 0, new Color(0,0,0)));
 		opcionResultados.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -456,36 +464,6 @@ public class AppPrincipalAdmin extends JFrame {
 		panelPrincipall.addTab("a", new PanelCalendario(e));
 		panelPrincipall.setBackground(Color.WHITE);
 		panelPrincipall.setBounds(300, 0, 900, 630); 
-//		panelPrincipall.addChangeListener(new ChangeListener() {
-//			public void stateChanged(ChangeEvent e) {
-//				int n = panelPrincipall.getSelectedIndex();
-//				
-//				if(n>5) {
-//					botonAtras.setVisible(true);
-//					botonAtras.removeActionListener(botonAtras.getActionListeners()[0]);
-//				}
-//				switch(n) {
-//					case 6:
-//						botonAtras.addActionListener(new ActionListener() {
-//							public void actionPerformed(ActionEvent e) {
-//								panelPrincipall.setSelectedIndex(2);
-//							}
-//						});
-//						break;
-//					case 7:
-//						botonAtras.addActionListener(new ActionListener() {
-//							public void actionPerformed(ActionEvent e) {
-//								panelPrincipall.setSelectedIndex(3);
-//							}
-//						});
-//						break;
-//					default:
-//						botonAtras.setVisible(false);
-//						break;
-//				}
-//				
-//			}
-//		});
 		panelContenedor.add(panelPrincipall);
 		
 		temporizador = new Timer(DefinicionesLogica.TEMP_ACTUALIZACION, new ActionListener() {
@@ -502,17 +480,12 @@ public class AppPrincipalAdmin extends JFrame {
 	public static void actualizar() {
 		Universidad.getInstancia().actualizar();
 		Inicializadora.guardarDatosAplicacion();
-//		Universidad.destruirUniversidad();
-//		try {
-//			Inicializadora.inicializarAplicacion();
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
 		panelPrincipall.setComponentAt(0, new PanelInicioAdmin(e));
 		panelPrincipall.setComponentAt(1, new PanelAmonestaciones(e,instancia));
 		panelPrincipall.setComponentAt(2, new PanelPorResultados(e,instancia));
 		panelPrincipall.setComponentAt(3, new PanelResultados(e));
 		panelPrincipall.setComponentAt(4, new PanelCalendario(e));
+		notificacion.animar(Universidad.getInstancia().cantPartidosPorResultado()!=0);
 	}
 }
 

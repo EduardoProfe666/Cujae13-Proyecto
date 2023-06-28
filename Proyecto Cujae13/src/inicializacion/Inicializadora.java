@@ -2,6 +2,7 @@ package inicializacion;
 
 import java.io.File;
 import java.io.RandomAccessFile;
+import java.time.LocalDate;
 
 import nucleo.Universidad;
 
@@ -24,11 +25,26 @@ public final class Inicializadora {
 			Datos d = (Datos)Convert.toObject(b);
 			Universidad.getInstancia(d.getUniversidad());
 			Usuarios.getInstancia(d.getUsuarios());
-
+			
+			l = r.readInt();
+			b = new byte[l];
+			r.read(b);
+			validarFecha((LocalDate)Convert.toObject(b));
+			
 			r.close();
+			
+			guardarDatosAplicacion();
 		}catch(Exception e) {
+			if(e.getMessage().equals("Viaje en el tiempo"))
+				throw new RuntimeException("Viaje en el tiempo");
+			
 			throw new RuntimeException("El fichero de datos del sistema está corrompido");
 		}
+	}
+	
+	public static void validarFecha(LocalDate l) {
+		if(l.compareTo(LocalDate.now())>0)
+			throw new RuntimeException("Viaje en el tiempo");
 	}
 
 	public static void guardarDatosAplicacion() {
@@ -39,6 +55,11 @@ public final class Inicializadora {
 
 			Datos d = new Datos(Universidad.getInstancia(),Usuarios.getInstancia());
 			byte[] b = Convert.toBytes(d);
+			r.writeInt(b.length);
+			r.write(b);
+			
+			//Validacion de Fecha
+			b = Convert.toBytes(LocalDate.now());
 			r.writeInt(b.length);
 			r.write(b);
 

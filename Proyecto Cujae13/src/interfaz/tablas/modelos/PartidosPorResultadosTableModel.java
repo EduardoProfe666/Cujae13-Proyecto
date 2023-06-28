@@ -23,7 +23,7 @@ public class PartidosPorResultadosTableModel extends ModeloPrincipalTableModel<E
 			Evento e = iter.next();
 			if(!e.estaIndeterminado())
 				this.addRow(new Object[] {f,
-						e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
+						e.getHoraInicio().format(DateTimeFormatter.ofPattern("hh:mm a")),
 						e.getDeporte().getNombre(),
 						e.getFacultadPrimera().getNombre(),
 						e.getFacultadSegunda().getNombre(),

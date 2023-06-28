@@ -9,16 +9,20 @@ public class HistoricoFacultad implements Serializable,Comparable<HistoricoFacul
 	
 	public HistoricoFacultad(Facultad facultad, int puntajeHistorico) {
 		super();
-		this.facultad = facultad;
-		this.puntajeHistorico = puntajeHistorico;
+		setFacultad(facultad);
+		setPuntajeHistorico(puntajeHistorico);
 	}
 
 	public Facultad getFacultad() {
 		return facultad;
 	}
 
-	public void setFacultad(Facultad facultad) {
-		this.facultad = facultad;
+	private void setFacultad(Facultad facultad) {
+		if(facultad != null){
+			this.facultad = facultad;
+		} else {
+			throw new IllegalArgumentException("La facultad no debe estar vacía");
+		}
 	}
 
 	public int getPuntajeHistorico() {
@@ -26,7 +30,11 @@ public class HistoricoFacultad implements Serializable,Comparable<HistoricoFacul
 	}
 
 	public void setPuntajeHistorico(int puntajeHistorico) {
-		this.puntajeHistorico = puntajeHistorico;
+		if(puntajeHistorico >= 0){
+			this.puntajeHistorico = puntajeHistorico;
+		} else {
+			throw new IllegalArgumentException("El puntaje histórico debe ser mayor o igual que cero");
+		}
 	}
 
 	@Override

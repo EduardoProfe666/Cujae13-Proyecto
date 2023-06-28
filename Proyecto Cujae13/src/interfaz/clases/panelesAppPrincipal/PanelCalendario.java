@@ -26,6 +26,7 @@ import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
+import utilidades.Archivador;
 import utilidades.Auxiliares;
 
 /**
@@ -95,6 +96,7 @@ public class PanelCalendario extends PanelBaseAppPrincipal{
 		modeloPartidosPorJugar = new PartidosPorJugarDiaTableModel();
 		ordenamientoPartidosPorJugar = new TableRowSorter<>(modeloPartidosPorJugar);
 		ordenamientoPartidosPorJugar.toggleSortOrder(0);
+		ordenamientoPartidosPorJugar.setComparator(0, Archivador.getComparatorStringLocalTime());
 		
 		tablaPartidosJugar = new JTable();
 		tablaPartidosJugar.setModel(modeloPartidosPorJugar);
@@ -107,7 +109,7 @@ public class PanelCalendario extends PanelBaseAppPrincipal{
 		scrollPane_1.setViewportView(tablaPartidosJugar);
 		
 		
-		calendario = new CalendarT(e.getColorCalendario(),e.getBordeLbl(), LocalDate.now(),Universidad.getInstancia().getFechaInicio().plusMonths(2));
+		calendario = new CalendarT(e.getColorCalendario(),e.getBordeLbl(), LocalDate.now(),Universidad.getInstancia().getFechaInicio().plusMonths(1).plusDays(15));
 		calendario.getDateChooser().addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 				fechaSeleccionada=calendario.getFechaSeleccionada();

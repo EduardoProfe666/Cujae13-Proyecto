@@ -13,7 +13,7 @@ public class SancionesTableModel extends ModeloPrincipalTableModel<SancionReport
 
 	@Override
 	public void adicionar(SancionReporte s) {
-		this.addRow(new Object[] {s.getSancion().getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
+		this.addRow(new Object[] {s.getSancion().getFecha().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
 				s.getSancion().getTipo().toString(),
 				s.getFacultad(),
 				s.getSancion().getDescripcion()});

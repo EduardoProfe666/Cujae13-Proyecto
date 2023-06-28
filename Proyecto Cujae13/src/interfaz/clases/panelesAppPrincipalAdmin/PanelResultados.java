@@ -14,6 +14,7 @@ import interfaz.clases.panelesAppPrincipal.PanelBaseAppPrincipal;
 import interfaz.tablas.modelos.PartidosJugadosAdminTableModel;
 import nucleo.EventoDiaFinalizado;
 import nucleo.Universidad;
+import utilidades.Archivador;
 
 public class PanelResultados extends PanelBaseAppPrincipal{
 
@@ -38,6 +39,9 @@ public class PanelResultados extends PanelBaseAppPrincipal{
 		modeloResultados.actualizar(Universidad.getInstancia().obtenerEventosFinalizados());
 		ordenamientoResultados = new TableRowSorter<>(modeloResultados);
 		ordenamientoResultados.toggleSortOrder(0);
+		ordenamientoResultados.setComparator(0, Archivador.getComparatorStringLocalDate());
+		ordenamientoResultados.setComparator(1, Archivador.getComparatorStringLocalTime());
+		ordenamientoResultados.setComparator(2, Archivador.getComparatorStringLocalTime());
 		modeloResultados.actualizar(new ArrayList<EventoDiaFinalizado>(Universidad.getInstancia().getEventosFinalizados()));
 		
 		tablaResultados = new JTable();

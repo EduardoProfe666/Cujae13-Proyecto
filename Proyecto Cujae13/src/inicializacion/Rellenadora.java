@@ -47,37 +47,150 @@ public final class Rellenadora {
 		byte[] b = Convert.toBytes(d);
 		r.writeInt(b.length);
 		r.write(b);
+		
+		//Validacion de Fecha
+		b = Convert.toBytes(LocalDate.now());
+		r.writeInt(b.length);
+		r.write(b);
 
 		r.close();
 	}
 
 	private static Universidad rellenarUniversidad() {
 
-		InfoGeneral informacionInfo = new InfoGeneral("Esta es la historia de Ingeniería Informática", "Estas son las curiosidades de Ingeniería Informática");
+		String hcInfo = "La Facultad de Ingeniería Informática en sus inicios se encontraba formando parte de"
+				+ " la Facultad de Ingeniería Industrial."+ " En el año 2007 surge como facultad independiente "
+			    + "creando su propia identidad.\r\n\n"
+				+ "Como todas las facultades, debía escoger un color y una mascota que la representara "
+				+ "en los Juegos 13 de Marzo; al no ser facultad fundadora no poseía muchas opciones de color por "
+				+ "lo que en un principio escogió el naranja, pero en el momento de impresión de los pullover para"
+				+ " los juegos este color no se encontraba disponible y tuvo la opción de ser cambiado al reconocido"
+				+ " y actual amarillo que representa a la facultad año tras año en el período deportivo. En cuanto"
+				+ " a la mascota se tuvo en cuenta que al proceder de la Facultad de Industrial se buscara un animal"
+				+ " relacionado con el delfín pero que fuera reconocido por ser más fuerte y poderoso, de ahí que "
+				+ "se seleccionara la orca, tipo de delfín conocido por ser el más grande y temido de su "
+				+ "especie.\r\n\n"
+				+ "Debido a la separación de las facultades, Informática perdió al entrenador y coreografía de la"
+				+ " tabla gimnástica que presentaba cada año y obtenía excelentes resultados, para su primera "
+				+ "presentación como facultad tuvo que empezar de cero en estos aspectos y es importante destacar"
+				+ " que, a pesar de todas las adversidades, ese año la facultad obtuvo el primer lugar en la"
+				+ " disciplina de la tabla gimnástica.\r\n\n"
+				+ "Otra curiosidad de Informática es que ninguna facultad tiene una jefa de administración que "
+				+ "radique en el edificio docente y lleve el control de la limpieza y organización de las aulas, "
+				+ "así como se ocupe amablemente de resolver cualquier situación a su alcance en relación con los "
+				+ "estudiantes y profesores.\r\n"
+				+ "Entre sus tradiciones está la realización de una caldosa para recibir a los estudiantes de nuevo"
+				+ " ingreso y motivarlos a la integración e identificación con la facultad.\r\n\n"
+				+ "Para finalizar, resaltar que varios de los dirigentes de la universidad son graduados de la "
+				+ "carrera de informática, entre ellos se encuentran: el rector Modesto, la vicerrectora Marta"
+				+ " Dunia y  \r\n"
+				+ "";
+		InfoGeneral informacionInfo = new InfoGeneral(hcInfo);
 		Facultad info = new Facultad(NombreFacultad.INFORMATICA, informacionInfo);
 		
-		InfoGeneral informacionArq = new InfoGeneral("Esta es la historia de Arquitectura", "Estas son las curiosidades de Arquitectura");
+		String hcArq = "La Facultad de Arquitectura se encuentra entre las facultades fundadoras de la universidad."
+				+ " Para la facultad la elección del color estuvo dada por el desarrollo de un evento que conllevó"
+				+ " a la impresión de pullover verdes, por lo que en los juegos al ya tener las prendas con ese "
+				+ "color decidieron tomarlo como el color representativo de la facultad. En cuanto a la mascota, "
+				+ "surge luego de seleccionado el color, al encontrarse en el dilema de buscar un animal que "
+				+ "luciera como buena combinación junto al verde, por lo que se determinó seleccionar el cocodrilo"
+				+ " que hoy los representa en cada Juego 13 de Marzo.\r\n\n"
+				+ "La facultad cuenta con la fiesta tradicional “La Vela” como recibimiento a los estudiantes de "
+				+ "nuevo ingreso, donde se realizan juegos de participación.\r\n\n"
+				+ "Es importante destacar que la Facultad de Arquitectura es la facultad con mayor cantidad de "
+				+ "Juegos 13 de Marzo perdidos, con un total de 20 juegos perdidos desde 1994.\r\n\n"
+				+ "";
+		InfoGeneral informacionArq = new InfoGeneral(hcArq);
 		Facultad arq = new Facultad(NombreFacultad.ARQUITECTURA, informacionArq);
 		
-		InfoGeneral informacionAut = new InfoGeneral("Esta es la historia de Ingeniería Automática", "Estas son las curiosidades de Ingeniería Automática");
+		String hcAut = "La Facultad de Ingeniería Automática en sus inicios se encontraba formando parte de la "
+				+ "Facultad de Ingeniería Eléctrica, en el año 2017 surge como facultad independiente creando su"
+				+ " propia identidad.\r\n\n"
+				+ "Como todas las facultades, debía escoger un color y una mascota que la representara en los Juegos"
+				+ " 13 de Marzo; al ser una de las últimas facultades fundadas sus opciones de color eran muy "
+				+ "limitadas, se encontraban entre el naranja, el rosado y el marrón; por lo que la decisión de "
+				+ "color fue finalmente naranja, por ser el más neutral. En cuanto a la mascota, fue escogida por "
+				+ "medio de encuestas y votaciones entre los estudiantes de la facultad que consideraron al tigre"
+				+ " como una buena opción para que los representara.\r\n\n"
+				+ "La Facultad de Automática tiene dentro a las carreras universitarias Ingeniería Automática e "
+				+ "Ingeniería Biomédica; así como 3 Técnicos Superiores:  Mantenimiento para el Turismo, Transporte "
+				+ "y Metrología.\r\n\n"
+				+ "";
+		InfoGeneral informacionAut = new InfoGeneral(hcAut);
 		Facultad aubi = new Facultad(NombreFacultad.AUTOMATICA_BIOMEDICA, informacionAut);
 		
-		InfoGeneral informacionCivil = new InfoGeneral("Esta es la historia de Ingeniería Civil", "Estas son las curiosidades de Ingeniería Civil");
+		String hcCiv = "Esta es la historia de Ingeniería Civil";
+		InfoGeneral informacionCivil = new InfoGeneral(hcCiv);
 		Facultad civil = new Facultad(NombreFacultad.CIVIL, informacionCivil);
 		
-		InfoGeneral informacionElect = new InfoGeneral("Esta es la historia de Ingeniería Eléctrica", "Estas son las curiosidades de Ingeniería Eléctrica");
+		String hcElec = "La Facultad de Ingeniería Eléctrica se encuentra entre las facultades fundadoras de la"
+				+ " universidad. En sus inicios estaba compuesta además por las hoy facultades de Automática y "
+				+ "Telecomunicaciones. \r\n\n"
+				+ "Al ser de las primeras facultades existentes contaron con más opciones en el momento de elegir "
+				+ "el color que lo representaría. La elección del azul estuvo dada porque este color era "
+				+ "representativo del sector eléctrico y se terminó asumiendo como representativo de la facultad."
+				+ " En cuanto a la mascota, buscaron un animal que los representara según las características "
+				+ "propias de la carrera, por lo que se terminó escogiendo la manta raya, conocida por emplear "
+				+ "descargas eléctricas para paralizar a sus presas o para defenderse.\r\n\n"
+				+ "Es importante destacar que la Facultad de Eléctrica se encuentra entre las 3 facultades con "
+				+ "mayor cantidad de Juegos 13 de Marzo ganados, principalmente antes de producirse la separación "
+				+ "de las facultades de Automática y Telecomunicaciones.\r\n\n"
+				+ "";
+		InfoGeneral informacionElect = new InfoGeneral(hcElec);
 		Facultad elect = new Facultad(NombreFacultad.ELECTRICA, informacionElect);
 		
-		InfoGeneral informacionIndu = new InfoGeneral("Esta es la historia de Ingeniería Industrial", "Estas son las curiosidades de Ingeniería Industrial");
+		String hcInd = "La Facultad de Ingeniería Industrial se encuentra entre las facultades fundadoras de la "
+				+ "universidad. En sus inicios estaba compuesta además por la hoy Facultad de Ingeniería"
+				+ " Informática.\r\n\n"
+				+ "Al ser de las primeras facultades existentes contaron con más opciones en el momento de elegir "
+				+ "el color. En un inicio su selección fue el azul pálido, pero cuando se imprimieron los colores"
+				+ " la tonalidad de azul que se encontraba disponible era la de eléctrica que terminó por quedarse"
+				+ " totalmente con el color y conllevó que Industrial tuviera que elegir el blanco, color que se"
+				+ " asumió como símbolo de inteligencia y sabiduría, en conjunto con la mascota, seleccionada "
+				+ "con esa misma concepción.\r\n\n"
+				+ "Es importante destacar que la facultad se encuentra posicionada como la facultad con mayor "
+				+ "cantidad de Juegos 13 de Marzo ganados a través de la historia, con un total de 12 juegos "
+				+ "ganados desde 1994.\r\n\n"
+				+ "";
+		InfoGeneral informacionIndu = new InfoGeneral(hcInd);
 		Facultad indu = new Facultad(NombreFacultad.INDUSTRIAL, informacionIndu);
 		
-		InfoGeneral informacionMec = new InfoGeneral("Esta es la historia de Ingeniería Mecánica", "Estas son las curiosidades de Ingeniería Mecánica");
+		String hcMec = "Esta es la historia de Ingeniería Mecánica";
+		InfoGeneral informacionMec = new InfoGeneral(hcMec);
 		Facultad mec = new Facultad(NombreFacultad.MECANICA, informacionMec);
 		
-		InfoGeneral informacionQuim = new InfoGeneral("Esta es la historia de Ingeniería Química", "Estas son las curiosidades de Ingeniería Química");
+		String hcQuim = "La facultad de Ingeniería Química se encuentra entre las facultades fundadoras de la"
+				+ " universidad. Su surgimiento está dado desde el año 1962, cuando la CUJAE era aún una facultad"
+				+ " más de la Universidad de La Habana, en ese entonces conocida como la Facultad de Tecnología."
+				+ " En sus inicios se dividía en 2 facultades: una estudiaba la Tecnología de los Procesos Químicos"
+				+ " y la Tecnología de los procesos Alimentarios y la otra la Tecnología de las Producciones "
+				+ "Azucareras.\r\n\n"
+				+ "Al encontrarse entre las primeras facultades existentes contó con más posibilidades a la hora "
+				+ "de elegir el color; su elección fue el color negro para representarla en los Juegos 13 de Marzo;"
+				+ " en correspondencia con este se escogió la mascota, teniendo en cuenta una buena combinación "
+				+ "entre estos.\r\n\n"
+				+ "La facultad comenzó a realizar en el año 2023 una fiesta tradicional propia a la que "
+				+ "denominaron “La Alquimia”.\r\n\n"
+				+ " Se debe destacar que la Facultad de Química es la 2da facultad con mayor cantidad de "
+				+ "Juegos 13 de Marzo perdidos, con un total de 8 juegos, solo superada por Arquitectura.\r\n\n"
+				+ "";
+		InfoGeneral informacionQuim = new InfoGeneral(hcQuim);
 		Facultad quim = new Facultad(NombreFacultad.QUIMICA, informacionQuim);
 		
-		InfoGeneral informacionTele = new InfoGeneral("Esta es la historia de Ingeniería en Telecomunicaciones", "Estas son las curiosidades de Ingeniería en Telecomunicaciones");
+		String hcTele = "La Facultad de Ingeniería en Telecomunicaciones y Electrónica en sus inicios se encontraba"
+				+ " formando parte de la Facultad de Ingeniería Eléctrica, en el año 2017 surge como facultad "
+				+ "independiente creando su propia identidad.\r\n\n"
+				+ "Como todas las facultades, debía escoger un color y una mascota que la representara en los "
+				+ "Juegos 13 de Marzo; al ser una de las últimas facultades fundadas sus opciones de color eran"
+				+ " muy limitadas y se terminó por seleccionar el color morado. En cuanto a la mascota, esta se "
+				+ "escogió mediante una encuesta que arrojó como finalistas al murciélago y al lobo, por sus "
+				+ "capacidades para comunicarse; resultando ganador el lobo que actualmente representa a la "
+				+ "facultad y que trajo consigo que los estudiantes pertenecientes a esta facultad se sientan y "
+				+ "traten como una manada desde su ingreso a la carrera.\r\n\n"
+				+ "La facultad, a pesar de ser fundada recientemente, ya cuenta con un Juego 13 de Marzo ganado y"
+				+ " excelentes lugares en las tablas de posiciones desde su surgimiento.\r\n\n"
+				+ "";
+		InfoGeneral informacionTele = new InfoGeneral(hcTele);
 		Facultad tele = new Facultad(NombreFacultad.TELECOMUNICACIONES, informacionTele);
 		
 		
@@ -85,7 +198,7 @@ public final class Rellenadora {
 				new HistoricoFacultad(arq, 0), new HistoricoFacultad(aubi, 0), new HistoricoFacultad(civil, 500), new HistoricoFacultad(elect, 650), 
 				new HistoricoFacultad(indu, 870), new HistoricoFacultad(mec, 160), new HistoricoFacultad(quim, 0), new HistoricoFacultad(tele, 110)));
 		
-		Universidad u = Universidad.getInstancia(new Historia13Marzo(historico,"Esta es la historia de los juegos 13 de marzo"),LocalDate.now().minusDays(20));
+		Universidad u = Universidad.getInstancia(new Historia13Marzo(historico,"Esta es la historia de los juegos 13 de marzo"),LocalDate.now().minusDays(10));
 		
 		//NO ALTERAR EL ORDEN POR LOS LISTENERS
 		
@@ -105,35 +218,35 @@ public final class Rellenadora {
 		u.addDeporte("VolleyBall", Sexo.MASCULINO,TipoDeporte.DEPORTE_COLECTIVO);
 		
 		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Bádminton"), quim, tele,
-				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(3), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(3), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(4), LocalTime.now())),
+				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(4), LocalTime.of(9, 0))),
 				u.getListadoFacultades()));
 		
 		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Karate"), aubi, civil,
-				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(3), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(3), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(4), LocalTime.now())),
+				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(4), LocalTime.of(9, 0))),
 				u.getListadoFacultades()));
 		
 		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("Fútbol"), indu, mec,
-				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(3), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(3), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(4), LocalTime.now())),
+				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(4), LocalTime.of(9, 0))),
 				u.getListadoFacultades()));
 		
 		u.inicializarTorneoDeporte(new InicializacionPartidosDeporte(u.buscarDeporte("VolleyBall"), arq, info,
-				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(2), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(3), LocalTime.now()), new FechaHora(LocalDate.now().plusDays(3), LocalTime.now()),
-						new FechaHora(LocalDate.now().plusDays(4), LocalTime.now())),
+				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(4), LocalTime.of(9, 0))),
 				u.getListadoFacultades()));
 		
 		ILinkedWeightedEdgeWeightedVertexNotDirectedGraph<Localizacion, Boolean, Integer> localizaciones = u.getLocalizaciones();
@@ -145,15 +258,15 @@ public final class Rellenadora {
 		Localizacion terrenoPelota = new Localizacion(new LinkedList<Deporte>(),"Terreno de Pelota","/interfaz/imagenes/avatar_autenticacion.jpg",558,427);
 		
 		Localizacion terrenoFutbol = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Fútbol"))), "Terreno de Fútbol","/interfaz/imagenes/avatar_autenticacion.jpg",455,450);
-		Localizacion canchasVolleyBall1 = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("VolleyBall"))), "Canchas de VolleyBall 1","/interfaz/imagenes/avatar_autenticacion.jpg",432,416);
+		Localizacion canchas = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("VolleyBall"))), "Canchas","/interfaz/imagenes/avatar_autenticacion.jpg",432,416);
 		
-		Localizacion canchasVolleyBall2 = new Localizacion(new LinkedList<Deporte>(),"Canchas de VolleyBall 2","/interfaz/imagenes/avatar_autenticacion.jpg",420,353);
+		Localizacion canchasBadminton = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Bádminton"))),"Canchas de Bádminton","/interfaz/imagenes/avatar_autenticacion.jpg",420,353);
 		Localizacion canchasBasketBall =  new Localizacion(new LinkedList<Deporte>(),"Canchas de BasketBall","/interfaz/imagenes/avatar_autenticacion.jpg",452,380);
 		Localizacion piscinaNatacion =  new Localizacion(new LinkedList<Deporte>(),"Piscina de Natación","/interfaz/imagenes/avatar_autenticacion.jpg",509,328);
 		
-		Localizacion deder = new Localizacion(u.getDeportes(new LinkedList<String>(Arrays.asList("Bádminton"))), "DEDER","/interfaz/imagenes/avatar_autenticacion.jpg",495,404);
+		Localizacion deder = new Localizacion(new LinkedList<Deporte>(), "DEDER","/interfaz/imagenes/avatar_autenticacion.jpg",495,404);
 		
-		Localizacion localDeder = new Localizacion(new LinkedList<Deporte>(),"Local del DEDER","/interfaz/imagenes/avatar_autenticacion.jpg",495,439);
+		Localizacion localDeder = new Localizacion(new LinkedList<Deporte>(),"Local de Ajedrez","/interfaz/imagenes/avatar_autenticacion.jpg",495,439);
 		Localizacion bajosArquitectura = new Localizacion(new LinkedList<Deporte>(),"Bajos del Edificio de Arquitectura","/interfaz/imagenes/avatar_autenticacion.jpg",101,397);
 		
 		localizaciones.insertWVertex(dojo, true);
@@ -161,8 +274,8 @@ public final class Rellenadora {
 		localizaciones.insertWVertex(pistaAtletismo, true);
 		localizaciones.insertWVertex(terrenoPelota, true);
 		localizaciones.insertWVertex(terrenoFutbol, true);
-		localizaciones.insertWVertex(canchasVolleyBall1, true);
-		localizaciones.insertWVertex(canchasVolleyBall2, true);
+		localizaciones.insertWVertex(canchas, true);
+		localizaciones.insertWVertex(canchasBadminton, true);
 		localizaciones.insertWVertex(canchasBasketBall, true);
 		localizaciones.insertWVertex(piscinaNatacion, true);
 		localizaciones.insertWVertex(deder, true);
@@ -175,94 +288,25 @@ public final class Rellenadora {
 	}
 	
 	private static void inicializarDistancias(ILinkedWeightedEdgeWeightedVertexNotDirectedGraph<Localizacion, Boolean, Integer> localizaciones) {
-		//Distancias de Dojo
-		localizaciones.insertWEdgeNDG(0, 1, 100);
-		localizaciones.insertWEdgeNDG(0, 2, 100);
-		localizaciones.insertWEdgeNDG(0, 3, 100);
-		localizaciones.insertWEdgeNDG(0, 4, 100);
-		localizaciones.insertWEdgeNDG(0, 5, 100);
-		localizaciones.insertWEdgeNDG(0, 6, 100);
-		localizaciones.insertWEdgeNDG(0, 7, 100);
-		localizaciones.insertWEdgeNDG(0, 8, 100);
-		localizaciones.insertWEdgeNDG(0, 9, 100);
-		localizaciones.insertWEdgeNDG(0, 10, 100);
-		localizaciones.insertWEdgeNDG(0, 11, 100);
+		localizaciones.insertWEdgeNDG(0, 1, 200); //Distancia del Dojo a Bajos del 19
+		localizaciones.insertWEdgeNDG(0, 6, 120); //Distancia del Dojo a Canchas de Badminton
+		localizaciones.insertWEdgeNDG(0, 8, 200); //Distancia del Dojo a Piscina
+		localizaciones.insertWEdgeNDG(0, 11,240); //Distancia del Dojo a Bajos de Arquitectura
 		
-		//Distancia de Bajos del 19 de Informática
-		localizaciones.insertWEdgeNDG(1, 2, 100);
-		localizaciones.insertWEdgeNDG(1, 3, 100);
-		localizaciones.insertWEdgeNDG(1, 4, 100);
-		localizaciones.insertWEdgeNDG(1, 5, 100);
-		localizaciones.insertWEdgeNDG(1, 6, 100);
-		localizaciones.insertWEdgeNDG(1, 7, 100);
-		localizaciones.insertWEdgeNDG(1, 8, 100);
-		localizaciones.insertWEdgeNDG(1, 9, 100);
-		localizaciones.insertWEdgeNDG(1, 10, 100);
-		localizaciones.insertWEdgeNDG(1, 11, 100);
+		localizaciones.insertWEdgeNDG(1, 11,200); //Distancia de Bajos del 19 a Bajos de Arquitectura 
+		localizaciones.insertWEdgeNDG(6, 7, 40); //Distancia de Canchas de Badminton a Canchas de Basket
+		localizaciones.insertWEdgeNDG(5, 7, 40); //Distancia de Canchas a Canchas de Basket
+		localizaciones.insertWEdgeNDG(5, 9, 60); //Distancia  de Canchas a DEDER
 		
-		//Distancia de Pista de Atletismo
-		localizaciones.insertWEdgeNDG(2, 3, 100);
-		localizaciones.insertWEdgeNDG(2, 4, 100);
-		localizaciones.insertWEdgeNDG(2, 5, 100);
-		localizaciones.insertWEdgeNDG(2, 6, 100);
-		localizaciones.insertWEdgeNDG(2, 7, 100);
-		localizaciones.insertWEdgeNDG(2, 8, 100);
-		localizaciones.insertWEdgeNDG(2, 9, 100);
-		localizaciones.insertWEdgeNDG(2, 10, 100);
-		localizaciones.insertWEdgeNDG(2, 11, 100);
+		localizaciones.insertWEdgeNDG(4, 5, 40); //Distancia de Terreno de Futbol a Canchas
+		localizaciones.insertWEdgeNDG(7, 9, 60); //Distancia de Canchas de Basket a DEDER
+		localizaciones.insertWEdgeNDG(4, 10, 40); //Distancia de Terreno de Futbol a Local de Ajedrez
+		localizaciones.insertWEdgeNDG(9, 10, 40); //Distancia de DEDER a Local de Ajedrez
 		
-		//Distancia de Terreno de Pelota
-		localizaciones.insertWEdgeNDG(3, 4, 100);
-		localizaciones.insertWEdgeNDG(3, 5, 100);
-		localizaciones.insertWEdgeNDG(3, 6, 100);
-		localizaciones.insertWEdgeNDG(3, 7, 100);
-		localizaciones.insertWEdgeNDG(3, 8, 100);
-		localizaciones.insertWEdgeNDG(3, 9, 100);
-		localizaciones.insertWEdgeNDG(3, 10, 100);
-		localizaciones.insertWEdgeNDG(3, 11, 100);
-		
-		//Distancia de Terreno de Fútbol
-		localizaciones.insertWEdgeNDG(4, 5, 100);
-		localizaciones.insertWEdgeNDG(4, 6, 100);
-		localizaciones.insertWEdgeNDG(4, 7, 100);
-		localizaciones.insertWEdgeNDG(4, 8, 100);
-		localizaciones.insertWEdgeNDG(4, 9, 100);
-		localizaciones.insertWEdgeNDG(4, 10, 100);
-		localizaciones.insertWEdgeNDG(4, 11, 100);
-		
-		//Distancia de Canchas de VolleyBall 1
-		localizaciones.insertWEdgeNDG(5, 6, 100);
-		localizaciones.insertWEdgeNDG(5, 7, 100);
-		localizaciones.insertWEdgeNDG(5, 8, 100);
-		localizaciones.insertWEdgeNDG(5, 9, 100);
-		localizaciones.insertWEdgeNDG(5, 10, 100);
-		localizaciones.insertWEdgeNDG(5, 11, 100);
-		
-		//Distancia de Canchas de VolleyBall 2
-		localizaciones.insertWEdgeNDG(6, 7, 100);
-		localizaciones.insertWEdgeNDG(6, 8, 100);
-		localizaciones.insertWEdgeNDG(6, 9, 100);
-		localizaciones.insertWEdgeNDG(6, 10, 100);
-		localizaciones.insertWEdgeNDG(6, 11, 100);
-		
-		//Distancia de Canchas de BasketBall
-		localizaciones.insertWEdgeNDG(7, 8, 100);
-		localizaciones.insertWEdgeNDG(7, 9, 100);
-		localizaciones.insertWEdgeNDG(7, 10, 100);
-		localizaciones.insertWEdgeNDG(7, 11, 100);
-		
-		//Distancia de Piscina de Natación
-		localizaciones.insertWEdgeNDG(8, 9, 100);
-		localizaciones.insertWEdgeNDG(8, 10, 100);
-		localizaciones.insertWEdgeNDG(8, 11, 100);
-		
-		//Distancia de DEDER
-		localizaciones.insertWEdgeNDG(9, 10, 100);
-		localizaciones.insertWEdgeNDG(9, 11, 100);
-		
-		//Distancia de Local del DEDER
-		localizaciones.insertWEdgeNDG(10, 11, 100);
-		
+		localizaciones.insertWEdgeNDG(3, 10, 80); //Distancia de Terreno de Pelota a Local de Ajedrez
+		localizaciones.insertWEdgeNDG(2, 3, 140); //Distancia de Pista de Atletismo a Terreno de Pelota
+		localizaciones.insertWEdgeNDG(2, 9, 180); //Distancia de Pista de Atletismo a DEDER
+		localizaciones.insertWEdgeNDG(8, 9, 80); //Distancia de Piscina de Natación a DEDER
 	}
 
 	private static Usuarios rellenarUsuarios() {

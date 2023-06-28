@@ -12,7 +12,6 @@ import cu.edu.cujae.ceis.tree.iterators.general.InBreadthIteratorWithLevels;
 import nucleo.ClasificacionDeporte;
 import nucleo.Facultad;
 import nucleo.HistoricoFacultad;
-import nucleo.NombreFacultad;
 
 /**
  * Modelo de tabla empleado en las tablas de posiciones de la aplicación.
@@ -62,44 +61,6 @@ public class TablaPosicionesTableModel extends DefaultTableModel{
 				adicionar(f);
 			}
 		}
-	}
-
-	/**
-	 * PROVISIONAL... SOLO PARA PRUEBAS
-	 * @param pos
-	 */
-	public void actualizar() {
-		this.eliminarFilas();
-		List<FacultadPos> lista = posicionesFacultades();
-		for(FacultadPos f : lista) {
-			adicionar(f);
-		}
-	}
-
-	/**
-	 * PROVISIONAL... SOLO PARA PRUEBAS
-	 * @param pos
-	 * @return
-	 */
-	private List<FacultadPos> posicionesFacultades() {
-		LinkedList<FacultadPos> f = new LinkedList<>();
-		LinkedList<Facultad> fac = new LinkedList<>();
-		
-		fac.add(new Facultad(NombreFacultad.INFORMATICA, null));
-		fac.add(new Facultad(NombreFacultad.TELECOMUNICACIONES, null));
-		fac.add(new Facultad(NombreFacultad.ARQUITECTURA, null));
-		fac.add(new Facultad(NombreFacultad.QUIMICA, null));
-		fac.add(new Facultad(NombreFacultad.AUTOMATICA_BIOMEDICA, null));
-		fac.add(new Facultad(NombreFacultad.CIVIL, null));
-		fac.add(new Facultad(NombreFacultad.ELECTRICA, null));
-		fac.add(new Facultad(NombreFacultad.INDUSTRIAL, null));
-		fac.add(new Facultad(NombreFacultad.MECANICA, null));
-		
-		for(int i=0;i<9;i++) {
-			f.add(new FacultadPos(fac.get(i).getNombre().toString(), fac.get(i).getPuntaje(), i+1));
-		}
-
-		return f;
 	}
 
 	public void adicionar(FacultadPos f) {

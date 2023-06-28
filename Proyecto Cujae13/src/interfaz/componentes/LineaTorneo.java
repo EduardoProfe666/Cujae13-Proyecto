@@ -74,6 +74,7 @@ public class LineaTorneo extends JComponent{
 		g2.setColor(color);
 		g2.setStroke(new BasicStroke(grosor,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 		
+		
 		int x1 = 0;
 		int y1 = 0;
 		int x2 = 0;

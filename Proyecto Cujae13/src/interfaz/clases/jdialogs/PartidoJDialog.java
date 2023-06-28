@@ -107,7 +107,7 @@ public class PartidoJDialog extends JDialogGeneral{
 	
 	private String obtenerHoraInicio() {
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm a");
-		LocalTime hora = evento.getEvento().getFecha();
+		LocalTime hora = evento.getEvento().getHoraInicio();
 		
 		return hora.format(formato);
 	}
@@ -119,7 +119,7 @@ public class PartidoJDialog extends JDialogGeneral{
 		
 		if(e instanceof EventoFinalizado) {
 			DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm a");
-			LocalTime hora = ((EventoFinalizado)e).getFechaFinalizado();
+			LocalTime hora = ((EventoFinalizado)e).getHoraFin();
 			horaFin = hora.format(formato);
 		}
 		

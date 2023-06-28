@@ -158,6 +158,7 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		modeloPartidosPorJugar.actualizar(Universidad.getInstancia().getListadoEventosDiaActual());
 		ordenamientoPartidosPorJugar = new TableRowSorter<>(modeloPartidosPorJugar);
 		ordenamientoPartidosPorJugar.toggleSortOrder(0);
+		ordenamientoPartidosPorJugar.setComparator(0, Archivador.getComparatorStringLocalTime());
 		
 		tablaPartidosJugar = new JTable();
 		tablaPartidosJugar.setModel(modeloPartidosPorJugar);
@@ -176,6 +177,8 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 		modeloPartidosJugados.actualizar(Universidad.getInstancia().getListadoPartidosConResultadoDiaActual());
 		ordenamientoPartidosJugados = new TableRowSorter<>(modeloPartidosJugados);
 		ordenamientoPartidosJugados.toggleSortOrder(0);
+		ordenamientoPartidosJugados.setComparator(0, Archivador.getComparatorStringLocalTime());
+		ordenamientoPartidosJugados.setComparator(1, Archivador.getComparatorStringLocalTime());
 		
 		tablaPartidosJugados = new JTable();
 		tablaPartidosJugados.setModel(modeloPartidosJugados);
@@ -217,7 +220,7 @@ public class PanelFacultad extends PanelBaseAppPrincipal{
 	
 	private int xAvatar(String nombreFacultad) {
 		int x = 10+15;
-		String modelo1 = "IitrlT";
+		String modelo1 = "IitrlT ó";
 		String modelo2 = "AmBEM";
 		
 		for(Character c : nombreFacultad.toCharArray()) {

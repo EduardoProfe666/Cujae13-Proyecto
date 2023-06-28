@@ -46,6 +46,7 @@ import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
+import utilidades.Archivador;
 import utilidades.Auxiliares;
 import utilidades.BuscadorPorResultados;
 
@@ -255,6 +256,8 @@ public class PanelPorResultados extends PanelBaseAppPrincipal{
 		modelo.actualizar(partidosPorResultados);
 		ordenamiento = new TableRowSorter<PartidosPorResultadosTableModel>(modelo);
 		ordenamiento.toggleSortOrder(0);
+		ordenamiento.setComparator(0, Archivador.getComparatorStringLocalDate());
+		ordenamiento.setComparator(1, Archivador.getComparatorStringLocalTime());
 		
 		tablaPartidosPorResultados = new JTable();
 		tablaPartidosPorResultados.addMouseListener(new MouseAdapter() {

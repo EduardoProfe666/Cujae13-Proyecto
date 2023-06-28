@@ -25,6 +25,7 @@ import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
+import utilidades.Archivador;
 import utilidades.Auxiliares;
 
 public class AmonestacionesFacultadJDialog extends JDialogGeneral{
@@ -119,6 +120,7 @@ public class AmonestacionesFacultadJDialog extends JDialogGeneral{
 		modeloSanciones.actualizar(Universidad.getInstancia().buscarFacultad(f).getSanciones());
 		ordenamientoSanciones = new TableRowSorter<>(modeloSanciones);
 		ordenamientoSanciones.toggleSortOrder(0);
+		ordenamientoSanciones.setComparator(0, Archivador.getComparatorStringLocalDate());
 		ordenamientoSanciones.setSortable(2, false);
 		
 		tablaSanciones = new JTable();
@@ -138,6 +140,7 @@ public class AmonestacionesFacultadJDialog extends JDialogGeneral{
 		modeloInfracciones.actualizar(Universidad.getInstancia().getListadoInfracciones(f));
 		ordenamientoInfracciones = new TableRowSorter<>(modeloInfracciones);
 		ordenamientoInfracciones.toggleSortOrder(0);
+		ordenamientoInfracciones.setComparator(0, Archivador.getComparatorStringLocalDate());
 		ordenamientoInfracciones.setSortable(3,false);
 		
 		tablaInfracciones = new JTable();

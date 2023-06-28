@@ -2,32 +2,26 @@ package nucleo;
 
 import java.io.Serializable;
 
+import utilidades.Validaciones;
+
 public class InfoGeneral implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private String historia;
-	private String curiosidades;
+	private String historiaYCuriosidades;
 	
-	public InfoGeneral(String historia, String curiosidades) {
-		setHistoria(historia);
-		setCuriosidades(curiosidades);
+	public InfoGeneral(String historiaCuriosidades) {
+		setHistoriaYCuriosidades(historiaCuriosidades);
 	}
 	
-	public String getHistoria() {
-		return historia;
-	}
-	public void setHistoria(String historia) {
-		if(historia == null)
-			throw new IllegalArgumentException();
-		this.historia = historia;
-	}
-	public String getCuriosidades() {
-		return curiosidades;
-	}
-	public void setCuriosidades(String curiosidades) {
-		if(curiosidades==null)
-			throw new IllegalArgumentException();
-		this.curiosidades = curiosidades;
+	public String getHistoriaYCuriosidades() {
+		return historiaYCuriosidades;
 	}
 	
+	public void setHistoriaYCuriosidades(String historia) {
+		if(Validaciones.validarStringNoVacio(historia)){
+			this.historiaYCuriosidades = historia;
+		} else {
+			throw new IllegalArgumentException("La historia no debe estar vacía");
+		}
+	}
 	
 }

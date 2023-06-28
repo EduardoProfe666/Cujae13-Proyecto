@@ -3,6 +3,8 @@ package nucleo;
 import java.io.Serializable;
 import java.util.LinkedList;
 
+import utilidades.Validaciones;
+
 public class Localizacion implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private LinkedList<Deporte> deportes;
@@ -14,10 +16,10 @@ public class Localizacion implements Serializable{
 	public Localizacion(LinkedList<Deporte> deportes, String nombre, String dirUrlImagen, int coordenadaX, int coordenadaY) {
 		super();
 		this.deportes = deportes;
-		this.nombre = nombre;
+		setNombre(nombre);
 		this.dirUrlImagen = dirUrlImagen;
-		this.coordenadaX = coordenadaX;
-		this.coordenadaY = coordenadaY;
+		setCoordenadaX(coordenadaX);
+		setCoordenadaY(coordenadaY);
 	}
 
 	public LinkedList<Deporte> getDeportes() {
@@ -32,32 +34,44 @@ public class Localizacion implements Serializable{
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	private void setNombre(String nombre) {
+		if(Validaciones.validarStringNoVacio(nombre)){
+			if(Validaciones.validarTamString(nombre, 4, 50)){
+				this.nombre = nombre;
+			} else {
+				throw new IllegalArgumentException("El nombre de la localización debe ser superior a 4 caracteres e inferior a 50 caracteres");
+			}
+		} else {
+			throw new IllegalArgumentException("El nombre de la localización no debe estar vacío");
+		}
 	}
 
 	public String getDirUrlImagen() {
 		return dirUrlImagen;
 	}
 
-	public void setDirUrlImagen(String dirUrlImagen) {
-		this.dirUrlImagen = dirUrlImagen;
-	}
-
 	public int getCoordenadaX() {
 		return coordenadaX;
 	}
 
-	public void setCoordenadaX(int coordenadaX) {
-		this.coordenadaX = coordenadaX;
+	private void setCoordenadaX(int coordenadaX) {
+		if(coordenadaX >= 0 && coordenadaX <= 900){
+			this.coordenadaX = coordenadaX;
+		} else {
+			throw new IllegalArgumentException("El valor de la coordenada X no es válido");
+		}
 	}
 
 	public int getCoordenadaY() {
 		return coordenadaY;
 	}
 
-	public void setCoordenadaY(int coordenadaY) {
-		this.coordenadaY = coordenadaY;
+	private void setCoordenadaY(int coordenadaY) {
+		if(coordenadaY >= 0 && coordenadaY <= 600){
+			this.coordenadaY = coordenadaY;
+		} else {
+			throw new IllegalArgumentException("El valor de la coordenada Y no es válido");
+		}
 	}
 	
 	

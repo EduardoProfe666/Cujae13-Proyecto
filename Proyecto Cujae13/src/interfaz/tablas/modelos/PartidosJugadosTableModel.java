@@ -20,8 +20,8 @@ public class PartidosJugadosTableModel extends ModeloPrincipalTableModel<EventoF
 			String resultado="";
 			resultado = e.getResultado().getFacultadGanadora().getNombre().equals(facultad) ? "Ganador" : "Perdedor";
 
-			this.addRow(new Object[] {e.getFecha().format(DateTimeFormatter.ofPattern("hh:mm a")),
-					e.getFechaFinalizado().format(DateTimeFormatter.ofPattern("hh:mm a")),
+			this.addRow(new Object[] {e.getHoraInicio().format(DateTimeFormatter.ofPattern("hh:mm a")),
+					e.getHoraFin().format(DateTimeFormatter.ofPattern("hh:mm a")),
 					e.getDeporte().getNombre(),
 					e.getFacultadPrimera().getNombre().equals(facultad) ? e.getFacultadSegunda().getNombre() : e.getFacultadPrimera().getNombre(),
 							e.getTipo(),

@@ -13,6 +13,7 @@ import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.binary.PosOrderIterator;
 import nucleo.InicializacionPartidosDeporte.EventoFecha;
+import utilidades.Validaciones;
 
 public class Deporte extends ListenerSupport implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -28,7 +29,7 @@ public class Deporte extends ListenerSupport implements Serializable{
 
 	public Deporte(String nombre, List<Facultad> listadoFacultades, Sexo sexo, TipoDeporte tipoDeporte) {
 		super();
-		this.nombre = nombre;
+		setNombre(nombre);
 		this.tablaPosicionesL = construirListaPos(listadoFacultades);
 		estado = EstadoDeporte.EN_EJECUCION;
 		infracciones = new LinkedList<>();
@@ -45,8 +46,17 @@ public class Deporte extends ListenerSupport implements Serializable{
 	public String getNombre() {
 		return nombre;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	private void setNombre(String nombre) {
+		if (Validaciones.validarStringNoVacio(nombre)) {
+			if (Validaciones.validarTamString(nombre, 4, 30)) {
+				this.nombre = nombre;
+			} else {
+				throw new IllegalArgumentException( "El nombre del deporte debe ser superior de 4 caracteres e inferior de 30 caracteres");
+			}
+		} else {
+			throw new IllegalArgumentException( "El nombre del deporte no debe estar vacio");
+		}
 	}
 
 	public EstadoDeporte getEstado() {
@@ -110,40 +120,6 @@ public class Deporte extends ListenerSupport implements Serializable{
 		}
 
 	}
-
-	//	private void construirTablaPosiciones() {
-	//		tablaPosiciones = new GeneralTree<ClasificacionDeporte>();
-	//		Collections.sort(tablaPosicionesL, Collections.reverseOrder());
-	//
-	//		tablaPosiciones.setRoot(new BinaryTreeNode<ClasificacionDeporte>(tablaPosicionesL.get(0)));
-	//
-	//		for(int i=1; i<tablaPosicionesL.size(); i++) {
-	//			if(tablaPosicionesL.get(i).getPuntaje() < tablaPosicionesL.get(i-1).getPuntaje()) {
-	//				BinaryTreeNode<ClasificacionDeporte> padre = obtenerUltimoNodo(tablaPosiciones);
-	//				BinaryTreeNode<ClasificacionDeporte> n = new BinaryTreeNode<ClasificacionDeporte>(tablaPosicionesL.get(i));
-	//				tablaPosiciones.insertNode(n, padre);
-	//			}else if(tablaPosicionesL.get(i).getPuntaje() == tablaPosicionesL.get(i-1).getPuntaje()) {
-	//				BinaryTreeNode<ClasificacionDeporte> ultimoNodo = obtenerUltimoNodo(tablaPosiciones);
-	//				BinaryTreeNode<ClasificacionDeporte> padre = tablaPosiciones.getFather(ultimoNodo);
-	//				BinaryTreeNode<ClasificacionDeporte> n = new BinaryTreeNode<ClasificacionDeporte>(tablaPosicionesL.get(i));
-	//				tablaPosiciones.insertNode(n, padre);
-	//			}
-	//		}
-	//	}
-	//
-	//	private BinaryTreeNode<ClasificacionDeporte> obtenerUltimoNodo(GeneralTree<ClasificacionDeporte> arbol){
-	//		BinaryTreeNode<ClasificacionDeporte> ultimoNodo = new BinaryTreeNode<ClasificacionDeporte>();
-	//		InDepthIterator<ClasificacionDeporte> iter = arbol.inDepthIterator();
-	//
-	//		while(iter.hasNext()) {
-	//			BinaryTreeNode<ClasificacionDeporte> n = iter.nextNode();
-	//			if(n.getLeft() == null) {
-	//				ultimoNodo = n;
-	//			}
-	//		}
-	//		return ultimoNodo;
-	//
-	//	}
 
 	public GeneralTree<ClasificacionDeporte> getTablaPosiciones(){ 
 		if(tablaPosiciones==null || tablaPosiciones.isEmpty()) {

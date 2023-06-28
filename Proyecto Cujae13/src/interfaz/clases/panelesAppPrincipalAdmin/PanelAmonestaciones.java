@@ -30,6 +30,7 @@ import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
+import utilidades.Archivador;
 import utilidades.Auxiliares;
 
 public class PanelAmonestaciones extends PanelBaseAppPrincipal{
@@ -155,6 +156,7 @@ public class PanelAmonestaciones extends PanelBaseAppPrincipal{
 		ordenamientoSanciones = new TableRowSorter<>(modeloSanciones);
 		ordenamientoSanciones.toggleSortOrder(0);
 		ordenamientoSanciones.setSortable(3, false);
+		ordenamientoSanciones.setComparator(0, Archivador.getComparatorStringLocalDate());
 		
 		tablaSanciones = new JTable();
 		tablaSanciones.setModel(modeloSanciones);
@@ -173,6 +175,7 @@ public class PanelAmonestaciones extends PanelBaseAppPrincipal{
 		ordenamientoInfracciones = new TableRowSorter<>(modeloInfracciones);
 		ordenamientoInfracciones.toggleSortOrder(0);
 		ordenamientoInfracciones.setSortable(4,false);
+		ordenamientoInfracciones.setComparator(0, Archivador.getComparatorStringLocalDate());
 		
 		tablaInfracciones = new JTable();
 		tablaInfracciones.setModel(modeloInfracciones);
