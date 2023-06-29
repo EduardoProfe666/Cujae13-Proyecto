@@ -15,6 +15,7 @@ import cu.edu.cujae.ceis.graph.vertex.WeightedVertex;
 import interfaz.clases.AppPrincipal;
 import interfaz.clases.jdialogs.ElegirDeporteJDialog;
 import nucleo.Localizacion;
+import nucleo.NombreFacultad;
 import utilidades.Auxiliares;
 
 public class PinMapa extends JButton{
@@ -24,7 +25,7 @@ public class PinMapa extends JButton{
 	private int x;
 	private int y;
 
-	public PinMapa(EsquemaColores e, WeightedVertex<Localizacion, Boolean> l, JPanel parent, JFrame p, JTabbedPane tab) {
+	public PinMapa(EsquemaColores e, WeightedVertex<Localizacion, Boolean> l, JPanel parent, JFrame p, JTabbedPane tab, NombreFacultad f) {
 		activo = l.getWeight();
 		x = l.getInfo().getCoordenadaX();
 		y = l.getInfo().getCoordenadaY();
@@ -39,7 +40,7 @@ public class PinMapa extends JButton{
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent x) {
-				ElegirDeporteJDialog ventana = new ElegirDeporteJDialog(l.getInfo().getNombre(), e, p, l.getInfo().getDeportes(),tab);
+				ElegirDeporteJDialog ventana = new ElegirDeporteJDialog(l.getInfo().getNombre(), e, p, l.getInfo().getDeportes(),tab,f);
 				ventana.setVisible(true);
 			}
 			@Override

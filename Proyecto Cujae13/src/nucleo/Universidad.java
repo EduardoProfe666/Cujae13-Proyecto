@@ -114,19 +114,27 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		addListenerPuntaje(f);
 	}
 
-	public void addDeporte(String nombre, Sexo sexo, TipoDeporte tipoDeporte) {
-		if(nombre == null || sexo == null || tipoDeporte == null)
+	public void addDeporte(String nombre, Sexo sexo, TipoDeporte tipoDeporte, InicializacionPartidosDeporte inic, String nombreLocalizacion) {
+		if(nombre == null || sexo == null || tipoDeporte == null || inic == null || nombreLocalizacion == null)
 			throw new IllegalArgumentException();
 
 		Deporte d = new Deporte(nombre, listadoFacultades, sexo, tipoDeporte);
 		listadoDeportes.add(d);
 		
 		d.addPropertyChangeListener("Deporte Terminado", new PropertyChangeListenerDeporteTerminadoSerializable(d));
-	}
-
-	public void inicializarTorneoDeporte(InicializacionPartidosDeporte inic) {
-		inic.getDeporte().inicializarTorneo(inic.getListadoPartidos());
+		
+		Iterator<EventoFecha> iter = inic.getListadoPartidos().iterator();
+		while(iter.hasNext()) {
+			iter.next().getEvento().setDeporte(d);
+		}
+		
+		d.inicializarTorneo(inic.getListadoPartidos());
 		insertarEventos(inic.getListadoPartidos());
+		
+		Localizacion l = buscarLocalizacion(nombreLocalizacion);
+		if(l==null)
+			throw new IllegalArgumentException("El nombre de la localizacion no es válido");
+		l.addDeporte(d);
 	}
 
 	private void insertarEventos(List<EventoFecha> listado) {
@@ -940,6 +948,18 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		return s;
 	}
 	
+	public Localizacion buscarLocalizacion(String nombreLocalizacion) {
+		Localizacion l = null;
+		
+		Iterator<Vertex<Localizacion>> iter = localizaciones.getVerticesList().iterator();
+		while(iter.hasNext() && l==null) {
+			l = iter.next().getInfo();
+			if(!l.getNombre().equals(nombreLocalizacion))
+				l=null;
+		}
+		return l;
+	}
+	
 	public LinkedList<Deporte> getDeportes(LinkedList<String> nombreDeportes) {
 		LinkedList<Deporte> listado = new LinkedList<Deporte>();
 		
@@ -950,7 +970,22 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		return listado;
 	}
 
-
+	public boolean juegosFinalizados() {
+		return cantDeportesActivos()==0;
+	}
+	
+	public boolean facultadGanadora(NombreFacultad f) {
+		boolean b = false;
+		
+		BinaryTreeNode<Facultad> n = ((BinaryTreeNode<Facultad>)getTablaPosicionesGlobal().getRoot());
+		while(n!=null) {
+			if(n.getInfo().getNombre().equals(f))
+				b = true;
+			n = n.getRight();
+		}
+		
+		return b;
+	}
 
 
 

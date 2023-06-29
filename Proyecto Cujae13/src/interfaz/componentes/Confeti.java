@@ -30,13 +30,13 @@ public class Confeti extends JComponent{
 		ancho = anchoPantalla;
 		pendiente = pendienteRandom();
 		
-		t = new Timer(4, new ActionListener() {
+		t = new Timer(3, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int x = getX();
 				int y = getY();
 				
-				if(y==yFin) {
+				if(y==yFin || getBackground().getAlpha()==0) {
 					setVisible(false);
 					t.stop();
 				}
@@ -47,7 +47,7 @@ public class Confeti extends JComponent{
 					setBounds(x-1,yN(x),diametro,diametro);
 				}
 				if(y>=100)
-					setBackground(new Color(getBackground().getRed(),getBackground().getGreen(),getBackground().getBlue(),(int)(getBackground().getAlpha()*99.99/100.0)));
+					setBackground(new Color(getBackground().getRed(),getBackground().getGreen(),getBackground().getBlue(),(int)(getBackground().getAlpha()*99.0/100.0)));
 			}
 		});
 		t.start();

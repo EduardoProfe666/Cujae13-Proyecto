@@ -136,7 +136,7 @@ public final class Archivador {
 		return new EsquemaColores(DefinicionesInterfaz.Va2, DefinicionesInterfaz.Va5, Color.BLACK, Color.BLACK,
 				DefinicionesInterfaz.Va2, DefinicionesInterfaz.Va3, DefinicionesInterfaz.Va3, DefinicionesInterfaz.Va3, 
 				DefinicionesInterfaz.Va2, DefinicionesInterfaz.Va6, Color.BLACK, DefinicionesInterfaz.Va2, DefinicionesInterfaz.Va5, 
-				Color.BLACK, "/interfaz/iconos/admin1.png", DefinicionesInterfaz.Va6, DefinicionesInterfaz.Va3,
+				Color.BLACK, "/interfaz/iconos/admin.png", DefinicionesInterfaz.Va6, DefinicionesInterfaz.Va3,
 				DefinicionesInterfaz.Va1, DefinicionesInterfaz.Va2, "/interfaz/iconos/backBlack01.png", "/interfaz/iconos/backBlack02.png",
 				DefinicionesInterfaz.Va1, Color.BLACK,"/interfaz/iconos/inicioBlack.png","/interfaz/iconos/facultadBlack.png",
 				"/interfaz/iconos/deporteBlack.png","/interfaz/iconos/mapaBlack.png","/interfaz/iconos/historiaBlack.png",

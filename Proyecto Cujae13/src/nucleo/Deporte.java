@@ -226,10 +226,23 @@ public class Deporte extends ListenerSupport implements Serializable{
 		
 		Iterator<EventoFecha> iter = eventosTorneo.iterator();
 		while(iter.hasNext() && !b) {
-			b = iter.next().getFecha().equals(LocalDate.now());
+			EventoFecha e = iter.next();
+			b = e.getFecha().equals(LocalDate.now()) && !(e.getEvento() instanceof EventoFinalizado);
 		}
 		
 		return b;
 	}
-
+	
+	public boolean primerLugar(NombreFacultad f) {
+		boolean b = false;
+		
+		BinaryTreeNode<ClasificacionDeporte> n = ((BinaryTreeNode<ClasificacionDeporte>)getTablaPosiciones().getRoot());
+		while(n!=null && !b) {
+			if(n.getInfo().getFacultad().getNombre().equals(f))
+				b=true;
+			n = n.getRight();
+		}
+		
+		return b;
+	}
 }

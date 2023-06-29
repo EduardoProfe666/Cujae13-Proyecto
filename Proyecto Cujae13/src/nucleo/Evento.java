@@ -15,7 +15,7 @@ public class Evento implements Serializable{
 	
 	public Evento(Deporte deporte, Facultad facultadPrimera, Facultad facultadSegunda, LocalTime fecha, TipoEvento tipo) {
 		super();
-		setDeporte(deporte);
+		this.deporte = deporte;
 		this.facultadPrimera = facultadPrimera;
 		this.facultadSegunda = facultadSegunda;
 		setHoraInicio(fecha);
@@ -31,12 +31,9 @@ public class Evento implements Serializable{
 		return deporte;
 	}
 	
-	private void setDeporte(Deporte deporte) {
-		if(deporte != null){
+	public void setDeporte(Deporte deporte) {
+		if(this.deporte==null && deporte!=null) 
 			this.deporte = deporte;
-		} else {
-			throw new IllegalArgumentException("El deporte no debe estar vacío");
-		}
 	}
 	
 	public Facultad getFacultadPrimera() {

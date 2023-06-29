@@ -21,8 +21,11 @@ import javax.swing.table.TableRowSorter;
 import clasesAuxiliares.EsquemaColores;
 import interfaz.clases.AppPrincipal;
 import interfaz.clases.panelesAppPrincipal.PanelDeporte;
+import interfaz.componentes.ConfetiJDialog;
 import interfaz.tablas.modelos.SeleccionDeporteTableModel;
 import nucleo.Deporte;
+import nucleo.EstadoDeporte;
+import nucleo.NombreFacultad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
 import sample.message.MessageSinCancel;
@@ -36,7 +39,7 @@ public class ElegirDeporteJDialog extends JDialogGeneral{
 	private TableRowSorter<SeleccionDeporteTableModel> ordenamiento;
 	private JTable tabla;
 	
-	public ElegirDeporteJDialog(String localizacion, EsquemaColores e, JFrame padre, final List<Deporte> deportes, JTabbedPane tab) {
+	public ElegirDeporteJDialog(String localizacion, EsquemaColores e, JFrame padre, final List<Deporte> deportes, JTabbedPane tab, NombreFacultad f) {
 		super(localizacion, e, padre);
 		JDialogGeneral j = this;
 		botonAyudaSancion = new JButton("");
@@ -93,9 +96,14 @@ public class ElegirDeporteJDialog extends JDialogGeneral{
 			public void mouseClicked(MouseEvent x) {
 				if(x.getClickCount()==2) {
 					if(tabla.getSelectedRow()!=-1) {
-						tab.setComponentAt(7, new PanelDeporte(padre, e, deportes.get(tabla.getSelectedRow())));
+						Deporte d = deportes.get(tabla.getSelectedRow());
+						tab.setComponentAt(7, new PanelDeporte(padre, e,d));
 						tab.setSelectedIndex(7);
 						dispose();
+						if(d.getEstado().equals(EstadoDeporte.FINALIZADO) && d.primerLugar(f)) {
+							ConfetiJDialog ventana = new ConfetiJDialog(padre, false, e.getPanelMovilBase());
+							ventana.setVisible(true);
+						}
 					}
 				}
 			}

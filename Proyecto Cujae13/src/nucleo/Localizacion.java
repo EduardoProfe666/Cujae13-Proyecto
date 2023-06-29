@@ -13,9 +13,9 @@ public class Localizacion implements Serializable{
 	private int coordenadaX;
 	private int coordenadaY;
 	
-	public Localizacion(LinkedList<Deporte> deportes, String nombre, String dirUrlImagen, int coordenadaX, int coordenadaY) {
+	public Localizacion(String nombre, String dirUrlImagen, int coordenadaX, int coordenadaY) {
 		super();
-		this.deportes = deportes;
+		this.deportes = new LinkedList<>();
 		setNombre(nombre);
 		this.dirUrlImagen = dirUrlImagen;
 		setCoordenadaX(coordenadaX);
@@ -25,9 +25,11 @@ public class Localizacion implements Serializable{
 	public LinkedList<Deporte> getDeportes() {
 		return deportes;
 	}
-
-	public void setDeportes(LinkedList<Deporte> deportes) {
-		this.deportes = deportes;
+	
+	public void addDeporte(Deporte deporte) {
+		if(deporte==null)
+			throw new IllegalArgumentException("El deporte no puede ser null");
+		deportes.add(deporte);
 	}
 
 	public String getNombre() {

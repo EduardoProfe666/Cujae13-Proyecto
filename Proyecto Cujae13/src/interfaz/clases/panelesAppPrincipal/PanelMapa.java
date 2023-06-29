@@ -28,6 +28,7 @@ import interfaz.componentes.LineaRuta;
 import interfaz.componentes.PinMapa;
 import interfaz.componentes.PinRuta;
 import nucleo.Localizacion;
+import nucleo.NombreFacultad;
 import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
@@ -64,8 +65,10 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 	private EsquemaColores e;
 	private String mensajeInfoTitulo;
 	private String mensajeInfo;
+	private NombreFacultad f;
 
-	public PanelMapa(EsquemaColores e, JFrame padre, JTabbedPane tab) {
+	public PanelMapa(EsquemaColores e, JFrame padre, JTabbedPane tab, NombreFacultad f) {
+		this.f = f;
 		tipoMapa = true;
 		modoRuta = false;
 		this.tab = tab;
@@ -283,7 +286,7 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 
 		while(iter.hasNext()) {
 			WeightedVertex<Localizacion, Boolean> v = (WeightedVertex<Localizacion, Boolean>)iter.next();
-			pines.add(new PinMapa(e,v,this,p,tab));
+			pines.add(new PinMapa(e,v,this,p,tab,f));
 		}
 	}
 
@@ -511,8 +514,6 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 	private void crearLineasRuta() {
 		this.lineasRuta = new LinkedList<>();
 		
-		LineaRuta dojo_bajos19 = new LineaRuta(3,"Dojo","Bajos del Edificio 19 de Informática");
-		dojo_bajos19.setBounds(159,236,179,95);
 		LineaRuta dojo_canchasBadminton = new LineaRuta(3,"Dojo","Canchas de Bádminton");
 		dojo_canchasBadminton.setBounds(338,331,97,52);
 		LineaRuta dojo_Piscina = new LineaRuta(3,"Dojo","Piscina de Natación");
@@ -520,8 +521,8 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 		LineaRuta dojo_bajosArquitectura = new LineaRuta(2,"Dojo","Bajos del Edificio de Arquitectura");
 		dojo_bajosArquitectura.setBounds(116,331,222,96);
 		
-		LineaRuta bajos19_bajosArquitectura = new LineaRuta(2,"Bajos del Edificio 19 de Informática","Bajos del Edificio de Arquitectura");
-		bajos19_bajosArquitectura.setBounds(116,236,43,191);
+		LineaRuta canchasBasket_piscina = new LineaRuta(2,"Canchas de BasketBall","Piscina de Natación");
+		canchasBasket_piscina.setBounds(467,358,57,52);
 		LineaRuta canchasBadminton_canchasBasket = new LineaRuta(3,"Canchas de Bádminton","Canchas de BasketBall");
 		canchasBadminton_canchasBasket.setBounds(435,383,32,27);
 		LineaRuta canchas_canchasBasket = new LineaRuta(2,"Canchas","Canchas de BasketBall");
@@ -547,12 +548,11 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 		LineaRuta piscina_deder = new LineaRuta(2,"Piscina de Natación","DEDER");
 		piscina_deder.setBounds(510,358,14,76);
 		
-		lineasRuta.add(dojo_bajos19);
 		lineasRuta.add(dojo_canchasBadminton);
 		lineasRuta.add(dojo_Piscina);
 		lineasRuta.add(dojo_bajosArquitectura);
 		
-		lineasRuta.add(bajos19_bajosArquitectura);
+		lineasRuta.add(canchasBasket_piscina);
 		lineasRuta.add(canchasBadminton_canchasBasket);
 		lineasRuta.add(canchas_canchasBasket);
 		lineasRuta.add(canchas_Deder);

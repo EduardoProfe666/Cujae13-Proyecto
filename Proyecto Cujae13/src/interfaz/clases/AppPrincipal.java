@@ -91,6 +91,7 @@ public class AppPrincipal extends JFrame {
 	private JButton botonAtras;
 	private EsquemaColores e;
 	private Timer temporizador;
+	private NombreFacultad f;
 
 	public AppPrincipal(UsuarioEstudiante us) {
 		Notifications.getInstance().setJFrame(this);
@@ -99,6 +100,7 @@ public class AppPrincipal extends JFrame {
 		u = us;
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(Autenticacion.class.getResource("/interfaz/iconos/icono.png")));
 		e = Archivador.getEsquemaColores(us.getFacultad());
+		f = us.getFacultad();
 		FlatLightLaf.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, DefinicionesInterfaz.DIMENSION_APP_PRINCIPAL.width, DefinicionesInterfaz.DIMENSION_APP_PRINCIPAL.height);
@@ -489,9 +491,9 @@ public class AppPrincipal extends JFrame {
 		panelPrincipall = new JTabbedPane(JTabbedPane.TOP);
 		panelPrincipall.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		panelPrincipall.addTab("a", new PanelInicio(e,u.getFacultad()));
-		panelPrincipall.addTab("a", new PanelMapa(e,this,panelPrincipall));
+		panelPrincipall.addTab("a", new PanelMapa(e,this,panelPrincipall,f));
 		panelPrincipall.addTab("a", new PanelSeleccionFacultad(this,e,panelPrincipall));
-		panelPrincipall.addTab("a", new PanelSeleccionarDeporte(this,e,panelPrincipall));
+		panelPrincipall.addTab("a", new PanelSeleccionarDeporte(this,e,panelPrincipall,f));
 		panelPrincipall.addTab("a", new PanelCalendario(e));
 		panelPrincipall.addTab("a", new PanelHistoria(e));
 		panelPrincipall.addTab("facultad", new JPanel());
@@ -549,10 +551,14 @@ public class AppPrincipal extends JFrame {
 		Universidad.getInstancia().actualizar();
 		Inicializadora.guardarDatosAplicacion();
 		panelPrincipall.setComponentAt(0, new PanelInicio(e,u.getFacultad()));
-		panelPrincipall.setComponentAt(1, new PanelMapa(e,this,panelPrincipall));
+		panelPrincipall.setComponentAt(1, new PanelMapa(e,this,panelPrincipall,f));
 		panelPrincipall.setComponentAt(2, new PanelSeleccionFacultad(this,e,panelPrincipall));
-		panelPrincipall.setComponentAt(3, new PanelSeleccionarDeporte(this,e,panelPrincipall));
+		panelPrincipall.setComponentAt(3, new PanelSeleccionarDeporte(this,e,panelPrincipall,f));
 		panelPrincipall.setComponentAt(4, new PanelCalendario(e));
 		panelPrincipall.setComponentAt(5, new PanelHistoria(e));
+	}
+	
+	public JFrame getThis() {
+		return this;
 	}
 }

@@ -36,6 +36,7 @@ import componentes.JTextFieldModificado;
 import definiciones.DefinicionesInterfaz;
 import definiciones.ErroresInterfazGrafica;
 import inicializacion.Inicializadora;
+import interfaz.componentes.ConfetiJDialog;
 import interfaz.componentes.PanelSuperior;
 import nucleo.NombreFacultad;
 import nucleo.Universidad;
@@ -44,6 +45,7 @@ import raven.glasspanepopup.Option;
 import raven.toast.Notifications;
 import sample.message.MessageSinCancel;
 import sample.message.OptionConstructor;
+import utilidades.Archivador;
 import utilidades.Auxiliares;
 
 /**
@@ -120,7 +122,7 @@ public class Autenticacion extends JFrame {
 		panelLogin.setBounds(507, 45, 293, 467);
 		panelLogin.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 
-		avatar = new AvatarCircular(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/avatar_autenticacion.jpg")), DefinicionesInterfaz.TAM_BORDE_AVATAR);
+		avatar = new AvatarCircular(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/autenticacion.jpg")), DefinicionesInterfaz.TAM_BORDE_AVATAR);
 		avatar.setBounds(70, 45, 150, 150);
 		avatar.setForeground(DefinicionesInterfaz.COLOR_BORDE_AVATAR);
 
@@ -348,6 +350,12 @@ public class Autenticacion extends JFrame {
 		if(usuario instanceof UsuarioEstudiante) {
 			AppPrincipal a = new AppPrincipal((UsuarioEstudiante)usuario);
 			a.setVisible(true);
+			NombreFacultad f = ((UsuarioEstudiante)usuario).getFacultad();
+			if(Universidad.getInstancia().juegosFinalizados() && Universidad.getInstancia().facultadGanadora(f)) {
+				ConfetiJDialog ventana = new ConfetiJDialog(a.getThis(), true, Archivador.getEsquemaColores(f).getPanelMovilBase());
+				ventana.setVisible(true);
+			}
+				
 		}
 		else {
 			AppPrincipalAdmin b = AppPrincipalAdmin.getInstancia((UsuarioAdmin)usuario);

@@ -19,7 +19,11 @@ import javax.swing.table.TableRowSorter;
 
 import clasesAuxiliares.EsquemaColores;
 import interfaz.clases.AppPrincipal;
+import interfaz.componentes.ConfetiJDialog;
 import interfaz.tablas.modelos.SeleccionDeporteTableModel;
+import nucleo.Deporte;
+import nucleo.EstadoDeporte;
+import nucleo.NombreFacultad;
 import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
@@ -35,7 +39,7 @@ public class PanelSeleccionarDeporte extends PanelBaseAppPrincipal{
 	private JTable tabla;
 	private JButton botonAyuda;
 	
-	public PanelSeleccionarDeporte(JFrame padre, EsquemaColores e, JTabbedPane tab) {
+	public PanelSeleccionarDeporte(JFrame padre, EsquemaColores e, JTabbedPane tab, NombreFacultad f) {
 		
 		botonAyuda = new JButton("");
 		botonAyuda.setToolTipText("Ayuda");
@@ -92,8 +96,13 @@ public class PanelSeleccionarDeporte extends PanelBaseAppPrincipal{
 					if(tabla.getSelectedRow()!=-1) {
 						int fila = ordenamiento.convertRowIndexToModel(tabla.getSelectedRow());
 						String dep = (String)modelo.getValueAt(fila, 0);
-						tab.setComponentAt(7, new PanelDeporte(padre, e, Universidad.getInstancia().buscarDeporte(dep)));
+						Deporte d = Universidad.getInstancia().buscarDeporte(dep);
+						tab.setComponentAt(7, new PanelDeporte(padre, e, d));
 						tab.setSelectedIndex(7);
+						if(d.getEstado().equals(EstadoDeporte.FINALIZADO) && d.primerLugar(f)) {
+							ConfetiJDialog ventana = new ConfetiJDialog(padre, false, e.getPanelMovilBase());
+							ventana.setVisible(true);
+						}
 					}
 				}
 			}
