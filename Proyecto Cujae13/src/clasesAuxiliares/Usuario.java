@@ -11,9 +11,9 @@ import utilidades.Validaciones;
  * Clase abstracta que permite guardar la información relacionada con la autenticación 
  * del usuario.
  * 
- * @version 2023.06.02
  * 
  * @author Lilian Rojas
+ * @author Cristian Páez
  * @author Eduardo González
  *
  */

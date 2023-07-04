@@ -5,6 +5,16 @@ import java.util.LinkedList;
 
 import utilidades.Validaciones;
 
+/**
+ * Clase que permite modelar cada localizacion
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class Localizacion implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private LinkedList<Deporte> deportes;

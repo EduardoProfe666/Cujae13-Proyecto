@@ -2,6 +2,16 @@ package nucleo;
 
 import java.util.HashMap;
 
+/**
+ * Enum que permite modelar cada tipo deporte, junto con los puntos sumados a la tabla de posiciones de deporte al ganar un partido y 
+ * los puntos sumados a la tabla de posiciones general al terminar el deporte en dependencia del lugar que se coja
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public enum TipoDeporte {
 	DEPORTE_INDIVIDUAL("Deporte Individual",crearArchivadorSistemaPuntuacionDepIndiv(),3), DEPORTE_COLECTIVO("Deporte Colectivo",crearArchivadorSistemaPuntuacionDepColec(),7), AMBOS("Ambos", null, 0);
 	private String nombre;

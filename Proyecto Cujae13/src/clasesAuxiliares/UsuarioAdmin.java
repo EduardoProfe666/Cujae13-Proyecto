@@ -3,9 +3,9 @@ package clasesAuxiliares;
 /**
  * Clase que permite modelar la cuenta de los usuarios administradores.
  * 
- * @version 2023.05.30
  * 
  * @author Lilian Rojas
+ * @author Cristian Páez
  * @author Eduardo González
  *
  */

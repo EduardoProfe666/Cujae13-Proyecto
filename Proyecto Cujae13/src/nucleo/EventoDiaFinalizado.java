@@ -5,6 +5,16 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Clase que permite modelar los eventos finalizados por dia
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class EventoDiaFinalizado implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private LinkedList<EventoFinalizado> eventosDia; //Lista Enlazada

@@ -8,6 +8,15 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Clase que permite la inicializacion de los eventos del torneo de cada deporte
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class InicializacionPartidosDeporte {
 	private List<EventoFecha> listadoPartidos;
 	
@@ -80,11 +89,18 @@ public class InicializacionPartidosDeporte {
 		
 		
 		/**
-		 * fh1 Octavo de Final
-		 * fh2-fh5 Cuartos de Final
-		 * fh6/fh7 Semifinales
-		 * fh8 Final
-		 * @return
+		 * fh1 Octavo de Final <br>
+		 * fh2-fh5 Cuartos de Final <br>
+		 * fh6/fh7 Semifinales <br>
+		 * fh8 Final <br>
+		 * @param fh1
+		 * @param fh2
+		 * @param fh3
+		 * @param fh4
+		 * @param fh5
+		 * @param fh6
+		 * @param fh7
+		 * @param fh8
 		 */
 		public ListadoFechaHora(FechaHora fh1, FechaHora fh2, FechaHora fh3, FechaHora fh4, FechaHora fh5, FechaHora fh6
 				, FechaHora fh7, FechaHora fh8) {

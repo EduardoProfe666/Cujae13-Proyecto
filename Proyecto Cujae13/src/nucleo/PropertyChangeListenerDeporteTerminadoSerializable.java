@@ -10,6 +10,17 @@ import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.BreadthNode;
 import cu.edu.cujae.ceis.tree.iterators.general.InBreadthIteratorWithLevels;
 
+/**
+ * Clase que permite modelar un PropertyChangeListener Serializable para que se actualice la tabla de posiciones general 
+ * al terminar un deporte
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class PropertyChangeListenerDeporteTerminadoSerializable implements PropertyChangeListener, Serializable{
 	private static final long serialVersionUID = 1L;
 	private Deporte d;

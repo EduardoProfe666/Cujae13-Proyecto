@@ -16,6 +16,9 @@ import componentes.Imagen;
 import interfaz.clases.AppPrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class ConfetiJDialog extends JDialog{
 	private static final long serialVersionUID = 1L;
@@ -62,15 +65,21 @@ public class ConfetiJDialog extends JDialog{
 		audio.loop();
 		
 		PanelRedondeado panelRedondeado = new PanelRedondeado();
-		panelRedondeado.setBounds(200, 162, 800, 350);
+		panelRedondeado.setBounds(300, 162, 600, 350);
 		getContentPane().add(panelRedondeado);
 		
+		JLabel lblNewLabel = new JLabel("Felicidades Ganador");
+		lblNewLabel.setFont(new Font("Roboto Black", Font.PLAIN, 46));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(62, 263, 476, 49);
+		panelRedondeado.add(lblNewLabel);
+		
 		Imagen imagen = new Imagen(new ImageIcon(AppPrincipal.class.getResource("/interfaz/iconos/"+(medalla ? "trofeo.png" : "premio.png"))));
-		imagen.setBounds(325, 100, 150, 150);
+		imagen.setBounds(225, 75, 150, 150);
 		panelRedondeado.add(imagen);
 		
 		confettiAnim = new ConfettiAnim();
-		confettiAnim.setBounds(0, 0, 800, 350);
+		confettiAnim.setBounds(0, 4, 600, 346);
 		confettiAnim.iniciarAnim();
 		panelRedondeado.add(confettiAnim);
 		

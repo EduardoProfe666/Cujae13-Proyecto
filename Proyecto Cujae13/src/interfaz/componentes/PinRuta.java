@@ -58,7 +58,7 @@ public class PinRuta extends JButton{
 	
 	/**
 	 * 
-	 * @return 0->No Especial, 1->Nodo Inicial, 2->Nodo Final, 3->Nodo Medio
+	 * @return 0-No Especial, 1-Nodo Inicial, 2-Nodo Final, 3-Nodo Medio
 	 */
 	public int getEstado() {
 		return estado;

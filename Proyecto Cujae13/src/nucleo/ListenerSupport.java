@@ -4,6 +4,16 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
+/**
+ * Clase que permite dotar a las clases hijas de las funcionalidades del Property Change Listener
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public abstract class ListenerSupport implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private PropertyChangeSupport pcs;

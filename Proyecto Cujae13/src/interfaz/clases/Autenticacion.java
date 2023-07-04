@@ -51,9 +51,11 @@ import utilidades.Auxiliares;
 /**
  * JFrame que modela la autenticación de la aplicación
  * 
- * @version 2023.06.02
  * 
  * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
  * @author Eduardo González
  *
  */
@@ -122,9 +124,9 @@ public class Autenticacion extends JFrame {
 		panelLogin.setBounds(507, 45, 293, 467);
 		panelLogin.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 
-		avatar = new AvatarCircular(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/autenticacion.jpg")), DefinicionesInterfaz.TAM_BORDE_AVATAR);
+		avatar = new AvatarCircular(new ImageIcon(Autenticacion.class.getResource("/interfaz/iconos/13.png")), DefinicionesInterfaz.TAM_BORDE_AVATAR);
 		avatar.setBounds(70, 45, 150, 150);
-		avatar.setForeground(DefinicionesInterfaz.COLOR_BORDE_AVATAR);
+		avatar.setForeground(DefinicionesInterfaz.COLOR_BTN_BASE);
 
 		usuarioLabel = new JLabel("Correo");
 		usuarioLabel.setBounds(44, 217, 203, 32);

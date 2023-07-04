@@ -7,7 +7,6 @@ import nucleo.Universidad;
 /**
  * Clase que permite almacenar en memoria externa los datos principales de la aplicación.
  * 
- * @version 2023.06.02
  * 
  * @author Eduardo González
  *

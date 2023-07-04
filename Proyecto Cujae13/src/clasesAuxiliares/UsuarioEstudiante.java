@@ -8,9 +8,9 @@ import utilidades.Archivador;
  * incluye la información de la facultad a la que pertenecen para lograr 
  * una personalización de la aplicación.
  * 
- * @version 2023.05.30
  * 
  * @author Lilian Rojas
+ * @author Cristian Páez
  * @author Eduardo González
  *
  */

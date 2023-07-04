@@ -4,10 +4,12 @@ package nucleo;
  *Enum empleado para el manejo de los nombre de las diferentes facultades, tanto a 
  *nivel de lógica, como de interfaz.
  *
- *@version 2023.05.30
  *
- *@author Lilian Rojas
- *@author Eduardo González
+ *@author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
  *
  */
 public enum NombreFacultad {

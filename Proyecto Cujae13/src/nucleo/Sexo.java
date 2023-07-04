@@ -1,5 +1,15 @@
 package nucleo;
 
+/**
+ * Enum que permite modelar el sexo admitido en cada deporte
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public enum Sexo {
 	FEMENINO("Femenino"), MASCULINO("Masculino"), MIXTO("Mixto");
 	

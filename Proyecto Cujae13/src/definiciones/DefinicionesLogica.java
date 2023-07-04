@@ -3,8 +3,6 @@ package definiciones;
 /**
  * Clase de definiciones generales de lógica de la aplicación
  * 
- * @version 2023.05.30
- * 
  * @author Eduardo González
  *
  */

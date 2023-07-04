@@ -24,6 +24,15 @@ import cu.edu.cujae.ceis.tree.iterators.general.InDepthIterator;
 import definiciones.DefinicionesLogica;
 import nucleo.InicializacionPartidosDeporte.EventoFecha;
 
+/**
+ * Clase controladora de la aplicacion Cujae13
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class Universidad extends ListenerSupport implements Serializable{ //Faltarian las localizaciones con el uso de grafos con pesos
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Facultad> listadoFacultades; //Lista Secuencial
@@ -71,9 +80,6 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		return instancia;
 	}
 	
-//	public static void destruirUniversidad() {
-//		instancia = null;
-//	}
 
 	private Universidad(Historia13Marzo historia,LocalDate fechaInicio) {
 		eventosFinalizados = new ArrayDeque<EventoDiaFinalizado>();
@@ -223,45 +229,15 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 	}
 
-	//	private void construirTablaPosiciones() {
-	//		tablaPosiciones = new GeneralTree<Facultad>();
-	//		Collections.sort(listadoFacultades, Collections.reverseOrder());
-	//
-	//		tablaPosiciones.setRoot(new BinaryTreeNode<Facultad>(listadoFacultades.get(0)));
-	//
-	//		for(int i=1; i<listadoFacultades.size(); i++) {
-	//			if(listadoFacultades.get(i).getPuntaje() < listadoFacultades.get(i-1).getPuntaje()) {
-	//				BinaryTreeNode<Facultad> padre = obtenerUltimoNodo(tablaPosiciones);
-	//				BinaryTreeNode<Facultad> n = new BinaryTreeNode<Facultad>(listadoFacultades.get(i));
-	//				tablaPosiciones.insertNode(n, padre);
-	//			}else if(listadoFacultades.get(i).getPuntaje() == listadoFacultades.get(i-1).getPuntaje()) {
-	//				BinaryTreeNode<Facultad> ultimoNodo = obtenerUltimoNodo(tablaPosiciones);
-	//				BinaryTreeNode<Facultad> padre = tablaPosiciones.getFather(ultimoNodo);
-	//				BinaryTreeNode<Facultad> n = new BinaryTreeNode<Facultad>(listadoFacultades.get(i));
-	//				tablaPosiciones.insertNode(n, padre);
-	//			}
-	//		}
-	//	}
-	//
-	//	private BinaryTreeNode<Facultad> obtenerUltimoNodo(GeneralTree<Facultad> arbol){
-	//		BinaryTreeNode<Facultad> ultimoNodo = new BinaryTreeNode<Facultad>();
-	//		InDepthIterator<Facultad> iter = arbol.inDepthIterator();
-	//
-	//		while(iter.hasNext()) {
-	//			BinaryTreeNode<Facultad> n = iter.nextNode();
-	//			if(n.getLeft() == null) {
-	//				ultimoNodo = n;
-	//			}
-	//		}
-	//		return ultimoNodo;
-	//
-	//	}
-
 	public LinkedList<EventoDia> getEventosPorResultados() {
 		return eventosPorResultados;
 	}
 
-	//buscar una facultad dada en la lista de facultades
+	/**
+	 * Buscar una facultad dada en la lista de facultades
+	 * @param f
+	 * @return
+	 */
 	public Facultad buscarFacultad(NombreFacultad f) {
 		Facultad facultad = null;
 		boolean encontrado = false;
@@ -278,7 +254,10 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		}
 		return facultad;
 	}
-
+	
+	/**
+	 * Permite actualizar los eventos activos pasandolos a por resultados	
+	 */
 	private void actualizarEventosActivos() {
 		LocalDate diaActual = LocalDate.now();
 		boolean parar = false;
@@ -304,7 +283,11 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		}
 
 	}
-
+	
+	/**
+	 * Permite actualizar los eventos activos del dia
+	 * @param evt
+	 */
 	private void actualizarEventosActivosDia(EventoDia evt) {	
 		if(eventosPorResultados.isEmpty() || !eventosPorResultados.getLast().getFechaDia().equals(LocalDate.now()))
 			eventosPorResultados.add(new EventoDia(LocalDate.now()));
@@ -322,7 +305,11 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		}
 	}
 
-
+	
+	/**
+	 * Permite obtener el listado de eventos del dia actual
+	 * @return
+	 */
 	public LinkedList<Evento> getListadoEventosDiaActual() {
 		LinkedList<Evento> lista = null;
 		actualizarEventosActivos();
@@ -408,7 +395,11 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 	public int getCantidadAmonestaciones() {
 		return getCantidadInfracciones() + getCantidadSanciones();
 	}
-
+	
+	/**
+	 * Permite obtener la cantidad de infracciones existentes
+	 * @return
+	 */
 	public int getCantidadInfracciones() {
 		int cant = 0;
 
@@ -418,7 +409,11 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		return cant;
 	}
-
+	
+	/**
+	 * Permite obtener la cantidad de sanciones existentes
+	 * @return
+	 */
 	public int getCantidadSanciones(){
 		int cant = 0;
 
@@ -444,7 +439,10 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		return d;
 	}
 
-
+	/**
+	 * Permite obtener el listado de partidos con resultados del dia actual
+	 * @return
+	 */
 	public LinkedList<EventoFinalizado> getListadoPartidosConResultadoDiaActual() {
 		LinkedList<EventoFinalizado> lista = new LinkedList<EventoFinalizado>();
 		Deque<EventoDiaFinalizado> pilaEventos = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
@@ -457,7 +455,12 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		return lista;
 	}
-
+	
+	/**
+	 * Permite obtener las estadisticas de la facultad dada
+	 * @param f
+	 * @return
+	 */
 	public EstadisticasReporte obtenerEstadisticas(NombreFacultad f) {
 		Facultad fac = buscarFacultad(f);
 
@@ -472,7 +475,12 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		return e;
 	}
-
+	
+	/**
+	 * Permite obtener la cantidad de partidos jugados de la facultad dada
+	 * @param f
+	 * @return
+	 */
 	public int obtenerCantPartidosJugados(Facultad f) {
 		int pJugados = 0;
 		int tam = 0;
@@ -491,7 +499,12 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		return pJugados;
 	}
-
+	
+	/**
+	 * Permite obtenr la cantidad de partidos ganados de la facultad dada
+	 * @param f
+	 * @return
+	 */
 	public int obtenerCantPartidosGanados(Facultad f) {
 		int pGanados = 0;
 		int tam = 0;
@@ -509,7 +522,12 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		return pGanados;
 	}
-
+	
+	/**
+	 * Permite obtener la cantidad de partidos perdidos de la facultad dada
+	 * @param f
+	 * @return
+	 */
 	public int obtenerCantPartidosPerdidos(Facultad f) {
 		int pPerdidos = 0;
 		int tam = 0;
@@ -529,7 +547,12 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		return pPerdidos;
 	}
-
+	
+	/**
+	 * Permite obtener la cantidad de infracciones que presenta la facultad dada
+	 * @param f
+	 * @return
+	 */
 	public int obtenerCantInfracciones(Facultad f) {
 		int infracciones = 0;
 		int tam = listadoDeportes.size();
@@ -547,7 +570,12 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		return infracciones;
 	}
-
+	
+	/**
+	 * Permite obtener el listado de infracciones de la facultad dada
+	 * @param f
+	 * @return
+	 */
 	public LinkedList<InfraccionReporte> getListadoInfracciones(NombreFacultad f){
 		LinkedList<InfraccionReporte> lista = new LinkedList<InfraccionReporte>();
 
@@ -567,7 +595,13 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		return lista;
 	}
-
+	
+	/**
+	 * Permite obtener los eventos del dia dado de la facultad dada
+	 * @param f
+	 * @param fecha
+	 * @return
+	 */
 	public LinkedList<EventoFinalizado> obtenerEventosDiaDado(NombreFacultad f, LocalDate fecha){
 		LinkedList<EventoFinalizado> lista = new LinkedList<EventoFinalizado>();
 		Deque<EventoDiaFinalizado> pilaEventos = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
@@ -590,9 +624,6 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 	}
 
 
-	/**
-	 * Provisional
-	 */
 	private void ingresarEventoFinalizado(EventoFinalizado e, LocalDate fecha) {
 		Deque<EventoDiaFinalizado> pila = new ArrayDeque<EventoDiaFinalizado>(eventosFinalizados);
 		boolean ingresado = false;
@@ -636,7 +667,11 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		}
 	}
 
-	//Metodo para obtener la lista de eventos correspondientes a un dia seleccionado por el usuario//
+	/**
+	 * Metodo para obtener la lista de eventos correspondientes a un dia seleccionado por el usuario
+	 * @param fecha
+	 * @return
+	 */
 	public LinkedList<Evento> devolverListaEventosPorDia(LocalDate fecha) {
 		LinkedList<Evento> listaEventosPorDia=new LinkedList<Evento>();
 		Queue<EventoDia> colaCopia = new ArrayDeque<EventoDia>(eventosActivos);
@@ -676,7 +711,12 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 		return lugar;
 	}
-
+	
+	/**
+	 * Permite obtener el deporte dado el nombre
+	 * @param nombre
+	 * @return
+	 */
 	public Deporte buscarDeporte(String nombre) {
 		Deporte d = null;
 		Iterator<Deporte> iter = listadoDeportes.iterator();
@@ -696,10 +736,10 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 
 	/**
-	 * 
-	 * @param e
-	 * @param fecha
-	 * @param facultadGanadora 1->Facultad Primera, 2->Facultad Segunda
+	 * Permite agregar el resultado de un evento
+	 * @param ef
+	 * @param facultadGanadora 1-Facultad Primera, 2-Facultad Segunda
+	 * @param horaFin
 	 */
 	public void agregarResultadoEvento(EventoFecha ef, int facultadGanadora, LocalTime horaFin) {
 		if(ef.getEvento().estaIndeterminado() || !borrarEventoPorResultado(ef.getEvento(), ef.getFecha()))
@@ -742,7 +782,7 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 
 	/**
 	 * 
-	 * @return 0->Por Jugar, 1->Por Resultado, 2->Finalizado
+	 * @return 0-Por Jugar, 1-Por Resultado, 2-Finalizado
 	 */
 	public int getEstadoEvento(Evento e, LocalDate fecha) {	
 		int n = 2;
@@ -796,7 +836,10 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		return b;
 	}
 	
-	
+	/**
+	 * Permite obtener las sanciones de todas las facultades
+	 * @return
+	 */
 	public LinkedList<SancionReporte> obtenerSancionesTodasFacultades(){
 		LinkedList<SancionReporte> sanciones = new LinkedList<SancionReporte>();
 		
@@ -810,7 +853,13 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		
 		return sanciones;
 	}
-
+	
+	/**
+	 * Funcion que devuelve una lista con las infracciones de todas la facultades y el nombre de cada facultad.
+	 * Recorre la lista de deportes para obtener las infracciones de cada uno. Guarda cada infraccion en la lista 
+	 * junto con el nombre de su facultad
+	 * @return
+	 * */
 	public LinkedList<InfraccionReporte> obtenerInfraccionesTodasFacultades(){
 		LinkedList<InfraccionReporte> infracciones = new LinkedList<InfraccionReporte>();
 		
@@ -842,16 +891,17 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 			}
 			eventos.set(i, new EventoDia(eventos.get(i).getFechaDia()));
 			eventos.get(i).setEventosDia(listaEventos);
-//			for(Evento e: listaEventos) {
-//				if(e.estaIndeterminado()) {
-//					listaEventos.remove(e);
-//				}
-//			}
 		}
 		
 		return eventos;
 	}
-
+	
+	/**
+	 * Funcion que devuelve la lista de deportes a eliminar del comboBox. Recibe el tipo de deporte del que se 
+	 * necesita obtener la lista. Devulve una lista que contiene los deportes del tipo contrario al pasado por
+	 * parametro.
+	 * @return
+	 *  */
 	public ArrayList<String> obtenerDeporteEliminar(TipoDeporte t){
 		ArrayList<String> paraEliminar = new ArrayList<String>();
 		
@@ -871,7 +921,10 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		
 		return paraEliminar;
 	}
-
+	
+	/** Funcion que recorre la lista de deportes contando la cantidad de deportes que se encuentran en ejecucion.
+	 * @return
+	 **/
 	public int cantDeportesActivos() {
 		int cont = 0;
 		
@@ -883,7 +936,13 @@ public class Universidad extends ListenerSupport implements Serializable{ //Falt
 		
 		return cont;
 	}
-
+	
+	/**
+	 * Funcion que devuelve la cantidad de partidos que estan esperando por los resultados del juego. Recorre
+	 * la lista de eventos por resultados y acumula la cantidad de eventos por resultado que 
+	 * hay en cada fecha.
+	 * @return
+	 * */
 	public int cantPartidosPorResultado() {
 		int cont = 0;
 		

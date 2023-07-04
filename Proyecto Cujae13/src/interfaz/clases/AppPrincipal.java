@@ -60,10 +60,11 @@ import utilidades.Auxiliares;
  * JFrame principal de la aplicación Cujae13. La misma cuenta con diferentes pantallas 
  * seccionadas en sus paneles correspondientes.
  * 
- * @version 2023.06.02
- * 
  * @author Lilian Rojas
  * @author Eduardo González
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
  *
  */
 public class AppPrincipal extends JFrame {

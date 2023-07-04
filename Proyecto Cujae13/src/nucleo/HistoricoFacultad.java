@@ -2,6 +2,15 @@ package nucleo;
 
 import java.io.Serializable;
 
+/**
+ * Clase que permite modelar los nodos de la tabla de posiciones historica
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class HistoricoFacultad implements Serializable,Comparable<HistoricoFacultad>{
 	private static final long serialVersionUID = 1L;
 	private Facultad facultad;

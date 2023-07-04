@@ -23,8 +23,10 @@ import java.awt.Toolkit;
 /**
  * JDialog que modela la pantalla de carga de la aplicación Cujae13.
  * 
- * @version 2023.06.02
  * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
  * @author Eduardo González
  *
  */

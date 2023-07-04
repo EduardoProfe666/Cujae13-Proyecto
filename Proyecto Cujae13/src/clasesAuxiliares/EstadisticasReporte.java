@@ -4,6 +4,7 @@ package clasesAuxiliares;
  * Clase informacional para la tabla de estadísticas de las facultades.
  * 
  * @author Lilian Rojas
+ * @author Katherine Ramírez
  * @author Eduardo González
  *
  */

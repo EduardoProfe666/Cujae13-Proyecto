@@ -3,10 +3,17 @@ package nucleo;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * Clase que permite modelar las infracciones que tributan a la tabla de posiciones de deporte
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class Infraccion implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private TipoInfraccion tipo;
 	private String descripcion;

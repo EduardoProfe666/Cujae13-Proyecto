@@ -13,7 +13,6 @@ import nucleo.Universidad;
 /**
  * Inicialización de la aplicación Cujae13
  * 
- * @version 2023.05.19
  * @author Lilian Rojas
  * @author Katherine Ramírez
  * @author Cristian Páez

@@ -146,6 +146,7 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 			public void actionPerformed(ActionEvent ev) {
 				if(modoRuta) {
 					modoRuta = false;
+					seleccionarLocalizacionLbl.setText("Seleccionar Localización");
 					capaBtn.setEnabled(true);
 					cancelarDijkstraBtn.doClick();
 					cancelarDijkstraBtn.setVisible(false);
@@ -154,6 +155,7 @@ public class PanelMapa extends PanelBaseAppPrincipal{
 					
 				}else {
 					modoRuta = true;
+					seleccionarLocalizacionLbl.setText("Modo Ruta");
 					if(!tipoMapa)
 						capaBtn.doClick();
 					capaBtn.setEnabled(false);

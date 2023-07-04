@@ -3,8 +3,13 @@ package nucleo;
 import java.io.Serializable;
 
 /**
- * Ni idea para que coño se puso esto. Posiblemente no sirva para nada al 
- * final, por ahora se queda así por si acaso...
+ * Enum que permite modelar cada tipo de evento o etapa de los mismos
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
  *
  */
 public enum TipoEvento implements Serializable{

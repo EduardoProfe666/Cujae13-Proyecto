@@ -9,6 +9,17 @@ import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import utilidades.Validaciones;
 
+/**
+ * Clase que permite modelar la informacion de la historia de los 13 de marzo, 
+ * incluyendo la tabla de posiciones historica y el surgimiento
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class Historia13Marzo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private GeneralTree<HistoricoFacultad> tablaPosiciones; //ArbolGeneral

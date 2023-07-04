@@ -2,6 +2,16 @@ package nucleo;
 
 import java.io.Serializable;
 
+/**
+ * Clase que permite modelar los nodos del arbol de posiciones de cada deporte
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class ClasificacionDeporte implements Serializable, Comparable<ClasificacionDeporte>{
 	private static final long serialVersionUID = 1L;
 	private Facultad facultad;

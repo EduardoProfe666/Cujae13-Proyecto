@@ -8,9 +8,9 @@ import clasesAuxiliares.Usuario;
 /**
  * Clase que permite almacenar el listado de usuarios admisibles en la aplicación.
  * 
- * @version 2023.06.02
  * 
  * @author Eduardo González
+ * @author Cristian Páez
  *
  */
 public class Usuarios implements Serializable{

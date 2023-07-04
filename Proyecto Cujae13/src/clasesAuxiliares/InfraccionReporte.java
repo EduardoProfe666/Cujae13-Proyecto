@@ -2,6 +2,14 @@ package clasesAuxiliares;
 
 import nucleo.Infraccion;
 
+/**
+ * 
+ * Clase informacional para la tabla de infracciones
+ * 
+ * @author Eduardo González
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ */
 public class InfraccionReporte {
 	private Infraccion infraccion;
 	private String deporte;

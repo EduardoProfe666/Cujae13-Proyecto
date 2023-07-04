@@ -1,5 +1,15 @@
 package nucleo;
 
+/**
+ * Enum que permite modelar los tipos de infracciones con los puntos restados, una descripcion y el tipo de deporte vinculado
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public enum TipoInfraccion {
 	INCOMPARECENCIA_COLECTIVO("Incomparecencia Colectivo",5,"Juego perdido por incomparecencia o no presentación en deportes colectivos",TipoDeporte.DEPORTE_COLECTIVO),
 	AGRESION_MENOR("Agresión Menor",5,"Ofender al adversario, intento de agresión o ripostar una agresión",TipoDeporte.AMBOS),

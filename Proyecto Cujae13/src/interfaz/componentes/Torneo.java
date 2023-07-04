@@ -41,7 +41,7 @@ public class Torneo extends JPanel{
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
-		String urlInd = "/interfaz/iconos/exit1.png";
+		String urlInd = "/interfaz/iconos/indeterminado01.png";
 		
 		Imagen indeterminadoE = new Imagen((Icon) null);
 		indeterminadoE.setVisible(false);

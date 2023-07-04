@@ -3,6 +3,15 @@ package clasesAuxiliares;
 import nucleo.NombreFacultad;
 import nucleo.Sancion;
 
+/**
+ * 
+ * Clase informacional que modela la tabla de sanciones
+ * 
+ * @author Eduardo González
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ *
+ */
 public class SancionReporte {
 	private Sancion sancion;
 	private NombreFacultad facultad;

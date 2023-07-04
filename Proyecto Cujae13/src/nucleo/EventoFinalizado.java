@@ -2,6 +2,16 @@ package nucleo;
 
 import java.time.LocalTime;
 
+/**
+ * Clase que permite modelar los eventos finalizados con sus respectivos datos
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class EventoFinalizado extends Evento {
 	private static final long serialVersionUID = 1L;
 	private LocalTime horaFin;

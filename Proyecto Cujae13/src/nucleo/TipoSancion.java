@@ -1,5 +1,15 @@
 package nucleo;
 
+/**
+ * Enum que permite modelar los tipos de sanciones con el puntaje a quitar y un descripcion
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public enum TipoSancion {
 	INDISCIPLINA_GRAVE("Indisciplina Grave",10,"Realización de indisciplinas graves tanto en deportes colectivos como individuales"),
 	FRAUDE("Fraude",20,"Realización de fraude de cualquier índole");

@@ -15,6 +15,16 @@ import cu.edu.cujae.ceis.tree.iterators.binary.PosOrderIterator;
 import nucleo.InicializacionPartidosDeporte.EventoFecha;
 import utilidades.Validaciones;
 
+/**
+ * Clase que permite modelar la informacion de cada deporte
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class Deporte extends ListenerSupport implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String nombre;
@@ -38,6 +48,10 @@ public class Deporte extends ListenerSupport implements Serializable{
 		this.eventosTorneo = new ArrayList<EventoFecha>();
 	}
 
+	/**
+	 * Permite inicializar el torneo
+	 * @param eventosTorneo
+	 */
 	public void inicializarTorneo(List<EventoFecha> eventosTorneo) {
 		if(this.eventosTorneo.isEmpty())
 			this.eventosTorneo.addAll(eventosTorneo);
@@ -180,11 +194,18 @@ public class Deporte extends ListenerSupport implements Serializable{
 		
 		return indice;
 	}
-
+	
+	/**
+	 * Permite asignar un resultado de un evento
+	 * 
+	 * @param e
+	 * @param indiceEvento
+	 */
 	public void setEventoResultado(EventoFecha e, int indiceEvento) {
 		if(e.getEvento() instanceof EventoFinalizado && estado.equals(EstadoDeporte.EN_EJECUCION)) {
 			eventosTorneo.set(indiceEvento, e);
-			adicionarPuntaje(((EventoFinalizado)e.getEvento()).getResultado().getFacultadGanadora().getNombre(), tipoDeporte.getPuntuacionPartidoGanado());
+			if(indiceEvento!=0)
+				adicionarPuntaje(((EventoFinalizado)e.getEvento()).getResultado().getFacultadGanadora().getNombre(), tipoDeporte.getPuntuacionPartidoGanado());
 			comprobarEstado();
 			actualizarCompetidores();
 		}
@@ -221,6 +242,11 @@ public class Deporte extends ListenerSupport implements Serializable{
 		
 	}
 	
+	/**
+	 * Permite conocer si el deporte presenta eventos el dia actual, que no 
+	 * esten finalizados
+	 * @return
+	 */
 	public boolean tieneEventosHoy() {
 		boolean b = false;
 		
@@ -233,6 +259,11 @@ public class Deporte extends ListenerSupport implements Serializable{
 		return b;
 	}
 	
+	/**
+	 * Permite conocer si la facultad pasada por parametro se encuentra en primer lugar
+	 * @param f
+	 * @return
+	 */
 	public boolean primerLugar(NombreFacultad f) {
 		boolean b = false;
 		

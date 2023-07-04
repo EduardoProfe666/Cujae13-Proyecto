@@ -3,6 +3,16 @@ package nucleo;
 import java.io.Serializable;
 import java.time.LocalTime;
 
+/**
+ * Clase que permite modelar los eventos o partidos con sus datos
+ * 
+ * @author Eduardo Gonzalez
+ * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ *
+ */
 public class Evento implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private TipoEvento tipo;
@@ -64,6 +74,10 @@ public class Evento implements Serializable{
 		}
 	}
 	
+	/**
+	 * Permite conocer si el evento esta indeterminado, es decir, si tiene alguna facultad contrincante por determinar
+	 * @return
+	 */
 	public boolean estaIndeterminado() {
 		return facultadPrimera == null || facultadSegunda == null;
 	}

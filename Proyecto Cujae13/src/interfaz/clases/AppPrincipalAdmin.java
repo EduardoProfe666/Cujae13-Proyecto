@@ -54,9 +54,13 @@ import utilidades.Archivador;
 import utilidades.Auxiliares;
 
 /**
- *JFrame con la sección de Administrador de la aplicación Cujae13.
+ * JFrame con la sección de Administrador de la aplicación Cujae13.
  * 
  * @author Eduardo González
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
+ * @author Lilian Rojas
  *
  */
 public class AppPrincipalAdmin extends JFrame {

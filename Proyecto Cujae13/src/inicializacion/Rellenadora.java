@@ -25,10 +25,13 @@ import nucleo.TipoDeporte;
 import nucleo.Universidad;
 
 /**
- * PROVISIONAL SOLO PARA IR PROBANDO
+ * Datos de prueba para probar el funcionamiento correcto de la aplicacion
  * 
  * @author Eduardo Gonzalez
  * @author Lilian Rojas
+ * @author Katherine Ramírez
+ * @author Cristian Páez
+ * @author Bryan García
  *
  */
 public final class Rellenadora {
@@ -36,6 +39,11 @@ public final class Rellenadora {
 	
 	private static File f = new File("datos.dat");
 	
+	/**
+	 * Permite crear un fichero con datos de prueba de la aplicacion en memoria externa
+	 * 
+	 * @throws Exception Si existe algun problema con los datos en memoria externa
+	 */
 	public static void rellenarDatos() throws Exception{
 		if(f.delete())
 			f.createNewFile();
@@ -55,6 +63,12 @@ public final class Rellenadora {
 		r.close();
 	}
 
+	/**
+	 * 
+	 * Permite generar una universidad con datos de prueba
+	 * 
+	 * @return Universidad u generada
+	 */
 	private static Universidad rellenarUniversidad() {
 
 		String hcInfo = "La Facultad de Ingeniería Informática en sus inicios se encontraba formando parte de "
@@ -248,30 +262,30 @@ public final class Rellenadora {
 		u.addFacultad(tele);
 		
 		InicializacionPartidosDeporte inicBad = new InicializacionPartidosDeporte( quim, tele,
-				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(9, 0)),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(12, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(12, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(12, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
 						new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)),
 						new FechaHora(LocalDate.now().plusDays(4), LocalTime.of(9, 0))),
 				u.getListadoFacultades());
 		InicializacionPartidosDeporte inicKar = new InicializacionPartidosDeporte(aubi, civil,
-				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(9, 0)),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1),LocalTime.of(12, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(12, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(12, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
 						new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)),
 						new FechaHora(LocalDate.now().plusDays(4), LocalTime.of(9, 0))),
 				u.getListadoFacultades());
 		InicializacionPartidosDeporte inicFut = new InicializacionPartidosDeporte(indu, mec,
-				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(9, 0)),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(12, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(12, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(12, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
 						new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)),
 						new FechaHora(LocalDate.now().plusDays(4), LocalTime.of(9, 0))),
 				u.getListadoFacultades());
 		InicializacionPartidosDeporte inicVol = new InicializacionPartidosDeporte(arq, info,
-				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(9, 0)),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
-						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+				new ListadoFechaHora(new FechaHora(LocalDate.now().plusDays(1), LocalTime.of(12, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(12, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
+						new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(12, 0)), new FechaHora(LocalDate.now().plusDays(2), LocalTime.of(9, 0)),
 						new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)), new FechaHora(LocalDate.now().plusDays(3), LocalTime.of(9, 0)),
 						new FechaHora(LocalDate.now().plusDays(4), LocalTime.of(9, 0))),
 				u.getListadoFacultades());
@@ -337,7 +351,12 @@ public final class Rellenadora {
 		localizaciones.insertWEdgeNDG(1, 8, 180); //Distancia de Pista de Atletismo a DEDER
 		localizaciones.insertWEdgeNDG(7, 8, 80); //Distancia de Piscina de Natación a DEDER
 	}
-
+	
+	/**
+	 * Permite generar usuarios de prueba de cada tipo (9 facultades y 1 admin)
+	 * 
+	 * @return Usuarios u generados
+	 */ 
 	private static Usuarios rellenarUsuarios() {
 		Usuarios u = Usuarios.getInstancia();
 
@@ -355,6 +374,9 @@ public final class Rellenadora {
 		return u;
 	}
 	
+	/**
+	 * Permite borrar los datos de la aplicacion 
+	 */
 	public static void borrarDatos() {
 		f.delete();
 	}
