@@ -159,5 +159,3 @@ Java ~= 1.8
 - Bryan García García 
 - Eduardo Alejandro González Martell 
 
-
-$${\color{green}Green}$$
