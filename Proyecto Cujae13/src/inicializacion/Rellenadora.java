@@ -39,6 +39,12 @@ public final class Rellenadora {
 	
 	private static File f = new File("datos.dat");
 	
+	public static void iniciarApp() throws Exception {
+		if(!f.exists()) {
+			rellenarDatos();
+		}
+	}
+	
 	/**
 	 * Permite crear un fichero con datos de prueba de la aplicacion en memoria externa
 	 * 

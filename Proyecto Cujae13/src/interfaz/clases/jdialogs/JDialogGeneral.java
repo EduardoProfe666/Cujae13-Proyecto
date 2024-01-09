@@ -37,7 +37,8 @@ public abstract class JDialogGeneral extends JDialog{
 		setContentPane(panelBase);
 		panelBase.setLayout(null);
 		
-		panelSuperior = new PanelSuperiorJDialog(e.getPanelMovilBase(), this, titulo);
+//		panelSuperior = new PanelSuperiorJDialog(e.getPanelMovilBase(), this, titulo);
+		panelSuperior = new PanelSuperiorJDialog(Color.BLACK, this, titulo);
 		setContentPane(panelBase);
 		panelBase.add(panelSuperior);
 		

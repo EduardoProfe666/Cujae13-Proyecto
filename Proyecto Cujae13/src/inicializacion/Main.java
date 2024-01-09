@@ -26,9 +26,9 @@ public class Main {
 		Locale.setDefault(new Locale("es"));
 		FlatLightLaf.setup();
 		
-		try {	
-			Rellenadora.borrarDatos();
-			Rellenadora.rellenarDatos();
+		try {
+			Rellenadora.iniciarApp();
+//			Rellenadora.borrarDatos();
 			
 			Inicializadora.inicializarAplicacion();
 			

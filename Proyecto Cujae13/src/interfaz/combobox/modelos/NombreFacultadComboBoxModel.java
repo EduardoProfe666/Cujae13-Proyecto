@@ -22,7 +22,6 @@ public class NombreFacultadComboBoxModel extends ModeloPrincipalComboBoxModel {
 	
 	private static List<String> tipo(){
 		LinkedList<String> s = new LinkedList<String>();
-		
 		NombreFacultad[] tipos = NombreFacultad.values();
 		
 		for(NombreFacultad t : tipos) {

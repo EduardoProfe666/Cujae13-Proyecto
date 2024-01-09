@@ -32,7 +32,7 @@ import utilidades.Auxiliares;
  * @author Eduardo González
  *
  */
-public class PanelSuperior extends PanelBordeOval{
+public class TopPanel extends PanelBordeOval{
 	private static final long serialVersionUID = 1L;
 	private Color colorBase;
 	private Color colorPresionado;
@@ -43,7 +43,7 @@ public class PanelSuperior extends PanelBordeOval{
 	private JButton minimizarBtn;
 	private boolean b;
 
-	public PanelSuperior(Color color, JFrame raiz, String etiqueta) {
+	public TopPanel(Color color, JFrame raiz, String etiqueta) {
 		super(DefinicionesInterfaz.ESQUINA_BORDE_OVAL_PS, DefinicionesInterfaz.ESQUINA_BORDE_OVAL_PS,0,0);
 		if(raiz==null)
 			throw new RuntimeException("La raiz no puede ser null");
@@ -99,7 +99,7 @@ public class PanelSuperior extends PanelBordeOval{
 				
 				GlassPanePopup.showPopup(m, o);
 				if(!b)
-					salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/exit0.png")));
+					salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/exit0.png")));
 				
 					
 			}
@@ -107,11 +107,11 @@ public class PanelSuperior extends PanelBordeOval{
 		salirBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/exit1.png")));
+				salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/exit1.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/exit0.png")));
+				salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/exit0.png")));
 			}
 		});
 		salirBtn.setContentAreaFilled(false);
@@ -119,7 +119,7 @@ public class PanelSuperior extends PanelBordeOval{
 		salirBtn.setHorizontalAlignment(SwingConstants.CENTER);
 		salirBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 		salirBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/exit0.png")));
+		salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/exit0.png")));
 	
 		minimizarBtn = new JButton("");
 		minimizarBtn.addActionListener(new ActionListener() {
@@ -130,11 +130,11 @@ public class PanelSuperior extends PanelBordeOval{
 		minimizarBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				minimizarBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/minimize1.png")));
+				minimizarBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/minimize1.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				minimizarBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/minimize0.png")));
+				minimizarBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/minimize0.png")));
 			}
 		});
 		minimizarBtn.setContentAreaFilled(false);
@@ -142,7 +142,7 @@ public class PanelSuperior extends PanelBordeOval{
 		minimizarBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 		minimizarBtn.setHorizontalAlignment(SwingConstants.CENTER);
 		minimizarBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		minimizarBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/minimize0.png")));
+		minimizarBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/minimize0.png")));
 		
 		this.setLayout(null);
 		this.add(this.etiqueta);

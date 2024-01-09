@@ -37,7 +37,7 @@ import definiciones.DefinicionesInterfaz;
 import definiciones.ErroresInterfazGrafica;
 import inicializacion.Inicializadora;
 import interfaz.componentes.ConfetiJDialog;
-import interfaz.componentes.PanelSuperior;
+import interfaz.componentes.TopPanel;
 import nucleo.NombreFacultad;
 import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
@@ -62,7 +62,7 @@ import utilidades.Auxiliares;
 public class Autenticacion extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panelBase;
-	private PanelSuperior panelSuperior;
+	private TopPanel panelSuperior;
 	private ImagenAnim imagen;
 	private JPanel panelLogin;
 	private AvatarCircular avatar;
@@ -100,7 +100,7 @@ public class Autenticacion extends JFrame {
 		panelBase.setOpaque(false);
 		setContentPane(panelBase);
 
-		panelSuperior = new PanelSuperior(DefinicionesInterfaz.COLOR_PANEL_SUPERIOR, this, "Autenticación");
+		panelSuperior = new TopPanel(DefinicionesInterfaz.COLOR_PANEL_SUPERIOR, this, "Autenticación");
 
 		imagen = new ImagenAnim(3500);
 		imagen.addImage(new ImageIcon(Autenticacion.class.getResource("/interfaz/imagenes/a01.png")));

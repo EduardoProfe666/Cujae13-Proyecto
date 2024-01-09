@@ -55,6 +55,7 @@ public class AgregarInfraccionJDialog extends JDialogGeneral{
 	public AgregarInfraccionJDialog(EsquemaColores e, JFrame padre) {
 		super("Agregar Infracción", e, padre);
 		
+		setContentPane(panelBase);
 		inf = "Seleccione una infracción";
 		
 		deporte = new JComboBox<String>();

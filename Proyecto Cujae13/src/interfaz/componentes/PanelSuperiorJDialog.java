@@ -82,11 +82,11 @@ public class PanelSuperiorJDialog extends PanelBordeOval{
 		salirBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/exit1.png")));
+				salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/exit1.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/exit0.png")));
+				salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/exit0.png")));
 			}
 		});
 		salirBtn.setContentAreaFilled(false);
@@ -94,7 +94,7 @@ public class PanelSuperiorJDialog extends PanelBordeOval{
 		salirBtn.setHorizontalAlignment(SwingConstants.CENTER);
 		salirBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 		salirBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), PanelSuperior.class.getResource("/interfaz/iconos/exit0.png")));
+		salirBtn.setIcon(Auxiliares.ajustarImagen(new Dimension(32,32), TopPanel.class.getResource("/interfaz/iconos/exit0.png")));
 	
 		
 		

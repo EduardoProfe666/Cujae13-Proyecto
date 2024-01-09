@@ -11,3 +11,5 @@ Aplicación de escritorio de mostrado de información sobre los Juegos 13 de Mar
  · Bryan García García <br>
  · Eduardo Alejandro González Martell <br>
 
+
+$${\color{green}Green}$$

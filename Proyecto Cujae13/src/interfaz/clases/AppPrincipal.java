@@ -45,7 +45,7 @@ import interfaz.clases.panelesAppPrincipal.PanelInicio;
 import interfaz.clases.panelesAppPrincipal.PanelMapa;
 import interfaz.clases.panelesAppPrincipal.PanelSeleccionFacultad;
 import interfaz.clases.panelesAppPrincipal.PanelSeleccionarDeporte;
-import interfaz.componentes.PanelSuperior;
+import interfaz.componentes.TopPanel;
 import nucleo.NombreFacultad;
 import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
@@ -70,7 +70,7 @@ import utilidades.Auxiliares;
 public class AppPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panelBase;
-	private PanelSuperior panelSuperior;
+	private TopPanel panelSuperior;
 	private JPanel panelContenedor;
 	private PanelGradienteH panelSup;
 	private PanelGradienteV panelUsuario;
@@ -129,7 +129,7 @@ public class AppPrincipal extends JFrame {
 		panelBase.setOpaque(false);
 		panelBase.setLayout(null);
 		
-		panelSuperior = new PanelSuperior(e.getPanelMovilBase(), this, "Cujae13");
+		panelSuperior = new TopPanel(e.getPanelMovilBase(), this, "Cujae13");
 		panelSuperior.setBorder(new MatteBorder(0, 0, 2, 0, new Color(0,0,0)));
 		
 		setContentPane(panelBase);

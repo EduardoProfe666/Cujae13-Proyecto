@@ -43,7 +43,7 @@ import interfaz.clases.panelesAppPrincipalAdmin.PanelInicioAdmin;
 import interfaz.clases.panelesAppPrincipalAdmin.PanelPorResultados;
 import interfaz.clases.panelesAppPrincipalAdmin.PanelResultados;
 import interfaz.componentes.NotificacionPorResultados;
-import interfaz.componentes.PanelSuperior;
+import interfaz.componentes.TopPanel;
 import nucleo.Universidad;
 import raven.glasspanepopup.GlassPanePopup;
 import raven.glasspanepopup.Option;
@@ -66,7 +66,7 @@ import utilidades.Auxiliares;
 public class AppPrincipalAdmin extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panelBase;
-	private PanelSuperior panelSuperior;
+	private TopPanel panelSuperior;
 	private JPanel panelContenedor;
 	private PanelGradienteH panelSup;
 	private PanelGradienteV panelUsuario;
@@ -134,7 +134,7 @@ public class AppPrincipalAdmin extends JFrame {
 		panelBase.setOpaque(false);
 		panelBase.setLayout(null);
 		
-		panelSuperior = new PanelSuperior(e.getPanelMovilBase(), this, "Cujae13");
+		panelSuperior = new TopPanel(e.getPanelMovilBase(), this, "Cujae13");
 		panelSuperior.setBorder(new MatteBorder(0, 0, 2, 0, new Color(0,0,0)));
 		
 		setContentPane(panelBase);
